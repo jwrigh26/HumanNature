@@ -53,7 +53,7 @@ module.exports = (env = {}, options = {}) => {
     },
 
     resolve: {
-      extensions: ['', '.js', '.jsx'],
+      extensions: ['.js', '.jsx'],
       alias: {
         components: path.resolve(__dirname, 'src/components'),
         helpers: path.resolve(__dirname, 'src/helpers'),
@@ -110,18 +110,12 @@ module.exports = (env = {}, options = {}) => {
     plugins: [
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'src/html/shell-index.html',
+        template: 'src/html/root-index.html',
         chunks: ['index'],
         chunksSortMode: 'manual',
       }),
-      new HtmlWebpackPlugin({
-        filename: 'partner.html',
-        template: 'src/html/shell-index.html',
-        chunks: ['partner'],
-        chunksSortMode: 'manual',
-      }),
       new FaviconsWebpackPlugin({
-        logo: 'src/assets/facicon.svg',
+        logo: 'src/assets/favicon.svg',
         mode: 'webapp',
         devMode: 'webapp',
         favicons: {
@@ -129,7 +123,7 @@ module.exports = (env = {}, options = {}) => {
           // eslint-disable-next-line camelcase
           theme_color: '#37BDF8',
         },
-        inject: htmlPlugin =>
+        inject: (htmlPlugin) =>
           basename(htmlPlugin.options.filename) === 'index.html',
       }),
       new CaseSensitivePathsPlugin(),

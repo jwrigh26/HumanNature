@@ -1,7 +1,7 @@
 /* eslint-disable valid-jsdoc */
 
 // Import and use like:
-//    import { hasValue } from 'shared-ui';
+//    import { hasValue } from 'helpers/utils';
 
 /**
  * Checks to see if your value has a truthy value. This is especially useful in

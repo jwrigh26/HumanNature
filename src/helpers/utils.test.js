@@ -116,7 +116,7 @@ describe('isString', () => {
 
   it(
     'should be able to check if ' +
-    'something is not a string or instance of String',
+      'something is not a string or instance of String',
     () => {
       expect(isString(123)).toEqual(false);
       expect(isString(0)).toEqual(false);
