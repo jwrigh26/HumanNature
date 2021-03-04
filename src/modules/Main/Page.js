@@ -12,4 +12,4 @@ function Page() {
     </>
   );
 }
-export default App;
+export default Page;

@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WebpackChunkHash = require('webpack-chunk-hash');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -37,8 +36,12 @@ module.exports = (env = {}, options = {}) => {
       index: 'src/index.js',
     },
 
+    stats: {
+      children: true
+    },
+
     output: {
-      path: path.resolve(__dirname, 'build'),
+      path: path.resolve(__dirname, 'dist'),
       publicPath: environment.PUBLIC_PATH,
       filename: '[name].[chunkhash].js',
     },
@@ -91,19 +94,21 @@ module.exports = (env = {}, options = {}) => {
         },
         {
           test: /\.(js|jsx)$/,
-          use: [{ loader: 'babel-loader' }],
           exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
+          },
         },
         {
-          test: /\.(png|jp(e*)g|svg|gif)$/,
-          use: [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 8192,
-              },
-            },
-          ],
+          test: /\.(png|jp(e*)g|gif)$/,
+          type: 'asset/resource',
+        },
+        {
+          test: /\.svg/,
+          type: 'asset/inline',
         },
       ],
     },
@@ -134,7 +139,6 @@ module.exports = (env = {}, options = {}) => {
         filename: '[name].[contenthash].css',
         chunkFilename: '[id].[contenthash].css',
       }),
-      new WebpackChunkHash({ algorithm: 'md5' }),
       new webpack.EnvironmentPlugin(environment),
       new CompressionPlugin(),
       new ESLintPlugin(),
