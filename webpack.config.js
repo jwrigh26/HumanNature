@@ -1,6 +1,7 @@
 /* eslint-disable no-process-env */
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -37,7 +38,7 @@ module.exports = (env = {}, options = {}) => {
     },
 
     stats: {
-      children: true
+      children: true,
     },
 
     output: {
@@ -113,6 +114,7 @@ module.exports = (env = {}, options = {}) => {
       ],
     },
     plugins: [
+      new Dotenv(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/html/root-index.html',

@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from 'react-router';
 import Page from './Page';
 
 function App() {
-  console.log('Yeah');
   return (
     <React.Fragment>
       <Switch>
