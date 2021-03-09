@@ -6,7 +6,6 @@ import { render } from 'react-dom';
 import { initializeStore } from 'store/store';
 import config from 'helpers/config';
 import App from 'modules/Main/Main';
-import Firebase, { FirebaseContext } from 'components/Firebase';
 import rootReducer from './store/reducers';
 
 const store = initializeStore(rootReducer);
@@ -14,9 +13,7 @@ const store = initializeStore(rootReducer);
 render(
   <Provider store={store}>
     <Router basename={config.publicPath}>
-      <FirebaseContext.Provider value={new Firebase()}>
-        <App />
-      </FirebaseContext.Provider>
+      <App />
     </Router>
   </Provider>,
   document.getElementById('aberdeen-root')
