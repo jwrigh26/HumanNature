@@ -13,7 +13,7 @@ function App() {
           <Page />
         </Route>
         <Route path="/">
-          <Redirect to="/dashboard" />
+          <Redirect to="/dashbaord" />
         </Route>
       </Switch>
     </React.Fragment>

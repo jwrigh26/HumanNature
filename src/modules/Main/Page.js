@@ -4,22 +4,21 @@ import useFirebase from 'hooks/useFirebase';
 function Page() {
   const firebase = useFirebase();
 
-
-  useEffect(()=> {
+  useEffect(() => {
     const hello = firebase?.functions()?.httpsCallable('helloWorld');
     async function foo() {
       try {
-        console.log('Hey');
+        console.log('Hey This is cool');
         await hello();
       } catch (error) {
-        console.log('FB Error!')
+        console.log('FB Error!');
         console.log(error);
       }
     }
     if (firebase) {
       foo();
     }
-  }, [firebase])
+  }, [firebase]);
 
   return (
     <>
