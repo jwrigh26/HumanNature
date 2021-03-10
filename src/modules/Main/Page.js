@@ -8,7 +8,7 @@ function Page() {
     const hello = firebase?.functions()?.httpsCallable('helloWorld');
     async function foo() {
       try {
-        console.log('Hey This is cool');
+        console.log('Hey Kazuki !! Love you dude!');
         await hello();
       } catch (error) {
         console.log('FB Error!');

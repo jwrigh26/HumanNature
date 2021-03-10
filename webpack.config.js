@@ -104,12 +104,15 @@ module.exports = (env = {}, options = {}) => {
           },
         },
         {
-          test: /\.(png|jp(e*)g|gif)$/,
-          type: 'asset/resource',
-        },
-        {
-          test: /\.svg/,
-          type: 'asset/inline',
+          test: /\.(png|jpg|svg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192,
+              },
+            },
+          ],
         },
       ],
     },
