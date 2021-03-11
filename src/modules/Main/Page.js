@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useFirebase from 'hooks/useFirebase';
+import { Link } from 'react-router-dom';
 
 function Page() {
   const firebase = useFirebase();
@@ -8,7 +9,6 @@ function Page() {
     const hello = firebase?.functions()?.httpsCallable('helloWorld');
     async function foo() {
       try {
-        console.log('Hey Kazuki !! Love you dude!');
         await hello();
       } catch (error) {
         console.log('FB Error!');
@@ -28,6 +28,19 @@ function Page() {
         visual aid when working with UI inside the JavaScript code. It also
         allows React to show more useful error and warning messages.
       </p>
+      <ul>
+        <li>
+          <Link to={'/post/old-school-lemons'}>Article: Old School Lemons</Link>
+        </li>
+        <li>
+          <Link to={'/post/lemon-cake'}>Article: Lemon Cake</Link>
+        </li>
+        <li>
+          <Link to={'/post/strawberry-cake'}>
+            Article: Strawberry Cake
+          </Link>
+        </li>
+      </ul>
     </>
   );
 }

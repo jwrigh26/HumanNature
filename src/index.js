@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 import { initializeStore } from 'store/store';
 import config from 'helpers/config';
 import App from 'modules/Main/Main';
+import RouteManager from 'components/RouteManager';
 import rootReducer from './store/reducers';
 
 const store = initializeStore(rootReducer);
@@ -13,7 +14,9 @@ const store = initializeStore(rootReducer);
 render(
   <Provider store={store}>
     <Router basename={config.publicPath}>
-      <App />
+      <RouteManager>
+        <App />
+      </RouteManager>
     </Router>
   </Provider>,
   document.getElementById('aberdeen-root')

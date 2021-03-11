@@ -3,6 +3,10 @@
     "public": "dist",
     "rewrites": [
       {
+        "source": "/cdn/image/**",
+        "function": "fetchImage"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
