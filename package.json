@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": "https://github.com/jwrigh26/aberdeen",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --mode development --devtool=source-map --env.devServerIndex=index.html --env.devToken=foo",
+    "start": "npm run build-postlist && webpack-dev-server --config webpack.config.js --mode development --devtool=source-map --env.devServerIndex=index.html --env.devToken=foo",
     "start-from-build": "webpack-dev-server --config webpack.config.js --mode production",
     "build": "webpack --config webpack.config.js --mode production",
     "preserve": "npm run build",
@@ -22,7 +22,8 @@
     "format-file": "prettier --write",
     "is-good": "npm run lint && npm run check-formatted && npm test",
     "dev:analyze": "npm run dev -- --env.addons=bundleanalyzer",
-    "build:analyze": "npm run build -- --env.addons=bundleanalyzer"
+    "build:analyze": "npm run build -- --env.addons=bundleanalyzer",
+    "build-postlist": "node scripts/createPostMap.js"
   },
   "browserslist": {
     "production": [
@@ -112,6 +113,7 @@
     "classnames": "^2.2.6",
     "d3": "^6.5.0",
     "date-fns": "^2.18.0",
+    "directory-tree": "^2.2.7",
     "dompurify": "^2.2.6",
     "firebase": "^8.2.10",
     "firebase-admin": "^9.5.0",

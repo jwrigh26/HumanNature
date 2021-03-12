@@ -1,5 +1,5 @@
 import React from 'react';
-import css from '../post.module.scss'
+import css from '../post.module.scss';
 
 function Content(props) {
   return (

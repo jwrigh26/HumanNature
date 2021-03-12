@@ -1,5 +1,6 @@
 /* eslint-disable no-process-env */
 const path = require('path');
+const { basename } = require('path');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,7 +10,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const { basename } = require('path');
 
 // TODO: Find out what prod constants should be
 module.exports = (env = {}, options = {}) => {

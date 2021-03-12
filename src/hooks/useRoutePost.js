@@ -42,7 +42,6 @@ export default function useRoutePost(map) {
       // Remove '-' from article and then
       // Lowercase first word
       // Uppercase following words
-      // Then search in map
       const firstWord = R.pipe(R.split('-'), R.nth(0), R.toLower())(article);
       const otherWords = R.pipe(
         R.split('-'),

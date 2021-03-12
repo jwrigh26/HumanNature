@@ -2,7 +2,6 @@ import React from 'react';
 import css from '../post.module.scss';
 
 function Content() {
-
   return (
     <div>
       <h1>Strawberry Cake</h1>

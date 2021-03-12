@@ -36,9 +36,7 @@ function Page() {
           <Link to={'/post/lemon-cake'}>Article: Lemon Cake</Link>
         </li>
         <li>
-          <Link to={'/post/strawberry-cake'}>
-            Article: Strawberry Cake
-          </Link>
+          <Link to={'/post/strawberry-cake'}>Article: Strawberry Cake</Link>
         </li>
       </ul>
     </>

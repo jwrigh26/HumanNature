@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as R from 'ramda';
 
-
 const postSlice = createSlice({
   name: 'post',
   initialState: {
@@ -13,7 +12,7 @@ const postSlice = createSlice({
     setContent(state, action) {
       state.content = {
         ...state.content,
-        Article: action?.payload.Article,
+        article: action?.payload.article,
         key: action?.payload.key,
       };
     },
@@ -25,12 +24,7 @@ const postSlice = createSlice({
   },
 });
 
-
-
-export const {
-  setContent,
-  switchToArticle,
-} = postSlice.actions;
+export const { setContent, switchToArticle } = postSlice.actions;
 
 export const postSelector = R.prop('post');
 
