@@ -24,10 +24,12 @@ function Post() {
       setContentToRender(() => Article);
 
       // TODO: It would be nice to lazy load articles
-      // This can be achieved if all posts were put in one file
-      // We could right a script to move all posts out of their child files
-      // and then for production does something like
-      // import("./local" + path + "js") and this would essentially work
+      // This can be achieved if all posts were put in one dir
+      // import("./local" + path + ".js") and this would essentially work
+
+      // Writing meta is good, but also need to create a file that
+      // has the names of each file in a dir: key => meta
+
       // setContentToRender(() => React.lazy(() => import("./" + posts?.[key]?.path + ".js")));
     }
   }, [content]);

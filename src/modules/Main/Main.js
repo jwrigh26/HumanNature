@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import Page from './Page';
-import Post from 'modules/Posts/Post';
+import Post from 'modules/Post/Post';
 
 function App() {
   return (

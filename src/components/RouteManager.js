@@ -6,7 +6,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { hasValue } from 'helpers/utils';
 import { switchToArticle } from 'store/postSlice';
 import useRoutePost from 'hooks/useRoutePost';
-import Post from 'modules/Posts/Post';
+import Post from 'modules/Post/Post';
 
 Post.propTypes = {
   children: PropTypes.element,

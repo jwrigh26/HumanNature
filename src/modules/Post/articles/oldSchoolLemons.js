@@ -1,5 +1,12 @@
 import React from 'react';
 import css from '../post.module.scss';
+
+/** Meta
+ * date: 2021-03-10
+ * title: Strawberry Cake
+ * tags: old, school, lemon, flower
+ */
+
 function Content(props) {
   return (
     <div>
