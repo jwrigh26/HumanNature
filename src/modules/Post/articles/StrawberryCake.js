@@ -3,6 +3,7 @@ import css from '../post.module.scss';
 
 /** Meta
  *
+ * category: product-reviews
  * date: 2021-03-10
  * title: Strawberry Cake
  * tags: strawberry, cake, flower

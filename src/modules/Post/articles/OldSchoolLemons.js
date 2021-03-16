@@ -3,6 +3,7 @@ import css from '../post.module.scss';
 
 /** Meta
  *
+ * category: product-reviews
  * date: 2021-03-01
  * title: Old School Lemons
  * tags: old, school, lemon, flower

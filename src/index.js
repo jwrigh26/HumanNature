@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 import { initializeStore } from 'store/store';
 import config from 'helpers/config';
 import App from 'modules/Main/Main';
+import AppManager from 'components/AppManager';
 import RouteManager from 'components/RouteManager';
 import rootReducer from './store/reducers';
 
@@ -15,7 +16,9 @@ render(
   <Provider store={store}>
     <Router basename={config.publicPath}>
       <RouteManager>
-        <App />
+        <AppManager>
+          <App />
+        </AppManager>
       </RouteManager>
     </Router>
   </Provider>,

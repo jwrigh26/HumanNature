@@ -42,7 +42,14 @@ export default function useRoutePost(map) {
       // Remove '-' from article and then
       // Lowercase first word
       // Uppercase following words
-      const firstWord = R.pipe(R.split('-'), R.nth(0), R.toLower())(article);
+
+      // Todo:
+      // Not sure if we want lowercase or uppercase
+      // For now Going all Pascal cause React components start with caps
+      // Want to come back and clean this up
+      // const firstWord = R.pipe(R.split('-'), R.nth(0), R.toLower())(article);
+
+      const firstWord = R.pipe(R.split('-'), R.nth(0), capitalize)(article);
       const otherWords = R.pipe(
         R.split('-'),
         R.drop(1),

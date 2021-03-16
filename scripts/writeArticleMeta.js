@@ -61,6 +61,13 @@ function writeArticleMeta() {
   const directoryPath = path.join(__dirname, '../src/modules/Post/articles');
   let articleMetaDictionary = {};
 
+  // Read directory for posts/articles
+  //    - Async reduce all files and search for only '.js' files
+  //    - For each .js file read it and look for the meta comment
+  //    - Async and promise all files to read meta.
+  //    - compile into one big object containing all meta
+  //    - write the object into file in the store
+  //      using writeStream with a buffer
   fs.readdir(directoryPath, async (error, files) => {
     if (error) {
       console.log(error);
@@ -73,16 +80,34 @@ function writeArticleMeta() {
       const fileName = path.basename(file, extension);
 
       if (extension === '.js') {
-        const [fileMeta, m] = await Promise.all([readMeta(filePath, fileName), meta]);
+        const [fileMeta, m] = await Promise.all([
+          readMeta(filePath, fileName),
+          meta,
+        ]);
         return { ...m, [fileName]: fileMeta };
       }
       return meta;
     }, {});
-    articleMetaDictionary = {...articleMetaDictionary, ...articleMeta};
+    articleMetaDictionary = { ...articleMetaDictionary, ...articleMeta };
 
     // What are we returning
-    console.log('------------------- WRITE METHOD DONE ---------------------');
-    console.log(articleMetaDictionary);
+    const name = 'article-meta.json';
+    const writePath = path.join(__dirname, '../src/store/tmp/');
+
+    if (!fs.existsSync(writePath)) {
+      fs.mkdirSync(writePath);
+    }
+
+    const buffer = Buffer.from(JSON.stringify(articleMetaDictionary));
+    const writeStream = fs
+      .createWriteStream(`${writePath}${name}`, { flags: 'w' })
+      .on('finish', () => console.log(`Article Meta: ${writePath}${name}`))
+      .on('error', (err) => console.log(err.stack));
+
+    writeStream.write(buffer, () => {
+      console.log('Writing article meta to file...');
+    });
+    writeStream.end();
   });
 }
 

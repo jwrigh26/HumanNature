@@ -3,9 +3,11 @@ import css from '../post.module.scss';
 
 /** Meta
  *
+ * category: product-reviews
  * date: 2021-03-07
  * title: Lemon Cake
  * tags: lemon, cake, flower
+ *
  *
  */
 
