@@ -26,6 +26,11 @@ function ThemeManager({ children }) {
         fontFamily: secondaryFontFamily,
       },
     },
+    props: {
+      MuiButtonBase: {
+        disableRipple: false, // No more ripple, on the whole application 💣
+      },
+    },
   });
 
   // Make responsive!
@@ -40,3 +45,7 @@ function ThemeManager({ children }) {
 }
 
 export default ThemeManager;
+
+
+// https://material-ui.com/customization/components/
+// See how to customize nested components and target tags

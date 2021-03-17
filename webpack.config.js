@@ -59,6 +59,8 @@ module.exports = (env = {}, options = {}) => {
     resolve: {
       extensions: ['.js', '.jsx'],
       alias: {
+        // https://material-ui.com/getting-started/faq/
+        // "@material-ui/styles": path.resolve(__dirname, "node_modules", "@material-ui/styles"),
         assets: path.resolve(__dirname, 'src/assets'),
         components: path.resolve(__dirname, 'src/components'),
         helpers: path.resolve(__dirname, 'src/helpers'),

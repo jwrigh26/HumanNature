@@ -1,74 +1,54 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import { Link } from 'react-router-dom';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Tabs from '@material-ui/core/Tabs';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
-// TopAppBar.propTypes = {
-//
-// };
-
-function a11yProps(index) {
-  return {
-    id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
-  };
-}
-
-LinkTab.propTypes = {
-  to: PropTypes.string,
-};
-
-function LinkTab(props) {
-  return (
-    <Tab
-      component={Link}
-      onClick={(event) => {
-        // event.preventDefault();
-        // console.log("This was read", props.to)
-      }}
-      to={props.to}
-      {...props}
-    />
-  );
-}
+import LinkTab from './LinkTab';
+import { useTheme } from '@material-ui/core/styles';
+import { a11yProps } from 'helpers/materialHelper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    backgroundColor: theme?.palette?.background?.default,
   },
-  menuButton: {
-    marginRight: theme.spacing(4),
-  },
-  title: {
+  wrapper: {
     flexGrow: 1,
   },
 }));
 
 export default function TopAppBar() {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  console.log(theme);
+
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
+    <div className={classes.wrapper}>
+      <AppBar
+        classes={{
+          root: classes.root,
+        }}
+        elevation={0}
+        position="static"
+      >
+        <Toolbar variant="dense">
+          <IconButton>
+            <Icon>menu</Icon>
+          </IconButton>
           <Tabs
+            aria-label="Top App Bar"
+            component="nav"
+            indicatorColor={'primary'}
+            onChange={handleChange}
+            textColor={'primary'}
             variant="fullWidth"
             value={value}
-            onChange={handleChange}
-            aria-label="nav tabs example"
           >
             <LinkTab
               label="OldSchoolLemons"
