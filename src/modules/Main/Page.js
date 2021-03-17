@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import useFirebase from 'hooks/useFirebase';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import MyButton from 'components/Button';
+import PlainButton from 'components/PainButton/PlainButton';
+import { Typography } from '@material-ui/core';
 
 function Page() {
   const firebase = useFirebase();
@@ -22,12 +26,20 @@ function Page() {
 
   return (
     <>
-      <h1>Hello, Aberdeen</h1>
-      <p>
+      <Typography variant="h1">Hello, Aberdeen</Typography>
+      <Typography variant="h3">Hello, Aberdeen</Typography>
+      <h2>This is normal stuff</h2>
+      <p>Some cat</p>
+      <Typography variant="body1">
         React doesn’t require using JSX, but most people find it helpful as a
         visual aid when working with UI inside the JavaScript code. It also
         allows React to show more useful error and warning messages.
-      </p>
+      </Typography>
+      <Button variant="contained" color="primary">
+        Hello World
+      </Button>
+      <MyButton>My Custom</MyButton>
+      <PlainButton>Plain Button</PlainButton>
       <ul>
         <li>
           <Link to={'/post/old-school-lemons'}>Article: Old School Lemons</Link>

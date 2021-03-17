@@ -8,7 +8,9 @@ import config from 'helpers/config';
 import App from 'modules/Main/Main';
 import AppManager from 'components/AppManager';
 import RouteManager from 'components/RouteManager';
+import ThemeManager from 'components/ThemeManager';
 import rootReducer from './store/reducers';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const store = initializeStore(rootReducer);
 
@@ -17,7 +19,10 @@ render(
     <Router basename={config.publicPath}>
       <RouteManager>
         <AppManager>
-          <App />
+          <ThemeManager>
+            <CssBaseline />
+            <App />
+          </ThemeManager>
         </AppManager>
       </RouteManager>
     </Router>

@@ -9,7 +9,7 @@ Post.propTypes = {
   children: PropTypes.element,
 };
 
-function RouteManager({ children }) {
+function AppManager({ children }) {
   const dispatch = useDispatch();
   const { articles } = useSelector(appSelector)
 
@@ -24,4 +24,4 @@ function RouteManager({ children }) {
   return children;
 }
 
-export default RouteManager;
+export default AppManager;

@@ -2,10 +2,13 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import Page from './Page';
 import Post from 'modules/Post/Post';
+import TopAppBar from 'components/TopAppBar';
+import Home from 'modules/Home/Home';
 
 function App() {
   return (
     <React.Fragment>
+      <TopAppBar />
       <Switch>
         <Route path={'/post/:article'}>
           <Post />
@@ -16,9 +19,10 @@ function App() {
         <Route path="/:tab">
           <Page />
         </Route>
-        <Route path="/">
-          <Redirect to="/home" />
+        <Route exact path="/">
+          <Home />
         </Route>
+        <Route render={() => <Redirect to="/" />} />
       </Switch>
     </React.Fragment>
   );
