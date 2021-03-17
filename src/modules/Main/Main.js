@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 import Page from './Page';
 import Post from 'modules/Post/Post';
-import TopAppBar from 'components/TopAppBar';
+import TopAppBar from 'components/TopAppBar/TopAppBar';
 import Home from 'modules/Home/Home';
 
 function App() {
