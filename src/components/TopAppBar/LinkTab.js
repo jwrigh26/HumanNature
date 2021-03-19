@@ -11,8 +11,7 @@ LinkTab.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.text.secondary,
-    // opacity: 0.54,
+    color: theme.palette.text.primary,
     fontWeight: 600,
     textTransform: 'none',
     [theme.breakpoints.up('lg')]: {
@@ -32,9 +31,24 @@ const useStyles = makeStyles((theme) => ({
       // opacity: 1,
     },
   },
+  foo: {
+    color: theme.palette.text.primary,
+    fontWeight: 600,
+    textTransform: 'none',
+    '&:hover': {
+      opacity: 1,
+    },
+    '&$selected': {
+      fontWeight: 600,
+    },
+    '&:focus': {
+      fontWeight: 600,
+    },
+    [theme.breakpoints.up('lg')]: {
+      minWidth: 96,
+    },
+  },
 }));
-
-
 
 export default function LinkTab(props) {
   const theme = useTheme();

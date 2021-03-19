@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { hasValue } from 'helpers/utils';
-import { appSelector, setFoo } from 'store/appSlice';
+import { appSelector, setSelectedTab } from 'store/appSlice';
 import Post from 'modules/Post/Post';
 
 Post.propTypes = {
@@ -16,10 +16,10 @@ function AppManager({ children }) {
   useEffect(() => {
     if (hasValue(articles)) {
       console.log(articles);
-      dispatch(setFoo({foo: 'dirp herp'}));
+      dispatch(setSelectedTab({tab: 0}));
     }
-
   }, [articles]);
+
 
   return children;
 }

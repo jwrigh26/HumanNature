@@ -1,10 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import Tab from '@material-ui/core/Tab';
 
 const useStyles = makeStyles((theme) => ({
   title: {

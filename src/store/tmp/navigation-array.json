@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Product Reviews",
+    "id": 0,
+    "route": "/"
+  },
+  {
+    "title": "Patient Profiles",
+    "id": 1,
+    "route": "/post/strawberry-cake"
+  },
+  {
+    "title": "Pharmacies",
+    "id": 2,
+    "route": "/post/lemon-cake"
+  },
+  {
+    "title": "GS Life Style",
+    "id": 3,
+    "route": "/post/old-school-lemons"
+  },
+  {
+    "title":  "GS Business",
+    "id": 4,
+    "route": "/post/white-99"
+  }
+]

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { appSelector, setSelectedTab } from 'store/appSlice';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
+
+import { isNil } from 'helpers/utils';
 import LinkTab from 'components/TopAppBar/LinkTab';
 import MuiTabs from '@material-ui/core/Tabs';
 
@@ -33,21 +37,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Tabs() {
+  const dispatch = useDispatch();
+  const { navigation, selectedTab } = useSelector(appSelector);
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(undefined);
+
+  // We only want to update the value of tabs
+  // from the selectedTab if the value has changed
+  useEffect(() => {
+    if (!isNil(selectedTab) && selectedTab !== value) {
+      console.log('Setting Value via SelectedTab', selectedTab);
+      setValue(selectedTab);
+    }
+  }, [selectedTab]);
+
   const handleChange = (event, newValue) => {
+    console.log('Setting Value: ', newValue);
     setValue(newValue);
+    dispatch(setSelectedTab(newValue));
   };
-
-  useEffect(() => {
-    console.log('Value: ', value);
-  }, [value]);
-
-  useEffect(() => {
-    setValue(0);
-  }, []);
 
   function a11yProps(index) {
     return {
@@ -69,20 +79,17 @@ function Tabs() {
         onChange={handleChange}
         variant="standard"
         TabIndicatorProps={{ children: <span /> }}
-        value={value}
+        value={isNil(value) ? false : value}
       >
-        <LinkTab label="Home" to="/" {...a11yProps(0)} />
-        <LinkTab
-          label="OldSchoolLemons"
-          to="/post/old-school-lemons"
-          {...a11yProps(1)}
-        />
-        <LinkTab label="LemonCake" to="/post/lemon-cake" {...a11yProps(2)} />
-        <LinkTab
-          label="White 99%"
-          to="/post/white-99"
-          {...a11yProps(3)}
-        />
+        {navigation?.list.map((navItem) => (
+          <LinkTab
+            key={navItem.id}
+            label={navItem.title}
+            value={navItem.id}
+            to={navItem.route}
+            {...a11yProps(navItem.id)}
+          />
+        ))}
       </MuiTabs>
     </div>
   );
