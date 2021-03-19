@@ -9,26 +9,41 @@ LinkTab.propTypes = {
   to: PropTypes.string,
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
+    color: theme.palette.text.secondary,
+    // opacity: 0.54,
     fontWeight: 600,
-    textTransform: "capitalize",
-  }
-})
+    textTransform: 'none',
+    [theme.breakpoints.up('lg')]: {
+      minWidth: 96,
+    },
+    '&:hover': {
+      color: theme.palette.text.primary,
+      opacity: 1,
+    },
+    '&$selected': {
+      color: theme.palette.common.black,
+      fontWeight: theme.typography.fontWeightMedium,
+      // opacity: 1,
+    },
+    '&:focus': {
+      color: theme.palette.text.primary,
+      // opacity: 1,
+    },
+  },
+}));
+
+
 
 export default function LinkTab(props) {
-  const classes = useStyles();
+  const theme = useTheme();
+  const classes = useStyles(theme);
   return (
     <Tab
       className={classes.root}
       component={Link}
-
       disableRipple
-      onClick={(event) => {
-        // event.preventDefault();
-        // console.log("This was read", props.to)
-      }}
-
       to={props.to}
       {...props}
     />

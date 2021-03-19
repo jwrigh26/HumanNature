@@ -25,6 +25,16 @@ function ThemeManager({ children }) {
       h1: {
         fontFamily: secondaryFontFamily,
       },
+      h2: {
+        fontFamily: secondaryFontFamily,
+      },
+      h3: {
+        fontFamily: secondaryFontFamily,
+      },
+    },
+    palette: {
+      ...colorTheme.palette,
+      icon: { primary: colorTheme.palette.primary.contrastText },
     },
     props: {
       MuiButtonBase: {
@@ -45,7 +55,6 @@ function ThemeManager({ children }) {
 }
 
 export default ThemeManager;
-
 
 // https://material-ui.com/customization/components/
 // See how to customize nested components and target tags
