@@ -1,17 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as R from "ramda";
 import articleMeta from './tmp/article-meta.json';
-import navigation from './tmp/navigation.json';
-import navigationArray from './tmp/navigation-array.json';
+import navigationMeta from './tmp/navigation-meta.json';
 
 const appSlice = createSlice({
   name: 'app',
   initialState: {
     articles: articleMeta,
-    navigation: {
-      dictionary: navigation,
-      list: navigationArray,
-    },
+    navigation: navigationMeta,
     selectedTab: undefined,
   },
   reducers: {

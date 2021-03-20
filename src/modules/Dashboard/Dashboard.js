@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 
-// Home.propTypes = {
+// Dashboard.propTypes = {
 //
 // };
 
-function Home() {
+function Dashboard() {
   return (
     <>
       <Typography variant="h1" component="h2" gutterBottom>
@@ -60,4 +60,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;

@@ -15,8 +15,8 @@ function AppManager({ children }) {
 
   useEffect(() => {
     if (hasValue(articles)) {
-      console.log(articles);
-      dispatch(setSelectedTab({tab: 0}));
+      // console.log(articles);
+      // dispatch(setSelectedTab({tab: 0}));
     }
   }, [articles]);
 

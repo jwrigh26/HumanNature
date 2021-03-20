@@ -1,0 +1,61 @@
+{
+  "routes": {
+    "productReviews": {
+      "title": "Product Reviews",
+      "id": 0,
+      "route": "/product-reviews"
+    },
+    "patientProfiles": {
+      "title": "Patient Profiles",
+      "id": 1,
+      "route": "/patient-profiles"
+    },
+    "pharmacies": {
+      "title": "Pharmacies",
+      "id": 2,
+      "route": "/pharmacies"
+    },
+    "gsLifeStyle": {
+      "title": "GS Life Style",
+      "id": 3,
+      "route": "/gs-life-style"
+    },
+    "gsBusiness": {
+      "title": "GS Business",
+      "id": 4,
+      "route": "/gs-business"
+    },
+    "news": {
+      "title": "News",
+      "id": 5,
+      "route": "/news"
+    }
+  },
+  "tabs": [
+    {
+      "title": "Product Reviews",
+      "id": 0,
+      "route": "/product-reviews"
+    },
+    {
+      "title": "Patient Profiles",
+      "id": 1,
+      "route": "/patient-profiles"
+    },
+    {
+      "title": "Pharmacies",
+      "id": 2,
+      "route": "/pharmacies"
+    },
+    {
+      "title": "GS Life Style",
+      "id": 3,
+      "route": "/gs-life-style"
+    },
+    {
+      "title": "GS Business",
+      "id": 4,
+      "route": "/gs-business"
+    }
+  ]
+}

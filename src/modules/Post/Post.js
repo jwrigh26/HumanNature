@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { postSelector } from 'store/postSlice';
 import { hasValue } from 'helpers/utils';
-import css from './post.module.scss';
 
 function Post() {
   const { content } = useSelector(postSelector);

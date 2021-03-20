@@ -81,7 +81,7 @@ function Tabs() {
         TabIndicatorProps={{ children: <span /> }}
         value={isNil(value) ? false : value}
       >
-        {navigation?.list.map((navItem) => (
+        {navigation?.tabs?.map((navItem) => (
           <LinkTab
             key={navItem.id}
             label={navItem.title}
