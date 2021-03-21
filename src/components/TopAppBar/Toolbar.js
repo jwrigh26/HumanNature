@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import MuiToolbar from '@material-ui/core/Toolbar';
-import { useTheme } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+
 
 Toolbar.propTypes = {
   actionGroup: PropTypes.any,

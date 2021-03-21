@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { hasValue } from 'helpers/utils';
 import { appSelector, setSelectedTab } from 'store/appSlice';
+import { setScreenSize } from 'store/screenSlice';
+import useDetectScreenSize from 'hooks/useMedia';
 import Post from 'modules/Post/Post';
 
 Post.propTypes = {
@@ -12,6 +14,7 @@ Post.propTypes = {
 function AppManager({ children }) {
   const dispatch = useDispatch();
   const { articles } = useSelector(appSelector)
+  const screen = useDetectScreenSize();
 
   useEffect(() => {
     if (hasValue(articles)) {
@@ -20,6 +23,9 @@ function AppManager({ children }) {
     }
   }, [articles]);
 
+  useEffect(() => {
+    dispatch(setScreenSize(screen));
+  }, [screen]);
 
   return children;
 }

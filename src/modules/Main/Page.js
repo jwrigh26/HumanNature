@@ -3,7 +3,7 @@ import useFirebase from 'hooks/useFirebase';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import MyButton from 'components/Button';
-import PlainButton from 'components/PainButton/PlainButton';
+import PlainButton from 'components/PlainButton/PlainButton';
 import { Typography } from '@material-ui/core';
 
 function Page() {

@@ -16,7 +16,7 @@ const appSlice = createSlice({
     },
     setSelectedTab(state, action) {
       state.selectedTab = action.payload.tab;
-    }
+    },
   },
 });
 

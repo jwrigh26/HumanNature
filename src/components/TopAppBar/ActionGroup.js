@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   actionsWrapper: {
     display: 'flex',
     flex: 1,
-    backgroundColor: 'purple',
+    // backgroundColor: 'purple',
     alignItems: 'center',
     justifyContent: 'flex-end',
     paddingRight: theme.spacing(1),

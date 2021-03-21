@@ -19,7 +19,27 @@ function ThemeManager({ children }) {
 
   let theme = createMuiTheme({
     ...colorTheme,
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+        siteMaxWidth: 1600,
+      },
+    },
+    palette: {
+      ...colorTheme.palette,
+      icon: { primary: colorTheme.palette.primary.contrastText },
+    },
+    props: {
+      MuiButtonBase: {
+        disableRipple: false, // No more ripple, on the whole application 💣
+      },
+    },
     status: { danger: orange[500] },
+
     typography: {
       fontFamily: primaryFontFamily,
       h1: {
@@ -30,15 +50,6 @@ function ThemeManager({ children }) {
       },
       h3: {
         fontFamily: secondaryFontFamily,
-      },
-    },
-    palette: {
-      ...colorTheme.palette,
-      icon: { primary: colorTheme.palette.primary.contrastText },
-    },
-    props: {
-      MuiButtonBase: {
-        disableRipple: false, // No more ripple, on the whole application 💣
       },
     },
   });
