@@ -41,6 +41,11 @@ module.exports = (env = {}, options = {}) => {
       children: true,
     },
 
+    performance: {
+      maxAssetSize: 1000000,
+      hints: false,
+    },
+
     output: {
       path: path.resolve(__dirname, 'dist'),
       publicPath: environment.PUBLIC_PATH,
@@ -107,7 +112,7 @@ module.exports = (env = {}, options = {}) => {
           },
         },
         {
-          test: /\.(png|jpg|svg)$/,
+          test: /\.(png|gif)$/,
           use: [
             {
               loader: 'url-loader',
@@ -116,6 +121,15 @@ module.exports = (env = {}, options = {}) => {
               },
             },
           ],
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          exclude: /(node_modules)/,
+          loader: 'file-loader',
+          options: {
+            esModule: false,
+            name: 'images/[hash]-[name].[ext]',
+          },
         },
       ],
     },

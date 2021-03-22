@@ -1,17 +1,15 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import JumboTron from "modules/Dashboard/components/JumboTron";
-import Image from "components/Image/Image";
+import Hero from 'modules/Dashboard/components/Hero';
 
 function Dashboard() {
-  console.log('Hey');
+
   return (
     <>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <JumboTron />
-          <Image />
+      <Hero />
         </Grid>
       </Grid>
     </>

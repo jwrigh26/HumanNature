@@ -7,7 +7,7 @@ ProductReviews.propTypes = {
     title: PropTypes.string,
     id: PropTypes.number,
     route: PropTypes.string,
-  })
+  }),
 };
 
 function ProductReviews({ meta }) {

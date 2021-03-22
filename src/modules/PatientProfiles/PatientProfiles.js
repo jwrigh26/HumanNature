@@ -7,7 +7,7 @@ PatientProfiles.propTypes = {
     title: PropTypes.string,
     id: PropTypes.number,
     route: PropTypes.string,
-  })
+  }),
 };
 
 function PatientProfiles({ meta }) {

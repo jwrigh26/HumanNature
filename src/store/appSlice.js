@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import * as R from "ramda";
+import * as R from 'ramda';
 import articleMeta from './tmp/article-meta.json';
 import navigationMeta from './tmp/navigation-meta.json';
 

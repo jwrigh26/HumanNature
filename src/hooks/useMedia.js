@@ -10,10 +10,10 @@ export const screenSize = {
 
 // From https://usehooks.com/
 function useMedia(queries, values, defaultValue) {
-  const mediaQueryLists = queries.map(q => window.matchMedia(q));
+  const mediaQueryLists = queries.map((q) => window.matchMedia(q));
 
   const getValue = () => {
-    const index = mediaQueryLists.findIndex(mql => mql.matches);
+    const index = mediaQueryLists.findIndex((mql) => mql.matches);
     return typeof values[index] !== 'undefined' ? values[index] : defaultValue;
   };
 
@@ -21,8 +21,8 @@ function useMedia(queries, values, defaultValue) {
 
   useEffect(() => {
     const handler = () => setValue(getValue);
-    mediaQueryLists.forEach(mql => mql.addListener(handler));
-    return () => mediaQueryLists.forEach(mql => mql.removeListener(handler));
+    mediaQueryLists.forEach((mql) => mql.addListener(handler));
+    return () => mediaQueryLists.forEach((mql) => mql.removeListener(handler));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -38,13 +38,7 @@ export default function useDetectScreenSize() {
       '(max-width: 959px) and (min-width: 600px)', // sm
       '(max-width: 599px) and (min-width: 0px)', //xs
     ],
-    [
-      screenSize.xl,
-      screenSize.lg,
-      screenSize.md,
-      screenSize.sm,
-      screenSize.xs,
-    ],
+    [screenSize.xl, screenSize.lg, screenSize.md, screenSize.sm, screenSize.xs],
     screenSize.xl
   );
 }

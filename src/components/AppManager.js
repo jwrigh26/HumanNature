@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { hasValue } from 'helpers/utils';
-import { appSelector, setSelectedTab } from 'store/appSlice';
-import { setScreenSize } from 'store/screenSlice';
+import { setDevicePixelRatio, setScreenSize } from 'store/screenSlice';
 import useDetectScreenSize from 'hooks/useMedia';
+import useDevicePixelRatio from 'hooks/useDevicePixelRatio';
 import Post from 'modules/Post/Post';
 
 Post.propTypes = {
@@ -13,15 +13,14 @@ Post.propTypes = {
 
 function AppManager({ children }) {
   const dispatch = useDispatch();
-  const { articles } = useSelector(appSelector)
   const screen = useDetectScreenSize();
+  const dpr = useDevicePixelRatio();
 
   useEffect(() => {
-    if (hasValue(articles)) {
-      // console.log(articles);
-      // dispatch(setSelectedTab({tab: 0}));
+    if (hasValue(dpr)) {
+      dispatch(setDevicePixelRatio({dpr}));
     }
-  }, [articles]);
+  }, [dpr]);
 
   useEffect(() => {
     dispatch(setScreenSize(screen));

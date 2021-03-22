@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState, Suspense } from 'react';
 import { useSelector } from 'react-redux';
 import { postSelector } from 'store/postSlice';
 import { hasValue } from 'helpers/utils';
-import {Typography} from "@material-ui/core";
+import { Typography } from '@material-ui/core';
 
 function Post() {
   const { content } = useSelector(postSelector);
@@ -12,7 +12,9 @@ function Post() {
   useEffect(() => {
     const { key } = content ?? {};
     if (hasValue(key)) {
-      setContentToRender(() => React.lazy(() => import(`./articles/${key}.js`)));
+      setContentToRender(() =>
+        React.lazy(() => import(`./articles/${key}.js`))
+      );
     }
   }, [content]);
 

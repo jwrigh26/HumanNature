@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
       marginRight: theme.spacing(4),
     },
     [theme.breakpoints.up('siteMaxWidth')]: {
-      marginLeft: "auto",
-      marginRight: "auto",
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
   },
 }));

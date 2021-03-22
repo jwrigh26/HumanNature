@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 // import { hasValue } from 'helpers/utils';
 import * as R from 'ramda';
 import { hasValue } from 'helpers/utils';
-import { capitalize, camelCase } from "helpers/formatHelper";
+import { capitalize, camelCase } from 'helpers/formatHelper';
 
 export default function useRoutePost() {
   const location = useLocation();

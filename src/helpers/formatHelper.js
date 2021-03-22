@@ -26,4 +26,3 @@ export function pascalCase(pascalArray) {
   }
   return R.reduce(join, '', pascalArray);
 }
-
