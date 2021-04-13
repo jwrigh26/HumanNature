@@ -1,4 +1,4 @@
-# aberdeen
+# UniMath
 
 ## Prerequisites
 
