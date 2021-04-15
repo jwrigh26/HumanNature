@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   wrapper: {
-    flexGrow: 1,
+    flexGrow: 0,
   },
 }));
 

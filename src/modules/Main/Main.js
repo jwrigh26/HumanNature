@@ -11,11 +11,16 @@ import TopAppBar from 'components/TopAppBar/TopAppBar';
 import Dashboard from 'modules/Dashboard/Dashboard';
 import Post from 'modules/Post/Post';
 
+
+
 // noinspection JSCheckFunctionSignatures
 const useStyles = makeStyles((theme) => ({
   box: {
+    display: 'flex',
+    flexDirection: 'column',
     margin: 0,
     maxWidth: theme.breakpoints.values.siteMaxWidth,
+    minHeight: '100vh',
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(2),
       marginRight: theme.spacing(2),
@@ -29,6 +34,14 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 'auto',
     },
   },
+  main: {
+    alignItems: 'center',
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    width: '100%',
+  }
 }));
 
 function App() {
@@ -44,15 +57,17 @@ function App() {
     <React.Fragment>
       <Box className={classes.box}>
         <TopAppBar />
-        <Switch>
-          <Route path={routes?.gsBusiness?.route}>
-            <Post meta={routes?.gsBusiness} />
-          </Route>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-          <Route render={() => <Redirect to="/" />} />
-        </Switch>
+        <main className={classes.main}>
+          <Switch>
+            <Route path={routes?.gsBusiness?.route}>
+              <Post meta={routes?.gsBusiness} />
+            </Route>
+            <Route exact path="/">
+              <Dashboard />
+            </Route>
+            <Route render={() => <Redirect to="/" />} />
+          </Switch>
+        </main>
         <Footer />
       </Box>
     </React.Fragment>

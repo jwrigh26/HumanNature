@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     backgroundColor: theme.palette.primary.main,
-    flexGrow: 1,
+    flexGrow: 0,
     height: '128px',
     width: '100%',
   },
