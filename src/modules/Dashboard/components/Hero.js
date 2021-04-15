@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function Hero() {
   const loading = true;
   const theme = useTheme();
@@ -33,14 +32,14 @@ function Hero() {
         <FixedImage
           file={'/hero/JumboTron'}
           alt={'SBC Demo'}
-          style={{ width: '50%', height: '200px' }}
+          style={{ width: '100%' }}
         />
       </Box>
       <Box display="flex" alignItems="center">
         <FixedImage
           url={'https://homepages.cae.wisc.edu/~ece533/images/airplane.png'}
           alt={'airplane'}
-          style={{ width: '50%', height: '200px' }}
+          style={{ width: '25%', height: '200px' }}
           isFromCMS={false}
         />
       </Box>

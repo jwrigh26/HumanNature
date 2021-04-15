@@ -8,6 +8,12 @@
       }
     ],
     [
+      "@babel/plugin-transform-spread",
+      {
+        "loose": false
+      }
+    ],
+    [
       "babel-plugin-import",
       {
         "libraryName": "@material-ui/core",

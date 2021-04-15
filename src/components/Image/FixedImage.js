@@ -4,23 +4,23 @@ import * as R from 'ramda';
 import { useSelector } from 'react-redux';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-import LocalSuspenseImg from './LocalSuspenseImg';
-import SuspenseImg from './SuspenseImg';
-import { screenSize } from 'hooks/useMedia';
+import { useImageMediaForScreenSize } from 'hooks/useMedia';
 import { screenSelector } from 'store/screenSlice';
 import { hasValue } from 'helpers/utils';
+import LocalSuspenseImg from './LocalSuspenseImg';
+import SuspenseImg from './SuspenseImg';
 
 FixedImage.propTypes = {
   file: PropTypes.string,
   alt: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.object.isRequired,
   url: PropTypes.string,
   isFromCMS: PropTypes.bool,
 };
 
 function FixedImage({
   alt,
-  style,
+  style: imageStyle,
   file: path = undefined,
   url: route = undefined,
   isFromCMS = true,
@@ -28,33 +28,50 @@ function FixedImage({
   const { currentScreenSize, devicePixelRatio } = useSelector(screenSelector);
   const [file, setFile] = useState();
   const [url, setURL] = useState();
+  const [skeletonStyle, setSkeletonStyle] = useState({});
+
+  const media = useImageMediaForScreenSize(currentScreenSize);
+
+  const getImageWidth = () => '33%';
+  const getImageWidthForPercent = () => '33%';
+  const getImageHeight = () => '33%';
+  const getImageHeightForPercent = () => '330px';
+
+  // This has to be a px or hard value and not a percent for skeleton to work
+
+  useEffect(() => {
+    if (hasValue(imageStyle)) {
+      // Check for width
+      const hasWidth = R.has('width', imageStyle);
+      const hasHeight = R.has('height', imageStyle);
+      if (hasWidth && hasHeight) {
+        setSkeletonStyle({ ...imageStyle });
+      }
+
+      if (hasWidth && !hasHeight) {
+        // Do stuff here
+        const isPercent = imageStyle?.width?.includes('%');
+        const height = isPercent ? getImageHeightForPercent() : getImageHeight();
+        setSkeletonStyle({ ...imageStyle, height });
+      }
+
+      if (hasHeight && !hasWidth) {
+        const isPercent = imageStyle?.height?.includes('%');
+        const width = isPercent
+          ? getImageWidthForPercent()
+          : getImageWidth();
+        setSkeletonStyle({ ...imageStyle, width });
+      }
+    }
+  }, [imageStyle, media]);
 
   // TODO: Manage different file type
   // TODO: Manage transition if possible
   useEffect(() => {
-    if (hasValue(currentScreenSize) && hasValue(devicePixelRatio)) {
-      const mediaSizes = [
-        {
-          name: 'mobile',
-          isVisible: currentScreenSize <= screenSize.md,
-        },
-        {
-          name: 'tablet',
-          isVisible:
-            currentScreenSize > screenSize.md &&
-            currentScreenSize <= screenSize.lg,
-        },
-        {
-          name: 'desktop',
-          isVisible: currentScreenSize > screenSize.lg,
-        },
-      ];
-      const isVisible = R.propEq('isVisible', true);
-      const media = R.pipe(R.find(isVisible), R.prop('name'))(mediaSizes);
-
+    if (hasValue(media) && hasValue(devicePixelRatio)) {
       // For images in the local path
       if (hasValue(path)) {
-        console.log('Setting path: ', path, route);
+        console.log('Setting path: ', path);
         setFile(`${path}-${media}@${devicePixelRatio}x.jpg`);
       }
 
@@ -66,20 +83,26 @@ function FixedImage({
         );
       }
     }
-  }, [currentScreenSize, devicePixelRatio]);
+  }, [media, devicePixelRatio]);
 
   return (
     <Suspense
       fallback={
-        <Skeleton variant="rect" width={style.width} height={style.height}>
-          <div style={style} />
+        <Skeleton
+          variant="rect"
+          width={skeletonStyle?.width}
+          height={skeletonStyle?.height}
+        >
+          {console.log('Skeleton')}
+          {console.log(skeletonStyle)}
+          <div style={skeletonStyle} />
         </Skeleton>
       }
     >
       {hasValue(file) && (
-        <LocalSuspenseImg file={file} alt={alt} style={style} />
+        <LocalSuspenseImg file={file} alt={alt} style={imageStyle} />
       )}
-      {hasValue(url) && <SuspenseImg url={url} alt={alt} style={style} />}
+      {hasValue(url) && <SuspenseImg url={url} alt={alt} style={imageStyle} />}
     </Suspense>
   );
 }

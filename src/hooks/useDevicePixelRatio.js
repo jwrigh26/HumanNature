@@ -6,7 +6,7 @@ export const resolutions = Object.freeze({
   x2: 2,
   x3: 3,
   x4: 4,
-})
+});
 
 export default function useDevicePixelRatio() {
   const [dpr, setDPR] = useState();
@@ -15,7 +15,7 @@ export default function useDevicePixelRatio() {
     const sum = (prev, mq) => {
       const value = window.matchMedia(mq)?.matches ? 1 : 0;
       return prev + value;
-    }
+    };
 
     const dppx1 = `(min-resolution: 1dppx)`;
     const dppx2 = `(min-resolution: 2dppx)`;

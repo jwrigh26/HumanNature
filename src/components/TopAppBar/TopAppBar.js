@@ -10,7 +10,7 @@ import Toolbar from './Toolbar';
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
-    backgroundColor: theme.palette.primary,
+    backgroundColor: theme.palette.primary.main,
 
     [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.background.default,
@@ -24,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
 function TopAppBar() {
   const theme = useTheme();
   const classes = useStyles(theme);
-
-  console.log(theme);
 
   return (
     <div className={classes.wrapper}>

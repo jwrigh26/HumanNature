@@ -9,20 +9,20 @@ import { Typography } from '@material-ui/core';
 function Page() {
   const firebase = useFirebase();
 
-  useEffect(() => {
-    const hello = firebase?.functions()?.httpsCallable('helloWorld');
-    async function foo() {
-      try {
-        await hello();
-      } catch (error) {
-        console.log('FB Error!');
-        console.log(error);
-      }
-    }
-    if (firebase) {
-      foo();
-    }
-  }, [firebase]);
+  // useEffect(() => {
+  //   const hello = firebase?.functions()?.httpsCallable('helloWorld');
+  //   async function foo() {
+  //     try {
+  //       await hello();
+  //     } catch (error) {
+  //       console.log('FB Error!');
+  //       console.log(error);
+  //     }
+  //   }
+  //   if (firebase) {
+  //     foo();
+  //   }
+  // }, [firebase]);
 
   return (
     <>

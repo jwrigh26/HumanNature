@@ -47,11 +47,11 @@ function Toolbar({
     <>
       <MuiToolbar className={classes.toolbar} disableGutters>
         {/* Hamburger menu button */}
-        <Hidden mdUp>
-          <IconButton>
-            <Icon className={classes.icon}>menu</Icon>
-          </IconButton>
-        </Hidden>
+        {/*<Hidden mdUp>*/}
+        {/*  <IconButton>*/}
+        {/*    <Icon className={classes.icon}>menu</Icon>*/}
+        {/*  </IconButton>*/}
+        {/*</Hidden>*/}
         {/* Brand Crest aka Logo */}
         <BrandCrest />
         {/* Tabs */}

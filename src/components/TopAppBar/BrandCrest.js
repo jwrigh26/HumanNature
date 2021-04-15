@@ -41,7 +41,7 @@ function BrandCrest() {
         // }}
       >
         <Typography className={classes.title} variant="h4">
-          Salt Baked City
+          Unimath
         </Typography>
       </ButtonBase>
     </div>

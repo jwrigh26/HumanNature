@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { useImage } from 'react-image';
-import {hasValue, haveValue} from 'helpers/utils';
+import { hasValue, haveValue } from 'helpers/utils';
 
 LocalSuspenseImg.propTypes = {
   alt: PropTypes.string,
@@ -16,5 +16,3 @@ export default function LocalSuspenseImg({ file, alt, style }) {
   });
   return <img src={src} alt={alt} style={style} />;
 }
-
-

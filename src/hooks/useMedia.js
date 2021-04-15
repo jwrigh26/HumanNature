@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import * as R from 'ramda';
+
+import { hasValue } from 'helpers/utils';
 
 export const screenSize = {
   xl: 5,
@@ -29,7 +32,7 @@ function useMedia(queries, values, defaultValue) {
   return value;
 }
 
-export default function useDetectScreenSize() {
+export function useDetectScreenSize() {
   return useMedia(
     [
       '(min-width: 1920px)', // xl
@@ -41,4 +44,34 @@ export default function useDetectScreenSize() {
     [screenSize.xl, screenSize.lg, screenSize.md, screenSize.sm, screenSize.xs],
     screenSize.xl
   );
+}
+
+export function useImageMediaForScreenSize(size) {
+  const [mediaName, setMediaName] = useState();
+  useEffect(() => {
+    if (hasValue(size)) {
+      const mediaSizes = [
+        {
+          name: 'mobile',
+          isVisible: size <= screenSize.md,
+        },
+        {
+          name: 'tablet',
+          isVisible: size > screenSize.md && size <= screenSize.lg,
+        },
+        {
+          name: 'desktop',
+          isVisible: size > screenSize.lg,
+        },
+      ];
+      const isVisible = R.propEq('isVisible', true);
+      console.log(
+        'Setting mediaName',
+        R.pipe(R.find(isVisible), R.prop('name'))(mediaSizes)
+      );
+      setMediaName(R.pipe(R.find(isVisible), R.prop('name'))(mediaSizes));
+    }
+  }, [size]);
+
+  return mediaName;
 }

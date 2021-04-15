@@ -30,7 +30,7 @@ function ActionGroup() {
   return (
     <div className={classes.actionsWrapper}>
       <IconButton>
-        <Icon className={classes.icon}>search</Icon>
+        <Icon className={classes.icon}>settings</Icon>
       </IconButton>
     </div>
   );

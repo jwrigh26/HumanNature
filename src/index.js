@@ -27,5 +27,5 @@ render(
       </RouteManager>
     </Router>
   </Provider>,
-  document.getElementById('aberdeen-root')
+  document.getElementById('unimath-root')
 );

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {
   createMuiTheme,
   responsiveFontSizes,
@@ -16,9 +17,12 @@ ThemeManager.propTypes = {
 function ThemeManager({ children }) {
   const primaryFontFamily = ['"Raleway"', 'sans-serif'].join(',');
   const secondaryFontFamily = ['"Source Sans Pro"', 'sans-serif'].join(',');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');
+
+  console.log('prefers', prefersDarkMode);
+
 
   let theme = createMuiTheme({
-    ...colorTheme,
     breakpoints: {
       values: {
         xs: 0,
@@ -32,6 +36,8 @@ function ThemeManager({ children }) {
     palette: {
       ...colorTheme.palette,
       icon: { primary: colorTheme.palette.primary.contrastText },
+      // type: prefersDarkMode ? 'dark' : 'light',
+      type: 'dark',
     },
     props: {
       MuiButtonBase: {
@@ -51,6 +57,9 @@ function ThemeManager({ children }) {
       h3: {
         fontFamily: secondaryFontFamily,
       },
+      h4: {
+        fontFamily: secondaryFontFamily,
+      }
     },
   });
 
