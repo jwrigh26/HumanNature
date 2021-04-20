@@ -6,19 +6,23 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
+import SVG from 'assets/unimathLogo.js';
+
 const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 700,
+    position: 'relative',
+    top: '6px',
+    color: theme.palette.text.primary,
     [theme.breakpoints.up('md')]: {
+      top: '8px',
       color: theme.palette.text.primary,
     },
   },
   titleWrapper: {
     display: 'flex',
-    paddingLeft: theme.spacing(0),
-    paddingRight: theme.spacing(2),
+
     [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing(2),
       flex: 1,
     },
   },
@@ -27,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
 function BrandCrest() {
   const theme = useTheme();
   const classes = useStyles(theme);
+
+  const logoSize = theme.breakpoints.up('md') ? '72px' : '56px';
+
   return (
     <div className={classes.titleWrapper}>
       <ButtonBase
@@ -40,7 +47,8 @@ function BrandCrest() {
         //   event.preventDefault();
         // }}
       >
-        <Typography className={classes.title} variant="h4">
+        <SVG />
+        <Typography className={classes.title} variant="h2">
           Unimath
         </Typography>
       </ButtonBase>

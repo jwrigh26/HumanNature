@@ -1,26 +1,29 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {
   createMuiTheme,
   responsiveFontSizes,
   StylesProvider,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import colorTheme from 'assets/theme-color.json';
 import { orange } from '@material-ui/core/colors';
+
+import userTheme from 'assets/theme';
+import { useSelector } from 'react-redux';
+import { appSelector } from '../store/appSlice';
 
 ThemeManager.propTypes = {
   children: PropTypes.any,
 };
 
 function ThemeManager({ children }) {
+
+  const { themeBag: { color, mode } } = useSelector(appSelector);
+
   const primaryFontFamily = ['"Raleway"', 'sans-serif'].join(',');
   const secondaryFontFamily = ['"Source Sans Pro"', 'sans-serif'].join(',');
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');
-
-  console.log('prefers', prefersDarkMode);
-
+  const selectedColor = userTheme.color(color);
+  const selectedColorSupport = userTheme.colorSupport(mode);
 
   let theme = createMuiTheme({
     breakpoints: {
@@ -34,10 +37,9 @@ function ThemeManager({ children }) {
       },
     },
     palette: {
-      ...colorTheme.palette,
-      icon: { primary: colorTheme.palette.primary.contrastText },
-      // type: prefersDarkMode ? 'dark' : 'light',
-      type: 'dark',
+      ...selectedColorSupport,
+      ...selectedColor,
+      type: mode,
     },
     props: {
       MuiButtonBase: {
@@ -45,7 +47,6 @@ function ThemeManager({ children }) {
       },
     },
     status: { danger: orange[500] },
-
     typography: {
       fontFamily: primaryFontFamily,
       h1: {
@@ -59,7 +60,7 @@ function ThemeManager({ children }) {
       },
       h4: {
         fontFamily: secondaryFontFamily,
-      }
+      },
     },
   });
 

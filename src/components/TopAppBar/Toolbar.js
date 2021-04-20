@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
+// import Icon from '@material-ui/core/Icon';
+// import IconButton from '@material-ui/core/IconButton';
 import MuiToolbar from '@material-ui/core/Toolbar';
 
 Toolbar.propTypes = {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: theme.palette.icon.primary,
     [theme.breakpoints.up('md')]: {
-      color: theme.palette.common.black,
+      color: theme.palette.icon.primary,
     },
   },
 }));
@@ -55,9 +55,9 @@ function Toolbar({
         {/* Brand Crest aka Logo */}
         <BrandCrest />
         {/* Tabs */}
-        <Hidden smDown>
-          <Tabs />
-        </Hidden>
+        {/*<Hidden smDown>*/}
+        {/*  <Tabs />*/}
+        {/*</Hidden>*/}
         {/* Actions  */}
         <ActionGroup />
       </MuiToolbar>

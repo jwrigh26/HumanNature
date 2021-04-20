@@ -21,8 +21,6 @@ function RouteManager({ children }) {
   const routedPost = useRoutePost();
   const routedTab = useRouteTab();
 
-  console.log('RouteManager');
-
   if (hasValue(routedTab)) {
     console.log('Tab', routedTab);
   }

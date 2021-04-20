@@ -11,16 +11,16 @@ import TopAppBar from 'components/TopAppBar/TopAppBar';
 import Dashboard from 'modules/Dashboard/Dashboard';
 import Post from 'modules/Post/Post';
 
-
-
 // noinspection JSCheckFunctionSignatures
 const useStyles = makeStyles((theme) => ({
-  box: {
+  body: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
     margin: 0,
     maxWidth: theme.breakpoints.values.siteMaxWidth,
-    minHeight: '100vh',
+    height: '100%',
+    width: '100%',
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(2),
       marginRight: theme.spacing(2),
@@ -41,7 +41,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     width: '100%',
-  }
+  },
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 0,
+    minHeight: '100vh',
+  },
 }));
 
 function App() {
@@ -55,19 +61,21 @@ function App() {
   // noinspection JSUnresolvedVariable
   return (
     <React.Fragment>
-      <Box className={classes.box}>
-        <TopAppBar />
-        <main className={classes.main}>
-          <Switch>
-            <Route path={routes?.gsBusiness?.route}>
-              <Post meta={routes?.gsBusiness} />
-            </Route>
-            <Route exact path="/">
-              <Dashboard />
-            </Route>
-            <Route render={() => <Redirect to="/" />} />
-          </Switch>
-        </main>
+      <Box className={classes.root}>
+        <Box className={classes.body}>
+          <TopAppBar />
+          <main className={classes.main}>
+            <Switch>
+              <Route path={routes?.gsBusiness?.route}>
+                <Post meta={routes?.gsBusiness} />
+              </Route>
+              <Route exact path="/">
+                <Dashboard />
+              </Route>
+              <Route render={() => <Redirect to="/" />} />
+            </Switch>
+          </main>
+        </Box>
         <Footer />
       </Box>
     </React.Fragment>

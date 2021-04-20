@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import { useTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
 
 import ActionGroup from './ActionGroup';
 import BrandCrest from './BrandCrest';
@@ -10,7 +10,7 @@ import Toolbar from './Toolbar';
 
 const useStyles = makeStyles((theme) => ({
   appbar: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.default,
 
     [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.background.default,
