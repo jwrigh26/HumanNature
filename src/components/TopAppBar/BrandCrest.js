@@ -21,10 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   titleWrapper: {
     display: 'flex',
-
-    [theme.breakpoints.up('md')]: {
-      flex: 1,
-    },
+    paddingLeft: theme.spacing(1),
+    flex: 1,
   },
 }));
 
