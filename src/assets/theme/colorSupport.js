@@ -1,6 +1,8 @@
 export default function (type = 'light') {
   const isDark = type === 'dark';
 
+  console.log('isDark', isDark);
+
   return {
     common: {
       black: '#000',
@@ -38,6 +40,7 @@ export default function (type = 'light') {
     },
     icon: {
       primary: isDark ? '#fff' : '#000',
+      reverse: isDark ? '#000' : '#fff',
     },
   };
 }

@@ -68,6 +68,9 @@ function ThemeManager({ children }) {
   // See: https://material-ui.com/guides/responsive-ui/
   theme = responsiveFontSizes(theme);
 
+  console.log('Theme');
+  console.log(theme);
+
   return (
     <ThemeProvider theme={theme}>
       <StylesProvider injectFirst>{children}</StylesProvider>

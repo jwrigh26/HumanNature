@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
+import CookieSnackbar from 'components/CookieSnackbar';
 import Footer from 'components/Footer/Footer';
 import TopAppBar from 'components/TopAppBar/TopAppBar';
 import Dashboard from 'modules/Dashboard/Dashboard';
@@ -77,6 +78,7 @@ function App() {
           </main>
         </Box>
         <Footer />
+        <CookieSnackbar />
       </Box>
     </React.Fragment>
   );
