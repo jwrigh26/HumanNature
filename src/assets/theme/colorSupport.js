@@ -1,8 +1,6 @@
 export default function (type = 'light') {
   const isDark = type === 'dark';
 
-  console.log('isDark', isDark);
-
   return {
     common: {
       black: '#000',

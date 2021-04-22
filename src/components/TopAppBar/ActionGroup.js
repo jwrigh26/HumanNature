@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
-import cookies from 'models/cookies';
-import helper from 'helpers/cookieHelper.js';
-
 import userTheme from 'assets/theme';
-import { appSelector, setPaletteColor, setPaletteMode } from 'store/appSlice';
+import {
+  appSelector,
+  handleCookieReset,
+  setPaletteMode,
+} from 'store/appSlice';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -44,11 +45,10 @@ export default function ActionGroup() {
   const classes = useStyles(theme);
 
   function handleSetPaletteColor(event) {
-    console.log('handleSetPaletteColor:', event?.currentTarget?.id);
-    // TODO: Open this up to show a list to choose from
+    console.log('handleSetPaletteColor:', event);
   }
 
-  function handleSetPaletteMode(event) {
+  function handleSetPaletteMode() {
     const newMode =
       mode === userTheme?.mode?.light
         ? userTheme?.mode?.dark
@@ -56,8 +56,8 @@ export default function ActionGroup() {
     dispatch(setPaletteMode({ mode: newMode }));
   }
 
-  function handleCookieRest() {
-    helper(cookies.options.key).removeItem(cookies?.options.accepted);
+  function handleRest() {
+    dispatch(handleCookieReset());
   }
 
   const modeIcon =
@@ -71,7 +71,7 @@ export default function ActionGroup() {
       <IconButton onClick={handleSetPaletteMode}>
         <Icon className={classes.icon}>{modeIcon}</Icon>
       </IconButton>
-      <IconButton onClick={handleCookieRest}>
+      <IconButton onClick={handleRest}>
         <Icon className={classes.icon}>restart_alt</Icon>
       </IconButton>
     </div>

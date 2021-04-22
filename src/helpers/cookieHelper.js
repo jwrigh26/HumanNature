@@ -30,14 +30,9 @@ export default function cookie(name, expires = cookieExpireDays) {
     Cookies.set(safeName, ck, options);
   }
 
-  function foo() {
-    console.log('Foo');
-  }
-
   return {
     getItem,
     setItem,
     removeItem,
-    foo,
   };
 }
