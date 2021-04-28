@@ -65,6 +65,7 @@ function CookieSnackbar() {
       {!accepted && (
         <Snackbar
           open={open}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right'}}
           TransitionComponent={TransitionUp}
           message={
             <div className={classes.message}>

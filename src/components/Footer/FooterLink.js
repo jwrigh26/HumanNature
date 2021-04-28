@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FooterLink({children, to}) {
+export default function FooterLink(props) {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
