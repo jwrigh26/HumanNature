@@ -15,21 +15,39 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.primary.main,
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+    flexDirection: 'column-reverse',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     flexGrow: 0,
-    height: '64px',
-    width: '100%',
-    padding: theme.spacing(2),
+    height: 'inherits',
+    [theme.breakpoints.up('sm')]: {
+      height: '64px',
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+    },
   },
   leading: {
-    background: 'red',
     flex: 1,
+    paddingLeft: theme.spacing(0),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(2),
+    },
   },
   trailing: {
-    background: 'green',
     flex: 1,
+    paddingRight: theme.spacing(0),
+    [theme.breakpoints.up('sm')]: {
+      paddingRight: theme.spacing(2),
+    },
+  },
+  info: {
+    paddingLeft: theme.spacing(1.5),
+    paddingBottom: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingBottom: theme.spacing(0),
+      paddingLeft: theme.spacing(0),
+    },
   },
   privacy: {
     display: 'flex',
@@ -37,7 +55,18 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
     listStyle: 'none',
-  }
+    paddingInlineStart: 0,
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'flex-end',
+    },
+  },
+  text: {
+    color: theme.palette.common.white,
+  },
+  secondaryText: {
+    color: theme.palette.common.white,
+    opacity: 0.8,
+  },
 }));
 
 function Footer() {
@@ -47,15 +76,25 @@ function Footer() {
   return (
     <footer className={classes.footer}>
       <section className={classes.leading}>
-        <Typography variant="body2">{`© 2021 — Unimath | All Rights Reserved`}</Typography>
+        <div className={classes.info}>
+          <Typography
+            classes={{ root: classes.text }}
+            variant="body2"
+          >{`© 2021 — Unimath | All Rights Reserved`}</Typography>
+        </div>
       </section>
       <section className={classes.trailing}>
         <ul className={classes.privacy}>
           <li>
-            {/*<FooterLink to={'/policies/terms'}>Terms</FooterLink>*/}
+            <FooterLink to={'/policies/Legal'}>Legal</FooterLink>
           </li>
+          <li className={classes.secondaryText}>|</li>
           <li>
-            {/*<FooterLink to={'/policies/privacy'}>Privacy</FooterLink>*/}
+            <FooterLink to={'/policies/privacy'}>Privacy</FooterLink>
+          </li>
+          <li className={classes.secondaryText}>|</li>
+          <li>
+            <FooterLink to={'/policies/terms'}>Terms</FooterLink>
           </li>
         </ul>
       </section>

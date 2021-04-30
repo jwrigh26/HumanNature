@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
 import { useTheme } from '@material-ui/core/styles';
 
 FooterLink.propTypes = {
@@ -12,26 +12,27 @@ FooterLink.propTypes = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.text.primary,
+    color: theme.palette.common.white,
     fontWeight: 600,
     textTransform: 'none',
     [theme.breakpoints.up('lg')]: {
       minWidth: 96,
     },
+
+  },
+  text: {
+    color: theme.palette.common.white,
+    opacity: 0.8,
     '&:hover': {
-      color: theme.palette.text.primary,
       opacity: 1,
     },
-    '&$selected': {
-      color: theme.palette.common.black,
-      fontWeight: theme.typography.fontWeightMedium,
-      // opacity: 1,
+    '&:active': {
+      opacity: 1,
     },
     '&:focus': {
-      color: theme.palette.text.primary,
-      // opacity: 1,
+      opacity: 1,
     },
-  },
+  }
 }));
 
 export default function FooterLink(props) {
@@ -39,7 +40,10 @@ export default function FooterLink(props) {
   const classes = useStyles(theme);
   return (
     <Button
-      className={classes.root}
+      classes={{
+        root: classes.root,
+        text: classes.text,
+      }}
       component={Link}
       disableRipple
       size={'small'}

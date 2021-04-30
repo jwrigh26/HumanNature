@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     maxWidth: theme.breakpoints.values.siteMaxWidth,
     height: '100%',
-    width: '100%',
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(2),
       marginRight: theme.spacing(2),
