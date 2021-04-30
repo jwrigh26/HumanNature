@@ -59,7 +59,7 @@ function Toolbar({
         {/*  <Tabs />*/}
         {/*</Hidden>*/}
         {/* Actions  */}
-        {/*<ActionGroup />*/}
+        <ActionGroup />
       </MuiToolbar>
     </>
   );

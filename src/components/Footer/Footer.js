@@ -5,21 +5,31 @@ import { Typography } from '@material-ui/core';
 import FooterLink from './FooterLink';
 
 const useStyles = makeStyles((theme) => ({
-  appbar: {
+  wrapper: {
     backgroundColor: theme.palette.primary.main,
-
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.background.default,
-    },
+    width: 'inherit',
   },
   footer: {
-    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     flexDirection: 'column-reverse',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     flexGrow: 0,
+    margin: 0,
+    maxWidth: theme.breakpoints.values.siteMaxWidth,
     height: 'inherits',
+    [theme.breakpoints.up('md')]: {
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2),
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: theme.spacing(4),
+      marginRight: theme.spacing(4),
+    },
+    [theme.breakpoints.up('siteMaxWidth')]: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
     [theme.breakpoints.up('sm')]: {
       height: '64px',
       flexDirection: 'row',
@@ -74,31 +84,33 @@ function Footer() {
   const classes = useStyles(theme);
 
   return (
-    <footer className={classes.footer}>
-      <section className={classes.leading}>
-        <div className={classes.info}>
-          <Typography
-            classes={{ root: classes.text }}
-            variant="body2"
-          >{`© 2021 — Unimath | All Rights Reserved`}</Typography>
-        </div>
-      </section>
-      <section className={classes.trailing}>
-        <ul className={classes.privacy}>
-          <li>
-            <FooterLink to={'/policies/Legal'}>Legal</FooterLink>
-          </li>
-          <li className={classes.secondaryText}>|</li>
-          <li>
-            <FooterLink to={'/policies/privacy'}>Privacy</FooterLink>
-          </li>
-          <li className={classes.secondaryText}>|</li>
-          <li>
-            <FooterLink to={'/policies/terms'}>Terms</FooterLink>
-          </li>
-        </ul>
-      </section>
-    </footer>
+    <div className={classes.wrapper}>
+      <footer className={classes.footer}>
+        <section className={classes.leading}>
+          <div className={classes.info}>
+            <Typography
+              classes={{ root: classes.text }}
+              variant="body2"
+            >{`© 2021 — Unimath | All Rights Reserved`}</Typography>
+          </div>
+        </section>
+        <section className={classes.trailing}>
+          <ul className={classes.privacy}>
+            <li>
+              <FooterLink to={'/policies/Legal'}>Legal</FooterLink>
+            </li>
+            <li className={classes.secondaryText}>|</li>
+            <li>
+              <FooterLink to={'/policies/privacy'}>Privacy</FooterLink>
+            </li>
+            <li className={classes.secondaryText}>|</li>
+            <li>
+              <FooterLink to={'/policies/terms'}>Terms</FooterLink>
+            </li>
+          </ul>
+        </section>
+      </footer>
+    </div>
   );
 }
 

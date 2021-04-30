@@ -16,6 +16,12 @@ import config from 'helpers/config';
 
 // noinspection JSCheckFunctionSignatures
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 0,
+    minHeight: '100vh',
+  },
   body: {
     display: 'flex',
     flex: 1,
@@ -43,12 +49,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     width: '100%',
-  },
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: 0,
-    minHeight: '100vh',
   },
 }));
 

@@ -2,15 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
 import userTheme from 'assets/theme';
-import {
-  appSelector,
-  handleCookieReset,
-  setPaletteMode,
-} from 'store/appSlice';
+import { appSelector, handleCookieReset, setPaletteMode } from 'store/appSlice';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -64,16 +61,25 @@ export default function ActionGroup() {
     mode === userTheme?.mode.dark ? 'brightness_3' : 'brightness_7';
 
   return (
-    <div className={classes.actionsWrapper}>
-      <IconButton onClick={handleSetPaletteColor}>
-        <Icon className={classes.icon}>palette</Icon>
-      </IconButton>
-      <IconButton onClick={handleSetPaletteMode}>
-        <Icon className={classes.icon}>{modeIcon}</Icon>
-      </IconButton>
-      <IconButton onClick={handleRest}>
-        <Icon className={classes.icon}>restart_alt</Icon>
-      </IconButton>
-    </div>
+    <>
+      <div className={classes.actionsWrapper}>
+        <Hidden xsDown>
+          <IconButton onClick={handleSetPaletteColor}>
+            <Icon className={classes.icon}>palette</Icon>
+          </IconButton>
+          <IconButton onClick={handleSetPaletteMode}>
+            <Icon className={classes.icon}>{modeIcon}</Icon>
+          </IconButton>
+          <IconButton onClick={handleRest}>
+            <Icon className={classes.icon}>restart_alt</Icon>
+          </IconButton>
+        </Hidden>
+        <Hidden smUp>
+          <IconButton onClick={handleRest}>
+            <Icon className={classes.icon}>more_vert</Icon>
+          </IconButton>
+        </Hidden>
+      </div>
+    </>
   );
 }
