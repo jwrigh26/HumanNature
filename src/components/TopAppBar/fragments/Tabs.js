@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 
 import { isNil } from 'helpers/utils';
-import LinkTab from 'components/TopAppBar/LinkTab';
+import LinkTab from './LinkTab';
 import MuiTabs from '@material-ui/core/Tabs';
 
 const useStyles = makeStyles((theme) => ({
