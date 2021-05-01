@@ -6,7 +6,8 @@ export const initializeStore = (rootReducer) => {
     middleware: (getDefaultMiddleware) => [
       ...getDefaultMiddleware({
         serializableCheck: {
-          ignoredActionPaths: ['payload.error'],
+          ignoredActionPaths: ['payload.element', 'payload.error'],
+          ignoredPaths: ['app.anchorElement'],
         },
       }),
     ],

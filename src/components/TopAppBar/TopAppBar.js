@@ -5,7 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 
 import ActionGroup from './ActionGroup';
 import BrandCrest from './BrandCrest';
-import Tabs from './fragments/Tabs';
 import MuiToolbar from '@material-ui/core/Toolbar';
 
 const useStyles = makeStyles((theme) => ({

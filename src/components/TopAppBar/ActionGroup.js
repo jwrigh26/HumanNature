@@ -1,13 +1,14 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
-import userTheme from 'assets/theme';
-import { appSelector, handleCookieReset, setPaletteMode } from 'store/appSlice';
+import useActions from 'hooks/useActions';
+import MoreMenu from './MoreMenu.js';
+import ThemePickerDrawer from './ThemePickerDrawer.js';
+import ThemePickerMenu from './ThemePickerMenu.js';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -33,53 +34,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionGroup() {
-  const dispatch = useDispatch();
-  const {
-    themeBag: { color, mode },
-  } = useSelector(appSelector);
-
   const theme = useTheme();
   const classes = useStyles(theme);
-
-  function handleSetPaletteColor(event) {
-    console.log('handleSetPaletteColor:', event);
-  }
-
-  function handleSetPaletteMode() {
-    const newMode =
-      mode === userTheme?.mode?.light
-        ? userTheme?.mode?.dark
-        : userTheme?.mode?.light;
-    dispatch(setPaletteMode({ mode: newMode }));
-  }
-
-  function handleRest() {
-    dispatch(handleCookieReset());
-  }
-
-  const modeIcon =
-    mode === userTheme?.mode.dark ? 'brightness_3' : 'brightness_7';
+  const actions = useActions();
 
   return (
     <>
       <div className={classes.actionsWrapper}>
         <Hidden xsDown>
-          <IconButton onClick={handleSetPaletteColor}>
+          <IconButton onClick={actions.handleOpenThemePicker}>
             <Icon className={classes.icon}>palette</Icon>
           </IconButton>
-          <IconButton onClick={handleSetPaletteMode}>
-            <Icon className={classes.icon}>{modeIcon}</Icon>
+          <IconButton onClick={actions.handleSetPaletteMode}>
+            <Icon className={classes.icon}>{actions.modeIcon}</Icon>
           </IconButton>
-          <IconButton onClick={handleRest}>
+          <IconButton onClick={actions.handleRest}>
             <Icon className={classes.icon}>restart_alt</Icon>
           </IconButton>
         </Hidden>
         <Hidden smUp>
-          <IconButton onClick={handleRest}>
+          <IconButton onClick={actions.handleOpenMore}>
             <Icon className={classes.icon}>more_vert</Icon>
           </IconButton>
         </Hidden>
       </div>
+      <MoreMenu actions={actions} />
+      <ThemePickerDrawer
+        open={actions.paletteDrawerOpen}
+        onSetPaletteColor={actions.handleSetPaletteColor}
+        onTogglePaletteDrawer={actions.handleTogglePaletteDrawer}
+      />
+      <ThemePickerMenu
+        anchorEl={actions.themeAnchorEl}
+        onClose={actions.handleCloseThemePicker}
+        onSetPaletteColor={actions.handleSetPaletteColor}
+      />
     </>
   );
 }
