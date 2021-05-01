@@ -46,10 +46,8 @@ export default function useActions() {
   function handleTogglePaletteDrawer(open) {
     return event => {
       if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        console.log('bad event type', event.key);
         return;
       }
-      console.log('Open Drawer', open);
       setPaletteDrawerOpen(open)
     }
   }

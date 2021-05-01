@@ -12,8 +12,6 @@ import TopAppBar from 'components/TopAppBar/TopAppBar';
 import Dashboard from 'modules/Dashboard/Dashboard';
 import Post from 'modules/Post/Post';
 
-import config from 'helpers/config';
-
 // noinspection JSCheckFunctionSignatures
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,8 +59,6 @@ function App() {
   // navigation that originates from a JSON file
   // because the values come from json:
   // noinspection JSUnresolvedVariable
-
-  console.log('Config: ', config.projectId);
 
   return (
     <React.Fragment>

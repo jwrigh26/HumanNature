@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
+import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import ColorSwatch from './ColorSwatch.js';
 import userTheme from 'assets/theme';
 
 ThemePickerMenu.propTypes = {
@@ -13,25 +13,18 @@ ThemePickerMenu.propTypes = {
   onSetPaletteColor: PropTypes.func,
 };
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    border: `0px solid ${theme.palette.divider}`,
-  },
-}));
-
 function ThemePickerMenu({
   anchorEl,
   onClose: handleClose,
   onSetPaletteColor: handleSetPaletteColor,
 }) {
-  const theme = useTheme();
-  const classes = useStyles(theme);
-
 
   function handleMenuItemClick(key) {
     return () => {
       handleSetPaletteColor(userTheme.paletteColor[key]);
       handleClose();
+      console.log('UserTheme');
+      console.log(userTheme.color(key));
     };
   }
 
@@ -40,7 +33,6 @@ function ThemePickerMenu({
       <Menu
         id="theme-picker"
         anchorEl={anchorEl}
-        classes={{ paper: classes.paper }}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
@@ -56,7 +48,8 @@ function ThemePickerMenu({
       >
         {Object.keys(userTheme.paletteColor).map((key) => (
           <MenuItem key={key} onClick={handleMenuItemClick(key)}>
-            {userTheme.paletteColor[key]}
+            <ListItemText primary={userTheme.displayName[key]} />
+            <ColorSwatch palette={userTheme.color(key)}/>
           </MenuItem>
         ))}
       </Menu>

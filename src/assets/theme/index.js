@@ -1,10 +1,11 @@
 import color from './color';
 import colorSupport from './colorSupport';
-import { mode, paletteColor } from './const';
+import { displayName, mode, paletteColor } from './const';
 
 export default {
   color,
   colorSupport,
+  displayName,
   mode,
   paletteColor,
 }

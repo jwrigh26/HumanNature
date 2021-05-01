@@ -62,7 +62,7 @@ export default function ActionGroup() {
       <ThemePickerDrawer
         open={actions.paletteDrawerOpen}
         onSetPaletteColor={actions.handleSetPaletteColor}
-        onTogglePaletteDrawer={actions.handleTogglePaletteDrawer}
+        onToggle={actions.handleTogglePaletteDrawer}
       />
       <ThemePickerMenu
         anchorEl={actions.themeAnchorEl}
