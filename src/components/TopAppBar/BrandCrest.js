@@ -1,36 +1,53 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
+import { appSelector } from 'store/appSlice';
 import SVG from 'assets/unimathLogo.js';
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    fontWeight: 700,
-    position: 'relative',
-    top: '6px',
-    color: theme.palette.text.primary,
-    [theme.breakpoints.up('md')]: {
-      top: '8px',
-      color: theme.palette.text.primary,
-    },
-  },
   titleWrapper: {
     display: 'flex',
     paddingLeft: theme.spacing(1),
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     flex: 1,
+  },
+  title: {
+    fontWeight: 700,
+    position: 'relative',
+    color: theme.palette.text.primary,
+    [theme.breakpoints.up('md')]: {
+      color: theme.palette.text.primary,
+    },
+  },
+  subTitle: {
+    fontWeight: 500,
+    paddingLeft: theme.spacing(2),
+    position: 'relative',
   },
 }));
 
 function BrandCrest() {
+  const [subTitle, setSubTitle] = useState(null);
+
+  const { navigation } = useSelector(appSelector);
+  const { routes } = navigation ?? {};
   const theme = useTheme();
   const classes = useStyles(theme);
+  const { pathname } = useLocation();
 
-  const logoSize = theme.breakpoints.up('md') ? '72px' : '56px';
+  useEffect(() => {
+    if (pathname?.includes(routes?.policies?.route)) {
+      setSubTitle(routes?.policies?.title);
+    } else {
+      setSubTitle(null);
+    }
+  }, [pathname]);
 
   return (
     <div className={classes.titleWrapper}>
@@ -50,6 +67,9 @@ function BrandCrest() {
           Unimath
         </Typography>
       </ButtonBase>
+      <Typography className={classes.subTitle} variant={'h3'}>
+        Unimath
+      </Typography>
     </div>
   );
 }

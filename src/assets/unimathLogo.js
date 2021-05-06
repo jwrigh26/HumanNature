@@ -8,6 +8,8 @@ function SVG() {
     wrapper: {
       width: '56px',
       height: '56px',
+      position: 'relative',
+      bottom: theme.spacing(1),
       [theme.breakpoints.up('md')]: {
         width: '72px',
         height: '72px',

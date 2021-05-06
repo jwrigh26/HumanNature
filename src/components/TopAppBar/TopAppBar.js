@@ -10,9 +10,11 @@ import MuiToolbar from '@material-ui/core/Toolbar';
 const useStyles = makeStyles((theme) => ({
   appbar: {
     backgroundColor: theme.palette.background.default,
+    marginTop: theme.spacing(1),
 
     [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.background.default,
+      marginTop: theme.spacing(2),
     },
   },
   wrapper: {
@@ -43,12 +45,11 @@ const useStyles = makeStyles((theme) => ({
 function Toolbar() {
   const theme = useTheme();
   const classes = useStyles(theme);
+
   return (
     <>
       <MuiToolbar className={classes.toolbar} disableGutters>
-        {/* Brand Crest aka Logo */}
         <BrandCrest />
-        {/* Actions  */}
         <ActionGroup />
       </MuiToolbar>
     </>

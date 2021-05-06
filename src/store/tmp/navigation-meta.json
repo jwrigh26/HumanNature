@@ -1,61 +1,34 @@
 {
   "routes": {
-    "productReviews": {
-      "title": "Product Reviews",
-      "id": 0,
-      "route": "/product-reviews"
+    "policies": {
+      "title": "Policies & Terms",
+      "route": "/policies",
+      "subRoutes": {
+        "privacyPolicy": {
+          "title": "Privacy Policy",
+          "route": "/privacy-policy"
+        },
+        "termsOfService": {
+          "title": "Terms of Service",
+          "route": "/terms-of-service"
+        },
+        "legal": {
+          "title": "Legal",
+          "route": "/legal"
+        }
+      }
     },
-    "patientProfiles": {
-      "title": "Patient Profiles",
-      "id": 1,
-      "route": "/patient-profiles"
-    },
-    "pharmacies": {
-      "title": "Pharmacies",
-      "id": 2,
-      "route": "/pharmacies"
-    },
-    "gsLifeStyle": {
-      "title": "GS Life Style",
-      "id": 3,
-      "route": "/gs-life-style"
-    },
-    "gsBusiness": {
-      "title": "GS Business",
-      "id": 4,
-      "route": "/gs-business"
-    },
-    "news": {
-      "title": "News",
+    "Practice": {
+      "title": "Practice",
       "id": 5,
-      "route": "/news"
+      "route": "/practice"
     }
   },
   "tabs": [
     {
-      "title": "Product Reviews",
+      "title": "Home",
       "id": 0,
-      "route": "/product-reviews"
-    },
-    {
-      "title": "Patient Profiles",
-      "id": 1,
-      "route": "/patient-profiles"
-    },
-    {
-      "title": "Pharmacies",
-      "id": 2,
-      "route": "/pharmacies"
-    },
-    {
-      "title": "GS Life Style",
-      "id": 3,
-      "route": "/gs-life-style"
-    },
-    {
-      "title": "GS Business",
-      "id": 4,
-      "route": "/gs-business"
+      "route": "/"
     }
   ]
 }

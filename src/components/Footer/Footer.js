@@ -1,8 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import FooterLink from './FooterLink';
+
+import { appSelector } from 'store/appSlice';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -83,6 +86,9 @@ function Footer() {
   const theme = useTheme();
   const classes = useStyles(theme);
 
+  const { navigation } = useSelector(appSelector);
+  const { subRoutes: routes, route: url } = navigation?.routes?.policies ?? {};
+
   return (
     <div className={classes.wrapper}>
       <footer className={classes.footer}>
@@ -97,15 +103,21 @@ function Footer() {
         <section className={classes.trailing}>
           <ul className={classes.privacy}>
             <li>
-              <FooterLink to={'/policies/Legal'}>Legal</FooterLink>
+              <FooterLink to={`${url}${routes?.legal?.route}`}>
+                Legal
+              </FooterLink>
             </li>
             <li className={classes.secondaryText}>|</li>
             <li>
-              <FooterLink to={'/policies/privacy'}>Privacy</FooterLink>
+              <FooterLink to={`${url}${routes?.privacyPolicy?.route}`}>
+                Privacy
+              </FooterLink>
             </li>
             <li className={classes.secondaryText}>|</li>
             <li>
-              <FooterLink to={'/policies/terms'}>Terms</FooterLink>
+              <FooterLink to={`${url}${routes?.termsOfService?.route}`}>
+                Terms
+              </FooterLink>
             </li>
           </ul>
         </section>

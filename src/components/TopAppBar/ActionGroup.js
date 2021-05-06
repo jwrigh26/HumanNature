@@ -24,11 +24,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     paddingRight: theme.spacing(2),
     position: 'relative',
-    top: '8px',
     [theme.breakpoints.up('md')]: {
       paddingRight: theme.spacing(4),
       flex: 0,
-      top: '12px',
     },
   },
 }));

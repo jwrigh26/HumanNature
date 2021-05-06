@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router';
-import { appSelector } from 'store/appSlice';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
+import { appSelector } from 'store/appSlice';
 import CookieSnackbar from 'components/CookieSnackbar';
-import Footer from 'components/Footer/Footer';
-import TopAppBar from 'components/TopAppBar/TopAppBar';
 import Dashboard from 'modules/Dashboard/Dashboard';
-import Post from 'modules/Post/Post';
+import Footer from 'components/Footer/Footer';
+import Policies from 'modules/Policies/Policies';
+import TopAppBar from 'components/TopAppBar/TopAppBar';
 
 // noinspection JSCheckFunctionSignatures
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     margin: 0,
     maxWidth: theme.breakpoints.values.siteMaxWidth,
+
     height: '100%',
     [theme.breakpoints.up('md')]: {
       marginLeft: theme.spacing(2),
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('siteMaxWidth')]: {
       marginLeft: 'auto',
       marginRight: 'auto',
+      minWidth: theme.breakpoints.values.siteMaxWidth,
     },
   },
   main: {
@@ -61,14 +63,14 @@ function App() {
   // noinspection JSUnresolvedVariable
 
   return (
-    <React.Fragment>
+    <>
       <Box className={classes.root}>
         <Box className={classes.body}>
           <TopAppBar />
           <main className={classes.main}>
             <Switch>
-              <Route path={routes?.gsBusiness?.route}>
-                <Post meta={routes?.gsBusiness} />
+              <Route path={routes?.policies?.route}>
+                <Policies />
               </Route>
               <Route exact path="/">
                 <Dashboard />
@@ -80,7 +82,7 @@ function App() {
         <Footer />
         <CookieSnackbar />
       </Box>
-    </React.Fragment>
+    </>
   );
 }
 export default App;

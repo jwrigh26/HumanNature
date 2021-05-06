@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     textTransform: 'none',
     [theme.breakpoints.up('lg')]: {
-      minWidth: 96,
+      minWidth: 64,
     },
 
   },
