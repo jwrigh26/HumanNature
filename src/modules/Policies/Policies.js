@@ -8,19 +8,30 @@ import Grid from '@material-ui/core/Grid';
 import WrapperBox from '../../components/WrapperBox';
 
 import { appSelector } from 'store/appSlice';
+import PolicyAppBar from './fragments/PolicyAppBar.js';
 
 import { Link } from 'react-router-dom';
 
 function Policies() {
+  const { navigation } = useSelector(appSelector);
+  const routes = navigation?.routes?.policies?.subRoutes;
   return (
     <WrapperBox>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Typography variant="h1">Policies</Typography>
-          <Typography variant="body1">Policy Stuff goes here.</Typography>
-          <Link to={`/`}>Go Home</Link>
-        </Grid>
-      </Grid>
+      <PolicyAppBar />
+      <Switch>
+        <Route path={routes?.privacyPolicy?.route}>
+          <h1>Privacy Policy</h1>
+        </Route>
+        <Route path={routes?.termsOfService?.route}>
+          <h1>Terms of Service</h1>
+        </Route>
+        <Route path={routes?.legal?.route}>
+          <h1>Legal</h1>
+        </Route>
+        <Route
+          render={() => <Redirect to={navigation?.routes?.policies?.route} />}
+        />
+      </Switch>
     </WrapperBox>
   );
 }

@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
 
-import WrapperBox from '../../components/WrapperBox';
+import WrapperBox from 'components/WrapperBox';
 
 function Dashboard() {
   return (

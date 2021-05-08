@@ -19,14 +19,20 @@ const useStyles = makeStyles((theme) => ({
   },
   actionsWrapper: {
     display: 'flex',
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
     paddingRight: theme.spacing(2),
     position: 'relative',
+    height: '56px',
+    bottom: 0,
     [theme.breakpoints.up('md')]: {
       paddingRight: theme.spacing(4),
       flex: 0,
+      height: '72px',
+      bottom: '-3px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      bottom: '-4px',
     },
   },
 }));

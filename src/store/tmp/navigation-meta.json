@@ -6,15 +6,18 @@
       "subRoutes": {
         "privacyPolicy": {
           "title": "Privacy Policy",
-          "route": "/privacy-policy"
+          "route": "/policies/privacy-policy",
+          "id": 0
         },
         "termsOfService": {
           "title": "Terms of Service",
-          "route": "/terms-of-service"
+          "route": "/policies/terms-of-service",
+          "id": 1
         },
         "legal": {
           "title": "Legal",
-          "route": "/legal"
+          "route": "/policies/legal",
+          "id": 2
         }
       }
     },
