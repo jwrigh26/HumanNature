@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: theme.breakpoints.values.siteMaxWidth,
     height: 'inherits',
     [theme.breakpoints.up('md')]: {
-      marginLeft: theme.spacing(2),
-      marginRight: theme.spacing(2),
+      // marginLeft: theme.spacing(2),
+      // marginRight: theme.spacing(2),
     },
     [theme.breakpoints.up('lg')]: {
-      marginLeft: theme.spacing(4),
-      marginRight: theme.spacing(4),
+      // marginLeft: theme.spacing(4),
+      // marginRight: theme.spacing(4),
     },
     [theme.breakpoints.up('siteMaxWidth')]: {
       marginLeft: 'auto',
@@ -87,7 +87,7 @@ function Footer() {
   const classes = useStyles(theme);
 
   const { navigation } = useSelector(appSelector);
-  const { subRoutes: routes, route: url } = navigation?.routes?.policies ?? {};
+  const { subRoutes: routes } = navigation?.routes?.policies ?? {};
 
   return (
     <div className={classes.wrapper}>
@@ -103,20 +103,20 @@ function Footer() {
         <section className={classes.trailing}>
           <ul className={classes.privacy}>
             <li>
-              <FooterLink to={`${url}${routes?.legal?.route}`}>
-                Legal
-              </FooterLink>
-            </li>
-            <li className={classes.secondaryText}>|</li>
-            <li>
-              <FooterLink to={`${url}${routes?.privacyPolicy?.route}`}>
+              <FooterLink to={`${routes?.privacyPolicy?.route}`}>
                 Privacy
               </FooterLink>
             </li>
             <li className={classes.secondaryText}>|</li>
             <li>
-              <FooterLink to={`${url}${routes?.termsOfService?.route}`}>
+              <FooterLink to={`${routes?.termsOfService?.route}`}>
                 Terms
+              </FooterLink>
+            </li>
+            <li className={classes.secondaryText}>|</li>
+            <li>
+              <FooterLink to={`${routes?.legal?.route}`}>
+                Legal
               </FooterLink>
             </li>
           </ul>

@@ -21,17 +21,17 @@ function RouteManager({ children }) {
   const routedPost = useRoutePost();
   const routedTab = useRouteTab();
 
-  if (hasValue(routedTab)) {
-    console.log('Tab', routedTab);
-  }
-  if (hasValue(routedPost)) {
-    console.log('Post', routedPost);
-  }
+  // if (hasValue(routedTab)) {
+  //   console.log('Tab', routedTab);
+  // }
+  // if (hasValue(routedPost)) {
+  //   console.log('Post', routedPost);
+  // }
 
   useEffect(() => {
     const { key } = routedTab ?? {};
     if (hasValue(key) && hasValue(navigation?.routes?.[key])) {
-      console.log('Key:', key);
+      // console.log('Key:', key);
       dispatch(setSelectedTab({ tab: navigation?.routes?.[key]?.id }));
     }
   }, [routedTab]);

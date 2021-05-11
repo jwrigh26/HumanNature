@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 import { appSelector, setSelectedTab } from 'store/appSlice';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
@@ -22,30 +23,21 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   wrapper: {
-    backgroundColor: 'red',
     display: 'flex',
     height: 'inherit',
+    marginTop: theme.spacing(2),
     paddingRight: theme.spacing(6),
-    [theme.breakpoints.down('md')]: {
-      justifyContent: 'center',
-      paddingRight: theme.spacing(0),
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      width: '100%',
-    },
+    borderTop: `1px solid ${theme.palette.divider}`,
   },
 }));
 
 function Tabs() {
   const dispatch = useDispatch();
-  const {
-    navigation,
-    selectedTab,
-  } = useSelector(appSelector);
+  const { navigation, selectedTab } = useSelector(appSelector);
   const routes = navigation?.routes?.policies?.subRoutes;
   const theme = useTheme();
   const classes = useStyles(theme);
+  const location = useLocation();
 
   const [value, setValue] = useState(undefined);
 
@@ -53,21 +45,32 @@ function Tabs() {
   // from the selectedTab if the value has changed
   useEffect(() => {
     if (!isNil(selectedTab) && selectedTab !== value) {
-      console.log('Setting Value via SelectedTab', selectedTab);
       setValue(selectedTab);
     }
   }, [selectedTab]);
 
+  useEffect(() => {
+    const tab = Object.keys(routes).reduce((id, key) => {
+      const route = routes[key]?.route;
+      if (location?.pathname === route) {
+        return routes[key]?.id;
+      }
+      return id;
+    }, 0);
+    if (value !== tab) {
+      setValue(tab);
+    }
+  }, [location]);
+
   const handleChange = (event, newValue) => {
-    console.log('Setting Value: ', newValue);
     setValue(newValue);
     dispatch(setSelectedTab(newValue));
   };
 
   function a11yProps(index) {
     return {
-      id: `nav-tab-${index}`,
-      'aria-controls': `nav-tabpanel-${index}`,
+      id: `policy-tab-${index}`,
+      'aria-controls': `policy-tabpanel-${index}`,
       value: index,
     };
   }
@@ -75,16 +78,17 @@ function Tabs() {
   return (
     <div className={classes.wrapper}>
       <MuiTabs
-        aria-label="Top App Bar"
+        aria-label="Policy App Bar"
         classes={{
           root: classes.tabs,
           indicator: classes.indicator,
         }}
         component="nav"
         onChange={handleChange}
-        variant="standard"
         TabIndicatorProps={{ children: <span /> }}
         value={isNil(value) ? false : value}
+        variant="scrollable"
+        scrollButtons="auto"
       >
         {Object.keys(routes).map((key) => (
           <LinkTab

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     [theme.breakpoints.down('md')]: {
-      minHeight: 128,
+      // minHeight: 128,
       alignItems: 'flex-start',
       paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(0),

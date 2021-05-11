@@ -1,10 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router';
-import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 import WrapperBox from '../../components/WrapperBox';
 
 import { appSelector } from 'store/appSlice';
@@ -29,7 +25,7 @@ function Policies() {
           <h1>Legal</h1>
         </Route>
         <Route
-          render={() => <Redirect to={navigation?.routes?.policies?.route} />}
+          render={() => <Redirect to={routes?.privacyPolicy?.route} />}
         />
       </Switch>
     </WrapperBox>

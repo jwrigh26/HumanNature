@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import classnames from 'classnames';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Hidden from '@material-ui/core/Hidden';
 
@@ -37,11 +38,18 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(1),
     position: 'relative',
     bottom: 0,
+    color: theme.palette.text.primary,
     [theme.breakpoints.up('md')]: {
       bottom: '-3px',
     },
     [theme.breakpoints.up('lg')]: {
       bottom: '-4px',
+    },
+  },
+
+  foo: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.6rem',
     },
   },
 }));
@@ -74,18 +82,19 @@ function BrandCrest() {
             </Typography>
           </Hidden>
         </ButtonBase>
-        <Hidden xsDown>
-          <ButtonBase
-            disableRipple
-            disableTouchRipple
-            component={Link}
-            to={routes?.policies?.route}
+        <ButtonBase
+          disableRipple
+          disableTouchRipple
+          component={Link}
+          to={routes?.policies?.route}
+        >
+          <Typography
+            className={classnames(classes.title, classes.foo)}
+            variant="h2"
           >
-            <Typography className={classes.title} variant="h2">
-              {subTitle}
-            </Typography>
-          </ButtonBase>
-        </Hidden>
+            {subTitle}
+          </Typography>
+        </ButtonBase>
       </div>
     );
   }
