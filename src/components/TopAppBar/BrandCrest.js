@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
+import { Link, useLocation } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import classnames from 'classnames';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -28,8 +28,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     position: 'relative',
     color: theme.palette.text.primary,
+    bottom: '0px',
+    [theme.breakpoints.up('xs')]: {
+      bottom: '0px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      bottom: '4px',
+    },
     [theme.breakpoints.up('md')]: {
       color: theme.palette.text.primary,
+      bottom: '0px',
     },
   },
   subTitle: {
@@ -39,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     bottom: 0,
     color: theme.palette.text.primary,
+
+
     [theme.breakpoints.up('md')]: {
       bottom: '-3px',
     },
@@ -47,9 +57,30 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  foo: {
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '1.6rem',
+  supportingTitle: {
+    fontWeight: 700,
+    position: 'relative',
+    color: theme.palette.text.primary,
+    bottom: '2px',
+    [theme.breakpoints.up('xs')]: {
+      fontSize: '1.55rem',
+    },
+    [theme.breakpoints.up('iphone6')]: {
+      fontSize: '1.8rem',
+    },
+    [theme.breakpoints.up('sm')]: {
+      bottom: '4px',
+      fontSize: '2rem',
+    },
+    [theme.breakpoints.up('md')]: {
+      color: theme.palette.text.primary,
+      bottom: '0px',
+      fontSize: '3.3333rem',
+    },
+    [theme.breakpoints.up('lg')]: {
+      color: theme.palette.text.primary,
+      bottom: '0px',
+      fontSize: '3.75rem',
     },
   },
 }));
@@ -89,8 +120,9 @@ function BrandCrest() {
           to={routes?.policies?.route}
         >
           <Typography
-            className={classnames(classes.title, classes.foo)}
+            className={classes.supportingTitle}
             variant="h2"
+            noWrap
           >
             {subTitle}
           </Typography>

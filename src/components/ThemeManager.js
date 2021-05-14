@@ -29,6 +29,8 @@ function ThemeManager({ children }) {
     breakpoints: {
       values: {
         xs: 0,
+        iphoneSE: 320,
+        iphone6: 375,
         sm: 600,
         md: 960,
         lg: 1280,

@@ -6,7 +6,7 @@ import WrapperBox from '../../components/WrapperBox';
 import { appSelector } from 'store/appSlice';
 import PolicyAppBar from './fragments/PolicyAppBar.js';
 
-import { Link } from 'react-router-dom';
+import Legal from './Legal';
 
 function Policies() {
   const { navigation } = useSelector(appSelector);
@@ -22,7 +22,7 @@ function Policies() {
           <h1>Terms of Service</h1>
         </Route>
         <Route path={routes?.legal?.route}>
-          <h1>Legal</h1>
+          <Legal />
         </Route>
         <Route
           render={() => <Redirect to={routes?.privacyPolicy?.route} />}
