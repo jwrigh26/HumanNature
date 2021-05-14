@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     '& > span': {
       maxWidth: 64,
       width: '100%',
-      backgroundColor: theme.palette.common.black,
+      backgroundColor: theme.palette.primary.dark,
     },
   },
   wrapper: {
