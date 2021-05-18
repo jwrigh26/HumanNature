@@ -27,7 +27,7 @@ function Section({ classes }) {
       </Typography>
       <ol className={classes.listStyleAlpha}>
         <li>
-          <Typography variant="body2" component="span">
+          <Typography variant="body2">
             Feugiat pretium nibh ipsum consequat nisl vel. Purus viverra
             accumsan in nisl nisi scelerisque eu ultrices vitae. Dignissim cras
             tincidunt lobortis feugiat vivamus at. Accumsan sit amet nulla
@@ -36,7 +36,7 @@ function Section({ classes }) {
           </Typography>
         </li>
         <li>
-          <Typography variant="body2" component="span">
+          <Typography variant="body2">
             Neque volutpat ac tincidunt vitae. Aliquet porttitor lacus luctus
             accumsan. Vivamus arcu felis bibendum ut tristique et egestas.
             Laoreet suspendisse interdum consectetur libero. Vitae tortor
@@ -46,7 +46,7 @@ function Section({ classes }) {
           </Typography>
         </li>
         <li>
-          <Typography variant="body2" component="span">
+          <Typography variant="body2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
             Porttitor eget dolor morbi non arcu. Tincidunt nunc pulvinar sapien
@@ -55,7 +55,7 @@ function Section({ classes }) {
         </li>
         <ol className={classnames(classes.listStyleLowerRoman, classes.marginTop)}>
           <li>
-            <Typography variant="body2" component="span">
+            <Typography variant="body2">
               Feugiat pretium nibh ipsum consequat nisl vel. Purus viverra
               accumsan in nisl nisi scelerisque eu ultrices vitae. Dignissim
               cras tincidunt lobortis feugiat vivamus at. Accumsan sit amet
@@ -64,7 +64,7 @@ function Section({ classes }) {
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" component="span">
+            <Typography variant="body2">
               Neque volutpat ac tincidunt vitae. Aliquet porttitor lacus luctus
               accumsan. Vivamus arcu felis bibendum ut tristique et egestas.
               Laoreet suspendisse interdum consectetur libero. Vitae tortor
@@ -74,7 +74,7 @@ function Section({ classes }) {
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" component="span">
+            <Typography variant="body2">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
               Porttitor eget dolor morbi non arcu. Tincidunt nunc pulvinar
@@ -85,7 +85,7 @@ function Section({ classes }) {
             className={classnames(classes.listStyleCircle, classes.marginTop)}
           >
             <li>
-              <Typography variant="body2" component="span">
+              <Typography variant="body2">
                 Feugiat pretium nibh ipsum consequat nisl vel. Purus viverra
                 accumsan in nisl nisi scelerisque eu ultrices vitae. Dignissim
                 cras tincidunt lobortis feugiat vivamus at. Accumsan sit amet
@@ -94,7 +94,7 @@ function Section({ classes }) {
               </Typography>
             </li>
             <li>
-              <Typography variant="body2" component="span">
+              <Typography variant="body2">
                 Neque volutpat ac tincidunt vitae. Aliquet porttitor lacus
                 luctus accumsan. Vivamus arcu felis bibendum ut tristique et
                 egestas. Laoreet suspendisse interdum consectetur libero. Vitae
@@ -104,7 +104,7 @@ function Section({ classes }) {
               </Typography>
             </li>
             <li>
-              <Typography variant="body2" component="span">
+              <Typography variant="body2">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 Porttitor eget dolor morbi non arcu. Tincidunt nunc pulvinar

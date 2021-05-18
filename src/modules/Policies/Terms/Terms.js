@@ -14,6 +14,11 @@ import Section7 from './Section7';
 import Section8 from './Section8';
 import Section9 from './Section9';
 import Section10 from './Section10';
+import Section11 from './Section11';
+import Section12 from './Section12';
+import Section13 from './Section13';
+import Section14 from './Section14';
+import Section15 from './Section15';
 import TableOfContents from './TableOfContents.js';
 
 const useStyles = makeStyles((theme) => ({
@@ -83,6 +88,15 @@ function Terms() {
       <Section4 classes={classes} />
       <Section5 classes={classes} />
       <Section6 classes={classes} />
+      <Section7 classes={classes} />
+      <Section8 classes={classes} />
+      <Section9 classes={classes} />
+      <Section10 classes={classes} />
+      <Section11 classes={classes} />
+      <Section12 classes={classes} />
+      <Section13 classes={classes} />
+      <Section14 classes={classes} />
+      <Section15 classes={classes} />
     </div>
   );
 }

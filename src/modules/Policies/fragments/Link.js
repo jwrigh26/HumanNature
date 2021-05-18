@@ -11,7 +11,9 @@ LinkButton.propTypes = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  link: {},
+  link: {
+    fontWeight: 700,
+  },
 }));
 
 function LinkButton({ children, to, blank = false }) {
@@ -21,6 +23,7 @@ function LinkButton({ children, to, blank = false }) {
     <>
       {blank && (
         <Link
+          className={classes.link}
           href={to}
           color="primary"
           component="a"
@@ -33,6 +36,7 @@ function LinkButton({ children, to, blank = false }) {
       )}
       {!blank && (
         <Link
+          className={classes.link}
           href={to}
           color="primary"
           component="a"

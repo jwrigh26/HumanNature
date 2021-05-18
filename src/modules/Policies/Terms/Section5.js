@@ -20,18 +20,18 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>5.1 User Content and Ownership:</span>{' '}
-        Khan Academy may permit (a) the posting and/or publishing by you and
+        Unimath may permit (a) the posting and/or publishing by you and
         other Users of notes, questions, comments, ratings, reviews, images,
         videos and other audio-visual materials and communications
         (collectively, "User Postings") and (b) the posting, creation, or
         modification by you and other users of computer code (including source
         code and object code) ("User Code") (User Postings and User Code,
         collectively, "User Content"). You understand that whether or not such
-        User Content is published, Khan Academy does not guarantee any
+        User Content is published, Unimath does not guarantee any
         confidentiality with respect to any submissions. Consistent with
-        Applicable Law, as between Khan Academy and you, you retain all
+        Applicable Law, as between Unimath and you, you retain all
         ownership rights you have in any User Content you post or publish to the
-        Services, and Khan Academy does not claim any ownership rights in or to
+        Services, and Unimath does not claim any ownership rights in or to
         such User Content. You acknowledge that are solely responsible for your
         User Content and the consequences of posting, creating, or publishing
         such User Content.
@@ -42,13 +42,13 @@ function Section({ classes }) {
       >
         <span className={classes.bold}>5.2 License Grant to Unimath:</span> By
         posting, submitting or distributing User Content on or through the
-        Services, you hereby grant to Khan Academy a worldwide, non-exclusive,
+        Services, you hereby grant to Unimath a worldwide, non-exclusive,
         transferable, assignable, fully paid-up, royalty-free right and license
         to (a) host, transfer, display, perform, reproduce, distribute, prepare
         derivative works of, use, make, have made, import, and otherwise exploit
         your User Content, in whole or in part, in any media formats and through
         any media channels (now known or hereafter developed, to the extent
-        consistent with applicable law and Khan Academy's Privacy Policy). Such
+        consistent with applicable law and Unimath's Privacy Policy). Such
         license is perpetual and irrevocable, except to the extent required to
         comply with Applicable Privacy Law relating to ownership and control of
         your personal information, including education records. With respect to
@@ -65,16 +65,16 @@ function Section({ classes }) {
       </Typography>
       <ol className={classes.listStyleAlpha}>
         <li>
-          <Typography variant="body2" component="span">
+          <Typography variant="body2">
             User Postings. By posting, submitting or distributing User Postings
             through the Services, you hereby grant to each User of the Services
             a non-exclusive license to access and use your User Postings in any
-            manner permitted or made available by Khan Academy on or through the
+            manner permitted or made available by Unimath on or through the
             Services.
           </Typography>
         </li>
         <li>
-          <Typography variant="body2" component="span">
+          <Typography variant="body2">
             User Code. By posting, submitting or distributing User Code through
             the Services, you hereby grant to each User of the Services a
             non-exclusive license to access, use, reproduce, and distribute your
@@ -87,12 +87,12 @@ function Section({ classes }) {
           </Typography>
         </li>
         <li>
-          <Typography variant="body2" component="span">
+          <Typography variant="body2">
             Downloadable Content. The Services may permit you to download mobile
             applications or certain digital educational content ("
             <span className={classes.bold}>Downloadable Content</span>").
             Subject to your complete and ongoing compliance with all the terms
-            and conditions set forth herein, Khan Academy grants you, a limited,
+            and conditions set forth herein, Unimath grants you, a limited,
             non-exclusive, non-transferable, non-sublicensable, revocable
             license to download, install, view and use the Downloadable Content,
             in object code form, on devices owned or controlled by you, solely
@@ -111,14 +111,14 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>5.4 Access to Your User Content:</span>{' '}
-        Khan Academy may permit Users to share their User Content with a select
+        Unimath may permit Users to share their User Content with a select
         group of other Users, or make their User Content public for all (even
         non-Services users) to view. You acknowledge and agree that, although
-        Khan Academy may provide certain features intended to allow you to
-        restrict some User Content you create from others, Khan Academy does not
+        Unimath may provide certain features intended to allow you to
+        restrict some User Content you create from others, Unimath does not
         guarantee that such User Content will never be accessible by others. In
-        the event of unauthorized access, Khan Academy will use reasonable
-        efforts to notify you pursuant to Section 15.1 below. KHAN ACADEMY
+        the event of unauthorized access, Unimath will use reasonable
+        efforts to notify you pursuant to Section 15.1 below. UNIMATH
         HEREBY DISCLAIMS ANY AND ALL LIABILITY WITH RESPECT TO ANY UNAUTHORIZED
         ACCESS TO ANY RESTRICTED USER CONTENT.
       </Typography>
@@ -128,15 +128,15 @@ function Section({ classes }) {
       >
         <span className={classes.bold}>5.4 User Content Disclaimer:</span> You
         understand that when using the Services you will be exposed to User
-        Content from a variety of sources, and that Khan Academy is not
+        Content from a variety of sources, and that Unimath is not
         responsible for the accuracy, usefulness, or intellectual property
         rights of or relating to such User Content. You further understand and
         acknowledge that you may be exposed to User Content that is inaccurate,
         offensive, indecent or objectionable, and you agree to waive, and hereby
         do waive, any legal or equitable rights or remedies you have or may have
-        against Khan Academy with respect thereto. Khan Academy does not endorse
+        against Unimath with respect thereto. Unimath does not endorse
         any User Content or any opinion, recommendation or advice expressed
-        therein, and Khan Academy expressly disclaims any and all liability in
+        therein, and Unimath expressly disclaims any and all liability in
         connection with User Content.
       </Typography>
     </>
