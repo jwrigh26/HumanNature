@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import { Link, useLocation } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
-import classnames from 'classnames';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Hidden from '@material-ui/core/Hidden';
 

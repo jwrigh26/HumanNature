@@ -7,27 +7,41 @@ import Link from '@material-ui/core/Link';
 LinkButton.propTypes = {
   children: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
+  blank: PropTypes.bool,
 };
 
 const useStyles = makeStyles((theme) => ({
-  link: {}
+  link: {},
 }));
 
-function LinkButton({children, to}) {
+function LinkButton({ children, to, blank = false }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
-    <Link
-      href={to}
-      color='primary'
-      component='a'
-      underline='hover'
-      target='blank'
-      rel="noopener noreferrer"
-    >
-
-        {children}
-    </Link>
+    <>
+      {blank && (
+        <Link
+          href={to}
+          color="primary"
+          component="a"
+          underline="hover"
+          target={'blank'}
+          rel={'noopener noreferrer'}
+        >
+          {children}
+        </Link>
+      )}
+      {!blank && (
+        <Link
+          href={to}
+          color="primary"
+          component="a"
+          underline="hover"
+        >
+          {children}
+        </Link>
+      )}
+    </>
   );
 }
 

@@ -13,11 +13,6 @@
           "title": "Terms of Service",
           "route": "/policies/terms-of-service",
           "id": 1
-        },
-        "legal": {
-          "title": "Legal",
-          "route": "/policies/legal",
-          "id": 2
         }
       }
     },

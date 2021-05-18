@@ -104,19 +104,13 @@ function Footer() {
           <ul className={classes.privacy}>
             <li>
               <FooterLink to={`${routes?.privacyPolicy?.route}`}>
-                Privacy
+                Privacy Policy
               </FooterLink>
             </li>
             <li className={classes.secondaryText}>|</li>
             <li>
               <FooterLink to={`${routes?.termsOfService?.route}`}>
-                Terms
-              </FooterLink>
-            </li>
-            <li className={classes.secondaryText}>|</li>
-            <li>
-              <FooterLink to={`${routes?.legal?.route}`}>
-                Legal
+                Terms of Service
               </FooterLink>
             </li>
           </ul>

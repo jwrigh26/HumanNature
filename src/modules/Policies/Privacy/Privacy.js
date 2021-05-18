@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-import Link from './fragments/Link';
+import Link from '../fragments/Link';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Legal() {
+function ContentTerms() {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
@@ -76,4 +76,4 @@ function Legal() {
   );
 }
 
-export default Legal;
+export default ContentTerms;

@@ -6,7 +6,8 @@ import WrapperBox from '../../components/WrapperBox';
 import { appSelector } from 'store/appSlice';
 import PolicyAppBar from './fragments/PolicyAppBar.js';
 
-import Legal from './Legal';
+import ContentPrivacy from './Privacy/Privacy.js';
+import Terms from './Terms/Terms';
 
 function Policies() {
   const { navigation } = useSelector(appSelector);
@@ -16,13 +17,10 @@ function Policies() {
       <PolicyAppBar />
       <Switch>
         <Route path={routes?.privacyPolicy?.route}>
-          <h1>Privacy Policy</h1>
+          <ContentPrivacy />
         </Route>
         <Route path={routes?.termsOfService?.route}>
-          <h1>Terms of Service</h1>
-        </Route>
-        <Route path={routes?.legal?.route}>
-          <Legal />
+          <Terms />
         </Route>
         <Route
           render={() => <Redirect to={routes?.privacyPolicy?.route} />}
