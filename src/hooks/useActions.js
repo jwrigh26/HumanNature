@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import {
   appSelector,
@@ -14,13 +15,14 @@ export default function useActions() {
   const dispatch = useDispatch();
   const {
     themeBag: { color, mode },
+    navigation: { routes },
   } = useSelector(appSelector);
+
+  const history = useHistory();
 
   const [moreAnchorEl, setMoreAnchorEl] = useState(null);
   const [themeAnchorEl, setThemeAnchorEl] = useState(null);
-  const [paletteDrawerOpen, setPaletteDrawerOpen] = useState(
-    false
-  );
+  const [paletteDrawerOpen, setPaletteDrawerOpen] = useState(false);
 
   const [modeIcon, setModeIcon] = useState();
   const [modeLabel, setModeLabel] = useState();
@@ -43,13 +45,20 @@ export default function useActions() {
     setThemeAnchorEl(null);
   }
 
+  function handleMail() {
+    history.push(routes?.contact?.route);
+  }
+
   function handleTogglePaletteDrawer(open) {
-    return event => {
-      if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    return (event) => {
+      if (
+        event.type === 'keydown' &&
+        (event.key === 'Tab' || event.key === 'Shift')
+      ) {
         return;
       }
-      setPaletteDrawerOpen(open)
-    }
+      setPaletteDrawerOpen(open);
+    };
   }
 
   function handleOpenThemePicker(event) {
@@ -78,6 +87,7 @@ export default function useActions() {
     handleCloseMore,
     handleOpenMore,
     handleCloseThemePicker,
+    handleMail,
     handleOpenThemePicker,
     handleTogglePaletteDrawer,
     handleRest,
@@ -87,6 +97,6 @@ export default function useActions() {
     themeAnchorEl,
     modeIcon,
     modeLabel,
-    paletteDrawerOpen
+    paletteDrawerOpen,
   };
 }

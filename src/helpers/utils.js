@@ -36,6 +36,10 @@ export function hasValue(value) {
     return !isNil(value);
   }
 
+  if (isDate(value)) {
+    return true;
+  }
+
   if (isObject(value) || Array.isArray(value)) {
     return !isEmpty(value);
   }
@@ -86,13 +90,21 @@ export function isString(str) {
   return typeof str === 'string' || str instanceof String;
 }
 
+export function trimSpaces(value) {
+  return isString(value) ? value.trim() : value;
+}
+
+export function isDate(value) {
+  return !isNil(value) && value instanceof Date && !isNaN(value.valueOf());
+}
+
 /**
  * Sorts an array by a property.
  *
  * @example
  * [{ name: 'a' }, { name: 'b'}].sort(sortBy(x => x.name))
  *
- * @param propertyAccessor {func} Function to access property off object.
+ * @param propertyAccessor {func} Function to access property of object.
  * @param isAsc {boolean} Sort by ascending order or not.
  *
  * @returns {func} Sort function to pass to Array.prototype.sort
@@ -121,3 +133,5 @@ export function sortBy(propertyAccessor, isAsc = true) {
     return (aProp - bProp) * direction;
   };
 }
+
+export const sleep = ms => new Promise(r => setTimeout(r, ms));

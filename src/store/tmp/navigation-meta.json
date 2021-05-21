@@ -1,5 +1,10 @@
 {
   "routes": {
+    "contact":  {
+      "title": "Contact",
+      "id": 2,
+      "route": "/contact"
+    },
     "policies": {
       "title": "Policies & Terms",
       "route": "/policies",
@@ -15,11 +20,6 @@
           "id": 1
         }
       }
-    },
-    "Practice": {
-      "title": "Practice",
-      "id": 5,
-      "route": "/practice"
     }
   },
   "tabs": [

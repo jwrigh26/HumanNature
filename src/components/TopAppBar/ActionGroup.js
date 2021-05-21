@@ -55,6 +55,9 @@ export default function ActionGroup() {
           <IconButton onClick={actions.handleRest}>
             <Icon className={classes.icon}>restart_alt</Icon>
           </IconButton>
+          <IconButton onClick={actions.handleMail}>
+            <Icon className={classes.icon}>mail</Icon>
+          </IconButton>
         </Hidden>
         <Hidden smUp>
           <IconButton onClick={actions.handleOpenMore}>

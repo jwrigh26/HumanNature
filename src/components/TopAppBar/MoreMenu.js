@@ -14,6 +14,7 @@ MoreMenu.propTypes = {
     modeLabel: PropTypes.string,
     moreAnchorEl: PropTypes.any,
     handleCloseMore: PropTypes.func,
+    handleMail: PropTypes.func,
     handleTogglePaletteDrawer: PropTypes.func,
     handleSetPaletteMode: PropTypes.func,
   }),
@@ -42,6 +43,11 @@ function MoreMenu({ actions }) {
 
   function handleSetPaletteMode() {
     actions.handleSetPaletteMode();
+    actions.handleCloseMore();
+  }
+
+  function handleMail() {
+    actions.handleMail();
     actions.handleCloseMore();
   }
 
@@ -74,6 +80,12 @@ function MoreMenu({ actions }) {
           <Icon className={classes.icon}>{actions.modeIcon}</Icon>
         </ListItemIcon>
         <ListItemText primary={actions.modeLabel} />
+      </MenuItem>
+      <MenuItem onClick={handleMail}>
+        <ListItemIcon>
+          <Icon className={classes.icon}>mail</Icon>
+        </ListItemIcon>
+        <ListItemText primary="Contact" />
       </MenuItem>
     </Menu>
   );

@@ -6,6 +6,7 @@ import { useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
 import { appSelector } from 'store/appSlice';
+import Contact from 'modules/Contact/Contact.js';
 import CookieSnackbar from 'components/CookieSnackbar';
 import Dashboard from 'modules/Dashboard/Dashboard';
 import Footer from 'components/Footer/Footer';
@@ -69,6 +70,9 @@ function App() {
           <TopAppBar />
           <main className={classes.main}>
             <Switch>
+              <Route path={routes?.contact?.route}>
+                <Contact />
+              </Route>
               <Route path={routes?.policies?.route}>
                 <Policies />
               </Route>
