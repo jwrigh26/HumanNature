@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { hasValue, trimSpaces, sleep } from 'helpers/utils.js';
 import emailjs from 'emailjs-com';
 import * as yup from 'yup';
@@ -12,6 +12,7 @@ export default function useContactFrom() {
     emailjs.init(config.emailJSUserId);
   }, []);
   const history = useHistory();
+  const location = useLocation();
   const [submitted, setSubmitted] = useState(false);
 
   const initialValues = {
@@ -43,11 +44,18 @@ export default function useContactFrom() {
     validationSchema: validators,
     onSubmit: async (values) => {
       // TODO: Remove for production
+
+      console.log(location);
+      console.log(history);
+
       await sleep(1500);
+
+      setSubmitted(true);
 
       // Need to show loader
       // If success show success message and button to go back to home
       // If error show error message via a snackbar perhaps?
+      // TODO: Error handling
       // Perhaps good time to set up error handling
 
       // try {
@@ -65,11 +73,22 @@ export default function useContactFrom() {
   });
 
   const isDisabled =
-    !formikBag.dirty || !formikBag?.isValid || formikBag?.isSubmitting;
+    !formikBag.dirty ||
+    !formikBag?.isValid ||
+    formikBag?.isSubmitting ||
+    submitted;
+
+  const isSubmitting = !submitted && formikBag.isSubmitting;
+
+  function goBack() {
+    history.goBack();
+  }
 
   return {
-    submitted,
-    isDisabled,
+    goBack,
     formikBag,
+    isDisabled,
+    isSubmitting,
+    submitted,
   };
 }
