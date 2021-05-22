@@ -26,9 +26,6 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: 'flex',
     height: 'inherit',
-    marginTop: theme.spacing(2),
-    paddingRight: theme.spacing(6),
-    borderTop: `1px solid ${theme.palette.divider}`,
   },
 }));
 
@@ -75,8 +72,6 @@ function Tabs() {
       value: index,
     };
   }
-
-  console.log('PolicyAppBar ID: ', backToTopAnchor);
 
   return (
     <div className={classes.wrapper} id={backToTopAnchor} >

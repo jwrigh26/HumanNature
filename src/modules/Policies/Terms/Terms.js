@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 
+import ContentWrapper from 'components/ContentWrapper.js';
 import Intro from './intro';
 import Section1 from './Section1';
 import Section2 from './Section2';
@@ -22,18 +23,6 @@ import Section15 from './Section15';
 import TableOfContents from './TableOfContents.js';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'block',
-    position: 'relative',
-    width: '100%',
-    marginTop: theme.spacing(4),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing(0),
-      paddingRight: theme.spacing(0),
-    },
-  },
   body1: {
     marginBottom: theme.spacing(2),
   },
@@ -77,7 +66,7 @@ function Terms() {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
-    <div className={classes.root}>
+    <ContentWrapper>
       <Intro classes={classes} />
       <Divider className={classes.divider} />
       <TableOfContents classes={classes} />
@@ -97,7 +86,7 @@ function Terms() {
       <Section13 classes={classes} />
       <Section14 classes={classes} />
       <Section15 classes={classes} />
-    </div>
+    </ContentWrapper>
   );
 }
 

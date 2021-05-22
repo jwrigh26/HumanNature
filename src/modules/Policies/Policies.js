@@ -10,7 +10,8 @@ import ContentPrivacy from './Privacy/Privacy.js';
 import PolicyAppBar from './fragments/PolicyAppBar.js';
 import ScrollTop from 'components/ScrollTop.js';
 import Terms from './Terms/Terms';
-import WrapperBox from '../../components/WrapperBox';
+import ContentDivider from 'components/ContentDivider';
+import WrapperBox from 'components/WrapperBox';
 
 
 
@@ -19,6 +20,7 @@ function Policies() {
   const routes = navigation?.routes?.policies?.subRoutes;
   return (
     <WrapperBox>
+      <ContentDivider />
       <PolicyAppBar/>
       <Switch>
         <Route path={routes?.privacyPolicy?.route}>

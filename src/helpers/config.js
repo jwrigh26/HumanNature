@@ -9,7 +9,7 @@ export default {
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
   appId: process.env.APP_ID,
   measurementId: process.env.MEASUREMENT_ID,
-  emailUserId: process.env.EMAILJS_USER_ID,
-  emailTemplateId: process.env.EMAILJS_TEMPLATE_ID,
-  emailServiceId: process.env.EMAILJS_SERVICEID,
+  emailJSUserId: process.env.EMAILJS_USER_ID,
+  emailJSTemplateId: process.env.EMAILJS_TEMPLATE_ID,
+  emailJSServiceId: process.env.EMAILJS_SERVICE_ID,
 };
