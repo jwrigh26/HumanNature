@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { useHistory, useLocation } from 'react-router-dom';
-import { hasValue, trimSpaces, sleep } from 'helpers/utils.js';
+import { useHistory } from 'react-router-dom';
+// import { sleep } from 'helpers/utils.js';
+import { useDispatch, useSelector } from 'react-redux';
 import emailjs from 'emailjs-com';
 import * as yup from 'yup';
 
+import { errorSelector, setError } from 'store/errorSlice';
 import config from 'helpers/config';
 
 export default function useContactFrom() {
@@ -12,8 +14,9 @@ export default function useContactFrom() {
     emailjs.init(config.emailJSUserId);
   }, []);
   const history = useHistory();
-  const location = useLocation();
+  const dispatch = useDispatch();
   const [submitted, setSubmitted] = useState(false);
+  const { hasError } = useSelector(errorSelector);
 
   const initialValues = {
     message: null,
@@ -43,32 +46,20 @@ export default function useContactFrom() {
     enableReinitialize: true,
     validationSchema: validators,
     onSubmit: async (values) => {
-      // TODO: Remove for production
-
-      console.log(location);
-      console.log(history);
-
-      await sleep(1500);
-
-      setSubmitted(true);
-
-      // Need to show loader
-      // If success show success message and button to go back to home
-      // If error show error message via a snackbar perhaps?
-      // TODO: Error handling
-      // Perhaps good time to set up error handling
-
-      // try {
-      //   const response = await emailjs.send(
-      //     config.emailJSServiceId,
-      //     config.emailJSTemplateId,
-      //     values
-      //   );
-      //   console.log('SUCCESS', response.status, response.text);
-      //   setSubmitted(true);
-      // } catch (error) {
-      //   console.log('FAILED...', error);
-      // }
+      // await sleep(500);
+      try {
+        const response = await emailjs.send(
+          config.emailJSServiceId,
+          config.emailJSTemplateId,
+          values
+        );
+        console.log('SUCCESS', response.status, response.text);
+        setSubmitted(true);
+      } catch (error) {
+        const message = `Oops. It looks like our magical servers are having issues.\n
+Please try again later.`;
+        dispatch(setError({ error: { ...error, message } }));
+      }
     },
   });
 
@@ -76,6 +67,7 @@ export default function useContactFrom() {
     !formikBag.dirty ||
     !formikBag?.isValid ||
     formikBag?.isSubmitting ||
+    hasError ||
     submitted;
 
   const isSubmitting = !submitted && formikBag.isSubmitting;

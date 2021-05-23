@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
-
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import ContentDivider from 'components/ContentDivider';
@@ -10,7 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from 'components/TextField.js';
 import WrapperBox from 'components/WrapperBox';
-
 import useContactFrom from 'hooks/useContactForm.js';
 
 const useStyles = makeStyles((theme) => ({
@@ -58,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
 function Contact() {
   const theme = useTheme();
   const classes = useStyles(theme);
-  const formRef = useRef(null);
 
   const {
     goBack,
@@ -67,6 +64,7 @@ function Contact() {
     isSubmitting,
     submitted,
   } = useContactFrom();
+
 
   return (
     <WrapperBox>
@@ -97,7 +95,7 @@ function Contact() {
             </div>
           )}
           {!submitted && (
-            <form ref={formRef} noValidate onSubmit={formikBag?.handleSubmit}>
+            <form noValidate onSubmit={formikBag?.handleSubmit}>
               <TextField
                 className={classes.textfield}
                 id="user_name"

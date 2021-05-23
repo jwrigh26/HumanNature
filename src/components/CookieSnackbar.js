@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
+import {appSelector} from 'store/appSlice.js';
 import cookies from 'models/cookies';
 import helper from 'helpers/cookieHelper';
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -41,10 +45,13 @@ function CookieSnackbar() {
   const [accepted, setAccepted] = useState(false);
   const theme = useTheme();
   const classes = useStyles(theme);
+  const { navigation } = useSelector(appSelector);
+  const history = useHistory();
+
 
   useEffect(() => {
     const cookie = helper(cookies.options.key).getItem(
-      cookies.options.accepted
+      cookies.options.accepted,
     );
     setAccepted(cookie);
   }, []);
@@ -56,8 +63,7 @@ function CookieSnackbar() {
   };
 
   const handleLearnMore = () => {
-    console.log('TODO: Go to T&Cs');
-    setOpen(false);
+    history.push(navigation?.routes?.policies?.route);
   };
 
   return (
@@ -65,7 +71,7 @@ function CookieSnackbar() {
       {!accepted && (
         <Snackbar
           open={open}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right'}}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           TransitionComponent={TransitionUp}
           message={
             <div className={classes.message}>
@@ -79,16 +85,16 @@ function CookieSnackbar() {
             <React.Fragment>
               <Button
                 className={classes.button}
-                color="primary"
-                size="small"
-                variant="contained"
+                color='primary'
+                size='small'
+                variant='contained'
                 onClick={handleAccepted}
               >
                 OK
               </Button>
               <IconButton
-                aria-label="close"
-                color="inherit"
+                aria-label='close'
+                color='inherit'
                 className={classes.iconButton}
                 onClick={handleLearnMore}
               >

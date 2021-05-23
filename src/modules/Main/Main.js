@@ -9,6 +9,7 @@ import { appSelector } from 'store/appSlice';
 import Contact from 'modules/Contact/Contact.js';
 import CookieSnackbar from 'components/CookieSnackbar';
 import Dashboard from 'modules/Dashboard/Dashboard';
+import ErrorSnackbar from 'components/ErrorSnackbar.js';
 import Footer from 'components/Footer/Footer';
 import Policies from 'modules/Policies/Policies';
 import TopAppBar from 'components/TopAppBar/TopAppBar';
@@ -85,6 +86,7 @@ function App() {
         </Box>
         <Footer />
         <CookieSnackbar />
+        <ErrorSnackbar />
       </Box>
     </>
   );

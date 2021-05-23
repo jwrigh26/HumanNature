@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { hasValue } from 'helpers/utils';
 import { setDevicePixelRatio, setScreenSize } from 'store/screenSlice';
 import { useDetectScreenSize } from 'hooks/useMedia';
 import useDevicePixelRatio from 'hooks/useDevicePixelRatio';
+
 import Post from 'modules/Post/Post';
 
 Post.propTypes = {
