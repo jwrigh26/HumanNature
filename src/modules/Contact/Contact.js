@@ -7,6 +7,7 @@ import ContentDivider from 'components/ContentDivider';
 import ContentWrapper from 'components/ContentWrapper.js';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import TextArea from 'components/TextArea.js';
 import TextField from 'components/TextField.js';
 import WrapperBox from 'components/WrapperBox';
 import useContactFrom from 'hooks/useContactForm.js';
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// TODO: Capatcha must be installed.
 function Contact() {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -63,6 +65,7 @@ function Contact() {
     isDisabled,
     isSubmitting,
     submitted,
+    textAreaMax,
   } = useContactFrom();
 
 
@@ -117,16 +120,18 @@ function Contact() {
                 required
                 fullWidth
               />
-              <TextField
+              <TextArea
                 className={classes.textfield}
                 id="message"
                 name="message"
                 label="Message"
                 formikBag={formikBag}
-                helperText="What questions or feedback would you like to share?"
+                placeholder="What questions or feedback would you like to share?"
                 variant="outlined"
                 required
-                fullWidth
+                rowsMin={7}
+                rowsMax={14}
+                max={textAreaMax}
               />
               <div className={classes.button}>
                 <Button

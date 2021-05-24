@@ -24,18 +24,23 @@ export default function useContactFrom() {
     user_name: null,
   };
 
+  const textAreaMax = 512;
+
   const validators = yup.object().shape({
     message: yup
-      .string()
+      .string('Message is required.')
+      .typeError('Message is required.')
       .min(1, 'Message: Too short.')
-      .max(512)
-      .required('Must provide a message.'),
+      .max(textAreaMax)
+      .required('Message is required.'),
     user_email: yup
-      .string()
+      .string('Email is required')
+      .typeError('Email is required.')
       .email('Must be a valid email. (e.g., cool_penguin@unimath.app)')
       .required('Email is required.'),
     user_name: yup
       .string()
+      .typeError('Name is required.')
       .min(1, 'Name is too short.')
       .max(3, 'Name is too long.')
       .required('Name is required.'),
@@ -74,6 +79,7 @@ Please try again later.`;
 
   function goBack() {
     history.goBack();
+    // history.push('/')
   }
 
   return {
@@ -82,5 +88,6 @@ Please try again later.`;
     isDisabled,
     isSubmitting,
     submitted,
+    textAreaMax,
   };
 }
