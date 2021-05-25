@@ -11,6 +11,8 @@ import {
 import { hasValue } from 'helpers/utils.js';
 import userTheme from 'assets/theme';
 
+
+
 export default function useActions() {
   const dispatch = useDispatch();
   const {
@@ -32,6 +34,21 @@ export default function useActions() {
     setModeIcon(isDark ? 'brightness_7' : 'brightness_3');
     setModeLabel(isDark ? 'Light Mode' : 'Dark Mode');
   }, [isDark]);
+
+  function openURL(url) {
+    const win = window.open(url, '_blank');
+    if (win !== null) {
+      win.focus();
+    }
+  }
+
+  function handleTwitter() {
+    openURL('https://twitter.com/justin_m_wright');
+  }
+
+  function handleLinkedIn() {
+    openURL('https://www.linkedin.com/in/justin-wright-00147621/');
+  }
 
   function handleCloseMore() {
     setMoreAnchorEl(null);
@@ -87,12 +104,14 @@ export default function useActions() {
     handleCloseMore,
     handleOpenMore,
     handleCloseThemePicker,
+    handleLinkedIn,
     handleMail,
     handleOpenThemePicker,
     handleTogglePaletteDrawer,
     handleRest,
     handleSetPaletteMode,
     handleSetPaletteColor,
+    handleTwitter,
     moreAnchorEl,
     themeAnchorEl,
     modeIcon,

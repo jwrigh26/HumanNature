@@ -81,12 +81,12 @@ function MoreMenu({ actions }) {
         </ListItemIcon>
         <ListItemText primary={actions.modeLabel} />
       </MenuItem>
-      <MenuItem onClick={handleMail}>
-        <ListItemIcon>
-          <Icon className={classes.icon}>mail</Icon>
-        </ListItemIcon>
-        <ListItemText primary="Contact" />
-      </MenuItem>
+      {/*<MenuItem onClick={handleMail}>*/}
+      {/*  <ListItemIcon>*/}
+      {/*    <Icon className={classes.icon}>mail</Icon>*/}
+      {/*  </ListItemIcon>*/}
+      {/*  <ListItemText primary="Contact" />*/}
+      {/*</MenuItem>*/}
     </Menu>
   );
 }

@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
+import PaletteIcon from '@material-ui/icons/Palette';
 import Icon from '@material-ui/core/Icon';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import IconButton from '@material-ui/core/IconButton';
 
 import useActions from 'hooks/useActions';
@@ -21,12 +23,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    // paddingRight: theme.spacing(2),
+    paddingRight: 0,
     position: 'relative',
     height: '56px',
     bottom: 0,
+    [theme.breakpoints.up('sm')]: {
+      paddingRight: theme.spacing(1),
+    },
     [theme.breakpoints.up('md')]: {
-      // paddingRight: theme.spacing(4),
       flex: 0,
       height: '72px',
       bottom: '-3px',
@@ -47,21 +51,21 @@ export default function ActionGroup() {
       <div className={classes.actionsWrapper}>
         <Hidden xsDown>
           <IconButton onClick={actions.handleOpenThemePicker}>
-            <Icon className={classes.icon}>palette</Icon>
+            <PaletteIcon className={classes.icon} />
           </IconButton>
           <IconButton onClick={actions.handleSetPaletteMode}>
             <Icon className={classes.icon}>{actions.modeIcon}</Icon>
           </IconButton>
-          <IconButton onClick={actions.handleRest}>
-            <Icon className={classes.icon}>restart_alt</Icon>
-          </IconButton>
-          <IconButton onClick={actions.handleMail}>
-            <Icon className={classes.icon}>mail</Icon>
-          </IconButton>
+          {/*<IconButton onClick={actions.handleRest}>*/}
+          {/*  <Icon className={classes.icon}>restart_alt</Icon>*/}
+          {/*</IconButton>*/}
+          {/*<IconButton onClick={actions.handleMail}>*/}
+          {/*  <Icon className={classes.icon}>mail</Icon>*/}
+          {/*</IconButton>*/}
         </Hidden>
         <Hidden smUp>
           <IconButton onClick={actions.handleOpenMore}>
-            <Icon className={classes.icon}>more_vert</Icon>
+            <MoreVertIcon className={classes.icon} />
           </IconButton>
         </Hidden>
       </div>

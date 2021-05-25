@@ -25,14 +25,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       height: '72px',
     },
-
-
-    // paddingLeft: theme.spacing(1),
-    // paddingRight: theme.spacing(1),
-    // [theme.breakpoints.up('sm')]: {
-    //   paddingLeft: theme.spacing(0),
-    //   paddingRight: theme.spacing(0),
-    // },
   },
   title: {
     fontWeight: 700,
