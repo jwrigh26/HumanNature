@@ -1,5 +1,10 @@
 {
   "routes": {
+    "home": {
+      "title": "Unimath",
+      "id": 1,
+      "route": "/"
+    },
     "contact":  {
       "title": "Contact",
       "id": 2,

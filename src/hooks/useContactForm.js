@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
-// import { sleep } from 'helpers/utils.js';
 import { useDispatch, useSelector } from 'react-redux';
 import emailjs from 'emailjs-com';
 import * as yup from 'yup';
 
 import { errorSelector, setError } from 'store/errorSlice';
+import { appSelector} from 'store/appSlice.js';
 import config from 'helpers/config';
 
 export default function useContactFrom() {
@@ -17,6 +17,7 @@ export default function useContactFrom() {
   const dispatch = useDispatch();
   const [submitted, setSubmitted] = useState(false);
   const { hasError } = useSelector(errorSelector);
+  const { navigation: { routes } } = useSelector(appSelector);
 
   const initialValues = {
     message: null,
@@ -51,7 +52,6 @@ export default function useContactFrom() {
     enableReinitialize: true,
     validationSchema: validators,
     onSubmit: async (values) => {
-      // await sleep(500);
       try {
         const response = await emailjs.send(
           config.emailJSServiceId,
@@ -77,13 +77,12 @@ Please try again later.`;
 
   const isSubmitting = !submitted && formikBag.isSubmitting;
 
-  function goBack() {
-    history.goBack();
-    // history.push('/')
+  function goHome() {
+    history.push(routes?.home?.route);
   }
 
   return {
-    goBack,
+    goHome,
     formikBag,
     isDisabled,
     isSubmitting,

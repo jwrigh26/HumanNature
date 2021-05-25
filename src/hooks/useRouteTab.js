@@ -17,7 +17,7 @@ export default function useRouteTab() {
     const tab = R.pipe(R.split('/'), R.nth(1))(pathname);
 
     // Check if we are on a tab or single path route
-    if (hasValue(pathname) && count === 2 && tab.length > 0) {
+    if (hasValue(pathname) && count >= 2 && tab.length > 0) {
       const firstWord = R.pipe(R.split('-'), R.nth(0), toLower)(tab);
       const otherWords = R.pipe(
         R.split('-'),

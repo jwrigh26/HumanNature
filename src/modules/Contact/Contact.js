@@ -60,7 +60,7 @@ function Contact() {
   const classes = useStyles(theme);
 
   const {
-    goBack,
+    goHome,
     formikBag,
     isDisabled,
     isSubmitting,
@@ -91,9 +91,9 @@ function Contact() {
                 color="primary"
                 variant="contained"
                 fullWidth
-                onClick={goBack}
+                onClick={goHome}
               >
-                Go Back
+                Go Home
               </Button>
             </div>
           )}
