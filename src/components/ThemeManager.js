@@ -27,6 +27,7 @@ function ThemeManager({ children }) {
 
   let theme = createMuiTheme({
     breakpoints: {
+      keys: ['xs', 'iphoneSE', 'iphone6', 'sm', 'md', 'lg', 'xl', 'siteMaxWidth'],
       values: {
         xs: 0,
         iphoneSE: 320,

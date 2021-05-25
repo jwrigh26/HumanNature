@@ -14,14 +14,25 @@ import SVG from 'assets/unimathLogo.js';
 const useStyles = makeStyles((theme) => ({
   titleWrapper: {
     display: 'flex',
-    paddingLeft: theme.spacing(1),
+    marginLeft: theme.spacing(1),
     justifyContent: 'flex-start',
     alignItems: 'center',
     flex: 1,
     height: '56px',
     [theme.breakpoints.up('md')]: {
+      marginLeft: 0,
+    },
+    [theme.breakpoints.up('md')]: {
       height: '72px',
     },
+
+
+    // paddingLeft: theme.spacing(1),
+    // paddingRight: theme.spacing(1),
+    // [theme.breakpoints.up('sm')]: {
+    //   paddingLeft: theme.spacing(0),
+    //   paddingRight: theme.spacing(0),
+    // },
   },
   title: {
     fontWeight: 700,
@@ -46,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     bottom: 0,
     color: theme.palette.text.primary,
-
 
     [theme.breakpoints.up('md')]: {
       bottom: '-3px',
@@ -118,11 +128,7 @@ function BrandCrest() {
           component={Link}
           to={routes?.policies?.route}
         >
-          <Typography
-            className={classes.supportingTitle}
-            variant="h2"
-            noWrap
-          >
+          <Typography className={classes.supportingTitle} variant="h2" noWrap>
             {subTitle}
           </Typography>
         </ButtonBase>

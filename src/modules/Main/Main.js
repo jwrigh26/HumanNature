@@ -22,18 +22,19 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     minHeight: '100vh',
   },
-  body: {
+  main: {
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
     margin: 0,
     maxWidth: theme.breakpoints.values.siteMaxWidth,
-
     height: '100%',
-    [theme.breakpoints.up('md')]: {
+
+    [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(2),
       marginRight: theme.spacing(2),
     },
+
     [theme.breakpoints.up('lg')]: {
       marginLeft: theme.spacing(4),
       marginRight: theme.spacing(4),
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
       minWidth: theme.breakpoints.values.siteMaxWidth,
     },
   },
-  main: {
+  content: {
     alignItems: 'center',
     display: 'flex',
     flex: 1,
@@ -67,9 +68,9 @@ function App() {
   return (
     <>
       <Box className={classes.root}>
-        <Box className={classes.body}>
+        <Box className={classes.main} component="main">
           <TopAppBar />
-          <main className={classes.main}>
+          <div className={classes.content}>
             <Switch>
               <Route path={routes?.contact?.route}>
                 <Contact />
@@ -82,7 +83,7 @@ function App() {
               </Route>
               <Route render={() => <Redirect to="/" />} />
             </Switch>
-          </main>
+          </div>
         </Box>
         <Footer />
         <CookieSnackbar />
