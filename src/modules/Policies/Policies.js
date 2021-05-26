@@ -6,12 +6,11 @@ import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 
 import { appSelector } from 'store/appSlice';
-import ContentPrivacy from './Privacy/Privacy.js';
-import PolicyAppBar from './fragments/PolicyAppBar.js';
-import ScrollTop from 'components/ScrollTop.js';
+import ContentPrivacy from './Privacy/Privacy';
+import AppBar from 'components/AppBar/AppBar';
+import ScrollTop from 'components/ScrollTop';
 import Terms from './Terms/Terms';
-import ContentDivider from 'components/ContentDivider';
-import WrapperBox from 'components/WrapperBox';
+import ContentWrapper from 'components/ContentWrapper';
 
 
 
@@ -19,9 +18,8 @@ function Policies() {
   const { navigation } = useSelector(appSelector);
   const routes = navigation?.routes?.policies?.subRoutes;
   return (
-    <WrapperBox>
-      <ContentDivider />
-      <PolicyAppBar/>
+    <ContentWrapper divider>
+      <AppBar name={'policies'} tabs={navigation?.tabs?.policies}/>
       <Switch>
         <Route path={routes?.privacyPolicy?.route}>
           <ContentPrivacy />
@@ -36,7 +34,7 @@ function Policies() {
           <Icon>keyboard_arrow_up</Icon>
         </Fab>
       </ScrollTop>
-    </WrapperBox>
+    </ContentWrapper>
   );
 }
 

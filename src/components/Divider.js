@@ -5,25 +5,22 @@ import { useTheme } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Divider from '@material-ui/core/Divider';
 
-ContentDivider.propTypes = {
-  classes: PropTypes.any,
+MUIDivider.propTypes = {
+  className: PropTypes.any,
 };
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(2),
+    backgroundColor: theme.mode.isDark
+      ? theme.palette.secondary.main
+      : theme.divider,
   },
 }));
 
-function ContentDivider({ classes: otherClasses }) {
+function MUIDivider({ className }) {
   const theme = useTheme();
   const classes = useStyles(theme);
-
-  return (
-    <>
-      <Divider className={classnames(classes.root, otherClasses)} />
-    </>
-  );
+  return <Divider className={classnames(classes.root, className)} />;
 }
 
-export default ContentDivider;
+export default MUIDivider;

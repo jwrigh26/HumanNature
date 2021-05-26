@@ -5,10 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
+import { ScrollTopMarker } from 'components/ScrollTop.js';
 import { appSelector } from 'store/appSlice';
 import Contact from 'modules/Contact/Contact.js';
 import CookieSnackbar from 'components/CookieSnackbar';
-import Dashboard from 'modules/Dashboard/Dashboard';
+import Calculator from 'modules/Calculator/Calculator';
 import ErrorSnackbar from 'components/ErrorSnackbar.js';
 import Footer from 'components/Footer/Footer';
 import Policies from 'modules/Policies/Policies';
@@ -70,6 +71,7 @@ function App() {
       <Box className={classes.root}>
         <Box className={classes.main} component="main">
           <TopAppBar />
+          <ScrollTopMarker />
           <div className={classes.content}>
             <Switch>
               <Route path={routes?.contact?.route}>
@@ -79,7 +81,7 @@ function App() {
                 <Policies />
               </Route>
               <Route exact path="/">
-                <Dashboard />
+                <Calculator />
               </Route>
               <Route render={() => <Redirect to="/" />} />
             </Switch>

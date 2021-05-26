@@ -1,9 +1,14 @@
 {
   "routes": {
-    "home": {
-      "title": "Unimath",
-      "id": 1,
+    "calculator": {
+      "title": "Calculator",
+      "id": 0,
       "route": "/"
+    },
+    "measurements": {
+      "title": "Measurements",
+      "route": "/measurements",
+      "id": 1
     },
     "contact":  {
       "title": "Contact",
@@ -27,11 +32,30 @@
       }
     }
   },
-  "tabs": [
-    {
-      "title": "Home",
-      "id": 0,
-      "route": "/"
-    }
-  ]
+  "tabs": {
+    "main": [
+      {
+        "title": "Calculator",
+        "route": "/",
+        "id": 0
+      },
+      {
+        "title": "Measurements",
+        "route": "/measurements",
+        "id": 1
+      }
+    ],
+    "policies": [
+      {
+        "title": "Privacy Policy",
+        "route": "/policies/privacy-policy",
+        "id": 0
+      },
+      {
+        "title": "Terms of Service",
+        "route": "/policies/terms-of-service",
+        "id": 1
+      }
+    ]
+  }
 }

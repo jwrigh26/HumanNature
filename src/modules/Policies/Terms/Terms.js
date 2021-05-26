@@ -1,9 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
+import Divider from 'components/Divider';
 
-import ContentWrapper from 'components/ContentWrapper.js';
 import Intro from './intro';
 import Section1 from './Section1';
 import Section2 from './Section2';
@@ -66,7 +65,7 @@ function Terms() {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
-    <ContentWrapper>
+    <>
       <Intro classes={classes} />
       <Divider className={classes.divider} />
       <TableOfContents classes={classes} />
@@ -86,7 +85,7 @@ function Terms() {
       <Section13 classes={classes} />
       <Section14 classes={classes} />
       <Section15 classes={classes} />
-    </ContentWrapper>
+    </>
   );
 }
 

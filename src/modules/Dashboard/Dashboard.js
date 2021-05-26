@@ -5,11 +5,11 @@ import { Typography } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
 
-import WrapperBox from 'components/WrapperBox';
+import ContentWrapper from 'components/ContentWrapper.js';
 
 function Dashboard() {
   return (
-    <WrapperBox>
+    <ContentWrapper>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h1">Hello, UniMath</Typography>
@@ -21,7 +21,7 @@ function Dashboard() {
           </Button>
         </Grid>
       </Grid>
-    </WrapperBox>
+    </ContentWrapper>
   );
 }
 

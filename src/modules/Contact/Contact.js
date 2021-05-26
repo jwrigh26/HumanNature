@@ -3,13 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
-import ContentDivider from 'components/ContentDivider';
 import ContentWrapper from 'components/ContentWrapper.js';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextArea from 'components/TextArea.js';
 import TextField from 'components/TextField.js';
-import WrapperBox from 'components/WrapperBox';
 import useContactFrom from 'hooks/useContactForm.js';
 
 const useStyles = makeStyles((theme) => ({
@@ -70,8 +68,6 @@ function Contact() {
 
 
   return (
-    <WrapperBox>
-      <ContentDivider />
       <ContentWrapper>
         <Typography variant="h3" component="h1" gutterBottom>
           Contact Us
@@ -154,7 +150,6 @@ function Contact() {
           )}
         </Paper>
       </ContentWrapper>
-    </WrapperBox>
   );
 }
 

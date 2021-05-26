@@ -27,7 +27,6 @@ function RouteManager({ children }) {
   const base = 'Unimath';
   const route = useRoute();
   const title = route.hasPath ? `${base}-${route.paths[0]}` : base
-  console.log('Title', title, route.hasPath, route.paths);
   useTitle(title);
 
   // useEffect(() => {

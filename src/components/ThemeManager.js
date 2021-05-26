@@ -26,6 +26,10 @@ function ThemeManager({ children }) {
   const selectedColorSupport = userTheme.colorSupport(mode);
 
   let theme = createMuiTheme({
+    mode: {
+      isDark: mode === userTheme.mode.dark,
+      isLight: mode === userTheme.mode.light,
+    },
     breakpoints: {
       values: {
         xs: 0,

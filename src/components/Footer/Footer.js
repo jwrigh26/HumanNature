@@ -106,16 +106,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icon: {
-    color: theme.palette.icon.primary,
+    color: theme.palette.common.white,
     opacity: 0.8,
     '&:hover': {
       opacity: 1.0,
     },
     '&$disabled': {
       opacity: 0.5,
-    },
-    [theme.breakpoints.up('md')]: {
-      color: theme.palette.icon.primary,
     },
   },
 
@@ -135,10 +132,6 @@ function Footer() {
   const [isContactPath, setIsContactPath] = useState();
 
   useEffect(() => {
-    console.log(
-      location,
-      navigation?.routes?.contact?.route === location?.pathname
-    );
     setIsContactPath(location?.pathname === navigation?.routes?.contact?.route);
   }, [location]);
 
