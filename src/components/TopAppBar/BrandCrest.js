@@ -153,8 +153,9 @@ function BrandCrest() {
 
   return (
     <>
-      {isNil(subTitle) && renderDefault()}
-      {hasValue(subTitle) && renderWithSubtitle()}
+      {renderDefault()}
+      {/*{isNil(subTitle) && renderDefault()}*/}
+      {/*{hasValue(subTitle) && renderWithSubtitle()}*/}
     </>
   );
 }

@@ -71,20 +71,20 @@ function Terms() {
       <TableOfContents classes={classes} />
       <Divider className={classes.divider} />
       <Section1 classes={classes} />
-      <Section2 classes={classes} />
-      <Section3 classes={classes} />
-      <Section4 classes={classes} />
-      <Section5 classes={classes} />
-      <Section6 classes={classes} />
-      <Section7 classes={classes} />
-      <Section8 classes={classes} />
-      <Section9 classes={classes} />
-      <Section10 classes={classes} />
-      <Section11 classes={classes} />
-      <Section12 classes={classes} />
-      <Section13 classes={classes} />
-      <Section14 classes={classes} />
-      <Section15 classes={classes} />
+      {/*<Section2 classes={classes} />*/}
+      {/*<Section3 classes={classes} />*/}
+      {/*<Section4 classes={classes} />*/}
+      {/*<Section5 classes={classes} />*/}
+      {/*<Section6 classes={classes} />*/}
+      {/*<Section7 classes={classes} />*/}
+      {/*<Section8 classes={classes} />*/}
+      {/*<Section9 classes={classes} />*/}
+      {/*<Section10 classes={classes} />*/}
+      {/*<Section11 classes={classes} />*/}
+      {/*<Section12 classes={classes} />*/}
+      {/*<Section13 classes={classes} />*/}
+      {/*<Section14 classes={classes} />*/}
+      {/*<Section15 classes={classes} />*/}
     </>
   );
 }

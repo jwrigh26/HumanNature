@@ -100,6 +100,14 @@ export default function useActions() {
     }
   }
 
+  function handleFoo() {
+    history.push(routes?.policies?.route);
+  }
+
+  function handleHome() {
+    history.push('/');
+  }
+
   return {
     handleCloseMore,
     handleOpenMore,
@@ -117,5 +125,7 @@ export default function useActions() {
     modeIcon,
     modeLabel,
     paletteDrawerOpen,
+    handleFoo,
+    handleHome,
   };
 }
