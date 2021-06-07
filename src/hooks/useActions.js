@@ -101,7 +101,7 @@ export default function useActions() {
   }
 
   function handleFoo() {
-    history.push(routes?.policies?.route);
+    history.push('/policies/terms-of-service');
   }
 
   function handleHome() {

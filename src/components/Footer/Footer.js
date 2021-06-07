@@ -16,7 +16,7 @@ import { appSelector } from 'store/appSlice';
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: theme.palette.primary.main,
-    width: 'inherit',
+    width: '100%',
   },
   content: {
     display: 'flex',

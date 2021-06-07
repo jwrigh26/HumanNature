@@ -29,23 +29,23 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     flexDirection: 'column',
     margin: 0,
-    width: theme.breakpoints.values.siteMaxWidth,
-    // width: '100%',
+    // width: theme.breakpoints.values.siteMaxWidth,
+    width: '100%',
     height: '100%',
 
     [theme.breakpoints.up('sm')]: {
-      // marginLeft: theme.spacing(2),
-      // marginRight: theme.spacing(2),
+      marginLeft: theme.spacing(2),
+      marginRight: theme.spacing(2),
     },
 
     [theme.breakpoints.up('lg')]: {
-      // marginLeft: theme.spacing(4),
-      // marginRight: theme.spacing(4),
+      marginLeft: theme.spacing(4),
+      marginRight: theme.spacing(4),
     },
     [theme.breakpoints.up('siteMaxWidth')]: {
-      // marginLeft: 'auto',
-      // marginRight: 'auto',
-      // minWidth: theme.breakpoints.values.siteMaxWidth,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      minWidth: theme.breakpoints.values.siteMaxWidth,
     },
   },
   content: {
