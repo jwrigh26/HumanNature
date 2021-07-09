@@ -30,7 +30,9 @@ export default function (type = 'light') {
       selected: isDark ? 'rgba(255, 255, 255, 0.16)' : 'rgba(0, 0, 0, 0.08)',
       selectedOpacity: 0.08,
       disabled: isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.26)',
-      disabledBackground: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
+      disabledBackground: isDark
+        ? 'rgba(255, 255, 255, 0.12)'
+        : 'rgba(0, 0, 0, 0.12)',
       disabledOpacity: 0.38,
       focus: isDark ? 'rgba(0, 0, 0, 0.12)' : 'rgba(0, 0, 0, 0.12)',
       focusOpacity: 0.12,

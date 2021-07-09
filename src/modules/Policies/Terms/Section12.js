@@ -32,12 +32,12 @@ function Section({ classes }) {
         intellectual property, privacy, or other right of any person or entity,
         including in connection with your User Content, or (vi) your breach or
         alleged breach of any interaction, agreement, or policy between you and
-        any other Users. Unimath reserves the right, at your expense, to
-        assume the exclusive defense and control of any matter for which you are
+        any other Users. Unimath reserves the right, at your expense, to assume
+        the exclusive defense and control of any matter for which you are
         required to indemnify Unimath, and you agree to cooperate with Khan
         Academy's defense of these claims. You agree not to settle any such
-        matter without the prior written consent of Unimath. Unimath
-        will use reasonable efforts to notify you of any such claim, action, or
+        matter without the prior written consent of Unimath. Unimath will use
+        reasonable efforts to notify you of any such claim, action, or
         proceeding upon becoming aware of it.
       </Typography>
     </>

@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: 'flex',
     height: 'inherit',
+    marginBottom: theme.spacing(2),
   },
 }));
 
@@ -62,8 +63,9 @@ function AppBar({ name, tabs }) {
   }, [location]);
 
   const handleChange = (event, newValue) => {
+    console.log('NewValue', newValue);
     setValue(newValue);
-    dispatch(setSelectedTab(newValue));
+    dispatch(setSelectedTab({ tab: newValue }));
   };
 
   function a11yProps(index) {

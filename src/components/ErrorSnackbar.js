@@ -65,7 +65,7 @@ function ErrorSnackbar() {
     <>
       {queue.first() && (
         <Snackbar
-          classes={{root: classes.root}}
+          classes={{ root: classes.root }}
           open={true}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           TransitionComponent={TransitionUp}

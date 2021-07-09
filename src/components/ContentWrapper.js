@@ -16,9 +16,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     position: 'relative',
     width: '100%',
-    marginTop: theme.spacing(4),
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3),
+    marginTop: theme.spacing(1),
+  },
+  children: {
+    ...theme.wrapper,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     [theme.breakpoints.up('md')]: {
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(4),
@@ -33,7 +36,7 @@ function ContentWrapper({ classes: otherClasses, children, divider = false }) {
   return (
     <div className={classnames(classes.root, otherClasses)}>
       {divider && <Divider />}
-      {children}
+      <div className={classes.children}>{children}</div>
     </div>
   );
 }

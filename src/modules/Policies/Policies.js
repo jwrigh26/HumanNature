@@ -9,16 +9,12 @@ import ContentPrivacy from './Privacy/Privacy';
 import AppBar from 'components/AppBar/AppBar';
 import ScrollTop from 'components/ScrollTop';
 import Terms from './Terms/Terms';
-import ContentWrapper from 'components/ContentWrapper';
-
-
 
 function Policies() {
   const { navigation } = useSelector(appSelector);
   const routes = navigation?.routes?.policies?.subRoutes;
   return (
-    <ContentWrapper divider>
-      <AppBar name={'policies'} tabs={navigation?.tabs?.policies}/>
+    <>
       <Switch>
         <Route path={routes?.privacyPolicy?.route}>
           <ContentPrivacy />
@@ -33,7 +29,7 @@ function Policies() {
           <Icon>keyboard_arrow_up</Icon>
         </Fab>
       </ScrollTop>
-    </ContentWrapper>
+    </>
   );
 }
 

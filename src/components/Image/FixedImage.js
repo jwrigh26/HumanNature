@@ -51,15 +51,15 @@ function FixedImage({
       if (hasWidth && !hasHeight) {
         // Do stuff here
         const isPercent = imageStyle?.width?.includes('%');
-        const height = isPercent ? getImageHeightForPercent() : getImageHeight();
+        const height = isPercent
+          ? getImageHeightForPercent()
+          : getImageHeight();
         setSkeletonStyle({ ...imageStyle, height });
       }
 
       if (hasHeight && !hasWidth) {
         const isPercent = imageStyle?.height?.includes('%');
-        const width = isPercent
-          ? getImageWidthForPercent()
-          : getImageWidth();
+        const width = isPercent ? getImageWidthForPercent() : getImageWidth();
         setSkeletonStyle({ ...imageStyle, width });
       }
     }

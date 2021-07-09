@@ -7,7 +7,7 @@ Section.propTypes = {
   classes: PropTypes.any,
 };
 
-function Section({classes}) {
+function Section({ classes }) {
   return (
     <>
       <Typography id={'1'} variant="h5" component="h3" gutterBottom>

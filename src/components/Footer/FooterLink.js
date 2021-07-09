@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       minWidth: 64,
     },
-
   },
   text: {
     color: theme.palette.common.white,
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     '&:focus': {
       opacity: 1,
     },
-  }
+  },
 }));
 
 export default function FooterLink(props) {

@@ -7,12 +7,8 @@ Section.propTypes = {
   classes: PropTypes.any,
 };
 
-function Section({classes}) {
-  return (
-    <>
-      STUFFGOESHERE
-    </>
-  );
+function Section({ classes }) {
+  return <>STUFFGOESHERE</>;
 }
 
 export default Section;

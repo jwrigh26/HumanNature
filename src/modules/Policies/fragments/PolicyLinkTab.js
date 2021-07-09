@@ -9,8 +9,6 @@ LinkTab.propTypes = {
   to: PropTypes.string,
 };
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.text.primary,

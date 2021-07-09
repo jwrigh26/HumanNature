@@ -9,10 +9,9 @@ import Slide from '@material-ui/core/Slide';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
-import {appSelector} from 'store/appSlice.js';
+import { appSelector } from 'store/appSlice.js';
 import cookies from 'models/cookies';
 import helper from 'helpers/cookieHelper';
-
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -48,10 +47,9 @@ function CookieSnackbar() {
   const { navigation } = useSelector(appSelector);
   const history = useHistory();
 
-
   useEffect(() => {
     const cookie = helper(cookies.options.key).getItem(
-      cookies.options.accepted,
+      cookies.options.accepted
     );
     setAccepted(cookie);
   }, []);
@@ -85,16 +83,16 @@ function CookieSnackbar() {
             <React.Fragment>
               <Button
                 className={classes.button}
-                color='primary'
-                size='small'
-                variant='contained'
+                color="primary"
+                size="small"
+                variant="contained"
                 onClick={handleAccepted}
               >
                 OK
               </Button>
               <IconButton
-                aria-label='close'
-                color='inherit'
+                aria-label="close"
+                color="inherit"
                 className={classes.iconButton}
                 onClick={handleLearnMore}
               >

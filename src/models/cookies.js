@@ -5,4 +5,4 @@ export default Object.freeze({
     mode: 'options_theme_mode',
     color: 'options_theme_color',
   },
-})
+});

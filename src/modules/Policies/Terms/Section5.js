@@ -20,21 +20,20 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>5.1 User Content and Ownership:</span>{' '}
-        Unimath may permit (a) the posting and/or publishing by you and
-        other Users of notes, questions, comments, ratings, reviews, images,
-        videos and other audio-visual materials and communications
-        (collectively, "User Postings") and (b) the posting, creation, or
-        modification by you and other users of computer code (including source
-        code and object code) ("User Code") (User Postings and User Code,
-        collectively, "User Content"). You understand that whether or not such
-        User Content is published, Unimath does not guarantee any
-        confidentiality with respect to any submissions. Consistent with
-        Applicable Law, as between Unimath and you, you retain all
-        ownership rights you have in any User Content you post or publish to the
-        Services, and Unimath does not claim any ownership rights in or to
-        such User Content. You acknowledge that are solely responsible for your
-        User Content and the consequences of posting, creating, or publishing
-        such User Content.
+        Unimath may permit (a) the posting and/or publishing by you and other
+        Users of notes, questions, comments, ratings, reviews, images, videos
+        and other audio-visual materials and communications (collectively, "User
+        Postings") and (b) the posting, creation, or modification by you and
+        other users of computer code (including source code and object code)
+        ("User Code") (User Postings and User Code, collectively, "User
+        Content"). You understand that whether or not such User Content is
+        published, Unimath does not guarantee any confidentiality with respect
+        to any submissions. Consistent with Applicable Law, as between Unimath
+        and you, you retain all ownership rights you have in any User Content
+        you post or publish to the Services, and Unimath does not claim any
+        ownership rights in or to such User Content. You acknowledge that are
+        solely responsible for your User Content and the consequences of
+        posting, creating, or publishing such User Content.
       </Typography>
       <Typography
         variant="body2"
@@ -111,16 +110,16 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>5.4 Access to Your User Content:</span>{' '}
-        Unimath may permit Users to share their User Content with a select
-        group of other Users, or make their User Content public for all (even
+        Unimath may permit Users to share their User Content with a select group
+        of other Users, or make their User Content public for all (even
         non-Services users) to view. You acknowledge and agree that, although
-        Unimath may provide certain features intended to allow you to
-        restrict some User Content you create from others, Unimath does not
-        guarantee that such User Content will never be accessible by others. In
-        the event of unauthorized access, Unimath will use reasonable
-        efforts to notify you pursuant to Section 15.1 below. UNIMATH
-        HEREBY DISCLAIMS ANY AND ALL LIABILITY WITH RESPECT TO ANY UNAUTHORIZED
-        ACCESS TO ANY RESTRICTED USER CONTENT.
+        Unimath may provide certain features intended to allow you to restrict
+        some User Content you create from others, Unimath does not guarantee
+        that such User Content will never be accessible by others. In the event
+        of unauthorized access, Unimath will use reasonable efforts to notify
+        you pursuant to Section 15.1 below. UNIMATH HEREBY DISCLAIMS ANY AND ALL
+        LIABILITY WITH RESPECT TO ANY UNAUTHORIZED ACCESS TO ANY RESTRICTED USER
+        CONTENT.
       </Typography>
       <Typography
         variant="body2"
@@ -128,16 +127,16 @@ function Section({ classes }) {
       >
         <span className={classes.bold}>5.4 User Content Disclaimer:</span> You
         understand that when using the Services you will be exposed to User
-        Content from a variety of sources, and that Unimath is not
-        responsible for the accuracy, usefulness, or intellectual property
-        rights of or relating to such User Content. You further understand and
-        acknowledge that you may be exposed to User Content that is inaccurate,
-        offensive, indecent or objectionable, and you agree to waive, and hereby
-        do waive, any legal or equitable rights or remedies you have or may have
-        against Unimath with respect thereto. Unimath does not endorse
-        any User Content or any opinion, recommendation or advice expressed
-        therein, and Unimath expressly disclaims any and all liability in
-        connection with User Content.
+        Content from a variety of sources, and that Unimath is not responsible
+        for the accuracy, usefulness, or intellectual property rights of or
+        relating to such User Content. You further understand and acknowledge
+        that you may be exposed to User Content that is inaccurate, offensive,
+        indecent or objectionable, and you agree to waive, and hereby do waive,
+        any legal or equitable rights or remedies you have or may have against
+        Unimath with respect thereto. Unimath does not endorse any User Content
+        or any opinion, recommendation or advice expressed therein, and Unimath
+        expressly disclaims any and all liability in connection with User
+        Content.
       </Typography>
     </>
   );

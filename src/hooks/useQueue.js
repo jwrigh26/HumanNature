@@ -11,11 +11,11 @@ export default function useQueue(initialValue = []) {
       set(([first, ...rest]) => {
         result = first;
         return rest;
-      })
+      });
       return result;
     },
     first: () => state[0],
     last: () => state[state.length - 1],
-    size: () => state.length
-  }
+    size: () => state.length,
+  };
 }

@@ -94,11 +94,11 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>8.8 </span> assert, or authorize, assist,
-        or encourage any third party to assert, against Unimath or any of
-        its affiliates or licensors any patent infringement or other
-        intellectual property infringement claim regarding any Licensed
-        Educational Content, Licensed Educational Code, or User Content you have
-        used, submitted, or otherwise made available on or through the Services;
+        or encourage any third party to assert, against Unimath or any of its
+        affiliates or licensors any patent infringement or other intellectual
+        property infringement claim regarding any Licensed Educational Content,
+        Licensed Educational Code, or User Content you have used, submitted, or
+        otherwise made available on or through the Services;
       </Typography>
       <Typography
         variant="body2"
@@ -158,8 +158,8 @@ function Section({ classes }) {
       >
         <span className={classes.bold}>8.14 </span> modify, adapt, translate or
         create derivative works based upon the Services or any part thereof,
-        except and only to the extent expressly permitted by Unimath herein
-        or to the extent the foregoing restriction is expressly prohibited by
+        except and only to the extent expressly permitted by Unimath herein or
+        to the extent the foregoing restriction is expressly prohibited by
         applicable law; or
       </Typography>
       <Typography

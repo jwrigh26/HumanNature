@@ -18,9 +18,9 @@ function Section({ classes }) {
         violates or misappropriates another's intellectual property rights,
         rights of publicity or privacy, or other rights; (ii) violates any
         international, federal, state or local law, statute, ordinance or
-        regulation or which would render Unimath in violation of any
-        applicable laws or regulations, including without limitation, Applicable
-        Privacy Laws (collectively, "
+        regulation or which would render Unimath in violation of any applicable
+        laws or regulations, including without limitation, Applicable Privacy
+        Laws (collectively, "
         <span className={classes.bold}>Applicable Law</span>"); (iii) is
         harmful, fraudulent, threatening, abusive, harassing, tortuous,
         defamatory, vulgar, obscene, libelous, or otherwise objectionable; or

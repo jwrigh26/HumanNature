@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     backgroundColor: theme.palette.background.default,
     marginTop: theme.spacing(1),
-
     [theme.breakpoints.up('md')]: {
       backgroundColor: theme.palette.background.default,
       marginTop: theme.spacing(2),
@@ -19,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   wrapper: {
     flexGrow: 0,
+    ...theme.wrapper,
   },
   toolbar: {
     [theme.breakpoints.down('md')]: {

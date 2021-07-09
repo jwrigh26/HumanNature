@@ -59,8 +59,8 @@ function Section({ classes }) {
         variant="body2"
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
-        <span className={classes.bold}>1.3 Integrated Service:</span> Lorem ipsum
-        dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        <span className={classes.bold}>1.3 Integrated Service:</span> Lorem
+        ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. In pellentesque massa
         placerat duis ultricies lacus sed turpis tincidunt. A lacus vestibulum
         sed arcu. Nisl tincidunt eget nullam non nisi est. Erat imperdiet sed

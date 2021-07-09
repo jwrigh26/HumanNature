@@ -53,7 +53,9 @@ function Section({ classes }) {
             et ligula.
           </Typography>
         </li>
-        <ol className={classnames(classes.listStyleLowerRoman, classes.marginTop)}>
+        <ol
+          className={classnames(classes.listStyleLowerRoman, classes.marginTop)}
+        >
           <li>
             <Typography variant="body2">
               Feugiat pretium nibh ipsum consequat nisl vel. Purus viverra

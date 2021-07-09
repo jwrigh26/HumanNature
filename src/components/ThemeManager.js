@@ -17,8 +17,9 @@ ThemeManager.propTypes = {
 };
 
 function ThemeManager({ children }) {
-
-  const { themeBag: { color, mode } } = useSelector(appSelector);
+  const {
+    themeBag: { color, mode },
+  } = useSelector(appSelector);
 
   const primaryFontFamily = ['"Raleway"', 'sans-serif'].join(',');
   const secondaryFontFamily = ['"Source Sans Pro"', 'sans-serif'].join(',');
@@ -73,6 +74,28 @@ function ThemeManager({ children }) {
   // Make responsive!
   // See: https://material-ui.com/guides/responsive-ui/
   theme = responsiveFontSizes(theme);
+
+  // Add custom wrapper
+  theme = {
+    ...theme,
+    wrapper: {
+      maxWidth: theme.breakpoints.values.siteMaxWidth,
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+      },
+
+      [theme.breakpoints.up('lg')]: {
+        marginLeft: theme.spacing(4),
+        marginRight: theme.spacing(4),
+      },
+      [theme.breakpoints.up('siteMaxWidth')]: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        minWidth: theme.breakpoints.values.siteMaxWidth,
+      },
+    },
+  };
 
   console.log('Theme');
   console.log(theme);

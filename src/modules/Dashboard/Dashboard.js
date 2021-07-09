@@ -16,7 +16,12 @@ function Dashboard() {
           <Typography variant="body1">
             React doesn’t require using JSX.
           </Typography>
-          <Button variant="contained" color="primary" component={Link} to={'/policies'}>
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to={'/policies'}
+          >
             Hello World
           </Button>
         </Grid>

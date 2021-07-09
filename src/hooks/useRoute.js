@@ -11,7 +11,7 @@ export default function useRoute() {
   // skipping things not needed
   useEffect(() => {
     const { pathname } = location;
-    const isPath = n => hasValue(n);
+    const isPath = (n) => hasValue(n);
     const paths = R.pipe(R.split('/'), R.filter(isPath))(pathname);
 
     setRoute({

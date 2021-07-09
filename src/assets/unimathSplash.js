@@ -14,11 +14,11 @@ SVG.propTypes = {
     light: PropTypes.string,
     outline: PropTypes.string,
     horn: PropTypes.string,
-  })
+  }),
 };
 
 function SVG({ width, height, colors }) {
-  const {body, primary, light, outline, horn} = colors ?? {};
+  const { body, primary, light, outline, horn } = colors ?? {};
   const classes = {
     cls1: {
       fill: body ? body : '#fff',

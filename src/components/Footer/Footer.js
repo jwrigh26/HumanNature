@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   content: {
+    ...theme.wrapper,
     display: 'flex',
     flexDirection: 'column-reverse',
     justifyContent: 'flex-start',
@@ -26,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 0,
     margin: 0,
     marginBottom: theme.spacing(1),
-    maxWidth: theme.breakpoints.values.siteMaxWidth,
     height: 'inherits',
 
     [theme.breakpoints.up('sm')]: {
@@ -34,17 +34,6 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'row',
       justifyContent: 'space-evenly',
       alignItems: 'flex-end',
-      marginLeft: theme.spacing(2),
-      marginRight: theme.spacing(2),
-    },
-    [theme.breakpoints.up('lg')]: {
-      marginLeft: theme.spacing(4),
-      marginRight: theme.spacing(4),
-    },
-    [theme.breakpoints.up('siteMaxWidth')]: {
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      minWidth: theme.breakpoints.values.siteMaxWidth,
     },
   },
   leading: {

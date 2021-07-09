@@ -56,12 +56,6 @@ export default function ActionGroup() {
           <IconButton onClick={actions.handleSetPaletteMode}>
             <Icon className={classes.icon}>{actions.modeIcon}</Icon>
           </IconButton>
-          <IconButton onClick={actions.handleFoo}>
-            <Icon className={classes.icon}>adb</Icon>
-          </IconButton>
-          <IconButton onClick={actions.handleHome}>
-            <Icon className={classes.icon}>home</Icon>
-          </IconButton>
         </Hidden>
         <Hidden smUp>
           <IconButton onClick={actions.handleOpenMore}>

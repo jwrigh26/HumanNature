@@ -112,9 +112,6 @@ function MUITextArea({
     }
   }
 
-
-
-
   return (
     <div>
       <TextareaAutosize

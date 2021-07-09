@@ -5,7 +5,7 @@ import { appSelector, setSelectedTab } from 'store/appSlice';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 
-import {backToTopAnchor} from 'components/ScrollTop';
+import { backToTopAnchor } from 'components/ScrollTop';
 import { isNil } from 'helpers/utils';
 import LinkTab from './PolicyLinkTab';
 import MuiTabs from '@material-ui/core/Tabs';
@@ -74,7 +74,7 @@ function Tabs() {
   }
 
   return (
-    <div className={classes.wrapper} id={backToTopAnchor} >
+    <div className={classes.wrapper} id={backToTopAnchor}>
       <MuiTabs
         aria-label="Policy App Bar"
         classes={{

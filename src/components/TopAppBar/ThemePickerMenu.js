@@ -18,7 +18,6 @@ function ThemePickerMenu({
   onClose: handleClose,
   onSetPaletteColor: handleSetPaletteColor,
 }) {
-
   function handleMenuItemClick(key) {
     return () => {
       handleSetPaletteColor(userTheme.paletteColor[key]);
@@ -49,7 +48,7 @@ function ThemePickerMenu({
         {Object.keys(userTheme.paletteColor).map((key) => (
           <MenuItem key={key} onClick={handleMenuItemClick(key)}>
             <ListItemText primary={userTheme.displayName[key]} />
-            <ColorSwatch palette={userTheme.color(key)}/>
+            <ColorSwatch palette={userTheme.color(key)} />
           </MenuItem>
         ))}
       </Menu>

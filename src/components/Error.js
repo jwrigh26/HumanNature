@@ -16,7 +16,6 @@ class CustomError extends Error {
 
 export default CustomError;
 
-
 /**
  * Example of how to use
  *

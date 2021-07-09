@@ -6,7 +6,7 @@ import emailjs from 'emailjs-com';
 import * as yup from 'yup';
 
 import { errorSelector, setError } from 'store/errorSlice';
-import { appSelector} from 'store/appSlice.js';
+import { appSelector } from 'store/appSlice.js';
 import config from 'helpers/config';
 
 export default function useContactFrom() {
@@ -17,7 +17,9 @@ export default function useContactFrom() {
   const dispatch = useDispatch();
   const [submitted, setSubmitted] = useState(false);
   const { hasError } = useSelector(errorSelector);
-  const { navigation: { routes } } = useSelector(appSelector);
+  const {
+    navigation: { routes },
+  } = useSelector(appSelector);
 
   const initialValues = {
     message: null,

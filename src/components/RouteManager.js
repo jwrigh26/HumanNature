@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 
-import { appSelector, setSelectedTab } from 'store/appSlice';
+import { appSelector, setAppBar } from 'store/appSlice';
 import useRoute from 'hooks/useRoute';
 import useTitle from 'hooks/useTitle';
 import { hasValue } from 'helpers/utils';
@@ -25,9 +25,25 @@ function RouteManager({ children }) {
 
   // Set browser tab name
   const base = 'Unimath';
-  const route = useRoute();
-  const title = route.hasPath ? `${base}-${route.paths[0]}` : base
+  const { hasPath, paths } = useRoute();
+  const title = hasPath ? `${base}-${paths[0]}` : base;
   useTitle(title);
+
+  useEffect(() => {
+    // check if home
+    console.log('paths');
+    console.log(paths);
+    if (hasPath) {
+      if (paths[0] === 'policies') {
+        dispatch(setAppBar({ appBar: 'policies' }));
+      }
+      if (paths[0] === 'contact') {
+        dispatch(setAppBar({ appBar: undefined }));
+      }
+    } else {
+      dispatch(setAppBar({ appBar: 'main' }));
+    }
+  }, [paths]);
 
   // useEffect(() => {
   //   const { key } = routedTab ?? {};

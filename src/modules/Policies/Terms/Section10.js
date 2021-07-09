@@ -88,8 +88,8 @@ function Section({ classes }) {
             personal account for purposes of retaining any content generated or
             provided and owned by Users under these Terms (including such User's
             learning activity). Any such Personal accounts will be established
-            under Unimath's standard account opening process, including
-            parent consent for Users under the age of 13.
+            under Unimath's standard account opening process, including parent
+            consent for Users under the age of 13.
           </Typography>
         </li>
         <li>

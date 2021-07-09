@@ -21,7 +21,7 @@ ScrollTop.propTypes = {
 // This should be exported and used at the top
 // of the application associated with default component.
 export function ScrollTopMarker() {
-  return <div id={backToTopAnchor} />
+  return <div id={backToTopAnchor} />;
 }
 
 function ScrollTop({ children }) {
@@ -33,7 +33,9 @@ function ScrollTop({ children }) {
   });
 
   const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(`#${backToTopAnchor}`);
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      `#${backToTopAnchor}`
+    );
 
     console.log(backToTopAnchor, anchor);
     if (anchor) {

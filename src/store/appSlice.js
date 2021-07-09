@@ -20,7 +20,8 @@ const appSlice = createSlice({
         helper(cookies.options.key).getItem(cookies.options.mode) ||
         userTheme.mode.light,
     },
-    selectedTab: undefined,
+    appBar: 'main',
+    selectedTab: 0,
   },
   reducers: {
     setPaletteColor(state, action) {
@@ -32,6 +33,9 @@ const appSlice = createSlice({
       const newMode = action.payload.mode;
       helper(cookies.options.key).setItem(cookies.options.mode, newMode);
       state.themeBag.mode = newMode;
+    },
+    setAppBar(state, action) {
+      state.appBar = action.payload.appBar;
     },
     setSelectedTab(state, action) {
       state.selectedTab = action.payload.tab;
@@ -49,6 +53,7 @@ export function handleCookieReset() {
 export const appSelector = R.prop('app');
 
 export const {
+  setAppBar,
   setPaletteColor,
   setPaletteMode,
   setSelectedTab,

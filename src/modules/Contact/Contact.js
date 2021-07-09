@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
-import ContentWrapper from 'components/ContentWrapper.js';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextArea from 'components/TextArea.js';
@@ -17,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     minHeight: '280px',
     padding: theme.spacing(2),
+    marginBottom: theme.spacing(6),
     [theme.breakpoints.up('md')]: {
       maxWidth: '50%',
     },
@@ -66,90 +66,89 @@ function Contact() {
     textAreaMax,
   } = useContactFrom();
 
-
   return (
-      <ContentWrapper>
-        <Typography variant="h3" component="h1" gutterBottom>
-          Contact Us
-        </Typography>
-        <Paper classes={{ root: classes.paper }} elevation={3}>
-          {submitted && (
-            <div className={classes.submitted}>
-              <section className={classes.thankyou}>
-                <Typography variant="h4" component="h2" gutterBottom>
-                  Thank you for your message!
-                </Typography>
-                <Typography variant="body2" classes={{ body2: classes.body2 }}>
-                  We will be in touch soon.
-                </Typography>
-              </section>
+    <>
+      <Typography variant="h3" component="h1" gutterBottom>
+        Contact Us
+      </Typography>
+      <Paper classes={{ root: classes.paper }} elevation={3}>
+        {submitted && (
+          <div className={classes.submitted}>
+            <section className={classes.thankyou}>
+              <Typography variant="h4" component="h2" gutterBottom>
+                Thank you for your message!
+              </Typography>
+              <Typography variant="body2" classes={{ body2: classes.body2 }}>
+                We will be in touch soon.
+              </Typography>
+            </section>
+            <Button
+              color="primary"
+              variant="contained"
+              fullWidth
+              onClick={goHome}
+            >
+              Go Home
+            </Button>
+          </div>
+        )}
+        {!submitted && (
+          <form noValidate onSubmit={formikBag?.handleSubmit}>
+            <TextField
+              className={classes.textfield}
+              id="user_name"
+              name="user_name"
+              label="Name"
+              formikBag={formikBag}
+              helperText="What name do you prefer?"
+              variant="outlined"
+              required
+              fullWidth
+            />
+            <TextField
+              className={classes.textfield}
+              id="user_email"
+              name="user_email"
+              label="Email"
+              formikBag={formikBag}
+              variant="outlined"
+              required
+              fullWidth
+            />
+            <TextArea
+              className={classes.textfield}
+              id="message"
+              name="message"
+              label="Message"
+              formikBag={formikBag}
+              placeholder="What questions or feedback would you like to share?"
+              variant="outlined"
+              required
+              rowsMin={7}
+              rowsMax={14}
+              max={textAreaMax}
+            />
+            <div className={classes.button}>
               <Button
                 color="primary"
                 variant="contained"
+                type="submit"
+                disabled={isDisabled}
                 fullWidth
-                onClick={goHome}
               >
-                Go Home
+                Submit
+                {isSubmitting && (
+                  <CircularProgress
+                    size={24}
+                    className={classes.buttonProgress}
+                  />
+                )}
               </Button>
             </div>
-          )}
-          {!submitted && (
-            <form noValidate onSubmit={formikBag?.handleSubmit}>
-              <TextField
-                className={classes.textfield}
-                id="user_name"
-                name="user_name"
-                label="Name"
-                formikBag={formikBag}
-                helperText="What name do you prefer?"
-                variant="outlined"
-                required
-                fullWidth
-              />
-              <TextField
-                className={classes.textfield}
-                id="user_email"
-                name="user_email"
-                label="Email"
-                formikBag={formikBag}
-                variant="outlined"
-                required
-                fullWidth
-              />
-              <TextArea
-                className={classes.textfield}
-                id="message"
-                name="message"
-                label="Message"
-                formikBag={formikBag}
-                placeholder="What questions or feedback would you like to share?"
-                variant="outlined"
-                required
-                rowsMin={7}
-                rowsMax={14}
-                max={textAreaMax}
-              />
-              <div className={classes.button}>
-                <Button
-                  color="primary"
-                  variant="contained"
-                  type="submit"
-                  disabled={isDisabled}
-                  fullWidth
-                >
-                  Submit
-                  {isSubmitting && (
-                    <CircularProgress
-                      size={24}
-                      className={classes.buttonProgress}
-                    />
-                  )}
-                </Button>
-              </div>
-            </form>
-          )}
-        </Paper>
-      </ContentWrapper>
+          </form>
+        )}
+      </Paper>
+    </>
   );
 }
 
