@@ -19,7 +19,7 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>7.1 Proprietary Materials:</span> The
-        Services are owned and operated by Unimath. The visual interfaces,
+        Services are owned and operated by Human+Nature. The visual interfaces,
         graphics, design, compilation, information, computer code (including
         source code or object code), software, services, content, educational
         videos and exercises, and all other elements of the Services (the
@@ -29,34 +29,34 @@ function Section({ classes }) {
         rights. Except for any User Content provided and owned by Users and
         except as otherwise set forth in this Section 7, all Services Materials,
         and all trademarks, service marks, and trade names, contained on or
-        available through the Services are owned by or licensed to Unimath, and
-        Unimath reserves all rights therein and thereto not expressly granted by
-        these Terms.
+        available through the Services are owned by or licensed to Human+Nature,
+        and Human+Nature reserves all rights therein and thereto not expressly
+        granted by these Terms.
       </Typography>
       <Typography
         variant="body2"
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>7.2 Licensed Educational Content:</span>{' '}
-        Unimath may make available on the Services certain educational videos,
-        exercises, and related supplementary materials that are owned by Unimath
-        or its third-party licensors (the "Licensed Educational Content").
-        Unimath grants to you a non-exclusive, non-transferable right to access
-        and use the Licensed Educational Content as made available on the
-        Services by Unimath solely for your personal, non-commercial purposes.
-        Unless expressly indicated on the Services that a particular item of
-        Licensed Educational Content is made available to Users under alternate
-        license terms, you may not download, distribute, sell, lease, modify, or
-        otherwise provide access to the Licensed Educational Content to any
-        third party.
+        Human+Nature may make available on the Services certain educational
+        videos, exercises, and related supplementary materials that are owned by
+        Human+Nature or its third-party licensors (the "Licensed Educational
+        Content"). Human+Nature grants to you a non-exclusive, non-transferable
+        right to access and use the Licensed Educational Content as made
+        available on the Services by Human+Nature solely for your personal,
+        non-commercial purposes. Unless expressly indicated on the Services that
+        a particular item of Licensed Educational Content is made available to
+        Users under alternate license terms, you may not download, distribute,
+        sell, lease, modify, or otherwise provide access to the Licensed
+        Educational Content to any third party.
       </Typography>
       <ol className={classes.listStyleAlpha}>
         <li>
           <Typography variant="body2">
-            Alternate Licenses. In certain cases, Unimath or its licensors may
-            make available Licensed Educational Content under alternate license
-            terms, such as a variant of the Creative Commons License (as defined
-            below) (each, an "
+            Alternate Licenses. In certain cases, Human+Nature or its licensors
+            may make available Licensed Educational Content under alternate
+            license terms, such as a variant of the Creative Commons License (as
+            defined below) (each, an "
             <span className={classes.bold}>Alternate License</span>"). Where
             expressly indicated as such on the Services, and subject to the
             terms and conditions of these Terms, the applicable Licensed
@@ -90,15 +90,15 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>7.3 Licensed Educational Code:</span>{' '}
-        Unimath may make available, or allow Users to create and make available,
-        on or through the Services certain educational, user-readable source
-        code in connection with the "Computer Science" modules or exercises
-        available on the Services (the "
+        Human+Nature may make available, or allow Users to create and make
+        available, on or through the Services certain educational, user-readable
+        source code in connection with the "Computer Science" modules or
+        exercises available on the Services (the "
         <span className={classes.bold}>Licensed Educational Code</span>").
         Unless otherwise indicated, all Licensed Educational Code is the
-        property of Unimath or third-party licensors and, subject to the terms
-        and conditions of these Terms, is licensed to you under the terms of the
-        MIT License. By downloading or otherwise accessing such Licensed
+        property of Human+Nature or third-party licensors and, subject to the
+        terms and conditions of these Terms, is licensed to you under the terms
+        of the MIT License. By downloading or otherwise accessing such Licensed
         Educational Code, you agree to comply with all the terms of the MIT
         License.
       </Typography>
@@ -113,14 +113,14 @@ function Section({ classes }) {
         Educational Content, the Licensed Educational Content may not be used,
         distributed or otherwise exploited for any commercial purpose,
         commercial advantage or private monetary compensation, unless otherwise
-        previously agreed in writing by Unimath.
+        previously agreed in writing by Human+Nature.
       </Typography>
       <ol className={classes.listStyleAlpha}>
         <li>
           <Typography variant="body2">
             Impermissible Uses. Without limiting the generality of the
-            foregoing, the following are types of uses that Unimath expressly
-            defines as falling outside of "non-commercial" use:
+            foregoing, the following are types of uses that Human+Nature
+            expressly defines as falling outside of "non-commercial" use:
           </Typography>
         </li>
         <ol className={classes.listStyleLowerRoman}>
@@ -173,13 +173,13 @@ function Section({ classes }) {
         variant="body2"
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
-        <span className={classes.bold}>7.5 Crediting Unimath:</span> If you
+        <span className={classes.bold}>7.5 Crediting Human+Nature:</span> If you
         distribute, publicly perform or display, transmit, publish, or otherwise
         make available any Licensed Educational Content or any derivative works
         thereof, you must also provide the following notice prominently along
         with such Licensed Educational Content or derivative work thereof: "
         <span className={classes.bold}>
-          All Unimath content is available for free at www.khanacademy.org
+          All Human+Nature content is available for free at www.khanacademy.org
         </span>
         ".
       </Typography>

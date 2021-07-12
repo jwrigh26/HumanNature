@@ -63,7 +63,6 @@ function AppBar({ name, tabs }) {
   }, [location]);
 
   const handleChange = (event, newValue) => {
-    console.log('NewValue', newValue);
     setValue(newValue);
     dispatch(setSelectedTab({ tab: newValue }));
   };

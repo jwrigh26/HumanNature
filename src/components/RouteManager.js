@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
+// import { useLocation, useHistory } from 'react-router-dom';
 
 import { appSelector, setAppBar } from 'store/appSlice';
 import useRoute from 'hooks/useRoute';
 import useTitle from 'hooks/useTitle';
-import { hasValue } from 'helpers/utils';
+// import { hasValue } from 'helpers/utils';
 // import { switchToArticle } from 'store/postSlice';
 
 // import useRoutePost from 'hooks/useRoutePost';
@@ -24,15 +24,15 @@ function RouteManager({ children }) {
   // const routedTab = useRouteTab();
 
   // Set browser tab name
-  const base = 'Unimath';
+  const base = 'Human+Nature';
   const { hasPath, paths } = useRoute();
   const title = hasPath ? `${base}-${paths[0]}` : base;
   useTitle(title);
+  console.log('Paths');
+  console.log(paths);
 
   useEffect(() => {
     // check if home
-    console.log('paths');
-    console.log(paths);
     if (hasPath) {
       if (paths[0] === 'policies') {
         dispatch(setAppBar({ appBar: 'policies' }));
@@ -41,7 +41,7 @@ function RouteManager({ children }) {
         dispatch(setAppBar({ appBar: undefined }));
       }
     } else {
-      dispatch(setAppBar({ appBar: 'main' }));
+      dispatch(setAppBar({ appBar: 'shop' }));
     }
   }, [paths]);
 

@@ -27,5 +27,5 @@ render(
       </RouteManager>
     </Router>
   </Provider>,
-  document.getElementById('unimath-root')
+  document.getElementById('human+nature-root')
 );

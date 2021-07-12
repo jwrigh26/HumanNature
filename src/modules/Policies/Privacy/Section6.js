@@ -13,15 +13,16 @@ function Section({ classes }) {
         6. Digital Millenium Copyright Act
       </Typography>
       <Typography variant="body2" classes={{ body2: classes.body2 }}>
-        It is Unimath's policy to respond to notices of alleged copyright
+        It is Human+Nature's policy to respond to notices of alleged copyright
         infringement that comply with the Digital Millennium Copyright Act. For
-        more information, please go to Unimath's DMCA Notification Guidelines at
-        https://www.khanacademy.org/about/dmca. Unimath will promptly terminate
-        without notice your access to the Services if you are determined by
-        Unimath to be a "repeat infringer." A repeat infringer is a User who has
-        been notified by Unimath of infringing activity violations more than
-        twice and/or who has had User Content or any other user-submitted
-        content removed from the Services more than twice.
+        more information, please go to Human+Nature's DMCA Notification
+        Guidelines at https://www.khanacademy.org/about/dmca. Human+Nature will
+        promptly terminate without notice your access to the Services if you are
+        determined by Human+Nature to be a "repeat infringer." A repeat
+        infringer is a User who has been notified by Human+Nature of infringing
+        activity violations more than twice and/or who has had User Content or
+        any other user-submitted content removed from the Services more than
+        twice.
       </Typography>
     </>
   );

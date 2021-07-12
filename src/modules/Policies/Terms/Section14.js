@@ -74,33 +74,33 @@ function Section({ classes }) {
       <ol className={classes.listStyleAlpha}>
         <li>
           <Typography variant="body2">
-            <span className={classes.bold}>User Disputes:</span> Unimath is not
-            responsible for the actions, content, information or data of other
-            third parties, including other Users. You are solely responsible for
-            your interactions with other users of the Services, and any other
-            parties with whom you interact through the Service. You should make
-            whatever investigation you feel necessary or appropriate before
-            proceeding with any online or offline interaction with any other
-            person. We reserve the right, but have no obligation, to become
-            involved in any way with these disputes.
+            <span className={classes.bold}>User Disputes:</span> Human+Nature is
+            not responsible for the actions, content, information or data of
+            other third parties, including other Users. You are solely
+            responsible for your interactions with other users of the Services,
+            and any other parties with whom you interact through the Service.
+            You should make whatever investigation you feel necessary or
+            appropriate before proceeding with any online or offline interaction
+            with any other person. We reserve the right, but have no obligation,
+            to become involved in any way with these disputes.
           </Typography>
         </li>
         <li>
           <Typography variant="body2">
             <span className={classes.bold}>Release:</span> If you have a dispute
-            with one or more Users, you release us (and the Unimath Parties)
-            from all claims, demands and damages (actual and consequential) of
-            every kind and nature, known and unknown, arising out of or in any
-            way connected with such disputes, including damages for loss of
-            profits, goodwill, use, privacy or data. If you are a California
-            resident, you waive your rights under California Civil Code §1542,
-            which says: "A general release does not extend to claims which the
-            creditor does not know or suspect to exist in his or her favor at
-            the time of executing the release, which if known by him or her must
-            have materially affected his settlement with the debtor." And, if
-            you are not a California resident, you waive your rights under any
-            applicable statutes of a similar effect, to the fullest extent
-            permissible under applicable law.
+            with one or more Users, you release us (and the Human+Nature
+            Parties) from all claims, demands and damages (actual and
+            consequential) of every kind and nature, known and unknown, arising
+            out of or in any way connected with such disputes, including damages
+            for loss of profits, goodwill, use, privacy or data. If you are a
+            California resident, you waive your rights under California Civil
+            Code §1542, which says: "A general release does not extend to claims
+            which the creditor does not know or suspect to exist in his or her
+            favor at the time of executing the release, which if known by him or
+            her must have materially affected his settlement with the debtor."
+            And, if you are not a California resident, you waive your rights
+            under any applicable statutes of a similar effect, to the fullest
+            extent permissible under applicable law.
           </Typography>
         </li>
       </ol>

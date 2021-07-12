@@ -12,7 +12,7 @@ function Dashboard() {
     <ContentWrapper>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Typography variant="h1">Hello, UniMath</Typography>
+          <Typography variant="h1">Hello, Human+Nature</Typography>
           <Typography variant="body1">
             React doesn’t require using JSX.
           </Typography>

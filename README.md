@@ -1,4 +1,4 @@
-# UniMath
+# Human+Nature website
 
 ## Prerequisites
 

@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-const cookiePrefix = 'unimath_';
+const cookiePrefix = 'human+nature_';
 const cookieExpireDays = 365;
 
 export default function cookie(name, expires = cookieExpireDays) {

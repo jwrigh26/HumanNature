@@ -58,6 +58,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  placeholder: {
+    position: 'relative',
+    color: theme.palette.text.primary,
+    fontSize: '1.25rem',
+    marginLeft: '1.25rem',
+    bottom: '-2px',
+  },
+
   supportingTitle: {
     fontWeight: 700,
     position: 'relative',
@@ -110,7 +118,7 @@ function BrandCrest() {
           <SVG />
           <Hidden smDown>
             <Typography className={classes.subTitle} variant={'h3'}>
-              Unimath
+              Human + Nature
             </Typography>
           </Hidden>
         </ButtonBase>
@@ -142,9 +150,12 @@ function BrandCrest() {
           //   event.preventDefault();
           // }}
         >
-          <SVG />
+          {/* <SVG /> */}
           <Typography className={classes.title} variant="h2">
-            Unimath
+            Human+Nature
+          </Typography>
+          <Typography variant="body2" className={classes.placeholder}>
+            Shop
           </Typography>
         </ButtonBase>
       </div>

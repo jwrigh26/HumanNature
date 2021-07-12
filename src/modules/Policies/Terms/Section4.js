@@ -24,13 +24,13 @@ function Section({ classes }) {
         any Guidelines periodically for changes that are made after you open
         your account. Your continued use of the Services after the posting of
         changes constitutes your binding acceptance of such changes. For any
-        material changes to the Terms, Unimath will make reasonable effort to
-        provide notice to you of such amended Terms, such as by an email
+        material changes to the Terms, Human+Nature will make reasonable effort
+        to provide notice to you of such amended Terms, such as by an email
         notification to the address associated with your account or by posting a
         notice on the Services, and such amended terms will be effective against
         you on the earlier of (i) your actual notice of such changes and (ii)
-        thirty days after Unimath makes reasonable attempt to provide you such
-        notice. However, changes addressing new functions for a service or
+        thirty days after Human+Nature makes reasonable attempt to provide you
+        such notice. However, changes addressing new functions for a service or
         changes made for legal reasons will be effective immediately. If you do
         not agree to the modified Terms, you must discontinue your use of the
         Services. Disputes arising under these Terms will be resolved in
@@ -47,15 +47,15 @@ function Section({ classes }) {
         information contained in education records is used or shared has a
         material adverse impact on Student Users or an Institution, and the
         Institution does not agree to the change, the Institution must notify
-        Unimath within thirty days of receiving the notice of change as
-        described under the "Miscellaneous - Notices" below. If Unimath is
+        Human+Nature within thirty days of receiving the notice of change as
+        described under the "Miscellaneous - Notices" below. If Human+Nature is
         notified as required, then the School Accounts held by that Institution
         will remain governed by the Terms in effect immediately prior to the
         change until the end of the end of the then current term of the
-        Institution's written service agreement with Unimath, or, in the absence
-        of such an agreement, the end of the current school term. If the
+        Institution's written service agreement with Human+Nature, or, in the
+        absence of such an agreement, the end of the current school term. If the
         Services are renewed or continued after such time, they will be renewed
-        or continued under Unimath's then-current Terms.
+        or continued under Human+Nature's then-current Terms.
       </Typography>
     </>
   );

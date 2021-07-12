@@ -20,34 +20,35 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>5.1 User Content and Ownership:</span>{' '}
-        Unimath may permit (a) the posting and/or publishing by you and other
-        Users of notes, questions, comments, ratings, reviews, images, videos
-        and other audio-visual materials and communications (collectively, "User
-        Postings") and (b) the posting, creation, or modification by you and
-        other users of computer code (including source code and object code)
-        ("User Code") (User Postings and User Code, collectively, "User
-        Content"). You understand that whether or not such User Content is
-        published, Unimath does not guarantee any confidentiality with respect
-        to any submissions. Consistent with Applicable Law, as between Unimath
-        and you, you retain all ownership rights you have in any User Content
-        you post or publish to the Services, and Unimath does not claim any
-        ownership rights in or to such User Content. You acknowledge that are
-        solely responsible for your User Content and the consequences of
-        posting, creating, or publishing such User Content.
+        Human+Nature may permit (a) the posting and/or publishing by you and
+        other Users of notes, questions, comments, ratings, reviews, images,
+        videos and other audio-visual materials and communications
+        (collectively, "User Postings") and (b) the posting, creation, or
+        modification by you and other users of computer code (including source
+        code and object code) ("User Code") (User Postings and User Code,
+        collectively, "User Content"). You understand that whether or not such
+        User Content is published, Human+Nature does not guarantee any
+        confidentiality with respect to any submissions. Consistent with
+        Applicable Law, as between Human+Nature and you, you retain all
+        ownership rights you have in any User Content you post or publish to the
+        Services, and Human+Nature does not claim any ownership rights in or to
+        such User Content. You acknowledge that are solely responsible for your
+        User Content and the consequences of posting, creating, or publishing
+        such User Content.
       </Typography>
       <Typography
         variant="body2"
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
-        <span className={classes.bold}>5.2 License Grant to Unimath:</span> By
-        posting, submitting or distributing User Content on or through the
-        Services, you hereby grant to Unimath a worldwide, non-exclusive,
+        <span className={classes.bold}>5.2 License Grant to Human+Nature:</span>{' '}
+        By posting, submitting or distributing User Content on or through the
+        Services, you hereby grant to Human+Nature a worldwide, non-exclusive,
         transferable, assignable, fully paid-up, royalty-free right and license
         to (a) host, transfer, display, perform, reproduce, distribute, prepare
         derivative works of, use, make, have made, import, and otherwise exploit
         your User Content, in whole or in part, in any media formats and through
         any media channels (now known or hereafter developed, to the extent
-        consistent with applicable law and Unimath's Privacy Policy). Such
+        consistent with applicable law and Human+Nature's Privacy Policy). Such
         license is perpetual and irrevocable, except to the extent required to
         comply with Applicable Privacy Law relating to ownership and control of
         your personal information, including education records. With respect to
@@ -68,7 +69,7 @@ function Section({ classes }) {
             User Postings. By posting, submitting or distributing User Postings
             through the Services, you hereby grant to each User of the Services
             a non-exclusive license to access and use your User Postings in any
-            manner permitted or made available by Unimath on or through the
+            manner permitted or made available by Human+Nature on or through the
             Services.
           </Typography>
         </li>
@@ -91,7 +92,7 @@ function Section({ classes }) {
             applications or certain digital educational content ("
             <span className={classes.bold}>Downloadable Content</span>").
             Subject to your complete and ongoing compliance with all the terms
-            and conditions set forth herein, Unimath grants you, a limited,
+            and conditions set forth herein, Human+Nature grants you, a limited,
             non-exclusive, non-transferable, non-sublicensable, revocable
             license to download, install, view and use the Downloadable Content,
             in object code form, on devices owned or controlled by you, solely
@@ -110,16 +111,16 @@ function Section({ classes }) {
         classes={{ body2: classnames(classes.body2, classes.indent) }}
       >
         <span className={classes.bold}>5.4 Access to Your User Content:</span>{' '}
-        Unimath may permit Users to share their User Content with a select group
-        of other Users, or make their User Content public for all (even
+        Human+Nature may permit Users to share their User Content with a select
+        group of other Users, or make their User Content public for all (even
         non-Services users) to view. You acknowledge and agree that, although
-        Unimath may provide certain features intended to allow you to restrict
-        some User Content you create from others, Unimath does not guarantee
-        that such User Content will never be accessible by others. In the event
-        of unauthorized access, Unimath will use reasonable efforts to notify
-        you pursuant to Section 15.1 below. UNIMATH HEREBY DISCLAIMS ANY AND ALL
-        LIABILITY WITH RESPECT TO ANY UNAUTHORIZED ACCESS TO ANY RESTRICTED USER
-        CONTENT.
+        Human+Nature may provide certain features intended to allow you to
+        restrict some User Content you create from others, Human+Nature does not
+        guarantee that such User Content will never be accessible by others. In
+        the event of unauthorized access, Human+Nature will use reasonable
+        efforts to notify you pursuant to Section 15.1 below. UNIMATH HEREBY
+        DISCLAIMS ANY AND ALL LIABILITY WITH RESPECT TO ANY UNAUTHORIZED ACCESS
+        TO ANY RESTRICTED USER CONTENT.
       </Typography>
       <Typography
         variant="body2"
@@ -127,16 +128,16 @@ function Section({ classes }) {
       >
         <span className={classes.bold}>5.4 User Content Disclaimer:</span> You
         understand that when using the Services you will be exposed to User
-        Content from a variety of sources, and that Unimath is not responsible
-        for the accuracy, usefulness, or intellectual property rights of or
-        relating to such User Content. You further understand and acknowledge
-        that you may be exposed to User Content that is inaccurate, offensive,
-        indecent or objectionable, and you agree to waive, and hereby do waive,
-        any legal or equitable rights or remedies you have or may have against
-        Unimath with respect thereto. Unimath does not endorse any User Content
-        or any opinion, recommendation or advice expressed therein, and Unimath
-        expressly disclaims any and all liability in connection with User
-        Content.
+        Content from a variety of sources, and that Human+Nature is not
+        responsible for the accuracy, usefulness, or intellectual property
+        rights of or relating to such User Content. You further understand and
+        acknowledge that you may be exposed to User Content that is inaccurate,
+        offensive, indecent or objectionable, and you agree to waive, and hereby
+        do waive, any legal or equitable rights or remedies you have or may have
+        against Human+Nature with respect thereto. Human+Nature does not endorse
+        any User Content or any opinion, recommendation or advice expressed
+        therein, and Human+Nature expressly disclaims any and all liability in
+        connection with User Content.
       </Typography>
     </>
   );

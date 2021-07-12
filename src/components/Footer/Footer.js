@@ -132,7 +132,7 @@ function Footer() {
             <Typography
               classes={{ root: classnames(classes.text, classes.copyright) }}
               variant="body2"
-            >{`© 2021 — Unimath | All Rights Reserved`}</Typography>
+            >{`© 2021 — Human+Nature | All Rights Reserved`}</Typography>
           </div>
         </section>
         <section className={classes.trailing}>

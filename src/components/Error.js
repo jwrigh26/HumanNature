@@ -7,7 +7,7 @@ class CustomError extends Error {
       Error.captureStackTrace(this, CustomError);
     }
 
-    this.name = 'Unimath Error';
+    this.name = 'Human+Nature Error';
     // Custom debugging information
     this.foo = foo;
     this.date = new Date();

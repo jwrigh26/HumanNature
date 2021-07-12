@@ -15,8 +15,8 @@ function Section({ classes }) {
       <Typography variant="body2" classes={{ body2: classes.body2 }}>
         The Services may include links or references to other web sites or
         services solely as a convenience to Users ("
-        <span className={classes.bold}>Reference Sites</span>"). Unimath does
-        not endorse any such Reference Sites or the information, materials,
+        <span className={classes.bold}>Reference Sites</span>"). Human+Nature
+        does not endorse any such Reference Sites or the information, materials,
         products, or services contained on or accessible through Reference
         Sites. ACCESS AND USE OF REFERENCE SITES, INCLUDING THE INFORMATION,
         MATERIALS, PRODUCTS, AND SERVICES ON OR AVAILABLE THROUGH REFERENCE

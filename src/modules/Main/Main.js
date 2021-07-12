@@ -10,7 +10,7 @@ import AppBar from 'components/AppBar/AppBar';
 import Contact from 'modules/Contact/Contact.js';
 import CookieSnackbar from 'components/CookieSnackbar';
 import ContentWrapper from 'components/ContentWrapper';
-import Calculator from 'modules/Calculator/Calculator';
+import Shop from 'modules/Shop/Shop';
 import ErrorSnackbar from 'components/ErrorSnackbar.js';
 import Footer from 'components/Footer/Footer';
 import Policies from 'modules/Policies/Policies';
@@ -57,9 +57,9 @@ function App() {
   // noinspection JSUnresolvedVariable
 
   // Need a way to feed in tabs and name for app bar
-  useEffect(() => {
-    console.log('Appbar', appBar);
-  }, [appBar]);
+  // useEffect(() => {
+  //   console.log('Appbar', appBar);
+  // }, [appBar]);
 
   return (
     <>
@@ -76,10 +76,15 @@ function App() {
               <Route path={routes?.policies?.route}>
                 <Policies />
               </Route>
-              <Route exact path="/">
-                <Calculator />
+              <Route path="/shop">
+                <Shop />
               </Route>
-              <Route render={() => <Redirect to="/" />} />
+
+              {/* TODO: Enable Home Route */}
+              {/* <Route exact path="/">
+                <Home />
+              </Route> */}
+              <Route render={() => <Redirect to="/shop" />} />
             </Switch>
           </ContentWrapper>
         </Box>

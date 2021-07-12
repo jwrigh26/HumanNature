@@ -13,29 +13,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Calculator() {
+function Home() {
   const theme = useTheme();
   const classes = useStyles(theme);
   return (
     <>
       <Typography variant="h3" component="h1" gutterBottom>
-        Unimath Home!!
+        Human+Nature Home!!
       </Typography>
       <Typography variant="overline" display="block" gutterBottom>
         This is a test
       </Typography>
       <Typography variant="body2" classes={{ body2: classes.body2 }}>
-        Welcome, and thank you for your interest in Unimath, Inc., a 501(c)(3)
-        organization ("Unimath," "we," "us," or "our"), which operates the web
-        site located at http://unimath.app (the "Website") and related
-        application programming interfaces ("APIs"), mobile applications and
-        online services, including, but not limited to, the Duck Duck Moose
+        Welcome, and thank you for your interest in Human+Nature, Inc., a
+        501(c)(3) organization ("Human+Nature," "we," "us," or "our"), which
+        operates the web site located at http://unimath.app (the "Website") and
+        related application programming interfaces ("APIs"), mobile applications
+        and online services, including, but not limited to, the Duck Duck Moose
         website and related applications, any Downloadable Content (as defined
         below), and any other products and services that Company may provide now
         or in the future (collectively, the "Services"). The following Terms of
-        Service are a legal contract between you ("you" and "your") and Unimath
-        regarding your use of the Services. Visitors and users of the Services
-        are referred to individually as "User" and collectively as "Users".
+        Service are a legal contract between you ("you" and "your") and
+        Human+Nature regarding your use of the Services. Visitors and users of
+        the Services are referred to individually as "User" and collectively as
+        "Users".
       </Typography>
       {/*<Typography variant="body2" classes={{ body2: classes.body2 }}>*/}
       {/*  PLEASE READ THE FOLLOWING TERMS OF SERVICE CAREFULLY. BY REGISTERING*/}
@@ -82,4 +83,4 @@ function Calculator() {
   );
 }
 
-export default Calculator;
+export default Home;

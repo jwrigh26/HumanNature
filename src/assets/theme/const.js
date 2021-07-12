@@ -17,7 +17,7 @@ export const paletteColor = Object.freeze({
 });
 
 export const displayName = Object.freeze({
-  purpleGrey: 'Unimath Default',
+  purpleGrey: 'Human+Nature Default',
   pinkGrey: 'Cotton Candy',
   deepPurplePink: 'Purple Berries',
   indigoBlue: 'Indigo River',

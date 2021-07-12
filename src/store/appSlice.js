@@ -20,7 +20,7 @@ const appSlice = createSlice({
         helper(cookies.options.key).getItem(cookies.options.mode) ||
         userTheme.mode.light,
     },
-    appBar: 'main',
+    appBar: 'shop',
     selectedTab: 0,
   },
   reducers: {
@@ -35,6 +35,7 @@ const appSlice = createSlice({
       state.themeBag.mode = newMode;
     },
     setAppBar(state, action) {
+      console.log('Action', action.payload);
       state.appBar = action.payload.appBar;
     },
     setSelectedTab(state, action) {

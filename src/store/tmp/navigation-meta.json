@@ -1,18 +1,33 @@
 {
   "routes": {
-    "calculator": {
-      "title": "Calculator",
+    "home": {
+      "title": "Home",
       "id": 0,
       "route": "/"
     },
-    "measurements": {
-      "title": "Measurements",
-      "route": "/measurements",
+    "pain": {
+      "title": "Pain",
+      "route": "/pain",
       "id": 1
+    },
+    "treatment": {
+      "title": "Treatment",
+      "route": "/treatment",
+      "id": 2
+    },
+    "medicalCannabis": {
+      "title": "Medical Cannabis",
+      "route": "/medical-cannabis",
+      "id": 3
+    },
+    "shop": {
+      "title": "Shop",
+      "route": "/shop",
+      "id": 4
     },
     "contact":  {
       "title": "Contact",
-      "id": 2,
+      "id": 5,
       "route": "/contact"
     },
     "policies": {
@@ -33,16 +48,54 @@
     }
   },
   "tabs": {
-    "main": [
+    "shop": [
       {
-        "title": "Calculator",
-        "route": "/",
-        "id": 0
+        "title": "Receptra Naturals",
+        "route": "/shop/receptra-naturals",
+        "id": 0,
+        "categoryId": 988858
       },
       {
-        "title": "Measurements",
-        "route": "/measurements",
-        "id": 1
+        "title": "Ageless Holdings",
+        "route": "/shop/ageless-holdings",
+        "id": 1,
+        "categoryId": 988962
+      },
+      {
+        "title": "Vaporizers",
+        "route": "/shop/vaporizers",
+        "id": 2,
+        "categoryId": 988964
+      },
+      {
+        "title": "Books",
+        "route": "/shop/books",
+        "id": 3,
+        "categoryId": 988967
+      },
+      {
+        "title": "CanLock",
+        "route": "/shop/canlock",
+        "id": 4,
+        "categoryId": 1029337
+      },
+      {
+        "title": "Bundles",
+        "route": "/shop/bundles",
+        "id": 5,
+        "categoryId": 1036898
+      },
+      {
+        "title": "Grinders",
+        "route": "/shop/grinders",
+        "id": 6,
+        "categoryId": 1057760
+      },
+      {
+        "title": "Merch",
+        "route": "/shop/merch",
+        "id": 7,
+        "categoryId": 1129991
       }
     ],
     "policies": [
