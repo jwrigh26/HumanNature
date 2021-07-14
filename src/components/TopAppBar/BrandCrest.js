@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     fontSize: '1.25rem',
     marginLeft: '1.25rem',
-    bottom: '-2px',
+    bottom: '-8px',
   },
 
   supportingTitle: {

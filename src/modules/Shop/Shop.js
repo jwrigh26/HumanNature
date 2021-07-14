@@ -6,6 +6,13 @@ import { Route, Switch, Redirect, useRouteMatch } from 'react-router';
 
 import AgelessHoldings from './categories/AgelessHoldings';
 import ReceptraNaturals from './categories/ReceptraNaturals';
+import Vaporizers from './categories/Vaporizers';
+import Books from './categories/Books';
+import CanLock from './categories/CanLock';
+import Bundles from './categories/Bundles';
+import Grinders from './categories/Grinders';
+import Merch from './categories/Merch';
+
 import Splash from './categories/Splash';
 
 import useRoute from 'hooks/useRoute';
@@ -45,6 +52,24 @@ function Shop() {
         </Route>
         <Route path={`${path}/ageless-holdings`}>
           <AgelessHoldings />
+        </Route>
+        <Route path={`${path}/vaporizers`}>
+          <Vaporizers />
+        </Route>
+        <Route path={`${path}/books`}>
+          <Books />
+        </Route>
+        <Route path={`${path}/canlock`}>
+          <CanLock />
+        </Route>
+        <Route path={`${path}/bundles`}>
+          <Bundles />
+        </Route>
+        <Route path={`${path}/grinders`}>
+          <Grinders />
+        </Route>
+        <Route path={`${path}/merch`}>
+          <Merch />
         </Route>
         {/* <Route exact path="/">
           <Splash />
