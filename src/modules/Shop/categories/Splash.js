@@ -22,7 +22,9 @@ export default function AgelessHoldings() {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3">Splash Page</Typography>
+      <Typography variant="h3" gutterBottom>
+        Splash Page
+      </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>

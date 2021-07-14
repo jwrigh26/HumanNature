@@ -22,7 +22,9 @@ export default function ReceptraNaturals() {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3">Receptra Naturals</Typography>
+      <Typography variant="h3" gutterBottom>
+        Receptra Naturals
+      </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>xs=12</Paper>

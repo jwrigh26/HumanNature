@@ -29,10 +29,10 @@ function Shop() {
   // us build relative links.
   const { path, url } = useRouteMatch();
 
-  useEffect(() => {
-    console.log('Paths');
-    console.log(JSON.stringify(paths, null, 2));
-  }, [paths]);
+  // useEffect(() => {
+  //   console.log('Paths');
+  //   console.log(JSON.stringify(paths, null, 2));
+  // }, [paths]);
 
   return (
     <>

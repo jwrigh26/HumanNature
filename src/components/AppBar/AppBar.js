@@ -8,6 +8,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { isNil } from 'helpers/utils';
 import LinkTab from './Tab';
 import MuiTabs from '@material-ui/core/Tabs';
+import * as R from 'ramda';
 
 AppBar.propTypes = {
   name: PropTypes.string,
@@ -52,14 +53,8 @@ function AppBar({ name, tabs }) {
 
   // Listen for location changes
   useEffect(() => {
-    const tabId = tabs.reduce((id, tab) => {
-      const isPath = location?.pathname === tab.route;
-      return isPath ? tab.id : id;
-    }, 0);
-
-    if (value !== tabId) {
-      setValue(tabId);
-    }
+    const tabForPath = (l) => (t) => l.pathname === t.route;
+    setValue(R.pipe(R.find(tabForPath(location)), R.prop('id'))(tabs));
   }, [location]);
 
   const handleChange = (event, newValue) => {

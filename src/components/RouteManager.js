@@ -28,8 +28,6 @@ function RouteManager({ children }) {
   const { hasPath, paths } = useRoute();
   const title = hasPath ? `${base}-${paths[0]}` : base;
   useTitle(title);
-  console.log('Paths');
-  console.log(paths);
 
   useEffect(() => {
     // check if home
