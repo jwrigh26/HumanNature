@@ -1,0 +1,263 @@
+[
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 1,
+      "createdOn": "06/02/2020 12:01:55",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "Receptra Naturals",
+      "modifiedOn": "06/02/2020 12:01:55",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 988858
+  },
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 2,
+      "createdOn": "06/02/2020 19:51:02",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "Ageless Holdings",
+      "modifiedOn": "06/02/2020 19:51:02",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 988962
+  },
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 3,
+      "createdOn": "06/02/2020 20:09:00",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "Vaporizers",
+      "modifiedOn": "06/02/2020 20:09:00",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 988964
+  },
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 4,
+      "createdOn": "06/02/2020 20:20:21",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "Books",
+      "modifiedOn": "06/02/2020 20:20:21",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 988967
+  },
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 5,
+      "createdOn": "09/16/2020 16:14:29",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "CanLock",
+      "modifiedOn": "09/17/2020 09:21:40",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 1029337
+  },
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 6,
+      "createdOn": "10/06/2020 17:12:29",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "Bundles",
+      "modifiedOn": "10/06/2020 17:12:29",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 1036898
+  },
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 7,
+      "createdOn": "12/11/2020 15:18:55",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "Grinders",
+      "modifiedOn": "12/11/2020 15:18:58",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 1057760
+  },
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 8,
+      "createdOn": "12/21/2020 15:55:16",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "CBD/CBA",
+      "modifiedOn": "12/21/2020 15:55:16",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 1060835
+  },
+  {
+      "iconName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "displayStatus": 0,
+      "positionNumber": 9,
+      "createdOn": "05/19/2021 11:07:28",
+      "giftCardInfo": [],
+      "productInfo": [],
+      "tags": [],
+      "categoryType": "Merch",
+      "modifiedOn": "05/19/2021 11:07:32",
+      "discountInfo": [],
+      "merchantId": 26013,
+      "onlineStoreDisplayStatus": 0,
+      "id": 1129991
+  }
+]

@@ -1,21 +1,11 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
 import { Route, Switch, Redirect, useRouteMatch } from 'react-router';
-
-import AgelessHoldings from './categories/AgelessHoldings';
-import ReceptraNaturals from './categories/ReceptraNaturals';
-import Vaporizers from './categories/Vaporizers';
-import Books from './categories/Books';
-import CanLock from './categories/CanLock';
-import Bundles from './categories/Bundles';
-import Grinders from './categories/Grinders';
-import Merch from './categories/Merch';
+import useRoute from 'hooks/useRoute';
 
 import Splash from './categories/Splash';
-
-import useRoute from 'hooks/useRoute';
+import Category from './Category';
 
 const useStyles = makeStyles((theme) => ({
   body1: {
@@ -36,11 +26,6 @@ function Shop() {
   // us build relative links.
   const { path, url } = useRouteMatch();
 
-  // useEffect(() => {
-  //   console.log('Paths');
-  //   console.log(JSON.stringify(paths, null, 2));
-  // }, [paths]);
-
   return (
     <>
       <Switch>
@@ -48,28 +33,31 @@ function Shop() {
           <Splash />
         </Route>
         <Route path={`${path}/receptra-naturals`}>
-          <ReceptraNaturals />
+          <Category id={988858} />
         </Route>
         <Route path={`${path}/ageless-holdings`}>
-          <AgelessHoldings />
+          <Category id={988962} />
         </Route>
         <Route path={`${path}/vaporizers`}>
-          <Vaporizers />
+          <Category id={988964} />
         </Route>
         <Route path={`${path}/books`}>
-          <Books />
+          <Category id={988967} />
         </Route>
         <Route path={`${path}/canlock`}>
-          <CanLock />
+          <Category id={1029337} />
         </Route>
         <Route path={`${path}/bundles`}>
-          <Bundles />
+          <Category id={1036898} />
         </Route>
         <Route path={`${path}/grinders`}>
-          <Grinders />
+          <Category id={1057760} />
+        </Route>
+        <Route path={`${path}/cbd-cba`}>
+          <Category id={1060835} />
         </Route>
         <Route path={`${path}/merch`}>
-          <Merch />
+          <Category id={1129991} />
         </Route>
         {/* <Route exact path="/">
           <Splash />

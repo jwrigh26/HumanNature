@@ -1,0 +1,66 @@
+[
+  {
+      "imageMD5": "",
+      "taxSettings": [],
+      "openPO": [],
+      "salesTax": true,
+      "skuNumber": "",
+      "merchantId": 26013,
+      "price": 40,
+      "supplier": null,
+      "variant": false,
+      "id": 44042338,
+      "barcode": "",
+      "aliasName": "",
+      "item": "",
+      "modifierOptions": [],
+      "markup": 0,
+      "vaiantName": "",
+      "displayChannelSettings": [
+          {
+              "channel": "REGISTER",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "KIOSK",
+              "status": "ENABLED"
+          },
+          {
+              "channel": "ONLINE",
+              "status": "ENABLED"
+          }
+      ],
+      "tags": [],
+      "categoryType": "Grinders",
+      "bundles": [],
+      "name": "Grinder",
+      "needsLowInventoryAlert": false,
+      "variantName": "",
+      "partNo": "",
+      "supplierId": 0,
+      "color": "Pink",
+      "discountSettings": [],
+      "description": "",
+      "displayStatus": 0,
+      "positionNumber": 1,
+      "inventory": 2,
+      "storeQty": 25,
+      "createdOn": "12/11/2020 15:19:24",
+      "modifiedOn": "01/04/2021 12:02:12",
+      "productVariants": [],
+      "productType": "REGULAR",
+      "modiferAssociations": [],
+      "cost": 14,
+      "quantity": 25,
+      "taxPercentage": 0,
+      "dineOut": false,
+      "merchantIdentification": 0,
+      "altertThreshold": 0,
+      "baseProductId": 0,
+      "onlineStoreDisplayStatus": 0,
+      "isVariable": 0,
+      "optionIds": "",
+      "categoryId": 1057760,
+      "reorderQty": 0
+  }
+]

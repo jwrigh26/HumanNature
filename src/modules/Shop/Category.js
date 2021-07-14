@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import * as R from 'ramda';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
@@ -13,17 +15,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Vaporizers() {
+Category.propTypes = {
+  id: PropTypes.number.isRequired,
+};
+
+export default function Category({ id }) {
   const theme = useTheme();
   const classes = useStyles(theme);
-  const { vaporizers } = useSelector(shopSelector);
+  // const [items, setItems] = useState([]);
+  // useCallback(() => setItems(books), [books]);
+  const { categories, items } = useSelector(shopSelector);
+
+  const category = R.find(R.propEq('id', id), categories);
+  console.log('Category', category);
 
   return (
     <div className={classes.root}>
       <Typography variant="h3" gutterBottom>
-        Books
+        Title Goes Here
       </Typography>
-      <Items list={vaporizers} />
+      {/* <Items list={books} /> */}
     </div>
   );
 }

@@ -92,9 +92,15 @@
         "categoryId": 1057760
       },
       {
+        "title": "CBD/CBA",
+        "route": "/shop/cbd-cba",
+        "id": 7,
+        "categoryId": 1060835
+      },
+      {
         "title": "Merch",
         "route": "/shop/merch",
-        "id": 7,
+        "id": 8,
         "categoryId": 1129991
       }
     ],
