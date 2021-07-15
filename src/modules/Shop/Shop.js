@@ -69,3 +69,14 @@ function Shop() {
 }
 
 export default Shop;
+
+/**
+ *
+ * Train of thought,
+ * Pass id down and find category obj
+ * Find items based on id
+ * Worry about opt after
+ *
+ *
+ * When done remove shop from components and remove categoreis folder
+ */
