@@ -42,3 +42,11 @@ export function getCurrencyFromNumber(value) {
 }
 
 // Create our number formatter.
+
+export function truncateDescription(str, length = 100, ending = '...') {
+  if (str.length > length) {
+    console.log('Shortening', str.length, length);
+    return `${str.substring(0, length - ending.length)}${ending}`;
+  }
+  return str;
+}

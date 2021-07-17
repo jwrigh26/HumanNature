@@ -4,7 +4,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { Route, Switch, Redirect, useRouteMatch } from 'react-router';
 import useRoute from 'hooks/useRoute';
 
-import Splash from './categories/Splash';
+import Splash from './Splash';
 import Category from './Category';
 
 const useStyles = makeStyles((theme) => ({

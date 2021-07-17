@@ -20,11 +20,13 @@ function AppManager({ children }) {
   useEffect(() => {
     if (hasValue(dpr)) {
       dispatch(setDevicePixelRatio({ dpr }));
+      console.log('dpr', dpr);
     }
   }, [dpr]);
 
   useEffect(() => {
     dispatch(setScreenSize(screen));
+    console.log('Screen', screen);
   }, [screen]);
 
   return children;

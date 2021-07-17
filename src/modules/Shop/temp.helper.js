@@ -7,7 +7,7 @@ function generateRandomInteger(max) {
   return Math.floor(Math.random() * max);
 }
 
-export function getFakeDescription() {
+export function getFakeRandomDescription() {
   /* eslint-disable */
   const fakeText = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat.',
@@ -19,4 +19,8 @@ export function getFakeDescription() {
   const index = generateRandomInteger(fakeText.length);
 
   return hasValue(fakeText[index]) ? fakeText[index] : 'Fake Desc Not Found!';
+}
+
+export function getFakeDescription() {
+  return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ada ut exat commodo minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat end.';
 }
