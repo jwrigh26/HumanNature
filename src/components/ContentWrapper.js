@@ -11,8 +11,6 @@ ContentWrapper.propTypes = {
   divider: PropTypes.bool,
 };
 
-const drawerWidth = 420;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'block',

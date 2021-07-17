@@ -49,11 +49,15 @@ function ThemeManager({ children }) {
       type: mode,
     },
     props: {
+      cart: {
+        drawerWidth: 240,
+      },
       MuiButtonBase: {
         disableRipple: false, // No more ripple, on the whole application 💣
       },
     },
     status: { danger: orange[500] },
+
     typography: {
       fontFamily: primaryFontFamily,
       h1: {

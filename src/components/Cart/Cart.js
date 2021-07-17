@@ -16,15 +16,19 @@ import MailIcon from '@material-ui/icons/Mail';
 
 import { setCartOpen, shopSelector } from 'store/shopSlice';
 
-const drawerWidth = 420;
-
 const useStyles = makeStyles((theme) => ({
   drawer: {
-    width: drawerWidth,
+    width: '100%',
     flexShrink: 0,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.props.cart.drawerWidth,
+    },
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: theme.props.cart.drawerWidth,
+    },
   },
   drawerHeader: {
     display: 'flex',
