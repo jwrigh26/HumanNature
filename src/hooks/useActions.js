@@ -8,6 +8,7 @@ import {
   setPaletteColor,
   setPaletteMode,
 } from 'store/appSlice';
+import { setCartOpen, shopSelector } from 'store/shopSlice';
 import { hasValue } from 'helpers/utils.js';
 import userTheme from 'assets/theme';
 
@@ -17,6 +18,8 @@ export default function useActions() {
     themeBag: { color, mode },
     navigation: { routes },
   } = useSelector(appSelector);
+
+  const { cart } = useSelector(shopSelector);
 
   const history = useHistory();
 
@@ -106,6 +109,11 @@ export default function useActions() {
     history.push('/');
   }
 
+  function handleToggleCart() {
+    console.log('Set Cart Open: ', !cart.open);
+    dispatch(setCartOpen({ open: !cart.open }));
+  }
+
   return {
     handleCloseMore,
     handleOpenMore,
@@ -125,5 +133,6 @@ export default function useActions() {
     paletteDrawerOpen,
     handleFoo,
     handleHome,
+    handleToggleCart,
   };
 }

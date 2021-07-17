@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
 import Hidden from '@material-ui/core/Hidden';
 import PaletteIcon from '@material-ui/icons/Palette';
 import Icon from '@material-ui/core/Icon';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from '@material-ui/core/IconButton';
 
 import useActions from 'hooks/useActions';
 import MoreMenu from './MoreMenu.js';
 import ThemePickerDrawer from './ThemePickerDrawer.js';
 import ThemePickerMenu from './ThemePickerMenu.js';
+import { shopSelector } from 'store/shopSlice.js';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -39,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
       bottom: '-4px',
     },
   },
+  button: {
+    '&:disabled': {
+      opacity: 0.35,
+    },
+  },
 }));
 
 export default function ActionGroup() {
@@ -46,17 +54,32 @@ export default function ActionGroup() {
   const classes = useStyles(theme);
   const actions = useActions();
 
+  const { cart } = useSelector(shopSelector);
+
   return (
     <>
       <div className={classes.actionsWrapper}>
         <Hidden xsDown>
-          <IconButton onClick={actions.handleOpenThemePicker}>
+          <IconButton
+            className={classes.button}
+            onClick={actions.handleOpenThemePicker}
+          >
             <PaletteIcon className={classes.icon} />
           </IconButton>
-          <IconButton onClick={actions.handleSetPaletteMode}>
+          <IconButton
+            className={classes.button}
+            onClick={actions.handleSetPaletteMode}
+          >
             <Icon className={classes.icon}>{actions.modeIcon}</Icon>
           </IconButton>
         </Hidden>
+        <IconButton
+          className={classes.button}
+          onClick={actions.handleToggleCart}
+          disabled={cart.open}
+        >
+          <ShoppingCartIcon className={classes.icon} />
+        </IconButton>
         <Hidden smUp>
           <IconButton onClick={actions.handleOpenMore}>
             <MoreVertIcon className={classes.icon} />

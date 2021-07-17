@@ -18,6 +18,10 @@ import userTheme from '../assets/theme';
 const shopSlice = createSlice({
   name: 'shop',
   initialState: {
+    cart: {
+      open: false,
+      items: {},
+    },
     categories: categoriesMeta,
     menuItems: {
       agelessHoldings: agelessHoldingsMeta,
@@ -31,7 +35,18 @@ const shopSlice = createSlice({
       vaporizers: vaporizersMeta,
     },
   },
-  reducers: {},
+  reducers: {
+    addItem(state, action) {
+      const { key, item } = action.payload;
+      state.items = { ...state.items, [key]: item };
+    },
+    addItems(state, action) {
+      state.items = { ...state.items, ...action.payload.items };
+    },
+    setCartOpen(state, action) {
+      state.cart.open = action.payload.open;
+    },
+  },
 });
 
 export function handleCookieReset() {
@@ -43,6 +58,6 @@ export function handleCookieReset() {
 
 export const shopSelector = R.prop('shop');
 
-export const {} = shopSlice.actions;
+export const { addItem, addItems, setCartOpen } = shopSlice.actions;
 
 export default shopSlice.reducer;

@@ -1,8 +1,8 @@
 import React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
-import classnames from 'classnames';
 import Divider from 'components/Divider';
 
 ContentWrapper.propTypes = {
@@ -10,6 +10,8 @@ ContentWrapper.propTypes = {
   children: PropTypes.any,
   divider: PropTypes.bool,
 };
+
+const drawerWidth = 420;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,9 +34,8 @@ const useStyles = makeStyles((theme) => ({
 function ContentWrapper({ classes: otherClasses, children, divider = false }) {
   const theme = useTheme();
   const classes = useStyles(theme);
-
   return (
-    <div className={classnames(classes.root, otherClasses)}>
+    <div className={clsx(classes.root, otherClasses)}>
       {divider && <Divider />}
       <div className={classes.children}>{children}</div>
     </div>

@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import { ScrollTopMarker } from 'components/ScrollTop.js';
 import { appSelector } from 'store/appSlice';
 import AppBar from 'components/AppBar/AppBar';
+import Cart from 'components/Cart/Cart';
 import Contact from 'modules/Contact/Contact.js';
 import CookieSnackbar from 'components/CookieSnackbar';
 import ContentWrapper from 'components/ContentWrapper';
@@ -33,14 +34,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     width: '100%',
     height: '100%',
-  },
-  content: {
-    alignItems: 'center',
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    width: '100%',
   },
 }));
 
@@ -89,6 +82,7 @@ function App() {
           </ContentWrapper>
         </Box>
         <Footer />
+        <Cart />
         <CookieSnackbar />
         <ErrorSnackbar />
       </Box>

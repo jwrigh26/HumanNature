@@ -35,7 +35,6 @@ const appSlice = createSlice({
       state.themeBag.mode = newMode;
     },
     setAppBar(state, action) {
-      console.log('Action', action.payload);
       state.appBar = action.payload.appBar;
     },
     setSelectedTab(state, action) {
