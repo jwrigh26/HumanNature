@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     width: '100%',
     height: '100%',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('lg')]: {
       transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -44,26 +44,32 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mainShift: {
-    width: `calc(100% - ${theme.props.cart.drawerWidth}px)`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: theme.props.cart.drawerWidth,
+    [theme.breakpoints.up('lg')]: {
+      width: `calc(100% - ${theme.props.cart.drawerWidth}px)`,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: theme.props.cart.drawerWidth,
+    },
   },
   content: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginRight: -theme.props.cart.drawerWidth,
+    [theme.breakpoints.up('lg')]: {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      marginRight: -theme.props.cart.drawerWidth,
+    },
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: 0,
+    [theme.breakpoints.up('lg')]: {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginRight: 0,
+    },
   },
 }));
 

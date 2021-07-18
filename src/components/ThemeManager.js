@@ -50,7 +50,7 @@ function ThemeManager({ children }) {
     },
     props: {
       cart: {
-        drawerWidth: 240,
+        drawerWidth: 420,
       },
       MuiButtonBase: {
         disableRipple: false, // No more ripple, on the whole application 💣

@@ -14,6 +14,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+import Item from './Item';
+
 import { setCartOpen, shopSelector } from 'store/shopSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +38,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
+    height: 88 + 8,
     justifyContent: 'flex-start',
+    [theme.breakpoints.down('md')]: {
+      height: 96 + 8,
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: 80 + 8,
+    },
   },
 }));
 
@@ -44,7 +53,7 @@ export default function PersistentDrawerRight() {
   const dispatch = useDispatch();
   const { cart } = useSelector(shopSelector);
   const theme = useTheme();
-  const classes = useStyles();
+  const classes = useStyles(theme);
 
   const handleDrawerClose = () => {
     dispatch(setCartOpen({ open: false }));
@@ -71,13 +80,8 @@ export default function PersistentDrawerRight() {
       </div>
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+        {['a', 'b', 'b', 'd'].map((text, index) => (
+          <Item key={`${text}-${index}`} />
         ))}
       </List>
       <Divider />
