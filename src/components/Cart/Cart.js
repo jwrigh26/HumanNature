@@ -45,7 +45,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   footer: {
-    padding: theme.spacing(2),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    paddingTop: theme.spacing(2)
   },
   subtotal: {
     paddingBottom: theme.spacing(1),
@@ -58,6 +60,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: theme.typography.fontFamlies.secondary,
     fontWeight: 700,
     color: theme.palette.text.primary,
+    position: 'relative',
+    bottom: 0,
+    [theme.breakpoints.up('sm')]: {
+      bottom: '3px',
+    },
   },
   subtotalTitle: {
     fontFamily: theme.typography.fontFamlies.secondary,
@@ -105,7 +112,7 @@ export default function PersistentDrawerRight() {
           </Typography>
           <Typography
             className={classes.subtotalPrice}
-            variant="subtitle1"
+            variant="h6"
             component="h3"
           >
             $999.99
@@ -122,7 +129,7 @@ export default function PersistentDrawerRight() {
       <section className={classes.footer}>
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           fullWidth
           className={classes.button}
           startIcon={<ShoppingCartIcon />}

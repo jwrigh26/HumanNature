@@ -1,5 +1,5 @@
 {
-  "name": "SerousTea",
+  "name": "SeriousTea",
   "private": true,
   "version": "0.0.1",
   "description": "Human+Nature webiste",
@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": "https://github.com/jwrigh26/aberdeen",
   "scripts": {
-    "start": "npm run write-meta && webpack-dev-server --config webpack.config.js --mode development --devtool=source-map --env.devServerIndex=index.html --env.devToken=foo",
+    "start-alpha": "npm run write-meta && webpack-dev-server --config webpack.config.js --mode development --devtool=source-map --env.devServerIndex=index.html --env.devToken=foo",
     "start-from-build": "webpack-dev-server --config webpack.config.js --mode production",
     "build": " npm run write-meta && webpack --config webpack.config.js --mode production",
     "preserve": "npm run build",
