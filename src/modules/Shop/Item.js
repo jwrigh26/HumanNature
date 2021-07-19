@@ -79,6 +79,10 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     background: 'black',
   },
+  price: {
+    fontFamily: theme.typography.fontFamlies.secondary,
+    paddingBottom: theme.spacing(1),
+  },
 }));
 
 Item.propTypes = {
@@ -108,7 +112,7 @@ function Item({ item }) {
             <Typography gutterBottom variant="h5" component="h4">
               {name}
             </Typography>
-            <Typography gutterBottom variant="h6" component="h5">
+            <Typography className={classes.price} variant="h6" component="h5">
               {getCurrencyFromNumber(price)}
             </Typography>
 

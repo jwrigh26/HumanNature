@@ -50,7 +50,7 @@ function ThemeManager({ children }) {
     },
     props: {
       cart: {
-        drawerWidth: 420,
+        drawerWidth: 512,
       },
       MuiButtonBase: {
         disableRipple: false, // No more ripple, on the whole application 💣
@@ -71,6 +71,10 @@ function ThemeManager({ children }) {
       },
       h4: {
         fontFamily: secondaryFontFamily,
+      },
+      fontFamlies: {
+        primary: primaryFontFamily,
+        secondary: secondaryFontFamily,
       },
     },
   });

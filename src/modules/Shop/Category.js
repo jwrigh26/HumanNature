@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginBottom: '2rem',
+    marginTop: '2rem',
   },
 }));
 
@@ -26,7 +27,7 @@ export default function Category({ id }) {
   const classes = useStyles(theme);
   const [items, setItems] = useState([]);
   // useCallback(() => setItems(books), [books]);
-  const { categories, menuItems } = useSelector(shopSelector);
+  const { cart, categories, menuItems } = useSelector(shopSelector);
 
   const category = R.find(R.propEq('id', id), categories);
 
