@@ -47,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(2)
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   subtotal: {
     paddingBottom: theme.spacing(1),
@@ -125,7 +126,6 @@ export default function PersistentDrawerRight() {
           <CartItem key={`${text}-${index}`} />
         ))}
       </List>
-      <Divider />
       <section className={classes.footer}>
         <Button
           variant="contained"
