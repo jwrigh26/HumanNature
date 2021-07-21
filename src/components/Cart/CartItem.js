@@ -7,10 +7,12 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
+import Hidden from '@material-ui/core/Hidden';
 import RemoveIcon from '@material-ui/icons/Remove';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Divider } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { setCartOpen, shopSelector } from 'store/shopSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingTop: 0,
+    paddingBottom: 0,
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1.5),
   },
@@ -40,6 +44,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     marginLeft: theme.spacing(1),
   },
+  summaryActions: {
+    display: 'flex',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
   summaryName: {
     fontSize: '0.8rem',
   },
@@ -57,12 +67,12 @@ const useStyles = makeStyles((theme) => ({
   },
   details: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     height: 'inherit',
     padding: 0,
-    marginLeft: theme.spacing(9),
+    marginLeft: 88,
     marginRight: theme.spacing(0),
   },
   quantity: {
@@ -84,13 +94,6 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderColor: theme.palette.primary.main,
     textAlign: 'center',
-  },
-  actions: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    flex: 1,
   },
   meta: {
     display: 'flex',
@@ -118,8 +121,21 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    width: '100%',
   },
+  column: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  formControl: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
+  divider: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  }
 }));
 
 export default function CartItem() {
@@ -127,7 +143,7 @@ export default function CartItem() {
   const classes = useStyles(theme);
 
   return (
-    <Accordion square elevation={0} defaultExpanded>
+    <Accordion square elevation={0}>
       <AccordionSummary
         classes={{ root: classes.summary }}
         expandIcon={<ExpandMoreIcon />}
@@ -162,8 +178,64 @@ export default function CartItem() {
             </Typography>
           </div>
         </div>
+        <div className={classes.summaryActions}>
+          <FormControlLabel
+            aria-label="Remove"
+            classes={{ root: classes.formControl }}
+            onClick={(event) => event.stopPropagation()}
+            onFocus={(event) => event.stopPropagation()}
+            control={
+              <IconButton>
+                <DeleteIcon />
+              </IconButton>
+            }
+          />
+        </div>
       </AccordionSummary>
       <AccordionDetails classes={{ root: classes.details }}>
+        <div className={classes.column}>
+          <ul className={classes.meta}>
+            <li>
+              <Typography
+                className={classes.metaCaption}
+                variant="subtitle2"
+                component="span"
+              >
+                Color:
+              </Typography>
+            </li>
+            <li>
+              <Typography
+                className={classes.metaValue}
+                variant="subtitle2"
+                component="span"
+              >
+                Orange
+              </Typography>
+            </li>
+          </ul>
+          <ul className={classes.meta}>
+            <li>
+              <Typography
+                className={classes.metaCaption}
+                variant="subtitle2"
+                component="span"
+              >
+                Size:
+              </Typography>
+            </li>
+            <li>
+              <Typography
+                className={classes.metaValue}
+                variant="subtitle2"
+                component="span"
+              >
+                Medium
+              </Typography>
+            </li>
+          </ul>
+        </div>
+        <Divider className={classes.divider} orientation="vertical" flexItem />
         <div className={classes.row}>
           <section className={classes.quantity}>
             <Typography
@@ -181,53 +253,7 @@ export default function CartItem() {
               <AddIcon />
             </IconButton>
           </section>
-          <section className={classes.actions}>
-            <Divider flexItem={true} orientation="vertical" />
-            <IconButton>
-              <DeleteIcon />
-            </IconButton>
-          </section>
         </div>
-        <ul className={classes.meta}>
-          <li>
-            <Typography
-              className={classes.metaCaption}
-              variant="subtitle2"
-              component="span"
-            >
-              Color:
-            </Typography>
-          </li>
-          <li>
-            <Typography
-              className={classes.metaValue}
-              variant="subtitle2"
-              component="span"
-            >
-              Orange
-            </Typography>
-          </li>
-        </ul>
-        <ul className={classes.meta}>
-          <li>
-            <Typography
-              className={classes.metaCaption}
-              variant="subtitle2"
-              component="span"
-            >
-              Size:
-            </Typography>
-          </li>
-          <li>
-            <Typography
-              className={classes.metaValue}
-              variant="subtitle2"
-              component="span"
-            >
-              Medium
-            </Typography>
-          </li>
-        </ul>
       </AccordionDetails>
     </Accordion>
   );
