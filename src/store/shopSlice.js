@@ -19,7 +19,7 @@ const shopSlice = createSlice({
   name: 'shop',
   initialState: {
     cart: {
-      open: true,
+      open: false,
       items: {},
     },
     categories: categoriesMeta,
