@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, withTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
 import { useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,7 +10,12 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { screenSelector } from 'store/screenSlice';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Image from 'components/Image/Image';
+
+import RootRef from '@material-ui/core/RootRef';
+import { cdnBaseURL } from '../../constants';
 
 import {
   getCurrencyFromNumber,
@@ -92,21 +98,48 @@ Item.propTypes = {
 function Item({ item }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const { devicePixelRatio } = useSelector(screenSelector);
   const isSmall = useMediaQuery(theme.breakpoints.up('sm'));
   const isMed = useMediaQuery(theme.breakpoints.up('md'));
   const isLarge = useMediaQuery(theme.breakpoints.up('lg'));
   const truncateLength = isLarge ? 175 : isMed ? 164 : isSmall ? 190 : 122;
-  const { name, price } = item;
+  const { name, price, id, categoryId } = item;
+
+  const safeName = `${name
+    .replaceAll(' ', '')
+    .replaceAll('(', '')
+    .replaceAll(')', '')
+    .toLowerCase()
+    .trim()}`;
+
+  const src = `${cdnBaseURL}/${safeName}-${categoryId}-${id}-01@${devicePixelRatio}x.jpg`;
+
+  const [copySuccess, setCopySuccess] = useState('');
+  const imageRef = useRef(null);
+
+  function copyToClipboard(e) {
+    console.log('CopyToClipboard');
+    console.log(imageRef.current.innerText);
+    // imageRef.current.select();
+    // document.execCommand('copy');
+    // // This is just personal preference.
+    // // I prefer to not show the whole text area selected.
+    // e.target.focus();
+    navigator.clipboard.writeText(imageRef.current.innerText);
+    setCopySuccess(`${safeName} -> Copied!`);
+  }
 
   return (
     <>
       <Card className={classes.root}>
-        <CardActionArea className={classes.actionarea}>
-          <CardMedia
-            className={classes.media}
-            image="https://placekitten.com/640/360"
-            title="Kitty"
-          />
+        <CardActionArea
+          className={classes.actionarea}
+          onClick={copyToClipboard}
+        >
+          <div className={classes.media}>
+            <Image url={src} disableSkeletonAnimation={true} />
+          </div>
+
           <CardContent className={classes.content}>
             {/* Name */}
             <Typography gutterBottom variant="h5" component="h4">
@@ -115,20 +148,18 @@ function Item({ item }) {
             <Typography className={classes.price} variant="h6" component="h5">
               {getCurrencyFromNumber(price)}
             </Typography>
+            <RootRef rootRef={imageRef}>
+              <Typography
+                className={classes.description}
+                variant="body2"
+                component="span"
+              >
+                {`${safeName}-${categoryId}-${id}-01`}
+                {/* {truncateDescription(getFakeDescription(), truncateLength)} */}
+              </Typography>
+            </RootRef>
 
-            {/* Description */}
-            {/* <span className={classes.foo}>
-              Title: {name.length} Truncate: {truncateLength} isSmall:{' '}
-              {`${isSmall}  `}
-              isMed: {`${isMed}`} isLarge: {`${isLarge}`}
-            </span> */}
-            <Typography
-              className={classes.description}
-              variant="body2"
-              component="p"
-            >
-              {truncateDescription(getFakeDescription(), truncateLength)}
-            </Typography>
+            {copySuccess}
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.actions}>
@@ -145,31 +176,3 @@ function Item({ item }) {
 }
 
 export default React.memo(Item);
-
-/**
- * import FALLBACK_IMAGE from 'src/assets/images/fallback_image.png';
-
-const onMediaFallback = event => event.target.src = FALLBACK_IMAGE;
-<CardMedia
- component="img"
- className={classes.media}
- image="/static/images/cards/contemplative-reptile.jpg"
- title="Contemplative Reptile"
- onError={onMediaFallback}
-/>
-
-
-<CardMedia>
- <img src={this.props.recipe.thumbnail} alt="recipe thumbnail"/>
-</CardMedia>
-
-...
-recipe = {
-  .
-  .
-  thumbnail: require('assets/images/img1.jpg'),
-  //make sure the path of the image is relative to parent class where you are defining the prop 
-  .
-  .
-}
- */

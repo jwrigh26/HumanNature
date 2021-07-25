@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { hasValue } from 'helpers/utils';
 import * as R from 'ramda';
 
 export const resolutions = Object.freeze({
@@ -27,7 +28,9 @@ export default function useDevicePixelRatio() {
     const r3 = `(-webkit-device-pixel-ratio: 3)`;
     const retina = [r1, r2, r3].reduce(sum, 0);
 
-    setDPR(R.max(dppx, retina));
+    const value = (R.max(dppx, retina));
+    const hasDpr = hasValue(value) && value > 0;
+    setDPR(hasDpr ? value : 1);
   }, []);
   return dpr; // device pixel ratio
 }

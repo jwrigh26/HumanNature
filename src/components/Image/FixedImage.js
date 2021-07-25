@@ -33,7 +33,7 @@ function FixedImage({
   const media = useImageMediaForScreenSize(currentScreenSize);
 
   const getImageWidth = () => '33%';
-  const getImageWidthForPercent = () => '33%';
+  const getImageWidthForPercent = () => '330px';
   const getImageHeight = () => '33%';
   const getImageHeightForPercent = () => '330px';
 

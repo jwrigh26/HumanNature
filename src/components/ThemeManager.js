@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  createMuiTheme,
+  createTheme,
   responsiveFontSizes,
   StylesProvider,
   ThemeProvider,
@@ -26,7 +26,7 @@ function ThemeManager({ children }) {
   const selectedColor = userTheme.color(color);
   const selectedColorSupport = userTheme.colorSupport(mode);
 
-  let theme = createMuiTheme({
+  let theme = createTheme({
     mode: {
       isDark: mode === userTheme.mode.dark,
       isLight: mode === userTheme.mode.light,
@@ -104,6 +104,8 @@ function ThemeManager({ children }) {
       },
     },
   };
+
+  console.log(theme);
 
   return (
     <ThemeProvider theme={theme}>
