@@ -113,6 +113,7 @@ function Item({ item }) {
     .trim()}`;
 
   const src = `${cdnBaseURL}/${safeName}-${categoryId}-${id}-01@${devicePixelRatio}x.jpg`;
+  
 
   const [copySuccess, setCopySuccess] = useState('');
   const imageRef = useRef(null);

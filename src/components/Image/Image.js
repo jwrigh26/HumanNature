@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Skeleton from 'components/Image/Skeleton';
 import { screenSelector } from 'store/screenSlice';
 import SuspenseImg from './SuspenseImg';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: theme.palette.grey[300],
   },
 }));
 
@@ -40,14 +42,26 @@ export default function Image({
   const { devicePixelRatio } = useSelector(screenSelector);
   const style = { width, height };
 
+  // const duration = theme.transitions.duration.short;
+  const duration = 1000;
+
+  const placeholder = require(`assets/images/placeholder/placeholder@${devicePixelRatio}x.jpg`);
+
   return (
-    <div className={classes.wrapper} style={style}>
+    <div
+      className={classes.wrapper}
+      style={{
+        ...style,
+        backgroundImage: `url(${placeholder})`,
+        backgroundPosition: 'center',
+      }}
+    >
       <Suspense
         fallback={
           <Skeleton disabled={disableSkeletonAnimation} style={style} />
         }
       >
-        <SuspenseImg url={url} alt={alt} />
+        <SuspenseImg urls={[url, placeholder]} alt={alt} />
       </Suspense>
     </div>
   );
