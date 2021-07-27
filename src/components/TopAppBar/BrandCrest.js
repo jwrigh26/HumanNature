@@ -9,7 +9,7 @@ import Hidden from '@material-ui/core/Hidden';
 
 import { appSelector } from 'store/appSlice';
 import { hasValue, isNil } from 'helpers/utils';
-import SVG from 'assets/unimathLogo.js';
+import SVG from 'assets/logo.js';
 
 const useStyles = makeStyles((theme) => ({
   titleWrapper: {
@@ -150,7 +150,7 @@ function BrandCrest() {
           //   event.preventDefault();
           // }}
         >
-          {/* <SVG /> */}
+          <SVG />
           <Typography className={classes.title} variant="h2">
             Human+Nature
           </Typography>

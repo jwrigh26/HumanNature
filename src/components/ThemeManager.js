@@ -105,8 +105,6 @@ function ThemeManager({ children }) {
     },
   };
 
-  console.log(theme);
-
   return (
     <ThemeProvider theme={theme}>
       <StylesProvider injectFirst>{children}</StylesProvider>

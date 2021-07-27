@@ -21,6 +21,7 @@ const shopSlice = createSlice({
     cart: {
       open: false,
       items: {},
+      quanity: {},
     },
     categories: categoriesMeta,
     menuItems: {
@@ -38,13 +39,27 @@ const shopSlice = createSlice({
   reducers: {
     addItem(state, action) {
       const { key, item } = action.payload;
-      state.items = { ...state.items, [key]: item };
+      state.cart.items = { ...state.cart.items, [key]: item };
     },
-    addItems(state, action) {
-      state.items = { ...state.items, ...action.payload.items };
+    addCount(state, action) {
+      const { key } = action.payload;
+      console.log(key);
+      const count = state.cart.quanity[key] ?? 0;
+      state.cart.quanity = { ...state.cart.quanity, [key]: count + 1 };
+    },
+    removeItem(state, action) {
+      const { key } = action.payload;
+      state.cart.items = { ...state.cart.items, [key]: null };
+      state.cart.quanity = { ...state.cart.quanity, [key]: 0 };
     },
     setCartOpen(state, action) {
       state.cart.open = action.payload.open;
+    },
+    subtractCount(state, action) {
+      const { key } = action.payload;
+      const count = state.cart.quanity[key] ?? 0;
+      const newValue = count >= 1 ? count - 1 : 0;
+      state.cart.quanity = { ...state.cart.quanity, [key]: newValue };
     },
   },
 });
@@ -58,6 +73,12 @@ export function handleCookieReset() {
 
 export const shopSelector = R.prop('shop');
 
-export const { addItem, addItems, setCartOpen } = shopSlice.actions;
+export const {
+  addItem,
+  addCount,
+  removeItem,
+  setCartOpen,
+  subtractCount,
+} = shopSlice.actions;
 
 export default shopSlice.reducer;

@@ -76,12 +76,12 @@ function ErrorSnackbar() {
             <React.Fragment>
               <Button
                 className={classes.button}
-                color="primary"
+                color="secondary"
                 size="small"
                 variant="contained"
                 onClick={handleClose}
               >
-                Sad
+                OK
               </Button>
             </React.Fragment>
           }

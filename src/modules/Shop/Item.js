@@ -1,20 +1,19 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { screenSelector } from 'store/screenSlice';
+import { addItem, addCount } from 'store/shopSlice';
+import { setError} from 'store/errorSlice';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Image from 'components/Image/Image';
-
-import RootRef from '@material-ui/core/RootRef';
 import { cdnBaseURL } from '../../constants';
 
 import {
@@ -22,6 +21,8 @@ import {
   truncateDescription,
 } from 'helpers/formatHelper';
 import { getFakeDescription } from './temp.helper';
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,6 +97,7 @@ Item.propTypes = {
 };
 
 function Item({ item }) {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
   const { devicePixelRatio } = useSelector(screenSelector);
@@ -113,7 +115,6 @@ function Item({ item }) {
     .trim()}`;
 
   const src = `${cdnBaseURL}/${safeName}-${categoryId}-${id}-01@${devicePixelRatio}x.jpg`;
-  
 
   const [copySuccess, setCopySuccess] = useState('');
   const imageRef = useRef(null);
@@ -121,13 +122,21 @@ function Item({ item }) {
   function copyToClipboard(e) {
     console.log('CopyToClipboard');
     console.log(imageRef.current.innerText);
-    // imageRef.current.select();
-    // document.execCommand('copy');
-    // // This is just personal preference.
-    // // I prefer to not show the whole text area selected.
-    // e.target.focus();
-    navigator.clipboard.writeText(imageRef.current.innerText);
-    setCopySuccess(`${safeName} -> Copied!`);
+    // navigator.clipboard.writeText(imageRef.current.innerText);
+    // setCopySuccess(`${safeName} -> Copied!`);
+  }
+
+  function handleAddToCart() {
+    dispatch(addItem({key: id, item }));
+    dispatch(addCount({key: id}));
+  }
+
+  function handleBuyItNow() {
+    dispatch(setError({error: new Error(`Oops, Buy it now is not available for ${name}.`) }));
+  }
+
+  function navigateToDetailsPage() {
+    dispatch(setError({error: new Error(`Oops, ${name}'s Detail Page isn't available right now.`) }));
   }
 
   return (
@@ -135,7 +144,7 @@ function Item({ item }) {
       <Card className={classes.root}>
         <CardActionArea
           className={classes.actionarea}
-          onClick={copyToClipboard}
+          onClick={navigateToDetailsPage}
         >
           <div className={classes.media}>
             <Image url={src} disableSkeletonAnimation={true} />
@@ -149,25 +158,24 @@ function Item({ item }) {
             <Typography className={classes.price} variant="h6" component="h5">
               {getCurrencyFromNumber(price)}
             </Typography>
-            <RootRef rootRef={imageRef}>
-              <Typography
-                className={classes.description}
-                variant="body2"
-                component="span"
-              >
-                {`${safeName}-${categoryId}-${id}-01`}
-                {/* {truncateDescription(getFakeDescription(), truncateLength)} */}
-              </Typography>
-            </RootRef>
+            <Typography
+              className={classes.description}
+              variant="body2"
+              component="span"
+              ref={imageRef}
+            >
+              {/* {`${safeName}-${categoryId}-${id}-01`} */}
+              {truncateDescription(getFakeDescription(), truncateLength)}
+            </Typography>
 
             {copySuccess}
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.actions}>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" onClick={handleAddToCart}>
             Add to Cart
           </Button>
-          <Button size="small" color="primary">
+          <Button size="small" color="primary" onClick={handleBuyItNow}>
             Buy Now
           </Button>
         </CardActions>
