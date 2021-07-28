@@ -13,15 +13,16 @@ import vaporizersMeta from './tmp/vaporizers-meta.json';
 
 import cookies from 'models/cookies';
 import helper from 'helpers/cookieHelper.js';
-import userTheme from '../assets/theme';
+import { removeItem as deleteItem, sleep } from 'helpers/utils';
 
 const shopSlice = createSlice({
   name: 'shop',
   initialState: {
     cart: {
-      open: false,
+      open: true,
       items: {},
       quanity: {},
+      total: '$999.99',
     },
     categories: categoriesMeta,
     menuItems: {
@@ -49,7 +50,9 @@ const shopSlice = createSlice({
     },
     removeItem(state, action) {
       const { key } = action.payload;
-      state.cart.items = { ...state.cart.items, [key]: null };
+      const items = { ...state.cart.items };
+      const newItems = deleteItem(key, items);
+      state.cart.items = newItems;
       state.cart.quanity = { ...state.cart.quanity, [key]: 0 };
     },
     setCartOpen(state, action) {
@@ -68,6 +71,18 @@ export function handleCookieReset() {
   return async () => {
     console.log('Cookie Reset');
     helper(cookies.options.key).removeItem(cookies?.options.accepted);
+  };
+}
+
+export function handleAddToCart(id, item) {
+  return async (dispatch, getState) => {
+    dispatch(addItem({ key: id, item }));
+    dispatch(addCount({ key: id }));
+    const { cart } = await getState().shop;
+
+    // Need to update the Cart Total.
+    console.log('Cart');
+    console.log(cart);
   };
 }
 

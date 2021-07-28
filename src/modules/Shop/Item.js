@@ -10,8 +10,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { screenSelector } from 'store/screenSlice';
-import { addItem, addCount } from 'store/shopSlice';
-import { setError} from 'store/errorSlice';
+import { handleAddToCart } from 'store/shopSlice';
+import { setError } from 'store/errorSlice';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Image from 'components/Image/Image';
 import { cdnBaseURL } from '../../constants';
@@ -21,8 +21,6 @@ import {
   truncateDescription,
 } from 'helpers/formatHelper';
 import { getFakeDescription } from './temp.helper';
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -126,17 +124,22 @@ function Item({ item }) {
     // setCopySuccess(`${safeName} -> Copied!`);
   }
 
-  function handleAddToCart() {
-    dispatch(addItem({key: id, item }));
-    dispatch(addCount({key: id}));
-  }
-
   function handleBuyItNow() {
-    dispatch(setError({error: new Error(`Oops, Buy it now is not available for ${name}.`) }));
+    dispatch(
+      setError({
+        error: new Error(`Oops, Buy it now is not available for ${name}.`),
+      })
+    );
   }
 
   function navigateToDetailsPage() {
-    dispatch(setError({error: new Error(`Oops, ${name}'s Detail Page isn't available right now.`) }));
+    dispatch(
+      setError({
+        error: new Error(
+          `Oops, ${name}'s Detail Page isn't available right now.`
+        ),
+      })
+    );
   }
 
   return (
@@ -147,7 +150,7 @@ function Item({ item }) {
           onClick={navigateToDetailsPage}
         >
           <div className={classes.media}>
-            <Image url={src} disableSkeletonAnimation={true} />
+            <Image url={src} fade={true} />
           </div>
 
           <CardContent className={classes.content}>
@@ -172,7 +175,11 @@ function Item({ item }) {
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.actions}>
-          <Button size="small" color="primary" onClick={handleAddToCart}>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => dispatch(handleAddToCart(id, item))}
+          >
             Add to Cart
           </Button>
           <Button size="small" color="primary" onClick={handleBuyItNow}>

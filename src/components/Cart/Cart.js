@@ -12,7 +12,9 @@ import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import CartItem from './CartItem';
+import EmptyCart from './EmptyCart';
 
+import { isEmpty } from 'helpers/utils';
 import { setCartOpen, shopSelector } from 'store/shopSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,9 +47,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   footer: {
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    paddingTop: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(2),
   },
   subtotal: {
@@ -80,6 +82,8 @@ export default function PersistentDrawerRight() {
   const { cart } = useSelector(shopSelector);
   const theme = useTheme();
   const classes = useStyles(theme);
+
+  const isCartEmpty = isEmpty(cart?.items);
 
   const handleDrawerClose = () => {
     dispatch(setCartOpen({ open: false }));
@@ -116,20 +120,28 @@ export default function PersistentDrawerRight() {
             variant="h6"
             component="h3"
           >
-            $999.99
+            {cart.total}
           </Typography>
         </div>
       </div>
       <Divider />
-      <List>
-        {['a', 'b', 'b', 'd'].map((text, index) => (
-          <CartItem key={`${text}-${index}`} />
-        ))}
-      </List>
+      {isCartEmpty && <EmptyCart />}
+      {!isCartEmpty && (
+        <List>
+          {Object.keys(cart.items).map((id) => (
+            <CartItem
+              key={id}
+              id={id}
+              item={cart.items[id]}
+              quantity={cart.quanity[id]}
+            />
+          ))}
+        </List>
+      )}
       <section className={classes.footer}>
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           fullWidth
           className={classes.button}
           startIcon={<ShoppingCartIcon />}

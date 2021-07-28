@@ -24,7 +24,7 @@ Image.propTypes = {
   url: PropTypes.string.isRequired,
   width: PropTypes.string,
   height: PropTypes.string,
-  disableSkeletonAnimation: PropTypes.bool,
+  skeletonAnimation: PropTypes.bool,
 };
 
 // currentScreenSize is used to give number
@@ -35,7 +35,7 @@ export default function Image({
   url,
   width = '100%',
   height = '100%',
-  disableSkeletonAnimation = false,
+  skeletonAnimation = false,
 }) {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -58,7 +58,7 @@ export default function Image({
     >
       <Suspense
         fallback={
-          <Skeleton disabled={disableSkeletonAnimation} style={style} />
+          <Skeleton disabled={!skeletonAnimation} style={style} />
         }
       >
         <SuspenseImg urls={[url, placeholder]} alt={alt} />

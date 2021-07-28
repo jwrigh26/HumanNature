@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -11,6 +13,12 @@ import InlineActions from './InlineActions';
 import Meta from './Meta';
 import QuantityStepper from './QuantityStepper';
 import Thumbnail from './Thumbnail';
+import {
+  addCount,
+  removeItem,
+  subtractCount,
+  shopSelector,
+} from 'store/shopSlice';
 
 const useStyles = makeStyles((theme) => ({
   summary: {
@@ -21,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     paddingTop: 0,
     paddingBottom: 0,
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1.5),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2.5),
   },
   details: {
     display: 'flex',
@@ -40,14 +48,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CartItem() {
+CartItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  item: PropTypes.object.isRequired,
+  quantity: PropTypes.number.isRequired,
+};
+
+export default function CartItem({ id, item, quantity }) {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
   const [isExpanded, setIsExpanded] = useState();
 
   function handleChange(_, expanded) {
-    console.log('Expanded: ', expanded);
     setIsExpanded(expanded);
+  }
+
+  function handleRemoveItem(key) {
+    return () => {
+      dispatch(removeItem({key}));
+    }
   }
 
   return (
@@ -56,9 +76,9 @@ export default function CartItem() {
         classes={{ root: classes.summary }}
         expandIcon={<ExpandMoreIcon />}
       >
-        <Thumbnail />
-        <Content expanded={isExpanded}/>
-        <InlineActions />
+        <Thumbnail item={item} />
+        <Content expanded={isExpanded} item={item} quantity={quantity} />
+        <InlineActions onRemoveItem={handleRemoveItem(id)}/>
       </AccordionSummary>
       <AccordionDetails classes={{ root: classes.details }}>
         <Meta />

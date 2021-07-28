@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
 import { setCartOpen, shopSelector } from 'store/shopSlice';
+import {
+  getCurrencyFromNumber,
+} from 'helpers/formatHelper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,16 +56,19 @@ const useStyles = makeStyles((theme) => ({
 
 Content.propTypes = {
   expanded: PropTypes.bool,
+  item: PropTypes.object.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
-export default function Content({expanded = false}) {
+export default function Content({expanded = false, item, quantity}) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const {name, price} = item;
 
   return (
     <div className={classes.root}>
       <Typography className={classes.name} variant="body1" component="h4">
-        Product of Name Goes Here
+        {name}
       </Typography>
       <div className={classes.meta}>
         <Typography
@@ -71,7 +77,7 @@ export default function Content({expanded = false}) {
           component="h5"
           gutterBottom={false}
         >
-          $999.99
+          {getCurrencyFromNumber(price)}
         </Typography>
         <Typography
           className={clsx(classes.quantity, { [classes.hidden]: expanded })}
@@ -79,7 +85,7 @@ export default function Content({expanded = false}) {
           component="h5"
           gutterBottom={false}
         >
-          Qty: 99
+          {`Qty: ${quantity}`}
         </Typography>
       </div>
     </div>

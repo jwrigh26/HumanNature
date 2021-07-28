@@ -135,3 +135,9 @@ export function sortBy(propertyAccessor, isAsc = true) {
 }
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+
+/* eslint-disable no-unused-vars */
+// one line solution to delete using destructuring
+export const removeItem = (key, { [key]: _, ...obj }) => obj;
+/* eslint-enable no-unused-vars */

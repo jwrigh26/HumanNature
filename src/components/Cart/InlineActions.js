@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { remove } from 'js-cookie';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,16 +19,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function InlineActions() {
+InlineActions.propTypes = {
+  onRemoveItem: PropTypes.func.isRequired,
+};
+
+export default function InlineActions({ onRemoveItem: removeItem }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+
+  function handleRemoveItem(event) {
+    event.stopPropagation();
+    removeItem();
+  }
 
   return (
     <div className={classes.root}>
       <FormControlLabel
         aria-label="Remove"
         classes={{ root: classes.formControl }}
-        onClick={(event) => event.stopPropagation()}
+        onClick={handleRemoveItem}
         onFocus={(event) => event.stopPropagation()}
         control={
           <IconButton>
