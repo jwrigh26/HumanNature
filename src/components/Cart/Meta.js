@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
     flex: 1,
+    paddingLeft: theme.spacing(1),
   },
   meta: {
     display: 'flex',
@@ -34,18 +36,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Meta() {
+Meta.propTypes = {
+  item: PropTypes.object.isRequired,
+};
+
+export default function Meta({ item }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   const data = [
     {
       label: 'Color',
-      value: 'Orange',
+      value: item?.color ?? '',
     },
     {
-      label: 'Size',
-      value: 'Medium',
+      label: 'Type',
+      value: item?.categoryType ?? '',
     },
   ];
 

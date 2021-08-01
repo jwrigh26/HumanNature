@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
+import DeleteIcon from '@material-ui/icons/Delete';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -11,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingRight: theme.spacing(1),
   },
   quantity: {
     display: 'flex',
@@ -31,12 +34,32 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderColor: theme.palette.primary.main,
     textAlign: 'center',
-  }
+  },
 }));
 
-export default function QuantityStepper() {
+QuantityStepper.propTypes = {
+  id: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
+  onAdd: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onSubtract: PropTypes.func.isRequired,
+};
+
+export default function QuantityStepper({
+  id,
+  quantity,
+  onAdd: handleAdd,
+  onDelete,
+  onSubtract,
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
+
+  const value = quantity;
+
+  const MinusIcon = value > 1 ? RemoveIcon : DeleteIcon;
+
+  const handleMinus = value > 1 ? onSubtract : onDelete;
 
   return (
     <div className={classes.wrapper}>
@@ -48,11 +71,11 @@ export default function QuantityStepper() {
         >
           Qty:
         </Typography>
-        <IconButton>
-          <RemoveIcon />
+        <IconButton onClick={handleMinus(id)}>
+          <MinusIcon />
         </IconButton>
-        <div className={classes.value}>99</div>
-        <IconButton>
+        <div className={classes.value}>{value}</div>
+        <IconButton onClick={handleAdd(id)}>
           <AddIcon />
         </IconButton>
       </section>

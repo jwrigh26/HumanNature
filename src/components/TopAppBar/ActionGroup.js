@@ -89,7 +89,6 @@ export default function ActionGroup() {
             overlap="circular"
             max={99}
           >
-            {console.log(cart.totalQuantity)}
             <ShoppingCartIcon className={classes.icon} />
           </Badge>
         </IconButton>

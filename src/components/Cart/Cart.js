@@ -89,6 +89,22 @@ export default function PersistentDrawerRight() {
     dispatch(setCartOpen({ open: false }));
   };
 
+  
+
+  // ASC if DES swap -1 and 1 place
+  function compare(a, b) {
+    const aItem = cart.items[a]?.order ?? 0;
+    const bItem = cart.items[b]?.order ?? 0;
+    if (aItem < bItem) {
+      return 1;
+    }
+    if (aItem > bItem) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+
   return (
     <Drawer
       className={classes.drawer}
@@ -128,7 +144,7 @@ export default function PersistentDrawerRight() {
       {isCartEmpty && <EmptyCart />}
       {!isCartEmpty && (
         <List>
-          {Object.keys(cart.items).map((id) => (
+          {Object.keys(cart.items).sort(compare).map((id) => (
             <CartItem
               key={id}
               id={id}

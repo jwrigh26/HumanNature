@@ -14,10 +14,9 @@ import Meta from './Meta';
 import QuantityStepper from './QuantityStepper';
 import Thumbnail from './Thumbnail';
 import {
-  addCount,
+  handleAddQuantityforItem,
   handleRemoveFromCart,
-  subtractCount,
-  shopSelector,
+  handleSubtractQuantityForItem,
 } from 'store/shopSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +66,19 @@ export default function CartItem({ id, item, quantity }) {
   function handleRemoveItem(key) {
     return () => {
       dispatch(handleRemoveFromCart(key));
-    }
+    };
+  }
+
+  function handleAdd(key) {
+    return () => {
+      dispatch(handleAddQuantityforItem(key));
+    };
+  }
+
+  function handleSubtract(key) {
+    return () => {
+      dispatch(handleSubtractQuantityForItem(key));
+    };
   }
 
   return (
@@ -78,12 +89,18 @@ export default function CartItem({ id, item, quantity }) {
       >
         <Thumbnail item={item} />
         <Content expanded={isExpanded} item={item} quantity={quantity} />
-        <InlineActions onRemoveItem={handleRemoveItem(id)}/>
+        <InlineActions onRemoveItem={handleRemoveItem(id)} />
       </AccordionSummary>
       <AccordionDetails classes={{ root: classes.details }}>
-        <Meta />
+        <Meta item={item} />
         <Divider className={classes.divider} orientation="vertical" flexItem />
-        <QuantityStepper />
+        <QuantityStepper
+          id={id}
+          quantity={quantity}
+          onAdd={handleAdd}
+          onDelete={handleRemoveItem}
+          onSubtract={handleSubtract}
+        />
       </AccordionDetails>
     </Accordion>
   );

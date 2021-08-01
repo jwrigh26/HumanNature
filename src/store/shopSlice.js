@@ -95,13 +95,18 @@ function getTotalQuantity(cart) {
   }, 0);
 }
 
+// Note: not sure if I'm a fan of getting state and
+// then getting state again. What is the alternative?
 export function handleAddToCart(id, item) {
   return async (dispatch, getState) => {
-    dispatch(addItem({ key: id, item }));
-    dispatch(addCount({ key: id }));
     const { cart } = await getState().shop;
-    dispatch(setCartTotal({ total: getCartSubtotal(cart) }));
-    dispatch(setCartTotalQuantity({ total: getTotalQuantity(cart) }));
+    const order = Object.keys(cart.items).length + 1;
+    dispatch(addCount({ key: id }));
+    dispatch(addItem({ key: id, item: { ...item, order } }));
+
+    const { cart: newCart } = await getState().shop;
+    dispatch(setCartTotalQuantity({ total: getTotalQuantity(newCart) }));
+    dispatch(setCartTotal({ total: getCartSubtotal(newCart) }));
   };
 }
 
@@ -111,6 +116,24 @@ export function handleRemoveFromCart(id) {
     const { cart } = await getState().shop;
     dispatch(setCartTotal({ total: getCartSubtotal(cart) }));
     dispatch(setCartTotalQuantity({ total: getTotalQuantity(cart) }));
+  };
+}
+
+export function handleAddQuantityforItem(id) {
+  return async (dispatch, getState) => {
+    dispatch(addCount({ key: id }));
+    const { cart: newCart } = await getState().shop;
+    dispatch(setCartTotalQuantity({ total: getTotalQuantity(newCart) }));
+    dispatch(setCartTotal({ total: getCartSubtotal(newCart) }));
+  };
+}
+
+export function handleSubtractQuantityForItem(id) {
+  return async (dispatch, getState) => {
+    dispatch(subtractCount({ key: id }));
+    const { cart: newCart } = await getState().shop;
+    dispatch(setCartTotalQuantity({ total: getTotalQuantity(newCart) }));
+    dispatch(setCartTotal({ total: getCartSubtotal(newCart) }));
   };
 }
 
