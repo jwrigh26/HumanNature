@@ -13,6 +13,7 @@ import vaporizersMeta from './tmp/vaporizers-meta.json';
 
 import cookies from 'models/cookies';
 import helper from 'helpers/cookieHelper.js';
+import { getCurrencyFromNumber } from 'helpers/formatHelper';
 import { removeItem as deleteItem, sleep } from 'helpers/utils';
 
 const shopSlice = createSlice({
@@ -22,7 +23,8 @@ const shopSlice = createSlice({
       open: true,
       items: {},
       quanity: {},
-      total: '$999.99',
+      total: '$0.00',
+      totalQuantity: 0,
     },
     categories: categoriesMeta,
     menuItems: {
@@ -44,7 +46,6 @@ const shopSlice = createSlice({
     },
     addCount(state, action) {
       const { key } = action.payload;
-      console.log(key);
       const count = state.cart.quanity[key] ?? 0;
       state.cart.quanity = { ...state.cart.quanity, [key]: count + 1 };
     },
@@ -57,6 +58,12 @@ const shopSlice = createSlice({
     },
     setCartOpen(state, action) {
       state.cart.open = action.payload.open;
+    },
+    setCartTotal(state, action) {
+      state.cart.total = getCurrencyFromNumber(action.payload.total);
+    },
+    setCartTotalQuantity(state, action) {
+      state.cart.totalQuantity = action.payload.total;
     },
     subtractCount(state, action) {
       const { key } = action.payload;
@@ -74,15 +81,36 @@ export function handleCookieReset() {
   };
 }
 
+function getCartSubtotal(cart) {
+  return Object.keys(cart.items).reduce((sum, key) => {
+    const { price } = cart.items[key] ?? { price: 0 };
+    const count = cart.quanity[key] ?? 0;
+    return sum + price * count;
+  }, 0);
+}
+
+function getTotalQuantity(cart) {
+  return Object.keys(cart.quanity).reduce((sum, key) => {
+    return sum + cart.quanity[key];
+  }, 0);
+}
+
 export function handleAddToCart(id, item) {
   return async (dispatch, getState) => {
     dispatch(addItem({ key: id, item }));
     dispatch(addCount({ key: id }));
     const { cart } = await getState().shop;
+    dispatch(setCartTotal({ total: getCartSubtotal(cart) }));
+    dispatch(setCartTotalQuantity({ total: getTotalQuantity(cart) }));
+  };
+}
 
-    // Need to update the Cart Total.
-    console.log('Cart');
-    console.log(cart);
+export function handleRemoveFromCart(id) {
+  return async (dispatch, getState) => {
+    dispatch(removeItem({ key: id }));
+    const { cart } = await getState().shop;
+    dispatch(setCartTotal({ total: getCartSubtotal(cart) }));
+    dispatch(setCartTotalQuantity({ total: getTotalQuantity(cart) }));
   };
 }
 
@@ -93,6 +121,8 @@ export const {
   addCount,
   removeItem,
   setCartOpen,
+  setCartTotal,
+  setCartTotalQuantity,
   subtractCount,
 } = shopSlice.actions;
 

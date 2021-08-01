@@ -15,7 +15,7 @@ import QuantityStepper from './QuantityStepper';
 import Thumbnail from './Thumbnail';
 import {
   addCount,
-  removeItem,
+  handleRemoveFromCart,
   subtractCount,
   shopSelector,
 } from 'store/shopSlice';
@@ -66,7 +66,7 @@ export default function CartItem({ id, item, quantity }) {
 
   function handleRemoveItem(key) {
     return () => {
-      dispatch(removeItem({key}));
+      dispatch(handleRemoveFromCart(key));
     }
   }
 

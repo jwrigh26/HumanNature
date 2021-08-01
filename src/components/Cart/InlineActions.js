@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { remove } from 'js-cookie';
 
 const useStyles = makeStyles((theme) => ({
   root: {

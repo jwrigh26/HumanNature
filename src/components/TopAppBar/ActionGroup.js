@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
+import Badge from '@material-ui/core/Badge';
 import Hidden from '@material-ui/core/Hidden';
 import PaletteIcon from '@material-ui/icons/Palette';
 import Icon from '@material-ui/core/Icon';
@@ -42,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
       bottom: '-4px',
     },
   },
+  badgeTopRight: {
+    fontFamily: theme.typography.fontFamlies.secondary,
+  },
   button: {
     '&:disabled': {
       opacity: 0.35,
@@ -78,7 +82,16 @@ export default function ActionGroup() {
           onClick={actions.handleToggleCart}
           disabled={cart.open}
         >
-          <ShoppingCartIcon className={classes.icon} />
+          <Badge
+            badgeContent={cart.totalQuantity ?? 0}
+            classes={{anchorOriginTopRightCircular: classes.badgeTopRight}}
+            color="secondary"
+            overlap="circular"
+            max={99}
+          >
+            {console.log(cart.totalQuantity)}
+            <ShoppingCartIcon className={classes.icon} />
+          </Badge>
         </IconButton>
         <Hidden smUp>
           <IconButton onClick={actions.handleOpenMore}>
