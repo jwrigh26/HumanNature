@@ -84,7 +84,7 @@ export default function ActionGroup() {
         >
           <Badge
             badgeContent={cart.totalQuantity ?? 0}
-            classes={{anchorOriginTopRightCircular: classes.badgeTopRight}}
+            classes={{ anchorOriginTopRightCircular: classes.badgeTopRight }}
             color="secondary"
             overlap="circular"
             max={99}

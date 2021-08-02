@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
   gutter: {
     marginBottom: theme.spacing(8),
-  }
+  },
 }));
 
 export default function EmptyCart() {
@@ -35,7 +35,11 @@ export default function EmptyCart() {
       <Typography className={clsx(classes.text)} variant="h6" component="span">
         Looks like your cart is empty.
       </Typography>
-      <Typography className={clsx(classes.text, classes.gutter)} variant="h3" component="h3">
+      <Typography
+        className={clsx(classes.text, classes.gutter)}
+        variant="h3"
+        component="h3"
+      >
         Let's go shopping!
       </Typography>
       <RemoveShoppingCartIcon className={clsx(classes.icon, classes.gutter)} />

@@ -6,9 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
 import { setCartOpen, shopSelector } from 'store/shopSlice';
-import {
-  getCurrencyFromNumber,
-} from 'helpers/formatHelper';
+import { getCurrencyFromNumber } from 'helpers/formatHelper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,10 +58,10 @@ Content.propTypes = {
   quantity: PropTypes.number.isRequired,
 };
 
-export default function Content({expanded = false, item, quantity}) {
+export default function Content({ expanded = false, item, quantity }) {
   const theme = useTheme();
   const classes = useStyles(theme);
-  const {name, price} = item;
+  const { name, price } = item;
 
   return (
     <div className={classes.root}>

@@ -20,7 +20,7 @@ const shopSlice = createSlice({
   name: 'shop',
   initialState: {
     cart: {
-      open: true,
+      open: false,
       items: {},
       quanity: {},
       total: '$0.00',

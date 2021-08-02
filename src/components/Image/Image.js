@@ -57,9 +57,7 @@ export default function Image({
       }}
     >
       <Suspense
-        fallback={
-          <Skeleton disabled={!skeletonAnimation} style={style} />
-        }
+        fallback={<Skeleton disabled={!skeletonAnimation} style={style} />}
       >
         <SuspenseImg urls={[url, placeholder]} alt={alt} />
       </Suspense>

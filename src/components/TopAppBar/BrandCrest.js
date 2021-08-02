@@ -30,16 +30,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     position: 'relative',
     color: theme.palette.text.primary,
-    bottom: '0px',
+    bottom: '4px',
     [theme.breakpoints.up('xs')]: {
-      bottom: '0px',
+      bottom: '4px',
     },
     [theme.breakpoints.up('sm')]: {
       bottom: '4px',
     },
     [theme.breakpoints.up('md')]: {
       color: theme.palette.text.primary,
-      bottom: '0px',
+      bottom: '4px',
     },
   },
   subTitle: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
 
     [theme.breakpoints.up('md')]: {
-      bottom: '-3px',
+      bottom: '-3xpx',
     },
     [theme.breakpoints.up('lg')]: {
       bottom: '-4px',
@@ -62,8 +62,14 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     color: theme.palette.text.primary,
     fontSize: '1.25rem',
-    marginLeft: '1.25rem',
-    bottom: '-8px',
+    marginLeft: theme.spacing(1),
+    bottom: '0px',
+    [theme.breakpoints.up('md')]: {
+      bottom: '-3px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      bottom: '-4px',
+    },
   },
 
   supportingTitle: {
@@ -151,12 +157,14 @@ function BrandCrest() {
           // }}
         >
           <SVG />
-          <Typography className={classes.title} variant="h2">
-            Human+Nature
-          </Typography>
-          <Typography variant="body2" className={classes.placeholder}>
-            Shop
-          </Typography>
+          <Hidden smDown>
+            <Typography className={classes.title} variant="h2">
+              Human+Nature
+            </Typography>
+            <Typography variant="body2" className={classes.placeholder}>
+              Shop
+            </Typography>
+          </Hidden>
         </ButtonBase>
       </div>
     );

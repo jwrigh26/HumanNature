@@ -18,7 +18,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // TODO: add default placeholder for failed loads
-export default function SuspenseImg({ urls, alt, style, fade = false, duration: d = 0 }) {
+export default function SuspenseImg({
+  urls,
+  alt,
+  style,
+  fade = false,
+  duration: d = 0,
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
 

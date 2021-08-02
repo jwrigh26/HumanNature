@@ -10,8 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import { shopSelector } from 'store/shopSlice';
 import Item from './Item';
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -57,16 +55,16 @@ export default function Category({ id }) {
       <Grid container spacing={3}>
         {items.map((item) => {
           return (
-              <Grid
-                item
-                key={`${item.merchantId}-${item.id}`}
-                xs={12}
-                sm={6}
-                md={4}
-                lg={3}
-              >
-                <Item item={item} />
-              </Grid>
+            <Grid
+              item
+              key={`${item.merchantId}-${item.id}`}
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+            >
+              <Item item={item} />
+            </Grid>
           );
         })}
       </Grid>

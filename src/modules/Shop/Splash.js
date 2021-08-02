@@ -4,6 +4,7 @@ import { useTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
+import clsx from 'clsx';
 
 import Image from 'components/Image/Image';
 import Skeleton from 'components/Image/Skeleton';
@@ -14,13 +15,50 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
     color: theme.palette.text.secondary,
+    textAlign: 'default',
   },
   images: {
     display: 'flex',
     height: 220,
-  }
+  },
+  body1: {
+    marginBottom: theme.spacing(2),
+  },
+  body2: {
+    marginBottom: theme.spacing(2),
+  },
+  bold: {
+    fontWeight: 700,
+  },
+  divider: {
+    marginBottom: theme.spacing(3),
+    marginTop: theme.spacing(3),
+  },
+  indent: {
+    marginLeft: theme.spacing(2),
+  },
+  marginTop: {
+    marginTop: theme.spacing(2),
+  },
+  listStyleAlpha: {
+    listStyleType: 'lower-alpha',
+    '& li': {
+      marginBottom: theme.spacing(2),
+    },
+  },
+  listStyleLowerRoman: {
+    listStyleType: 'lower-roman',
+    '& li': {
+      marginBottom: theme.spacing(2),
+    },
+  },
+  listStyleCircle: {
+    listStyleType: 'circle',
+    '& li': {
+      marginBottom: theme.spacing(2),
+    },
+  },
 }));
 
 export default function AgelessHoldings() {
@@ -29,39 +67,114 @@ export default function AgelessHoldings() {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3" gutterBottom>
-        Splash Page
-      </Typography>
-      <Typography variant="h4" gutterBottom>
-          Image Testing
+      <Paper classes={{ root: classes.paper }}>
+        <Typography variant="h3" gutterBottom>
+          Demo Page
         </Typography>
-      <div className={classes.images}>
-        <Image alt="test image" url={"http://placekitten.com/200/300"} />
-        <Skeleton style={{width: '100px'}}/>
-      </div>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>xs=12</Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>xs=12 sm=6</Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper className={classes.paper}>xs=12 sm=6</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>xs=6 sm=3</Paper>
-        </Grid>
-      </Grid>
+        <Typography variant="h4" gutterBottom>
+          Welcome to the Human+Nature Shop Demo
+        </Typography>
+        <Typography
+          variant="body2"
+          classes={{ body2: clsx(classes.body2, classes.indent) }}
+        >
+          <span className={classes.bold}>
+            The following work has been done:
+          </span>
+        </Typography>
+        <ol className={classes.listStyleAlpha}>
+          <li>
+            <Typography variant="body2">
+              Created a simple webpage frame to host shopping app development.
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body2">
+              Created a simple CDN powered by Google storage to host shop item
+              images
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body2">
+              Created Category pages for shopping
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body2">
+              Created a Shopping cart list that allows a user to add, update,
+              and remove items in their cart
+            </Typography>
+          </li>
+        </ol>
+        <Typography
+          variant="body2"
+          classes={{ body2: clsx(classes.body2, classes.indent) }}
+        >
+          <span className={classes.bold}>Please click on the categories</span>{' '}
+          to view items and explore adding items, updating quantity, and
+          removing items from the shopping cart.
+        </Typography>
+        <Typography
+          variant="body2"
+          classes={{ body2: clsx(classes.body2, classes.indent) }}
+        >
+          Feel free to try it on a Widescreen PC monitor, Tablet, or Mobile
+          device.
+        </Typography>
+        <Typography
+          variant="body2"
+          classes={{ body2: clsx(classes.body2, classes.indent) }}
+        >
+          Please don’t pay attention too much to colors, styles, and the outer
+          shell of the website. This is mainly to help me develop the shopping
+          experience.
+        </Typography>
+        <Typography
+          variant="body2"
+          classes={{ body2: clsx(classes.body2, classes.indent) }}
+        >
+          <span className={classes.bold}>
+            The following is outstanding work:
+          </span>
+        </Typography>
+        <ol className={classes.listStyleAlpha}>
+          <li>
+            <Typography variant="body2">
+              Create a Shopping “Splash” page
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body2">Create Item pages</Typography>
+          </li>
+          <li>
+            <Typography variant="body2">Create the Checkout Wizard</Typography>
+          </li>
+          <li>
+            <Typography variant="body2">
+              Implement a shopping api (Authorize.net)
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body2">
+              Calculate shipping costs and sales tax
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="body2">
+              Item and inventory management
+            </Typography>
+          </li>
+        </ol>
+        <Typography
+          variant="body2"
+          classes={{ body2: clsx(classes.body2, classes.indent) }}
+        >
+          Going forward, I believe it would be best to discuss work done,
+          remaining work, realistic timeline and what fits inside a MVP or
+          minimal viable project, which we agreed upon I would do for free.
+          Please reach out with me about thoughts, concerns, and questions.
+        </Typography>
+      </Paper>
     </div>
   );
 }
