@@ -35,6 +35,7 @@ module.exports = (env = {}, options = {}) => {
   return {
     entry: {
       index: 'src/index.js',
+      foo: 'src/foo.js',
     },
 
     stats: {
@@ -139,6 +140,12 @@ module.exports = (env = {}, options = {}) => {
         filename: 'index.html',
         template: 'src/html/root-index.html',
         chunks: ['index'],
+        chunksSortMode: 'manual',
+      }),
+      new HtmlWebpackPlugin({
+        filename: 'foo.html',
+        template: 'src/html/foo-index.html',
+        chunks: ['foo'],
         chunksSortMode: 'manual',
       }),
       new FaviconsWebpackPlugin({

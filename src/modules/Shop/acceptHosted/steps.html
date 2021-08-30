@@ -1,0 +1,32 @@
+<!-- iframe placeholder -->
+
+<div id="iframe_holder" class="center-block" style="width:90%;max-width: 1000px">
+	<iframe id="add_payment" class="embed-responsive-item panel" name="add_payment" width="100%"    frameborder="0" scrolling="no" hidden="true">
+	</iframe>
+</div>
+
+<!-- Submit Http Post -->
+<form id="send_token" action="" method="post" target="add_payment">
+	<input type="hidden" name="token" value="Replace with form token from getHostedPaymentPageResponse" />
+</form>
+
+<!-- Method to recieve iframe response -->
+AuthorizeNetIFrame.onReceiveCommunication = function (querystr) {
+	var params = parseQueryString(querystr);
+	switch (params["action"]) {
+		case "successfulSave":
+			break;
+		case "cancel":
+			break;
+		case "resizeWindow":
+			var w = parseInt(params["width"]);
+			var h = parseInt(params["height"]);
+			var ifrm = document.getElementById("add_payment");
+			ifrm.style.width = w.toString() + "px";
+			ifrm.style.height = h.toString() + "px";
+			break;
+		case "transactResponse":
+			var ifrm = document.getElementById("add_payment");
+			ifrm.style.display = 'none';
+		}
+	};

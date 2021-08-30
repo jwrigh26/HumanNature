@@ -1,13 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import Paper from '@material-ui/core/Paper';
 
-import Image from 'components/Image/Image';
-import Skeleton from 'components/Image/Skeleton';
+// import {  } from 'store/paymentSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,11 +60,27 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(2),
     },
   },
+  api: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    padding: theme.spacing(4),
+    alignItems: 'center',
+    justifyItems: 'center',
+  },
+  button: {
+    width: '50%',
+  },
 }));
 
 export default function AgelessHoldings() {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
+
+  function handleFoo() {
+    //
+  }
 
   return (
     <div className={classes.root}>
@@ -74,6 +91,17 @@ export default function AgelessHoldings() {
         <Typography variant="h4" gutterBottom>
           Welcome to the Human+Nature Shop Demo
         </Typography>
+        <section className={classes.api}>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            onClick={handleFoo}
+            startIcon={<CreditCardIcon />}
+          >
+            Authorize Credit Card
+          </Button>
+        </section>
         <Typography
           variant="body2"
           classes={{ body2: clsx(classes.body2, classes.indent) }}
