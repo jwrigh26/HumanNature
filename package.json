@@ -25,6 +25,9 @@
     "build:analyze": "npm run build -- --env.addons=bundleanalyzer",
     "write-meta": "node scripts/writeArticleMeta.js"
   },
+  "browser": {
+    "fs": false
+  },
   "browserslist": {
     "production": [
       ">0.2%",

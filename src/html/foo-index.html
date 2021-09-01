@@ -1,27 +1,122 @@
+<!-- <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("#btnContinue").click(function () {
+				console.log('hi');
+				$("#redirectToken").val($("#inputtoken").val());
+				});
+			});
+	</script>
+</head>
+<body>
+	<input type="text" id="inputtoken" value="" />
+	<br />
+	<form method="post" action="https://test.authorize.net/payment/payment" id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage">
+		<input type="hidden" id="redirectToken" name="token" value="" />
+		Redirect-Continue to Authorize.net to Payment Page
+		<button id="btnContinue" onclick="">Continue to next page</button>
+	</form>
+    <div id="foo-root" />
+</body>
+</html> -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+  />
+
   <head>
-    <meta
-      name="viewport"
-      content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=1, user-scalable=0"
-    />
-    <meta charset="utf-8" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Source+Sans+Pro:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="//fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-
-    <title>FOO</title>
+    <title>HostedPayment Test Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        $('#btnOpenAuthorizeNetIFrame').click(function () {
+          $('#add_payment').show();
+          $('#send_token')
+            .attr({
+              action: 'https://test.authorize.net/payment/payment',
+              target: 'add_payment',
+            })
+            .submit();
+          $(window).scrollTop($('#add_payment').offset().top - 50);
+        });
+      });
+    </script>
   </head>
   <body>
-    <h1>This is the Foo Root</h1>
-    <p>It is foo like!</p>
-    <div id="foo-root"></div>
+    <h1>LOCAL</h1>
+    <div>
+      Open Authorize.net in an iframe to complete transaction
+      <button id="btnOpenAuthorizeNetIFrame" onclick="">
+        Show Payment Form
+      </button>
+    </div>
+    <div
+      id="iframe_holder"
+      class="center-block"
+      style="width: 90%; max-width: 1000px"
+    >
+      <iframe
+        id="add_payment"
+        class="embed-responsive-item panel"
+        name="add_payment"
+        width="100%"
+        frameborder="0"
+        scrolling="no"
+        hidden="true"
+      >
+      </iframe>
+    </div>
+    <form id="send_token" action="" method="post" target="add_payment">
+      <input
+        type="hidden"
+        name="token"
+        value="2e0+CXyUfO7xy5oix25IKy1FSoTeiKAbJ5PIsr9mlBwCnJmTMLrIdC1S0D0nG35Z6RRjj0Xd0jIJIH8UfJQKHO0yVwWQrQdpxk2tuLgZCfTxlZtvpKktNXIG7X43m5RiM9cA8z2AOWnOaGvtp1auIfCSwMU3bJFT6xLqiL+DHYcXejO9I25SX77mQGeSTR5Tbe1O9yie6UNpq+AoB8rC9Hc1sSJnVcSh4CrIqosbNNTMqN/qcEaJwG5oyc2Og2boUyq+gvkJE4M1V3jUMDyIKUxF7SNS86zmQBNq9GEbSw/z0vkM3eOt6uv31RFVfgvpsYhs1SiAY1J38vWeGog/FN/UOHIqalP1c2FLsqeJYB/PWMVi85bVhCE5dkIhxL73UOn80tnUklKLeKD4Dyhcf+mKkzE/8P5JxpoNyh456fyByVEsySJYgkvpY7APj4Sa5aLFORXtqWsAikonNIMUszs7xkRrsKJCQ8MQko3WRldmouqtOJ8MVcjd3KBtmpYGuQaavDBf9Gonnp44FBJd2I6UzKgV+67eWIw/RjSre/8/ZMD2SSBCVCPTyVZDtnvDnPIi+rUTcfKPsJZGXnpdgmkvO6mAbXTWRIYnONmWvfQI4mzdrrRxlTXIzuFcN9qpp3avwIDUCpzoA75O6G9aO2QrrZASl9vcsFFbWN/DaeMco3QHAmLEDZ+8CDNt+7eYF3umHSsedqBsGDfeW7MUuhZ4RZhTwMZki2KPFykkflma9on5PM+5EhiZ34smxfjhLj+c6we0fEqK+mUw2DxYYd4Ye7qiQL09/3HOZNtcnDEpa0l5qNDBLxKd6NnjteqhtO0sPpOxh898KNkEHwNzq4BRaPvxncSafG8QWSHDz0Q=.99QWcd7W"
+      />
+    </form>
+
+    <script type="text/javascript">
+      (function () {
+        if (!window.AuthorizeNetIFrame) window.AuthorizeNetIFrame = {};
+        AuthorizeNetIFrame.onReceiveCommunication = function (querystr) {
+          var params = parseQueryString(querystr);
+          switch (params['action']) {
+            case 'successfulSave':
+              break;
+            case 'cancel':
+              break;
+            case 'resizeWindow':
+              var w = parseInt(params['width']);
+              var h = parseInt(params['height']);
+              var ifrm = document.getElementById('add_payment');
+              ifrm.style.width = w.toString() + 'px';
+              ifrm.style.height = h.toString() + 'px';
+              break;
+            case 'transactResponse':
+              var ifrm = document.getElementById('add_payment');
+              ifrm.style.display = 'none';
+          }
+        };
+
+        function parseQueryString(str) {
+          var vars = [];
+          var arr = str.split('&');
+          var pair;
+          for (var i = 0; i < arr.length; i++) {
+            pair = arr[i].split('=');
+            vars.push(pair[0]);
+            vars[pair[0]] = unescape(pair[1]);
+          }
+          return vars;
+        }
+      })();
+    </script>
   </body>
 </html>

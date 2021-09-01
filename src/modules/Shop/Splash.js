@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import Paper from '@material-ui/core/Paper';
+import { useHistory } from 'react-router';
 
 // import {  } from 'store/paymentSlice';
 
@@ -77,9 +78,11 @@ export default function AgelessHoldings() {
   const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
+  const history = useHistory();
 
   function handleFoo() {
-    //
+    console.log('Push cart-text')
+    history.push('/shop/cart-test');
   }
 
   return (

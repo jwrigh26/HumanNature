@@ -10,6 +10,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const fs = require('fs');
 
 // TODO: Find out what prod constants should be
 module.exports = (env = {}, options = {}) => {
@@ -35,7 +36,8 @@ module.exports = (env = {}, options = {}) => {
   return {
     entry: {
       index: 'src/index.js',
-      foo: 'src/foo.js',
+      iFrameCommunicator: 'src/iFrameCommunicator.js',
+      foo: 'src/foo-index.js',
     },
 
     stats: {
@@ -60,6 +62,16 @@ module.exports = (env = {}, options = {}) => {
       stats: 'minimal',
       index: env.devServerIndex || 'index.html',
       historyApiFallback: true,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': '*',
+      },
+      https: {
+        key: fs.readFileSync(path.resolve(__dirname, 'cert.key')),
+        cert: fs.readFileSync(path.resolve(__dirname, 'cert.crt')),
+        ca: fs.readFileSync(path.resolve(__dirname, 'ca.crt')),
+      },
     },
 
     resolve: {
@@ -143,7 +155,13 @@ module.exports = (env = {}, options = {}) => {
         chunksSortMode: 'manual',
       }),
       new HtmlWebpackPlugin({
-        filename: 'foo.html',
+        filename: 'iframe-communicator.html',
+        template: 'src/html/iFrameCommunicator.html',
+        chunks: ['iFrameCommunicator'],
+        chunksSortMode: 'manual',
+      }),
+      new HtmlWebpackPlugin({
+        filename: 'foo-index.html',
         template: 'src/html/foo-index.html',
         chunks: ['foo'],
         chunksSortMode: 'manual',

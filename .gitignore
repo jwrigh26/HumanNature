@@ -165,3 +165,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# npx mkcert-cert
+# npx mkcert create-ca
+# https://stackoverflow.com/questions/26663404/webpack-dev-server-running-on-https-web-sockets-secure
+*.crt
+*.key
