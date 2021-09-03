@@ -1,9 +1,17 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { getAuthToken, useTokenSelector } from 'store/paymentSlice';
+import {
+  getAuthToken,
+  resetHostPaymentForm,
+  useCanHostPaymentFormSelector,
+  useTokenSelector,
+} from 'store/paymentSlice';
 import { hostedPaymentURL } from '../../constants';
 import { hasValue } from 'helpers/utils';
+import Button from '@material-ui/core/Button';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -15,37 +23,35 @@ export default function HostedPayment() {
   const classes = useStyles(theme);
   const formRef = useRef();
   const token = useTokenSelector();
-
+  const canHostPaymentForm = useCanHostPaymentFormSelector();
   const [hidden, setHidden] = useState(true);
-  const [canShop, setCanShop] = useState(false);
 
   useEffect(() => {
-    dispatch(getAuthToken());
-  }, []);
-
-  useEffect(() => {
-    if (hasValue(token)) {
-      setCanShop(true);
+    if (canHostPaymentForm && formRef) {
+      setHidden(false);
+      formRef.current.submit();
     }
-  }, [token]);
+  }, [canHostPaymentForm, formRef]);
+
+  useEffect(() => {
+    return () => {
+      console.log('cleaned up');
+      dispatch(resetHostPaymentForm());
+    };
+  }, []);
 
   async function handleShowPaymentForm(e) {
     e.preventDefault();
-    if (canShop) {
-      setHidden(false);
-      if (formRef) {
-        formRef.current.submit();
-      }
-    } else {
-      console.log('Cannot shop. Token: ', token);
-    }
+    dispatch(getAuthToken());
   }
 
   const style = { width: '90%', maxWidth: '1000px' };
 
   return (
     <div className={classes.root}>
-      <div>Open Authorize.net in an iframe to complete transaction</div>
+      <Typography variant="h6" gutterBottom>
+        Demo for Authorize.net Hosted Payment Form
+      </Typography>
       <div id="iframe_holder" className="center-block" style={style}>
         <iframe
           id="hosted_payment"
@@ -57,21 +63,33 @@ export default function HostedPayment() {
           hidden={hidden}
         ></iframe>
       </div>
-      {token && (
-        <form
-          onSubmit={handleShowPaymentForm}
-          id="send_token"
-          ref={formRef}
-          action={hostedPaymentURL}
-          method="post"
-          target="hosted_payment"
-        >
-          <input type="hidden" name="token" value={token} />
-          <button id="btnOpenAuthorizeNetIFrame" type="submit">
-            Show Payment Form
-          </button>
-        </form>
-      )}
+      <form
+        onSubmit={handleShowPaymentForm}
+        id="send_token"
+        ref={formRef}
+        action={hostedPaymentURL}
+        method="post"
+        target="hosted_payment"
+      >
+        <input type="hidden" name="token" value={token} />
+        {!canHostPaymentForm && (
+          <>
+            {/* <button id="btnOpenAuthorizeNetIFrame" type="submit">
+              Show Payment Form
+            </button> */}
+            <Button
+              id="btnOpenAuthorizeNetIFrame"
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              type="submit"
+              startIcon={<CreditCardIcon />}
+            >
+              Check Out
+            </Button>
+          </>
+        )}
+      </form>
     </div>
   );
 }
