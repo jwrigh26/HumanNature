@@ -9,7 +9,7 @@ import CreditCardIcon from '@material-ui/icons/CreditCard';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router';
 
-// import {  } from 'store/paymentSlice';
+import { getAuthToken } from 'store/paymentSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,6 +83,7 @@ export default function AgelessHoldings() {
   function handleFoo() {
     console.log('Push cart-text')
     history.push('/shop/cart-test');
+    // dispatch(getAuthToken());
   }
 
   return (
@@ -102,7 +103,7 @@ export default function AgelessHoldings() {
             onClick={handleFoo}
             startIcon={<CreditCardIcon />}
           >
-            Authorize Credit Card
+            GO TO SHOP DEMO
           </Button>
         </section>
         <Typography
