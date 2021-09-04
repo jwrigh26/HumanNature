@@ -15,6 +15,12 @@ import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
+  payment: {
+    height: '100%',
+    width: '100%',
+    maxWidth: 1000,
+    border: `1px solid ${theme.palette.grey[400]}`,
+  },
 }));
 
 export default function HostedPayment() {
@@ -45,14 +51,14 @@ export default function HostedPayment() {
     dispatch(getAuthToken());
   }
 
-  const style = { width: '90%', maxWidth: '1000px' };
+  const style = { width: '100%', maxWidth: '1000px', height: '880px' };
 
   return (
     <div className={classes.root}>
       <Typography variant="h6" gutterBottom>
         Demo for Authorize.net Hosted Payment Form
       </Typography>
-      <div id="iframe_holder" className="center-block" style={style}>
+      <div id="iframe_holder" className={classes.payment}>
         <iframe
           id="hosted_payment"
           className="embed-responsive-item panel"
@@ -61,6 +67,7 @@ export default function HostedPayment() {
           frameBorder="0"
           scrolling="no"
           hidden={hidden}
+          style={style}
         ></iframe>
       </div>
       <form
@@ -74,9 +81,6 @@ export default function HostedPayment() {
         <input type="hidden" name="token" value={token} />
         {!canHostPaymentForm && (
           <>
-            {/* <button id="btnOpenAuthorizeNetIFrame" type="submit">
-              Show Payment Form
-            </button> */}
             <Button
               id="btnOpenAuthorizeNetIFrame"
               variant="contained"
@@ -90,6 +94,7 @@ export default function HostedPayment() {
           </>
         )}
       </form>
+      
     </div>
   );
 }

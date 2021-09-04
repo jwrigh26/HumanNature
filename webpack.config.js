@@ -155,7 +155,7 @@ module.exports = (env = {}, options = {}) => {
         chunksSortMode: 'manual',
       }),
       new HtmlWebpackPlugin({
-        filename: 'iframe-communicator.html',
+        filename: 'iFrameCommunicator.html',
         template: 'src/html/iFrameCommunicator.html',
         chunks: ['iFrameCommunicator'],
         chunksSortMode: 'manual',
