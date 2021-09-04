@@ -67,11 +67,11 @@ module.exports = (env = {}, options = {}) => {
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Allow-Methods': '*',
       },
-      // https: {
-      //   key: fs.readFileSync(path.resolve(__dirname, 'cert.key')),
-      //   cert: fs.readFileSync(path.resolve(__dirname, 'cert.crt')),
-      //   ca: fs.readFileSync(path.resolve(__dirname, 'ca.crt')),
-      // },
+      https: {
+        key: fs.readFileSync(path.resolve(__dirname, 'cert.key')),
+        cert: fs.readFileSync(path.resolve(__dirname, 'cert.crt')),
+        ca: fs.readFileSync(path.resolve(__dirname, 'ca.crt')),
+      },
     },
 
     resolve: {
