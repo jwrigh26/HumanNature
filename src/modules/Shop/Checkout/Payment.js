@@ -18,7 +18,7 @@ import { hostedPaymentURL } from '../../../constants';
 
 const useStyles = makeStyles((theme) => ({
   block: {
-    padding: theme.spacing(3),
+    paddingLeft: theme.spacing(2),
   },
   divider: {
     marginBottom: theme.spacing(2),
@@ -69,6 +69,7 @@ export default function Payment() {
     if (panel === 'panel1' && newExpanded) {
       dispatch(getAuthToken());
     } else {
+      console.log('Reset');
       dispatch(resetHostPaymentForm());
     }
     setExpanded(newExpanded ? panel : false);
@@ -89,12 +90,6 @@ export default function Payment() {
 
   return (
     <>
-      <div className={clsx(classes.block)}>
-        <Typography gutterBottom variant="h6" component="h6">
-          Payment
-        </Typography>
-      </div>
-      <Divider className={classes.divider} />
       <Accordion
         classes={{ root: classes.accordian }}
         expanded={expanded === 'panel1'}
@@ -108,7 +103,11 @@ export default function Payment() {
           aria-controls="panel1d-content"
           id="panel1d-header"
         >
-          <Typography>Collapsible Group Item #1</Typography>
+          <div className={clsx(classes.block)}>
+            <Typography gutterBottom variant="h6" component="h6">
+              Payment
+            </Typography>
+          </div>
         </AccordionSummary>
         <AccordionDetails>
           <form

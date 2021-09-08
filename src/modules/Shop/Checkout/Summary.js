@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   block: {
-    padding: theme.spacing(3),
+    paddingLeft: theme.spacing(2),
+    paddingTop: theme.spacing(2),
+    paddingRight: theme.spacing(2),
   },
   paper: {
     color: theme.palette.text.secondary,
@@ -23,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
   divider: {
     marginBottom: theme.spacing(2),
   },
+  content: {
+    height: 220
+  }
 }));
 
 export default function Checkout() {
@@ -40,7 +45,7 @@ export default function Checkout() {
         </Button>
       </div>
       <Divider className={classes.divider} />
-      <div className={clsx(classes.block)}>
+      <div className={clsx(classes.block, classes.content)}>
         <Typography gutterBottom variant="body1" component="p">
           Stuff goes here
         </Typography>
