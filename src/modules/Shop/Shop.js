@@ -6,6 +6,7 @@ import useRoute from 'hooks/useRoute';
 
 import Splash from './Splash';
 import Category from './Category';
+import Checkout from './Checkout/Checkout';
 import HostedPayment from './HostedPayment';
 
 const useStyles = makeStyles((theme) => ({
@@ -62,6 +63,9 @@ function Shop() {
         </Route>
         <Route path={`${path}/cart-test`}>
           <HostedPayment />
+        </Route>
+        <Route path={`${path}/checkout`}>
+          <Checkout />
         </Route>
         {/* <Route exact path="/">
           <Splash />

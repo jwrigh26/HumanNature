@@ -82,7 +82,7 @@ export default function AgelessHoldings() {
 
   function handleFoo() {
     console.log('Push cart-text')
-    history.push('/shop/cart-test');
+    history.push('/shop/checkout');
     // dispatch(getAuthToken());
   }
 
