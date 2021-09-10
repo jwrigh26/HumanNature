@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { shoppingApi } from '../api';
 import * as R from 'ramda';
+import { v4 as uuidv4 } from 'uuid';
 import { isEqual } from 'lodash';
 
 export const getAuthToken = createAsyncThunk(
@@ -21,11 +22,42 @@ export const getAuthToken = createAsyncThunk(
   }
 );
 
+export const authorizePaymentTransaction = createAsyncThunk(
+  'payment/authorizePaymentTransaction',
+  async (args, { rejectWithValue }) => {
+    try {
+      const {cardData, transactionData} = args;
+      console.log('CardData', cardData);
+      return {};
+    } catch (error) {
+      return rejectWithValue({
+        error,
+      })
+    }
+  }
+)
+
 const paymentSlice = createSlice({
   name: 'payment',
   initialState: {
     token: '',
     canHostPaymentForm: false,
+    nonce: undefined,
+    amount: undefined,
+    tax: undefined,
+    duty: undefined,
+    order: {
+      invoice: undefined,
+      description: undefined,
+    },
+    shipping: {
+      amount: undefined,
+      name: undefined,
+      description: undefined,
+    },
+    billTo: undefined,
+    shipTO: undefined,
+    lineItems: undefined,
   },
   reducers: {
     resetHostPaymentForm(state) {

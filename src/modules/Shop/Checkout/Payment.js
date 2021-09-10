@@ -9,7 +9,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
 
-// import {} from 'store/paymentSlice';
+import { authorizePaymentTransaction } from 'store/paymentSlice';
+import { getAcceptPaymentNonce } from '../../../helpers/authnetHelper';
 import config from 'helpers/config';
 
 const useStyles = makeStyles((theme) => ({
@@ -61,18 +62,7 @@ export default function Payment() {
     setExpanded(newExpanded ? panel : false);
   };
 
-
-  function paymentFormUpdate(response) {
-    console.log(`${JSON.stringify(response, null, 2)}`);
-    
-  }
-
-  function handleHostedPayment() {
-    const authData = {
-      clientKey: config.authNetClientKey,
-      apiLoginID: config.authNetLoginKey,
-    };
-
+  async function handleHostedPayment() {
     const cardData = {
       cardNumber: '4111111111111111',
       month: '12',
@@ -82,24 +72,16 @@ export default function Payment() {
       fullName: 'Vanelope VonSweets',
     };
 
-    function responseHandler(response) {
-      if (response.messages.resultCode === 'Error') {
-        let i = 0;
-        while (i < response.messages.message.length) {
-          console.log(
-            response.messages.message[i].code +
-              ': ' +
-              response.messages.message[i].text
-          );
-          i = i + 1;
-        }
-      } else {
-        paymentFormUpdate(response.opaqueData);
-      }
-    }
-    if (typeof window !== 'undefined') {
-      window.Accept?.dispatchData({authData, cardData}, responseHandler);
-    }
+    // const { dataDescriptor, dataValue } = await getAcceptPaymentNonce(cardData);
+    // console.log(`dataDescriptor ${dataDescriptor}`);
+    // console.log(`dataValue ${dataValue}`);
+    // console.log('Made it!');
+
+    // TODO:
+    // Get nonce in paymentSlice
+    // Collect transaction info and make post payload and send to auth payment
+    // Get back a response
+    dispatch(authorizePaymentTransaction({cardData}));
   }
 
   return (
@@ -136,5 +118,3 @@ export default function Payment() {
     </>
   );
 }
-
-

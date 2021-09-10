@@ -1,0 +1,51 @@
+{
+  "nonce": "eyJjb2RlIjoiNTBfMl8wNjAwMDUzNDRFQzRDMDlBMzA2ODlDNDg1NTcyNkU0RjM2MEY4NEMyNURDRjREMEE5QUZGQkUyN0Y2MjA4RTIzODg4RjM3MTY2QTA1NzFBOTc2ODBEOTI3NTNEMzgyQzk5MEQ5QzBFIiwidG9rZW4iOiI5NjMxMjQxOTc5OTA4MzIyODA0NjAyIiwidiI6IjEuMSJ9",
+  "amount": "11.45",
+  "tax": "0.08",
+  "duty": "0",
+  "order": {
+      "invoice": "12345abcd",
+      "description": "invoice description goes here"
+  },
+  "shipping": {
+      "amount": "1.99",
+      "name": "ups-ground",
+      "description": "ground delivery (3-5 days)"
+  },
+  "billTo": {
+      "firstName": "Link",
+      "lastName": "Hyrule",
+      "company": "Souveniropolis",
+      "address": "14 Main Street",
+      "city": "Pecan Springs",
+      "state": "TX",
+      "zip": "44628",
+      "country": "USA"
+  },
+  "shipTo": {
+      "firstName": "Zelda",
+      "lastName": "Hyrule",
+      "company": "Thyme for Tea",
+      "address": "12 Main Street",
+      "city": "Pecan Springs",
+      "state": "TX",
+      "zip": "44628",
+      "country": "USA"
+  },
+  "lineItems": [
+      {
+          "itemId": "101",
+          "name": "candy1",
+          "description": "Yummy red candy",
+          "quantity": "118",
+          "unitPrice": "0.10"
+      },
+      {
+          "itemId": "102",
+          "name": "candy2",
+          "description": "Tasty blue candy",
+          "quantity": "228",
+          "unitPrice": "0.15"
+      }
+  ]
+}
