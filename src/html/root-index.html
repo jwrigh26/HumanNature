@@ -22,42 +22,9 @@
   <body>
     <div id="human+nature-root"></div>
   </body>
-  <script type="text/javascript">
-    (function () {
-      if (!window.AuthorizeNetIFrame) window.AuthorizeNetIFrame = {};
-      AuthorizeNetIFrame.onReceiveCommunication = function (querystr) {
-        var params = parseQueryString(querystr);
-        switch (params['action']) {
-          case 'successfulSave':
-            break;
-          case 'cancel':
-            console.log('Cancel payment??', params);
-            break;
-          case 'resizeWindow':
-            var w = parseInt(params['width']);
-            var h = parseInt(params['height']);
-            var ifrm = document.getElementById('add_payment');
-            ifrm.style.width = w.toString() + 'px';
-            ifrm.style.height = h.toString() + 'px';
-            console.log('Resize Window', 'params', params['width']);
-            break;
-          case 'transactResponse':
-            var ifrm = document.getElementById('add_payment');
-            ifrm.style.display = 'none';
-        }
-      };
-
-      function parseQueryString(str) {
-        var vars = [];
-        var arr = str.split('&');
-        var pair;
-        for (var i = 0; i < arr.length; i++) {
-          pair = arr[i].split('=');
-          vars.push(pair[0]);
-          vars[pair[0]] = unescape(pair[1]);
-        }
-        return vars;
-      }
-    })();
-  </script>
+  <script
+    type="text/javascript"
+    src="https://jstest.authorize.net/v1/Accept.js"
+    charset="utf-8"
+  ></script>
 </html>

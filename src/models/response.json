@@ -1,0 +1,42 @@
+{
+  "bad": {
+    "success": false,
+    "error": "Invalid OTS Token."
+  },
+
+  "result": {
+    "success": true,
+    "request": {
+      "createTransactionResponse": {
+        "messages": {
+          "resultCode": "Ok",
+          "message": [{ "code": "I00001", "text": "Successful." }]
+        },
+        "transactionResponse": {
+          "responseCode": "1",
+          "authCode": "V0YE8V",
+          "avsResultCode": "Y",
+          "cvvResultCode": "P",
+          "cavvResultCode": "2",
+          "transId": "60174457983",
+          "refTransID": "",
+          "transHash": "",
+          "testRequest": "0",
+          "accountNumber": "XXXX1111",
+          "accountType": "Visa",
+          "messages": {
+            "message": [
+              {
+                "code": "1",
+                "description": "This transaction has been approved."
+              }
+            ]
+          },
+          "transHashSha2": "",
+          "networkTransId": "8I2C8RJAIKRI563ZYRUDXWE"
+        }
+      }
+    }
+  },
+  "error": null
+}

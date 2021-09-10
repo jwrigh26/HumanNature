@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
@@ -6,15 +6,11 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
 
-import {
-  getAuthToken,
-  resetHostPaymentForm,
-  useCanHostPaymentFormSelector,
-  useTokenSelector,
-} from 'store/paymentSlice';
-import { hostedPaymentURL } from '../../../constants';
+// import {} from 'store/paymentSlice';
+import config from 'helpers/config';
 
 const useStyles = makeStyles((theme) => ({
   block: {
@@ -55,38 +51,56 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Payment() {
   const dispatch = useDispatch();
-  const token = useTokenSelector();
-  const canHostPaymentForm = useCanHostPaymentFormSelector();
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const formRef = useRef();
   const [expanded, setExpanded] = useState('');
 
   const handleChange = (panel) => (event, newExpanded) => {
     event.preventDefault();
-    // only want to get auth token if not open
-    if (panel === 'panel1' && newExpanded) {
-      dispatch(getAuthToken());
-    } else {
-      console.log('Reset');
-      dispatch(resetHostPaymentForm());
-    }
     setExpanded(newExpanded ? panel : false);
   };
 
-  const style = {
-    width: '100%',
-    maxWidth: '1000px',
-    height: '256px',
-    backgroundColor: 'pink',
-  };
 
-  useEffect(() => {
-    if (canHostPaymentForm && formRef) {
-      formRef.current.submit();
+  function paymentFormUpdate(response) {
+    console.log(`${JSON.stringify(response, null, 2)}`);
+    
+  }
+
+  function handleHostedPayment() {
+    const authData = {
+      clientKey: config.authNetClientKey,
+      apiLoginID: config.authNetLoginKey,
+    };
+
+    const cardData = {
+      cardNumber: '4111111111111111',
+      month: '12',
+      year: '22',
+      cardCode: '123',
+      zip: '84905',
+      fullName: 'Vanelope VonSweets',
+    };
+
+    function responseHandler(response) {
+      if (response.messages.resultCode === 'Error') {
+        let i = 0;
+        while (i < response.messages.message.length) {
+          console.log(
+            response.messages.message[i].code +
+              ': ' +
+              response.messages.message[i].text
+          );
+          i = i + 1;
+        }
+      } else {
+        paymentFormUpdate(response.opaqueData);
+      }
     }
-  }, [canHostPaymentForm, formRef]);
+    if (typeof window !== 'undefined') {
+      window.Accept?.dispatchData({authData, cardData}, responseHandler);
+    }
+  }
 
   return (
     <>
@@ -110,27 +124,17 @@ export default function Payment() {
           </div>
         </AccordionSummary>
         <AccordionDetails>
-          <form
-            id="send_token"
-            ref={formRef}
-            action={hostedPaymentURL}
-            method="post"
-            target="hosted_payment"
-            style={style}
-          >
-            <input type="hidden" name="token" value={token} />
-            <iframe
-              id="hosted_payment"
-              name="hosted_payment"
-              width="100%"
-              frameBorder="0"
-              scrolling="no"
-              hidden={false}
-              style={style}
-            ></iframe>
-          </form>
+          <div className={clsx(classes.block)}>
+            <Typography gutterBottom variant="h6" component="h6">
+              Tap the Button to test
+            </Typography>
+            <Divider />
+            <Button onClick={handleHostedPayment}>Pay</Button>
+          </div>
         </AccordionDetails>
       </Accordion>
     </>
   );
 }
+
+

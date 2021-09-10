@@ -17,6 +17,20 @@ const errorSlice = createSlice({
       state.errorMessage = undefined;
     },
   },
+  extraReducers: {
+    // Note:
+    // Reducers for aysnc thunk rejections handled here for all app
+    // Error Slice's main role is to feed errors to ErrorBoundary.
+    // This is for any rejection that will break the app.
+    // [acceptHostedPayment.rejected]: (state, action) => {
+    //   state.hasError = true;
+    //   state.errorMessage = action.error?.message;
+    //   console.log('Error: AcceptHostedPayment Rejected');
+    //   console.log(action.error);
+      
+      
+    // },
+  },
 });
 
 export const { removeError, setError } = errorSlice.actions;
