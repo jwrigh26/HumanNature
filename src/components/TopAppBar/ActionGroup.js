@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 import Badge from '@material-ui/core/Badge';
 import Hidden from '@material-ui/core/Hidden';
 import PaletteIcon from '@material-ui/icons/Palette';
@@ -54,11 +55,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ActionGroup() {
+  const location = useLocation();
   const theme = useTheme();
   const classes = useStyles(theme);
   const actions = useActions();
-
   const { cart } = useSelector(shopSelector);
+
+  const [hideCart, setHideCart] = useState(true);
+
+  useEffect(() => {
+    console.log('Location ActionGroup');
+    console.log(location);
+    const hide = !!(location.pathname.includes('checkout'));
+    console.log('Hide: ', hide);
+    setHideCart(hide);
+  }, [location]);
 
   return (
     <>
@@ -77,21 +88,23 @@ export default function ActionGroup() {
             <Icon className={classes.icon}>{actions.modeIcon}</Icon>
           </IconButton>
         </Hidden>
-        <IconButton
-          className={classes.button}
-          onClick={actions.handleToggleCart}
-          disabled={cart.open}
-        >
-          <Badge
-            badgeContent={cart.totalQuantity ?? 0}
-            classes={{ anchorOriginTopRightCircular: classes.badgeTopRight }}
-            color="secondary"
-            overlap="circular"
-            max={99}
+        {!hideCart && (
+          <IconButton
+            className={classes.button}
+            onClick={actions.handleToggleCart}
+            disabled={cart.open}
           >
-            <ShoppingCartIcon className={classes.icon} />
-          </Badge>
-        </IconButton>
+            <Badge
+              badgeContent={cart.totalQuantity ?? 0}
+              classes={{ anchorOriginTopRightCircular: classes.badgeTopRight }}
+              color="secondary"
+              overlap="circular"
+              max={99}
+            >
+              <ShoppingCartIcon className={classes.icon} />
+            </Badge>
+          </IconButton>
+        )}
         <Hidden smUp>
           <IconButton onClick={actions.handleOpenMore}>
             <MoreVertIcon className={classes.icon} />

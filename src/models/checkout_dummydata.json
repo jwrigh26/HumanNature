@@ -1,0 +1,141 @@
+{
+  "open": true,
+  "items": {
+    "41139244": {
+      "imageMD5": "",
+      "taxSettings": [],
+      "openPO": [],
+      "salesTax": true,
+      "skuNumber": "",
+      "merchantId": 26013,
+      "price": 40,
+      "supplier": null,
+      "variant": false,
+      "id": 41139244,
+      "barcode": "",
+      "aliasName": "",
+      "item": "",
+      "modifierOptions": [],
+      "markup": 0,
+      "vaiantName": "",
+      "displayChannelSettings": [
+        {
+          "channel": "REGISTER",
+          "status": "ENABLED"
+        },
+        {
+          "channel": "KIOSK",
+          "status": "ENABLED"
+        },
+        {
+          "channel": "ONLINE",
+          "status": "ENABLED"
+        }
+      ],
+      "tags": [],
+      "categoryType": "Ageless Holdings",
+      "bundles": [],
+      "name": "Gummies Apple",
+      "needsLowInventoryAlert": false,
+      "variantName": "",
+      "partNo": "",
+      "supplierId": 0,
+      "color": "Green",
+      "discountSettings": [],
+      "description": "",
+      "displayStatus": 0,
+      "positionNumber": 2,
+      "inventory": 1,
+      "storeQty": 19,
+      "createdOn": "06/02/2020 19:52:11",
+      "modifiedOn": "01/04/2021 12:06:34",
+      "productVariants": [],
+      "productType": "REGULAR",
+      "modiferAssociations": [],
+      "cost": 22.95,
+      "quantity": 19,
+      "taxPercentage": 0,
+      "dineOut": false,
+      "merchantIdentification": 0,
+      "altertThreshold": 0,
+      "baseProductId": 0,
+      "onlineStoreDisplayStatus": 0,
+      "isVariable": 0,
+      "optionIds": "",
+      "categoryId": 988962,
+      "reorderQty": 0,
+      "order": 2
+    },
+    "44160721": {
+      "imageMD5": "",
+      "taxSettings": [],
+      "openPO": [],
+      "salesTax": true,
+      "skuNumber": "",
+      "merchantId": 26013,
+      "price": 50,
+      "supplier": null,
+      "variant": false,
+      "id": 44160721,
+      "barcode": "",
+      "aliasName": "",
+      "item": "",
+      "modifierOptions": [],
+      "markup": 0,
+      "vaiantName": "",
+      "displayChannelSettings": [
+        {
+          "channel": "REGISTER",
+          "status": "ENABLED"
+        },
+        {
+          "channel": "KIOSK",
+          "status": "ENABLED"
+        },
+        {
+          "channel": "ONLINE",
+          "status": "ENABLED"
+        }
+      ],
+      "tags": [],
+      "categoryType": "Receptra Naturals",
+      "bundles": [],
+      "name": "CBN Rest Gummies",
+      "needsLowInventoryAlert": false,
+      "variantName": "",
+      "partNo": "",
+      "supplierId": 0,
+      "color": "Blue",
+      "discountSettings": [],
+      "description": "",
+      "displayStatus": 0,
+      "positionNumber": 3.625,
+      "inventory": 2,
+      "storeQty": -15,
+      "createdOn": "12/22/2020 09:44:19",
+      "modifiedOn": "02/24/2021 12:44:05",
+      "productVariants": [],
+      "productType": "REGULAR",
+      "modiferAssociations": [],
+      "cost": 27,
+      "quantity": -15,
+      "taxPercentage": 0,
+      "dineOut": false,
+      "merchantIdentification": 0,
+      "altertThreshold": 0,
+      "baseProductId": 0,
+      "onlineStoreDisplayStatus": 0,
+      "isVariable": 0,
+      "optionIds": "",
+      "categoryId": 988858,
+      "reorderQty": 0,
+      "order": 2
+    }
+  },
+  "quanity": {
+    "41139244": 2,
+    "44160721": 1
+  },
+  "total": "$130.00",
+  "totalQuantity": 3
+}

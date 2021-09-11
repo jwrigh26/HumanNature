@@ -10,7 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { screenSelector } from 'store/screenSlice';
-import { handleAddToCart } from 'store/shopSlice';
+import { setCartOpen, updateCart } from 'store/shopSlice';
 import { setError } from 'store/errorSlice';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Image from 'components/Image/Image';
@@ -142,6 +142,11 @@ function Item({ item }) {
     );
   }
 
+  function handleAddToCart() {
+    dispatch(updateCart(id, item));
+    dispatch(setCartOpen({ open: true }));
+  }
+
   return (
     <>
       <Card className={classes.root}>
@@ -175,11 +180,7 @@ function Item({ item }) {
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.actions}>
-          <Button
-            size="small"
-            color="primary"
-            onClick={() => dispatch(handleAddToCart(id, item))}
-          >
+          <Button size="small" color="primary" onClick={handleAddToCart}>
             Add to Cart
           </Button>
           <Button size="small" color="primary" onClick={handleBuyItNow}>

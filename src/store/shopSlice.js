@@ -97,7 +97,7 @@ function getTotalQuantity(cart) {
 
 // Note: not sure if I'm a fan of getting state and
 // then getting state again. What is the alternative?
-export function handleAddToCart(id, item) {
+export function updateCart(id, item) {
   return async (dispatch, getState) => {
     const { cart } = await getState().shop;
     const order = Object.keys(cart.items).length + 1;

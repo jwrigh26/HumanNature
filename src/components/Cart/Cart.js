@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -79,15 +80,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PersistentDrawerRight() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { cart } = useSelector(shopSelector);
   const theme = useTheme();
   const classes = useStyles(theme);
 
   const isCartEmpty = isEmpty(cart?.items);
-
-  const handleDrawerClose = () => {
-    dispatch(setCartOpen({ open: false }));
-  };
 
   // ASC if DES swap -1 and 1 place
   function compare(a, b) {
@@ -101,6 +99,15 @@ export default function PersistentDrawerRight() {
     }
     // a must be equal to b
     return 0;
+  }
+
+  function handleCheckout() {
+    dispatch(setCartOpen({ open: false }));
+    history.push('/shop/checkout');
+  }
+
+  function handleDrawerClose() {
+    dispatch(setCartOpen({ open: false }));
   }
 
   return (
@@ -156,6 +163,7 @@ export default function PersistentDrawerRight() {
       )}
       <section className={classes.footer}>
         <Button
+          onClick={handleCheckout}
           variant="contained"
           color="secondary"
           fullWidth

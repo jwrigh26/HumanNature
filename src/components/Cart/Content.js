@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
-import { setCartOpen, shopSelector } from 'store/shopSlice';
 import { getCurrencyFromNumber } from 'helpers/formatHelper';
 
 const useStyles = makeStyles((theme) => ({

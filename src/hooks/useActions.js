@@ -110,7 +110,6 @@ export default function useActions() {
   }
 
   function handleToggleCart() {
-    console.log('Set Cart Open: ', !cart.open);
     dispatch(setCartOpen({ open: !cart.open }));
   }
 
