@@ -28,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
   wrapper: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column-reverse',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
     [theme.breakpoints.up('md')]: {
       flexDirection: 'row',
     },
@@ -36,6 +38,25 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     padding: '4px',
   },
+  summary: {
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 420,
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 512,
+    },
+  },
+  checkout: {
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      marginRight: theme.spacing(8),
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginRight: theme.spacing(16),
+    },
+   
+  }
 }));
 
 export default function Checkout() {
@@ -73,7 +94,7 @@ export default function Checkout() {
   function CheckoutSummary() {
     return (
       <>
-        <Paper elevation={1} className={classes.paper}>
+        <Paper elevation={1} className={clsx(classes.paper, classes.summary)}>
           <Summary />
         </Paper>
       </>
@@ -87,15 +108,23 @@ export default function Checkout() {
       </Typography>
       <Divider className={classes.divider} />
       <div className={classes.wrapper}>
-        <Grid className={classes.grid} container spacing={0} direction="column">
+        <Grid
+          className={clsx(classes.grid, classes.checkout)}
+          container
+          spacing={0}
+          direction="column"
+        >
           <CheckoutSteps />
         </Grid>
-        <Grid className={classes.grid} container spacing={0} direction="column">
+        <Grid
+          className={clsx(classes.grid, classes.summary)}
+          container
+          spacing={0}
+          direction="column"
+        >
           <CheckoutSummary />
         </Grid>
       </div>
     </div>
   );
 }
-
-

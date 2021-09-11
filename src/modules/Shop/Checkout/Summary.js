@@ -9,24 +9,33 @@ import Payment from './Payment';
 import Summary from './Summary';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  header: {
     flexGrow: 1,
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 72,
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(4),
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
-  block: {
-    paddingLeft: theme.spacing(2),
-    paddingTop: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+  button: {
+    color: theme.palette.primary.main,
   },
-  paper: {
-    color: theme.palette.text.secondary,
+  buttonDark: {
+    color: theme.palette.secondary.main,
   },
   divider: {
     marginBottom: theme.spacing(2),
   },
   content: {
-    height: 220
+    paddingTop: theme.spacing(2),
+    height: 220,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+  },
+  footer: {
+    paddingTop: theme.spacing(2),
+    height: 128,
   }
 }));
 
@@ -34,18 +43,32 @@ export default function Checkout() {
   const theme = useTheme();
   const classes = useStyles(theme);
 
+  function handleEdit() {
+    console.log(theme);
+  }
+
   return (
     <>
-      <div className={clsx(classes.root, classes.block)}>
+      <div className={clsx(classes.header)}>
         <Typography gutterBottom variant="h6" component="h6">
           Order Summary
         </Typography>
-        <Button size="small" color="primary" onClick={() => {}}>
+        <Button
+          className={clsx(classes.button, {
+            [classes.buttonDark]: theme?.mode?.isDark,
+          })}
+          size="small"
+          onClick={handleEdit}
+        >
           Edit Cart
         </Button>
       </div>
-      <Divider className={classes.divider} />
-      <div className={clsx(classes.block, classes.content)}>
+      <div className={clsx(classes.content)}>
+        <Typography gutterBottom variant="body1" component="p">
+          Stuff goes here
+        </Typography>
+      </div>
+      <div className={clsx(classes.footer)}>
         <Typography gutterBottom variant="body1" component="p">
           Stuff goes here
         </Typography>
