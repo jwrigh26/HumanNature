@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { shoppingApi } from '../api';
 import * as R from 'ramda';
 import { v4 as uuidv4 } from 'uuid';
+import { getAcceptPaymentNonce } from 'helpers/authnetHelper';
 import { isEqual } from 'lodash';
 
 export const getAuthToken = createAsyncThunk(
@@ -26,16 +27,34 @@ export const authorizePaymentTransaction = createAsyncThunk(
   'payment/authorizePaymentTransaction',
   async (args, { rejectWithValue }) => {
     try {
-      const {cardData, transactionData} = args;
-      console.log('CardData', cardData);
-      return {};
+
+      // 1. Get card and user information
+      const { cardData, transactionData } = args;
+
+      // 2. make call to get handshake or "nonce" from auth.net
+      const { dataDescriptor, dataValue } = await getAcceptPaymentNonce(
+        cardData
+      );
+
+      // 3. assemble the nonce
+      const nonce = {
+        description: dataDescriptor,
+        value: dataValue,
+      };
+
+      const api = shoppingApi();
+      const {
+        data: { result },
+      } = await api.createAcceptPaymentTransaction({...transactionData, nonce});
+      console.log(`${JSON.stringify(result, null, 2)}`);
+      return result;
     } catch (error) {
       return rejectWithValue({
         error,
-      })
+      });
     }
   }
-)
+);
 
 const paymentSlice = createSlice({
   name: 'payment',

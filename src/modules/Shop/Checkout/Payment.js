@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Step from './Step';
-import clsx from 'clsx';
-
 import { authorizePaymentTransaction } from 'store/paymentSlice';
-import config from 'helpers/config';
+import dummyData from 'models/dummy.json';
 
 const useStyles = makeStyles((theme) => ({
   button: {
+    marginTop: theme.spacing(2),
     width: 200,
+  },
+  info: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyItems: 'center',
+    alignItems: 'flex-start',
+  },
+  text: {
+    color: theme.palette.text.secondary,
+    paddingRight: '8px',
   },
 }));
 
@@ -34,26 +42,48 @@ export default function Payment({ expanded, step }) {
       year: '22',
       cardCode: '123',
       zip: '84905',
-      fullName: 'Vanelope VonSweets',
+      fullName: 'Scrooge McDuck',
     };
 
-    // const { dataDescriptor, dataValue } = await getAcceptPaymentNonce(cardData);
-    // console.log(`dataDescriptor ${dataDescriptor}`);
-    // console.log(`dataValue ${dataValue}`);
-    // console.log('Made it!');
-
-    // TODO:
-    // Get nonce in paymentSlice
-    // Collect transaction info and make post payload and send to auth payment
-    // Get back a response
-    dispatch(authorizePaymentTransaction({ cardData }));
+    dispatch(
+      authorizePaymentTransaction({ cardData, transactionData: dummyData })
+    );
   }
 
   return (
     <Step expanded={true} label={'Payment'}>
-      <div>
-        
-        <Button className={classes.button} variant="contained" onClick={handleHostedPayment}>Pay</Button>
+      <div className={classes.info}>
+        <Typography
+          className={classes.text}
+          gutterBottom
+          variant="body1"
+          component="p"
+        >
+          Credit Card Number: 4111111111111111
+        </Typography>
+        <Typography
+          className={classes.text}
+          gutterBottom
+          variant="body1"
+          component="p"
+        >
+          Expiration: 12 / 22
+        </Typography>
+        <Typography
+          className={classes.text}
+          gutterBottom
+          variant="body1"
+          component="p"
+        >
+          CSV: 123
+        </Typography>
+        <Button
+          className={classes.button}
+          variant="contained"
+          onClick={handleHostedPayment}
+        >
+          Pay
+        </Button>
       </div>
     </Step>
   );

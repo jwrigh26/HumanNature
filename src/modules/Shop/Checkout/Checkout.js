@@ -98,26 +98,4 @@ export default function Checkout() {
   );
 }
 
-/**
- *  <Grid container spacing={12}>
-        <Grid container spacing={6}>
-          <Grid item xs={12} sm={12} md={6}>
-            <Paper elevation={1} className={classes.paper}>
-              <Billing expanded={expanded} step={checkoutStep.billing} />
-            </Paper>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-            <Paper elevation={1} className={classes.paper}>
-              <Payment expanded={expanded} step={checkoutStep.payment} />
-            </Paper>
-          </Grid>
-        </Grid>
-        <Grid container spacing={6}>
-          <Grid item xs={12} sm={12} md={6}>
-            <Paper elevation={1} className={classes.paper}>
-              <Summary />
-            </Paper>
-          </Grid>
-        </Grid>
-      </Grid>
- */
+

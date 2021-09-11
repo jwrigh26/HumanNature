@@ -11,6 +11,11 @@ export function shoppingApi() {
     },
   });
 
+  async function createAcceptPaymentTransaction(transaction) {
+    const url = '/api/v1/accept-suite/create-accept-payment-transaction'
+    return api.post(url, transaction);
+  }
+
   async function getHostedPaymentAuthToken() {
     const url = '/api/v1/merchant/accept-payment-page'
     return api.get(url);
@@ -18,6 +23,9 @@ export function shoppingApi() {
 
   return {
     api,
+    createAcceptPaymentTransaction,
     getHostedPaymentAuthToken,
   };
+
+   
 }
