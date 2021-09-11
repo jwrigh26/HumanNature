@@ -26,19 +26,15 @@ const useStyles = makeStyles((theme) => ({
   },
   summary: {
     backgroundColor: theme.palette.background.paper,
-    borderBottom: '0px solid',
-    borderColor: theme.palette.divider,
     cursor: 'default !important',
-    marginBottom: 0,
+    marginBottom: theme.spacing(1),
     minHeight: 56,
     '&$expanded': {
       minHeight: 56,
     },
   },
-  content: {
-    '&$expanded': {
-      margin: '12px 0',
-    },
+  expanded: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   block: {
     paddingLeft: theme.spacing(2),
@@ -59,20 +55,19 @@ export default function Step({ children, expanded, label }) {
     <Accordion classes={{ root: classes.root }} expanded={expanded}>
       <AccordionSummary
         classes={{
-          root: classes.summary,
-          content: clsx(classes.content),
+          root: clsx(classes.summary, {[classes.expanded]: expanded}),
         }}
         aria-controls="step-content"
         id="step-header"
       >
-        <div className={classes.block}>
+        <div className={clsx(classes.block)}>
           <Typography variant="h5" component="h5">
             {label}
           </Typography>
         </div>
       </AccordionSummary>
-      <AccordionDetails classes={{ root: clsx(classes.block) }}>
-        <div className={classes.block}>{children}</div>
+      <AccordionDetails>
+        <div className={clsx(classes.block)}>{children}</div>
       </AccordionDetails>
     </Accordion>
   );

@@ -7,7 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { checkoutStep } from '../../../constants';
 import clsx from 'clsx';
-
+import Customer from './Customer';
+import Shipping from './Shipping';
+import Billing from './Billing';
 import Payment from './Payment';
 import Summary from './Summary';
 
@@ -16,11 +18,23 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
+    padding: theme.spacing(0),
+    textAlign: 'center',
     color: theme.palette.text.secondary,
-    // border: '1px solid rgba(0, 0, 0, .125)',
+    marginBottom: theme.spacing(2),
   },
   divider: {
     marginBottom: theme.spacing(4),
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+    },
+  },
+  grid: {
+    padding: '4px',
   },
 }));
 
@@ -37,19 +51,68 @@ export default function Checkout() {
     setExpanded(newExpanded ? panel : false);
   };
 
+  function CheckoutSteps() {
+    return (
+      <>
+        <Paper elevation={1} className={classes.paper}>
+          <Customer expanded={expanded} step={checkoutStep.customer} />
+        </Paper>
+        <Paper elevation={1} className={classes.paper}>
+          <Shipping expanded={expanded} step={checkoutStep.shipping} />
+        </Paper>
+        <Paper elevation={1} className={classes.paper}>
+          <Billing expanded={expanded} step={checkoutStep.billing} />
+        </Paper>
+        <Paper elevation={1} className={classes.paper}>
+          <Payment expanded={expanded} step={checkoutStep.payment} />
+        </Paper>
+      </>
+    );
+  }
+
+  function CheckoutSummary() {
+    return (
+      <>
+        <Paper elevation={1} className={classes.paper}>
+          <Summary />
+        </Paper>
+      </>
+    );
+  }
+
   return (
     <div className={classes.root}>
       <Typography gutterBottom variant="h3" component="h3">
         Checkout
       </Typography>
       <Divider className={classes.divider} />
-      <Grid container spacing={3}>
-        <Grid container spacing={3}>
+      <div className={classes.wrapper}>
+        <Grid className={classes.grid} container spacing={0} direction="column">
+          <CheckoutSteps />
+        </Grid>
+        <Grid className={classes.grid} container spacing={0} direction="column">
+          <CheckoutSummary />
+        </Grid>
+      </div>
+    </div>
+  );
+}
+
+/**
+ *  <Grid container spacing={12}>
+        <Grid container spacing={6}>
+          <Grid item xs={12} sm={12} md={6}>
+            <Paper elevation={1} className={classes.paper}>
+              <Billing expanded={expanded} step={checkoutStep.billing} />
+            </Paper>
+          </Grid>
           <Grid item xs={12} sm={12} md={6}>
             <Paper elevation={1} className={classes.paper}>
               <Payment expanded={expanded} step={checkoutStep.payment} />
             </Paper>
           </Grid>
+        </Grid>
+        <Grid container spacing={6}>
           <Grid item xs={12} sm={12} md={6}>
             <Paper elevation={1} className={classes.paper}>
               <Summary />
@@ -57,6 +120,4 @@ export default function Checkout() {
           </Grid>
         </Grid>
       </Grid>
-    </div>
-  );
-}
+ */

@@ -9,13 +9,11 @@ import Step from './Step';
 import clsx from 'clsx';
 
 import { authorizePaymentTransaction } from 'store/paymentSlice';
-import { getAcceptPaymentNonce } from '../../../helpers/authnetHelper';
 import config from 'helpers/config';
 
 const useStyles = makeStyles((theme) => ({
-  divider: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+  button: {
+    width: 200,
   },
 }));
 
@@ -52,13 +50,10 @@ export default function Payment({ expanded, step }) {
   }
 
   return (
-    <Step expanded={expanded} label={'Payment'}>
+    <Step expanded={true} label={'Payment'}>
       <div>
-        <Typography gutterBottom variant="body1" component="p">
-          Tap the Button to test
-        </Typography>
-        <Divider className={classes.divider} />
-        <Button onClick={handleHostedPayment}>Pay</Button>
+        
+        <Button className={classes.button} variant="contained" onClick={handleHostedPayment}>Pay</Button>
       </div>
     </Step>
   );
