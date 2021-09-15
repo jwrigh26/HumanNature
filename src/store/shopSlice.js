@@ -23,7 +23,7 @@ const shopSlice = createSlice({
       open: false,
       items: {},
       quanity: {},
-      total: '$0.00',
+      subtotal: '$0.00',
       totalQuantity: 0,
     },
     categories: categoriesMeta,
@@ -59,8 +59,8 @@ const shopSlice = createSlice({
     setCartOpen(state, action) {
       state.cart.open = action.payload.open;
     },
-    setCartTotal(state, action) {
-      state.cart.total = getCurrencyFromNumber(action.payload.total);
+    setCartSubTotal(state, action) {
+      state.cart.subtotal = getCurrencyFromNumber(action.payload.total);
     },
     setCartTotalQuantity(state, action) {
       state.cart.totalQuantity = action.payload.total;
@@ -106,7 +106,7 @@ export function updateCart(id, item) {
 
     const { cart: newCart } = await getState().shop;
     dispatch(setCartTotalQuantity({ total: getTotalQuantity(newCart) }));
-    dispatch(setCartTotal({ total: getCartSubtotal(newCart) }));
+    dispatch(setCartSubTotal({ total: getCartSubtotal(newCart) }));
   };
 }
 
@@ -114,7 +114,7 @@ export function handleRemoveFromCart(id) {
   return async (dispatch, getState) => {
     dispatch(removeItem({ key: id }));
     const { cart } = await getState().shop;
-    dispatch(setCartTotal({ total: getCartSubtotal(cart) }));
+    dispatch(setCartSubTotal({ total: getCartSubtotal(cart) }));
     dispatch(setCartTotalQuantity({ total: getTotalQuantity(cart) }));
   };
 }
@@ -124,7 +124,7 @@ export function handleAddQuantityforItem(id) {
     dispatch(addCount({ key: id }));
     const { cart: newCart } = await getState().shop;
     dispatch(setCartTotalQuantity({ total: getTotalQuantity(newCart) }));
-    dispatch(setCartTotal({ total: getCartSubtotal(newCart) }));
+    dispatch(setCartSubTotal({ total: getCartSubtotal(newCart) }));
   };
 }
 
@@ -133,7 +133,7 @@ export function handleSubtractQuantityForItem(id) {
     dispatch(subtractCount({ key: id }));
     const { cart: newCart } = await getState().shop;
     dispatch(setCartTotalQuantity({ total: getTotalQuantity(newCart) }));
-    dispatch(setCartTotal({ total: getCartSubtotal(newCart) }));
+    dispatch(setCartSubTotal({ total: getCartSubtotal(newCart) }));
   };
 }
 
@@ -144,9 +144,12 @@ export const {
   addCount,
   removeItem,
   setCartOpen,
-  setCartTotal,
+  setCartSubTotal,
   setCartTotalQuantity,
   subtractCount,
 } = shopSlice.actions;
 
 export default shopSlice.reducer;
+
+// TODO: Add subtotal, shipping, tax and total
+// maybe a number and str version

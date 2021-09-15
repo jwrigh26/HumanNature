@@ -145,7 +145,7 @@ export default function PersistentDrawerRight() {
             variant="h6"
             component="h3"
           >
-            {cart.total}
+            {cart.subtotal}
           </Typography>
         </div>
       </div>

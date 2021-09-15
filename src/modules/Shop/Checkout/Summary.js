@@ -46,6 +46,15 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  tally: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    padding: theme.spacing(1),
+    paddingBottom: 0,
+  },
 }));
 
 export default function Checkout({ cart }) {
@@ -106,25 +115,57 @@ export default function Checkout({ cart }) {
         </Button>
       </AccordionSummary>
       <AccordionDetails className={clsx(classes.content)}>
-        <List>
-          {Object.keys(cart.items)
-            .sort(compare)
-            .map((id) => (
-              <CartItem
-                key={id}
-                id={id}
-                item={cart.items[id]}
-                quantity={cart.quanity[id]}
-                canEdit={false}
-              />
-            ))}
-        </List>
+        <>
+          <List>
+            {Object.keys(cart.items)
+              .sort(compare)
+              .map((id) => (
+                <CartItem
+                  key={id}
+                  id={id}
+                  item={cart.items[id]}
+                  quantity={cart.quanity[id]}
+                  canEdit={false}
+                />
+              ))}
+          </List>
+          <Divider />
+          <List>
+            <li className={classes.tally}>
+              {' '}
+              <Typography gutterBottom variant="body1" component="p">
+                Subtotal
+              </Typography>
+              <Typography gutterBottom variant="body1" component="p">
+                {cart.subtotal}
+              </Typography>
+            </li>
+            <li className={classes.tally}>
+              {' '}
+              <Typography gutterBottom variant="body1" component="p">
+                Shipping
+              </Typography>
+              <Typography gutterBottom variant="body1" component="p">
+                $10.00
+              </Typography>
+            </li>
+            <li className={classes.tally}>
+              {' '}
+              <Typography gutterBottom variant="body1" component="p">
+                Tax
+              </Typography>
+              <Typography gutterBottom variant="body1" component="p">
+                $0.00
+              </Typography>
+            </li>
+          </List>
+        </>
         <div className={clsx(classes.footer)}>
           <Typography gutterBottom variant="body1" component="p">
             Total (USD)
           </Typography>
           <Typography gutterBottom variant="h4" component="h4">
-            $99.99
+            {cart.subtotal}
           </Typography>
         </div>
       </AccordionDetails>

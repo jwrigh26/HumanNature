@@ -18,6 +18,7 @@ import {
   handleRemoveFromCart,
   handleSubtractQuantityForItem,
 } from 'store/shopSlice';
+import SummaryContent from './SummaryContent';
 
 const useStyles = makeStyles((theme) => ({
   summary: {
@@ -92,11 +93,16 @@ export default function CartItem({ id, item, quantity, canEdit = true }) {
     >
       <AccordionSummary
         classes={{ root: classes.summary }}
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={canEdit ? <ExpandMoreIcon /> : undefined}
       >
         <Thumbnail item={item} />
-        <Content expanded={isExpanded} item={item} quantity={quantity} />
-        <InlineActions onRemoveItem={handleRemoveItem(id)} />
+        {canEdit && (
+          <>
+            <Content expanded={isExpanded} item={item} quantity={quantity} />
+            <InlineActions onRemoveItem={handleRemoveItem(id)} />
+          </>
+        )}
+        {!canEdit && <SummaryContent item={item} quantity={quantity} />}
       </AccordionSummary>
       <AccordionDetails classes={{ root: classes.details }}>
         <Meta item={item} />
