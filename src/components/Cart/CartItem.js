@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     paddingTop: 0,
     paddingBottom: 0,
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2.5),
+    paddingLeft: 0,
+    paddingRight: 0,
   },
   details: {
     display: 'flex',
@@ -51,15 +51,17 @@ CartItem.propTypes = {
   id: PropTypes.string.isRequired,
   item: PropTypes.object.isRequired,
   quantity: PropTypes.number.isRequired,
+  canEdit: PropTypes.bool,
 };
 
-export default function CartItem({ id, item, quantity }) {
+export default function CartItem({ id, item, quantity, canEdit = true }) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
   const [isExpanded, setIsExpanded] = useState();
 
   function handleChange(_, expanded) {
+    console.log('Expanded', expanded);
     setIsExpanded(expanded);
   }
 
@@ -82,7 +84,12 @@ export default function CartItem({ id, item, quantity }) {
   }
 
   return (
-    <Accordion square elevation={0} onChange={handleChange}>
+    <Accordion
+      square
+      elevation={0}
+      expanded={canEdit ? isExpanded : false}
+      onChange={handleChange}
+    >
       <AccordionSummary
         classes={{ root: classes.summary }}
         expandIcon={<ExpandMoreIcon />}

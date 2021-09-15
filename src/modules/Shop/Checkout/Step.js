@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
   block: {
-    paddingLeft: theme.spacing(2),
+    paddingLeft: theme.spacing(1),
   },
 }));
 

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { checkoutStep } from '../../../constants';
+import { setCartOpen, shopSelector } from 'store/shopSlice';
 import clsx from 'clsx';
 import Customer from './Customer';
 import Shipping from './Shipping';
@@ -53,16 +54,21 @@ const useStyles = makeStyles((theme) => ({
       marginRight: theme.spacing(8),
     },
     [theme.breakpoints.up('lg')]: {
-      marginRight: theme.spacing(16),
+      marginRight: theme.spacing(12),
     },
-   
-  }
+  },
 }));
 
 export default function Checkout() {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
   const [expanded, setExpanded] = useState(checkoutStep.payment);
+  const { cart } = useSelector(shopSelector);
+
+  useEffect(() => {
+    dispatch(setCartOpen({ open: false }));
+  }, []);
 
   // TODO: Setup a way to traverse Steps
   // This is not being used and was for old way of clicking on accordian
@@ -95,7 +101,7 @@ export default function Checkout() {
     return (
       <>
         <Paper elevation={1} className={clsx(classes.paper, classes.summary)}>
-          <Summary />
+          <Summary cart={cart} />
         </Paper>
       </>
     );

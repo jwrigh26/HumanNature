@@ -81,6 +81,7 @@ export default function Payment({ expanded, step }) {
           className={classes.button}
           variant="contained"
           onClick={handleHostedPayment}
+          disabled
         >
           Pay
         </Button>

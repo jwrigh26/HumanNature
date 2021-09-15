@@ -76,6 +76,10 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     color: theme.palette.text.secondary,
   },
+  list: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2.5),
+  }
 }));
 
 export default function PersistentDrawerRight() {
@@ -148,7 +152,7 @@ export default function PersistentDrawerRight() {
       <Divider />
       {isCartEmpty && <EmptyCart />}
       {!isCartEmpty && (
-        <List>
+        <List className={classes.list}>
           {Object.keys(cart.items)
             .sort(compare)
             .map((id) => (
