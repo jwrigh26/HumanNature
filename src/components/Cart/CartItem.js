@@ -18,7 +18,6 @@ import {
   handleRemoveFromCart,
   handleSubtractQuantityForItem,
 } from 'store/shopSlice';
-import SummaryContent from './SummaryContent';
 
 const useStyles = makeStyles((theme) => ({
   summary: {
@@ -29,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     paddingTop: 0,
     paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2.5),
   },
   details: {
     display: 'flex',
@@ -52,18 +51,17 @@ CartItem.propTypes = {
   id: PropTypes.string.isRequired,
   item: PropTypes.object.isRequired,
   quantity: PropTypes.number.isRequired,
-  canEdit: PropTypes.bool,
 };
 
-export default function CartItem({ id, item, quantity, canEdit = true }) {
+export default function CartItem({ id, item, quantity }) {
   const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
-  const [isExpanded, setIsExpanded] = useState();
+  const [expanded, setExpanded] = useState(false);
 
-  function handleChange(_, expanded) {
-    console.log('Expanded', expanded);
-    setIsExpanded(expanded);
+  function handleChange() {
+    console.log('handleChange', !expanded);
+    setExpanded(!expanded);
   }
 
   function handleRemoveItem(key) {
@@ -84,25 +82,25 @@ export default function CartItem({ id, item, quantity, canEdit = true }) {
     };
   }
 
+  React.useEffect(() => {
+    console.log('Expanded', expanded);
+  }, [expanded]);
+
   return (
     <Accordion
       square
       elevation={0}
-      expanded={canEdit ? isExpanded : false}
+      expanded={expanded}
       onChange={handleChange}
+      TransitionProps={{ unmountOnExit: true }}
     >
       <AccordionSummary
         classes={{ root: classes.summary }}
-        expandIcon={canEdit ? <ExpandMoreIcon /> : undefined}
+        expandIcon={<ExpandMoreIcon />}
       >
         <Thumbnail item={item} />
-        {canEdit && (
-          <>
-            <Content expanded={isExpanded} item={item} quantity={quantity} />
-            <InlineActions onRemoveItem={handleRemoveItem(id)} />
-          </>
-        )}
-        {!canEdit && <SummaryContent item={item} quantity={quantity} />}
+        <Content expanded={expanded} item={item} quantity={quantity} />
+        <InlineActions onRemoveItem={handleRemoveItem(id)} />
       </AccordionSummary>
       <AccordionDetails classes={{ root: classes.details }}>
         <Meta item={item} />

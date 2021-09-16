@@ -114,6 +114,10 @@ export default function PersistentDrawerRight() {
     dispatch(setCartOpen({ open: false }));
   }
 
+  // React.useEffect(() => {
+  //   console.log('Cart', cart);
+  // }, [cart]);
+
   return (
     <Drawer
       className={classes.drawer}

@@ -38,6 +38,9 @@ const shopSlice = createSlice({
       receptraNaturals: receptraNaturalsMeta,
       vaporizers: vaporizersMeta,
     },
+    form: {
+      canEdit: false,
+    }
   },
   reducers: {
     addItem(state, action) {
@@ -56,6 +59,9 @@ const shopSlice = createSlice({
       state.cart.items = newItems;
       state.cart.quanity = { ...state.cart.quanity, [key]: 0 };
     },
+    setCanEdit(state, action) {
+      state.form.canEdit = action.payload.edit;
+    },
     setCartOpen(state, action) {
       state.cart.open = action.payload.open;
     },
@@ -71,6 +77,7 @@ const shopSlice = createSlice({
       const newValue = count >= 1 ? count - 1 : 0;
       state.cart.quanity = { ...state.cart.quanity, [key]: newValue };
     },
+
   },
 });
 
@@ -139,10 +146,12 @@ export function handleSubtractQuantityForItem(id) {
 
 export const shopSelector = R.prop('shop');
 
+
 export const {
   addItem,
   addCount,
   removeItem,
+  setCanEdit,
   setCartOpen,
   setCartSubTotal,
   setCartTotalQuantity,

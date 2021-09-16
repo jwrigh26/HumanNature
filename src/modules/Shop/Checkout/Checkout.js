@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { checkoutStep } from '../../../constants';
-import { setCartOpen, shopSelector } from 'store/shopSlice';
+import { setCanEdit, setCartOpen, shopSelector } from 'store/shopSlice';
 import clsx from 'clsx';
 import Customer from './Customer';
 import Shipping from './Shipping';
@@ -64,7 +64,7 @@ export default function Checkout() {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [expanded, setExpanded] = useState(checkoutStep.payment);
-  const { cart } = useSelector(shopSelector);
+  const { cart, form } = useSelector(shopSelector);
 
   useEffect(() => {
     dispatch(setCartOpen({ open: false }));
@@ -77,6 +77,10 @@ export default function Checkout() {
     // event.preventDefault();
     setExpanded(newExpanded ? panel : false);
   };
+
+  function handleEdit() {
+    dispatch(setCanEdit({edit: !form.canEdit}));
+  }
 
   function CheckoutSteps() {
     return (
@@ -101,7 +105,7 @@ export default function Checkout() {
     return (
       <>
         <Paper elevation={1} className={clsx(classes.paper, classes.summary)}>
-          <Summary cart={cart} />
+          <Summary form={form} onEdit={handleEdit} />
         </Paper>
       </>
     );

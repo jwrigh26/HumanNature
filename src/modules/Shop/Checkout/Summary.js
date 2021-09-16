@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -13,6 +14,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CartItem from 'components/Cart/CartItem';
+import { setCartOpen, shopSelector } from 'store/shopSlice';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,12 +30,16 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     color: theme.palette.primary.main,
+    fontWeight: 700,
   },
   buttonDark: {
     color: theme.palette.secondary.main,
   },
+  buttonEdit: {
+    color: theme.palette.warning.main,
+  },
   divider: {
-    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
   },
   content: {
     display: 'flex',
@@ -57,11 +63,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Checkout({ cart }) {
+Checkout.propTypes = {
+  cart: PropTypes.object,
+  form: PropTypes.object,
+  onEdit: PropTypes.func,
+};
+
+export default function Checkout({ form, onEdit }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [expanded, setExpanded] = useState(true);
+  const [buttonLabel, setButtonLabel] = useState('Edit');
   // const { items, quantity, total } = cart;
+  const { cart } = useSelector(shopSelector);
 
   // ASC if DES swap -1 and 1 place
   function compare(a, b) {
@@ -77,24 +91,22 @@ export default function Checkout({ cart }) {
     return 0;
   }
 
-  Checkout.propTypes = {
-    cart: PropTypes.object,
-  };
-
-  function handleEdit() {
-    console.log(theme);
-  }
+  // Make new sep component for SUmmary and edit make a card for each one to edit
 
   function handleChange() {
     setExpanded(!expanded);
   }
 
   useEffect(() => {
-    console.log('Cart', cart);
-  }, [cart]);
+    setButtonLabel(form.canEdit ? 'Save' : 'Edit');
+  }, [form.canEdit]);
 
   return (
-    <Accordion expanded={expanded} onChange={handleChange}>
+    <Accordion
+      defaultExpanded={true}
+      expanded={expanded}
+      onChange={handleChange}
+    >
       <AccordionSummary
         classes={{ root: classes.summary, content: classes.summaryContent }}
         expandIcon={<ExpandMoreIcon />}
@@ -106,12 +118,16 @@ export default function Checkout({ cart }) {
         <Button
           className={clsx(classes.button, {
             [classes.buttonDark]: theme?.mode?.isDark,
+            [classes.buttonEdit]: form.canEdit,
           })}
           size="small"
-          onClick={(event) => event.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            onEdit();
+          }}
           disabled={false}
         >
-          Edit Cart
+          {buttonLabel}
         </Button>
       </AccordionSummary>
       <AccordionDetails className={clsx(classes.content)}>
@@ -125,11 +141,11 @@ export default function Checkout({ cart }) {
                   id={id}
                   item={cart.items[id]}
                   quantity={cart.quanity[id]}
-                  canEdit={false}
+                  canEdit={form.canEdit}
                 />
               ))}
           </List>
-          <Divider />
+          <Divider className={classes.divider} />
           <List>
             <li className={classes.tally}>
               {' '}

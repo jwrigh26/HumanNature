@@ -71,11 +71,21 @@ export default function QuantityStepper({
         >
           Qty:
         </Typography>
-        <IconButton onClick={handleMinus(id)}>
+        <IconButton
+          onClick={(event) => {
+            event.stopPropagation();
+            handleMinus(id)();
+          }}
+        >
           <MinusIcon />
         </IconButton>
         <div className={classes.value}>{value}</div>
-        <IconButton onClick={handleAdd(id)}>
+        <IconButton
+          onClick={(event) => {
+            event.stopPropagation();
+            handleAdd(id)();
+          }}
+        >
           <AddIcon />
         </IconButton>
       </section>
