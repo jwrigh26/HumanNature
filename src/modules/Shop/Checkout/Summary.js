@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { setCanEdit, setCartOpen, shopSelector } from 'store/shopSlice';
 import SummaryItem from './SummaryItem';
+import SummaryEditItem from './SummaryEditItem';
 import clsx from 'clsx';
 import Shipping from './SummaryShipping';
 
@@ -100,7 +101,7 @@ export default function Checkout() {
           .sort(compare)
           .map((id) => {
             return form.canEdit ? (
-              <SummaryItem
+              <SummaryEditItem
                 key={id}
                 id={id}
                 item={cart.items[id]}
@@ -121,6 +122,9 @@ export default function Checkout() {
 
   function handleChange() {
     setExpanded(!expanded);
+    if (!expanded) {
+      dispatch(setCanEdit({ edit: false }));
+    }
   }
 
   function handleEdit() {
@@ -165,8 +169,7 @@ export default function Checkout() {
           )}
         </AccordionSummary>
         <AccordionDetails className={clsx(classes.content)}>
-          {renderSummaryItems()}
-          <Button>Hey There</Button>
+          { renderSummaryItems() }
         </AccordionDetails>
       </Accordion>
       <Shipping />
