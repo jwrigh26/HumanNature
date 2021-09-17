@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { checkoutStep } from '../../../constants';
-import { setCanEdit, setCartOpen, shopSelector } from 'store/shopSlice';
+import { setCartOpen } from 'store/shopSlice';
 import clsx from 'clsx';
 import Customer from './Customer';
 import Shipping from './Shipping';
@@ -63,53 +63,12 @@ export default function Checkout() {
   const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
-  const [expanded, setExpanded] = useState(checkoutStep.payment);
-  const { cart, form } = useSelector(shopSelector);
 
   useEffect(() => {
     dispatch(setCartOpen({ open: false }));
   }, []);
 
-  // TODO: Setup a way to traverse Steps
-  // This is not being used and was for old way of clicking on accordian
-  // Need to handle this so all show when they need to
-  const handleChange = (panel) => (event, newExpanded) => {
-    // event.preventDefault();
-    setExpanded(newExpanded ? panel : false);
-  };
-
-  function handleEdit() {
-    dispatch(setCanEdit({edit: !form.canEdit}));
-  }
-
-  function CheckoutSteps() {
-    return (
-      <>
-        <Paper elevation={1} className={classes.paper}>
-          <Customer expanded={expanded} step={checkoutStep.customer} />
-        </Paper>
-        <Paper elevation={1} className={classes.paper}>
-          <Shipping expanded={expanded} step={checkoutStep.shipping} />
-        </Paper>
-        <Paper elevation={1} className={classes.paper}>
-          <Billing expanded={expanded} step={checkoutStep.billing} />
-        </Paper>
-        <Paper elevation={1} className={classes.paper}>
-          <Payment expanded={expanded} step={checkoutStep.payment} />
-        </Paper>
-      </>
-    );
-  }
-
-  function CheckoutSummary() {
-    return (
-      <>
-        <Paper elevation={1} className={clsx(classes.paper, classes.summary)}>
-          <Summary form={form} onEdit={handleEdit} />
-        </Paper>
-      </>
-    );
-  }
+  const expanded = 'All';
 
   return (
     <div className={classes.root}>
@@ -124,7 +83,18 @@ export default function Checkout() {
           spacing={0}
           direction="column"
         >
-          <CheckoutSteps />
+          <Paper elevation={1} className={classes.paper}>
+            <Customer expanded={expanded} step={checkoutStep.customer} />
+          </Paper>
+          <Paper elevation={1} className={classes.paper}>
+            <Shipping expanded={expanded} step={checkoutStep.shipping} />
+          </Paper>
+          <Paper elevation={1} className={classes.paper}>
+            <Billing expanded={expanded} step={checkoutStep.billing} />
+          </Paper>
+          <Paper elevation={1} className={classes.paper}>
+            <Payment expanded={expanded} step={checkoutStep.payment} />
+          </Paper>
         </Grid>
         <Grid
           className={clsx(classes.grid, classes.summary)}
@@ -132,7 +102,9 @@ export default function Checkout() {
           spacing={0}
           direction="column"
         >
-          <CheckoutSummary />
+          <Paper elevation={1} className={clsx(classes.paper, classes.summary)}>
+            <Summary />
+          </Paper>
         </Grid>
       </div>
     </div>

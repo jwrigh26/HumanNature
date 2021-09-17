@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -13,9 +13,10 @@ import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import CartItem from 'components/Cart/CartItem';
-import { setCartOpen, shopSelector } from 'store/shopSlice';
+import { setCanEdit, setCartOpen, shopSelector } from 'store/shopSlice';
+import SummaryItem from './SummaryItem';
 import clsx from 'clsx';
+import Shipping from './SummaryShipping';
 
 const useStyles = makeStyles((theme) => ({
   summary: {
@@ -38,15 +39,20 @@ const useStyles = makeStyles((theme) => ({
   buttonEdit: {
     color: theme.palette.warning.main,
   },
-  divider: {
-    marginTop: theme.spacing(2),
-  },
   content: {
     display: 'flex',
     flexDirection: 'column',
   },
+  divider: {
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+  },
   footer: {
     paddingTop: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    marginBottom: theme.spacing(2),
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -63,19 +69,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-Checkout.propTypes = {
-  cart: PropTypes.object,
-  form: PropTypes.object,
-  onEdit: PropTypes.func,
-};
-
-export default function Checkout({ form, onEdit }) {
+export default function Checkout() {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
   const [expanded, setExpanded] = useState(true);
   const [buttonLabel, setButtonLabel] = useState('Edit');
+  const { cart, form } = useSelector(shopSelector);
   // const { items, quantity, total } = cart;
-  const { cart } = useSelector(shopSelector);
 
   // ASC if DES swap -1 and 1 place
   function compare(a, b) {
@@ -92,9 +93,38 @@ export default function Checkout({ form, onEdit }) {
   }
 
   // Make new sep component for SUmmary and edit make a card for each one to edit
+  function renderSummaryItems() {
+    return (
+      <List>
+        {Object.keys(cart.items)
+          .sort(compare)
+          .map((id) => {
+            return form.canEdit ? (
+              <SummaryItem
+                key={id}
+                id={id}
+                item={cart.items[id]}
+                quantity={cart.quanity[id]}
+              />
+            ) : (
+              <SummaryItem
+                key={id}
+                id={id}
+                item={cart.items[id]}
+                quantity={cart.quanity[id]}
+              />
+            );
+          })}
+      </List>
+    );
+  }
 
   function handleChange() {
     setExpanded(!expanded);
+  }
+
+  function handleEdit() {
+    dispatch(setCanEdit({ edit: !form.canEdit }));
   }
 
   useEffect(() => {
@@ -102,89 +132,61 @@ export default function Checkout({ form, onEdit }) {
   }, [form.canEdit]);
 
   return (
-    <Accordion
-      defaultExpanded={true}
-      expanded={expanded}
-      onChange={handleChange}
-    >
-      <AccordionSummary
-        classes={{ root: classes.summary, content: classes.summaryContent }}
-        expandIcon={<ExpandMoreIcon />}
-        aria-label="Expand"
+    <>
+      <Accordion
+        defaultExpanded={true}
+        expanded={expanded}
+        onChange={handleChange}
+        elevation={0}
       >
-        <Typography gutterBottom variant="h6" component="h6">
-          Order Summary
-        </Typography>
-        <Button
-          className={clsx(classes.button, {
-            [classes.buttonDark]: theme?.mode?.isDark,
-            [classes.buttonEdit]: form.canEdit,
-          })}
-          size="small"
-          onClick={(e) => {
-            e.stopPropagation();
-            onEdit();
-          }}
-          disabled={false}
+        <AccordionSummary
+          classes={{ root: classes.summary, content: classes.summaryContent }}
+          expandIcon={<ExpandMoreIcon />}
+          aria-label="Expand"
         >
-          {buttonLabel}
-        </Button>
-      </AccordionSummary>
-      <AccordionDetails className={clsx(classes.content)}>
-        <>
-          <List>
-            {Object.keys(cart.items)
-              .sort(compare)
-              .map((id) => (
-                <CartItem
-                  key={id}
-                  id={id}
-                  item={cart.items[id]}
-                  quantity={cart.quanity[id]}
-                  canEdit={form.canEdit}
-                />
-              ))}
-          </List>
-          <Divider className={classes.divider} />
-          <List>
-            <li className={classes.tally}>
-              {' '}
-              <Typography gutterBottom variant="body1" component="p">
-                Subtotal
-              </Typography>
-              <Typography gutterBottom variant="body1" component="p">
-                {cart.subtotal}
-              </Typography>
-            </li>
-            <li className={classes.tally}>
-              {' '}
-              <Typography gutterBottom variant="body1" component="p">
-                Shipping
-              </Typography>
-              <Typography gutterBottom variant="body1" component="p">
-                $10.00
-              </Typography>
-            </li>
-            <li className={classes.tally}>
-              {' '}
-              <Typography gutterBottom variant="body1" component="p">
-                Tax
-              </Typography>
-              <Typography gutterBottom variant="body1" component="p">
-                $0.00
-              </Typography>
-            </li>
-          </List>
-        </>
-        <div className={clsx(classes.footer)}>
-          <Typography gutterBottom variant="body1" component="p">
-            Total (USD)
+          <Typography gutterBottom variant="h6" component="h6">
+            Order Summary
           </Typography>
-          <Typography gutterBottom variant="h4" component="h4">
-            {cart.subtotal}
-          </Typography>
-        </div>
-      </AccordionDetails>
-    </Accordion>
+          {expanded && (
+            <Button
+              className={clsx(classes.button, {
+                [classes.buttonDark]: theme?.mode?.isDark,
+                [classes.buttonEdit]: form.canEdit,
+              })}
+              size="small"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleEdit();
+              }}
+              disabled={false}
+            >
+              {buttonLabel}
+            </Button>
+          )}
+        </AccordionSummary>
+        <AccordionDetails className={clsx(classes.content)}>
+          {renderSummaryItems()}
+          <Button>Hey There</Button>
+        </AccordionDetails>
+      </Accordion>
+      <Shipping />
+      <div className={classes.divider} />
+      <div className={clsx(classes.footer)}>
+        <Typography gutterBottom variant="body1" component="p">
+          Total (USD)
+        </Typography>
+        <Typography gutterBottom variant="h4" component="h4">
+          {cart.subtotal}
+        </Typography>
+      </div>
+    </>
   );
 }
+
+// TODO: Setup a way to traverse Steps
+// This is not being used and was for old way of clicking on accordian
+// Example how to controll accordian expansion
+// const handleChange = (panel) => (event, newExpanded) => {
+//   // event.preventDefault();
+//   setExpanded(newExpanded ? panel : false);
+// };

@@ -36,9 +36,6 @@ const useStyles = makeStyles((theme) => ({
   expanded: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
-  block: {
-    paddingLeft: theme.spacing(1),
-  },
 }));
 
 Step.propTypes = {
@@ -55,7 +52,7 @@ export default function Step({ children, expanded, label }) {
     <Accordion classes={{ root: classes.root }} expanded={expanded}>
       <AccordionSummary
         classes={{
-          root: clsx(classes.summary, {[classes.expanded]: expanded}),
+          root: clsx(classes.summary, { [classes.expanded]: expanded }),
         }}
         aria-controls="step-content"
         id="step-header"
@@ -66,9 +63,7 @@ export default function Step({ children, expanded, label }) {
           </Typography>
         </div>
       </AccordionSummary>
-      <AccordionDetails>
-        <div className={clsx(classes.block)}>{children}</div>
-      </AccordionDetails>
+      <AccordionDetails>{children}</AccordionDetails>
     </Accordion>
   );
 }

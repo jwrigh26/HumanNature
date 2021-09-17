@@ -5,7 +5,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Step from './Step';
+import Step from './CheckoutStep';
 
 const useStyles = makeStyles((theme) => ({
   info: {

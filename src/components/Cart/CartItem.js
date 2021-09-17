@@ -18,8 +18,20 @@ import {
   handleRemoveFromCart,
   handleSubtractQuantityForItem,
 } from 'store/shopSlice';
+import './cart.css';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    // borderBottom: `1px solid ${theme.palette.divider}`,
+    // '&:not(:last-child)': {
+    //   borderBottom: 0,
+    // },
+    // '&:before': {
+    //   display: 'none',
+    // },
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
   summary: {
     flexShrink: 0,
     display: 'flex',
@@ -28,8 +40,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     paddingTop: 0,
     paddingBottom: 0,
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2.5),
   },
   details: {
     display: 'flex',
@@ -41,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 88,
     marginRight: theme.spacing(0),
   },
-  divider: {
+  vertical: {
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
   },
@@ -93,6 +103,7 @@ export default function CartItem({ id, item, quantity }) {
       expanded={expanded}
       onChange={handleChange}
       TransitionProps={{ unmountOnExit: true }}
+      classes={{ root: classes.root }}
     >
       <AccordionSummary
         classes={{ root: classes.summary }}
@@ -104,7 +115,7 @@ export default function CartItem({ id, item, quantity }) {
       </AccordionSummary>
       <AccordionDetails classes={{ root: classes.details }}>
         <Meta item={item} />
-        <Divider className={classes.divider} orientation="vertical" flexItem />
+        <Divider className={classes.vertical} orientation="vertical" flexItem />
         <QuantityStepper
           id={id}
           quantity={quantity}

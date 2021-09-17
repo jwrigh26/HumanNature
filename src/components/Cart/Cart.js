@@ -12,6 +12,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
+
 import CartItem from './CartItem';
 import EmptyCart from './EmptyCart';
 
@@ -77,8 +78,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   list: {
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2.5),
+    // paddingLeft: theme.spacing(2),
+    // paddingRight: theme.spacing(2.5),
   }
 }));
 
@@ -113,10 +114,6 @@ export default function PersistentDrawerRight() {
   function handleDrawerClose() {
     dispatch(setCartOpen({ open: false }));
   }
-
-  // React.useEffect(() => {
-  //   console.log('Cart', cart);
-  // }, [cart]);
 
   return (
     <Drawer
