@@ -41,11 +41,14 @@ const useStyles = makeStyles((theme) => ({
   },
   summary: {
     width: '100%',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       width: 420,
     },
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('md')]: {
       width: 512,
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: 640,
     },
   },
   checkout: {

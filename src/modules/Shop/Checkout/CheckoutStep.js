@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme) => ({
   expanded: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
+  details: {
+    flexDirection: 'column',
+    width: '100%',
+  }
 }));
 
 Step.propTypes = {
@@ -63,7 +67,7 @@ export default function Step({ children, expanded, label }) {
           </Typography>
         </div>
       </AccordionSummary>
-      <AccordionDetails>{children}</AccordionDetails>
+      <AccordionDetails classes={{root: classes.details}}>{children}</AccordionDetails>
     </Accordion>
   );
 }

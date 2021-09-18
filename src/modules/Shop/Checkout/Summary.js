@@ -18,6 +18,7 @@ import SummaryItem from './SummaryItem';
 import SummaryEditItem from './SummaryEditItem';
 import clsx from 'clsx';
 import Shipping from './SummaryShipping';
+import { getCurrencyFromNumber } from 'helpers/formatHelper';
 
 const useStyles = makeStyles((theme) => ({
   summary: {
@@ -179,7 +180,7 @@ export default function Checkout() {
           Total (USD)
         </Typography>
         <Typography gutterBottom variant="h4" component="h4">
-          {cart.subtotal}
+          {getCurrencyFromNumber(cart.subtotal)}
         </Typography>
       </div>
     </>

@@ -13,8 +13,9 @@ import vaporizersMeta from './tmp/vaporizers-meta.json';
 
 import cookies from 'models/cookies';
 import helper from 'helpers/cookieHelper.js';
-import { getCurrencyFromNumber } from 'helpers/formatHelper';
 import { removeItem as deleteItem, sleep } from 'helpers/utils';
+
+// import { getCurrencyFromNumber } from 'helpers/formatHelper';
 
 const shopSlice = createSlice({
   name: 'shop',
@@ -23,7 +24,9 @@ const shopSlice = createSlice({
       open: false,
       items: {},
       quanity: {},
-      subtotal: '$0.00',
+      shipping: 0,
+      subtotal: 0,
+      total: 0,
       totalQuantity: 0,
     },
     categories: categoriesMeta,
@@ -66,7 +69,7 @@ const shopSlice = createSlice({
       state.cart.open = action.payload.open;
     },
     setCartSubTotal(state, action) {
-      state.cart.subtotal = getCurrencyFromNumber(action.payload.total);
+      state.cart.subtotal = action.payload.total;
     },
     setCartTotalQuantity(state, action) {
       state.cart.totalQuantity = action.payload.total;

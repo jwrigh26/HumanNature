@@ -11,7 +11,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import { getCurrencyFromNumber } from 'helpers/formatHelper';
 
 import CartItem from './CartItem';
 import EmptyCart from './EmptyCart';
@@ -146,7 +146,7 @@ export default function PersistentDrawerRight() {
             variant="h6"
             component="h3"
           >
-            {cart.subtotal}
+            {getCurrencyFromNumber(cart.subtotal)}
           </Typography>
         </div>
       </div>
