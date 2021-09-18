@@ -9,16 +9,37 @@ import Step from './CheckoutStep';
 
 const useStyles = makeStyles((theme) => ({
   info: {
-    // marginTop: theme.spacing(2),
-    // marginBottom: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     justifyItems: 'center',
     alignItems: 'flex-start',
+    paddingBottom: theme.spacing(1),
+  },
+  form: {
+    width: '100%',
+    textAlign: 'left',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
   },
   text: {
     color: theme.palette.text.secondary,
-    paddingRight: '8px',
+    textAlign: 'left',
+  },
+  textfield: {},
+  nameGroup: {
+    width: '100%',
+    textAlign: 'left',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+    },
   },
   bold: {
     color: theme.palette.text.primary,
@@ -29,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyItems: 'flex-start',
     alignItems: 'center',
-  }
+  },
 }));
 
 Shipping.propTypes = {
@@ -76,10 +97,9 @@ export default function Shipping({ expanded, step }) {
         >
           Duckburg, UT, 84095 / United States
         </Typography>
-        
       </div>
       <div className={classes.shipping}>
-      <Typography
+        <Typography
           className={classes.text}
           gutterBottom
           variant="body1"
