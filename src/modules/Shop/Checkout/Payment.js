@@ -13,12 +13,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     width: 200,
   },
-  info: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyItems: 'center',
-    alignItems: 'flex-start',
-  },
   text: {
     color: theme.palette.text.secondary,
     paddingRight: '8px',
@@ -52,7 +46,7 @@ export default function Payment({ expanded, step }) {
 
   return (
     <Step expanded={true} label={'Payment'}>
-      <div className={classes.info}>
+      <>
         <Typography
           className={classes.text}
           gutterBottom
@@ -85,7 +79,7 @@ export default function Payment({ expanded, step }) {
         >
           Pay
         </Button>
-      </div>
+      </>
     </Step>
   );
 }

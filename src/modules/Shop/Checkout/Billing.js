@@ -8,14 +8,6 @@ import Button from '@material-ui/core/Button';
 import Step from './CheckoutStep';
 
 const useStyles = makeStyles((theme) => ({
-  info: {
-    // marginTop: theme.spacing(2),
-    // marginBottom: theme.spacing(2),
-    display: 'flex',
-    flexDirection: 'column',
-    justifyItems: 'center',
-    alignItems: 'flex-start',
-  },
   text: {
     color: theme.palette.text.secondary,
   },
@@ -32,7 +24,7 @@ export default function Billing({ expanded, step }) {
 
   return (
     <Step expanded={true} label={'Billing'}>
-      <div className={classes.info}>
+      <>
         <Typography
           className={classes.text}
           gutterBottom
@@ -65,7 +57,7 @@ export default function Billing({ expanded, step }) {
         >
           Duckburg, UT, 84095 / United States
         </Typography>
-      </div>
+      </>
     </Step>
   );
 }

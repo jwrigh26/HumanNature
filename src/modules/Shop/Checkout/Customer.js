@@ -9,13 +9,6 @@ import Step from './CheckoutStep';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
-  info: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyItems: 'center',
-    alignItems: 'flex-start',
-    paddingBottom: theme.spacing(1),
-  },
   form: {
     width: '100%',
     textAlign: 'left',
@@ -43,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('xl')]: {
       flex: 1.4,
-    }
+    },
   },
   button: {
     height: 56,
@@ -55,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('xl')]: {
       flex: 0.6,
-    }
+    },
   },
   footer: {
     display: 'flex',
@@ -65,13 +58,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
     [theme.breakpoints.up('sm')]: {
       marginTop: theme.spacing(2),
-    }
+    },
   },
   footerText: {
     color: theme.palette.text.secondary,
     textAlign: 'left',
     marginRight: theme.spacing(0),
-    
   },
 }));
 
@@ -87,7 +79,7 @@ export default function Customer({ expanded, step }) {
 
   return (
     <Step expanded={true} label={'Customer'}>
-      <div className={classes.info}>
+      <>
         <Typography
           className={classes.text}
           gutterBottom
@@ -123,7 +115,7 @@ export default function Customer({ expanded, step }) {
           </Typography>
           <Button color="primary">Continue as Guest</Button>
         </div>
-      </div>
+      </>
     </Step>
   );
 }

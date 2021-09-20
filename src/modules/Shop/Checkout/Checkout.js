@@ -9,7 +9,7 @@ import { checkoutStep } from '../../../constants';
 import { setCartOpen } from 'store/shopSlice';
 import clsx from 'clsx';
 import Customer from './Customer';
-import Shipping from './Shipping';
+import Shipping from './ShippingBilling';
 import Billing from './Billing';
 import Payment from './Payment';
 import Summary from './Summary';
