@@ -10,7 +10,7 @@ import { setCartOpen } from 'store/shopSlice';
 import clsx from 'clsx';
 import Customer from './Customer';
 import Shipping from './ShippingBilling';
-import Billing from './Billing';
+import Billing from './BillingRecap';
 import Payment from './Payment';
 import Summary from './Summary';
 

@@ -4,7 +4,9 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Step from './CheckoutStep';
@@ -85,6 +87,9 @@ const useStyles = makeStyles((theme) => ({
       flex: 0.7,
     },
   },
+  billingSameAsShipping: {
+    marginTop: theme.spacing(2),
+  }
 }));
 
 ShippingBilling.propTypes = {
@@ -96,12 +101,20 @@ export default function ShippingBilling({ expanded, step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
+  const [billingSameAsShipping, setBillingSameAsShipping] = useState(false);
   const [stateProvince, setStateProvince] = useState(20);
 
-  const handleStateProvinceSelect = (event) => {
+  function handleBillingSameAsShipping() {
+    // const name = event.target.name;
+    // const isSame = name === 'billingSameAsShipping';
+    // console.log('name', isSame);
+    setBillingSameAsShipping(!billingSameAsShipping);
+  }
+
+  function handleStateProvinceSelect(event) {
     const value = event.target.value;
     setStateProvince(value);
-  };
+  }
 
   return (
     <Step expanded={true} label={'Shipping'}>
@@ -206,6 +219,19 @@ export default function ShippingBilling({ expanded, step }) {
               variant="outlined"
             />
           </div>
+          <FormControlLabel
+            className={classes.billingSameAsShipping}
+            control={
+              <Checkbox
+                checked={billingSameAsShipping}
+                onChange={handleBillingSameAsShipping}
+                name="billingSameAsShipping"
+                value={billingSameAsShipping}
+                color="primary"
+              />
+            }
+            label="My billing address is the same as my shipping address."
+          />
         </form>
       </>
     </Step>
