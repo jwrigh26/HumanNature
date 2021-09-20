@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
   billingSameAsShipping: {
     marginTop: theme.spacing(2),
-  }
+  },
 }));
 
 ShippingBilling.propTypes = {
@@ -109,6 +109,12 @@ export default function ShippingBilling({ expanded, step }) {
     // const isSame = name === 'billingSameAsShipping';
     // console.log('name', isSame);
     setBillingSameAsShipping(!billingSameAsShipping);
+  }
+
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      setBillingSameAsShipping(!billingSameAsShipping);
+    }
   }
 
   function handleStateProvinceSelect(event) {
@@ -225,6 +231,7 @@ export default function ShippingBilling({ expanded, step }) {
               <Checkbox
                 checked={billingSameAsShipping}
                 onChange={handleBillingSameAsShipping}
+                onKeyPress={(e) => handleKeyPress(e)}
                 name="billingSameAsShipping"
                 value={billingSameAsShipping}
                 color="primary"
