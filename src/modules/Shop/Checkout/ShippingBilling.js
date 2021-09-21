@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useDispatch } from 'react-redux';
-import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
@@ -37,7 +35,9 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     textAlign: 'left',
   },
-
+  shippingHintText: {
+    color: theme.palette.common.black,
+  },
   textfield: {
     flex: 1,
     width: '100%',
@@ -52,18 +52,18 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     textAlign: 'left',
     display: 'flex',
-    gap: theme.spacing(2),
+    gap: theme.spacing(4),
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(4),
   },
   row: {
     width: '100%',
     textAlign: 'left',
     display: 'flex',
-    marginTop: theme.spacing(2),
-    gap: theme.spacing(2),
+    marginTop: theme.spacing(4),
+    gap: theme.spacing(4),
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -88,18 +88,42 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   billingSameAsShipping: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
+  },
+  button: {
+    height: 56,
+    minWidth: 128,
+    width: '100%',
+    marginTop: theme.spacing(4),
+    [theme.breakpoints.up('md')]: {
+      width: '33%',
+    },
+  },
+  shippingContainer: {
+    width: '100%',
+    height: '148px',
+    backgroundColor: theme.palette.grey[300],
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing(4),
+    boxShadow: 'border-box',
+    textAlign: 'center',
   },
 }));
 
 ShippingBilling.propTypes = {
   expanded: PropTypes.string,
   step: PropTypes.string,
+  isBilling: PropTypes.bool,
 };
 
-export default function ShippingBilling({ expanded, step }) {
+export default function ShippingBilling({ expanded, step, isBilling = false }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const title = isBilling ? 'Billing' : 'Shipping';
 
   const [billingSameAsShipping, setBillingSameAsShipping] = useState(false);
   const [stateProvince, setStateProvince] = useState(20);
@@ -123,7 +147,7 @@ export default function ShippingBilling({ expanded, step }) {
   }
 
   return (
-    <Step expanded={true} label={'Shipping'}>
+    <Step expanded={true} label={title}>
       <>
         <div className={classes.country}>
           <Typography
@@ -225,20 +249,51 @@ export default function ShippingBilling({ expanded, step }) {
               variant="outlined"
             />
           </div>
-          <FormControlLabel
-            className={classes.billingSameAsShipping}
-            control={
-              <Checkbox
-                checked={billingSameAsShipping}
-                onChange={handleBillingSameAsShipping}
-                onKeyPress={(e) => handleKeyPress(e)}
-                name="billingSameAsShipping"
-                value={billingSameAsShipping}
-                color="primary"
+          {!isBilling && (
+            <>
+              <FormControlLabel
+                className={classes.billingSameAsShipping}
+                control={
+                  <Checkbox
+                    checked={billingSameAsShipping}
+                    onChange={handleBillingSameAsShipping}
+                    onKeyPress={(e) => handleKeyPress(e)}
+                    name="billingSameAsShipping"
+                    value={billingSameAsShipping}
+                    color="primary"
+                  />
+                }
+                label="My billing address is the same as my shipping address."
               />
-            }
-            label="My billing address is the same as my shipping address."
-          />
+
+              <div className={classes.shippingContainer}>
+                <Typography
+                  className={classes.shippingHintText}
+                  gutterBottom
+                  variant="body1"
+                  component="p"
+                >
+                  Please enter a shipping address in order to see shipping
+                  quotes
+                </Typography>
+              </div>
+              <div className={classes.column}>
+                <TextField
+                  className={classes.textfield}
+                  id="comments"
+                  label="Order Comments"
+                  variant="outlined"
+                />
+              </div>
+              <Button
+                className={classes.button}
+                color="primary"
+                variant="contained"
+              >
+                Continue
+              </Button>
+            </>
+          )}
         </form>
       </>
     </Step>

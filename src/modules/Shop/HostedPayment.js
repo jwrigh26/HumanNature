@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     width: '100%',
     maxWidth: 1000,
-    border: `1px solid ${theme.palette.grey[400]}`,
+    border: `1px solid ${theme.palette.grey[300]}`,
   },
 }));
 

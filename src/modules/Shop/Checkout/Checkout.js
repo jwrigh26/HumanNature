@@ -90,7 +90,7 @@ export default function Checkout() {
             <Customer expanded={expanded} step={checkoutStep.customer} />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
-            <Shipping expanded={expanded} step={checkoutStep.shipping} />
+            <Shipping isBilling={false} expanded={expanded} step={checkoutStep.shipping} />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
             <Billing expanded={expanded} step={checkoutStep.billing} />
