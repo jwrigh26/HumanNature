@@ -22,7 +22,7 @@ export default function Billing({ expanded, step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  // TODO: Make this dynamic and work with all checkout parts.
+  // TODO: Make this dynamic and work with all checkout parts!
 
   return (
     <Step expanded={true} label={'Billing'}>
