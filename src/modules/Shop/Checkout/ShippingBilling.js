@@ -93,16 +93,15 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     height: 56,
-    minWidth: 128,
     width: '100%',
     marginTop: theme.spacing(4),
     [theme.breakpoints.up('md')]: {
-      width: '33%',
+      width: 196,
     },
   },
   shippingContainer: {
     width: '100%',
-    height: '148px',
+    height: '128px',
     backgroundColor: theme.palette.grey[300],
     display: 'flex',
     flexDirection: 'column',
