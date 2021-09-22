@@ -22,6 +22,8 @@ export default function Billing({ expanded, step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
+  // TODO: Make this dynamic
+
   return (
     <Step expanded={true} label={'Billing'}>
       <>
