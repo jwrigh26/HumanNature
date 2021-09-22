@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import ReviewCard from './ReviewCard';
 import Step from './CheckoutStep';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -123,6 +124,7 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const title = isBilling ? 'Billing' : 'Shipping';
+  const showSummary = true;
 
   const [billingSameAsShipping, setBillingSameAsShipping] = useState(false);
   const [stateProvince, setStateProvince] = useState(20);
@@ -148,152 +150,166 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
   return (
     <Step expanded={true} label={title}>
       <>
-        <div className={classes.country}>
-          <Typography
-            className={clsx(classes.text, classes.label)}
-            gutterBottom
-            variant="body1"
-            component="p"
-          >
-            Country
-          </Typography>
-          <Typography
-            className={clsx(classes.text, classes.bold)}
-            gutterBottom
-            variant="body1"
-            component="p"
-          >
-            United States
-          </Typography>
-        </div>
-        <form className={classes.form}>
-          <div className={classes.row}>
-            <TextField
-              className={classes.textfield}
-              id="first-name"
-              label="First Name"
-              variant="outlined"
-            />
-            <TextField
-              className={classes.textfield}
-              id="last-name"
-              label="Last Name"
-              variant="outlined"
-            />
-          </div>
-          <div className={classes.column}>
-            <TextField
-              className={classes.textfield}
-              id="address1"
-              label="Address"
-              variant="outlined"
-            />
-            <TextField
-              className={classes.textfield}
-              id="address2"
-              label="Apartment / Suite / Building (Optional)"
-              variant="outlined"
-            />
-          </div>
-          <div className={classes.column}>
-            <TextField
-              className={classes.textfield}
-              id="company"
-              label="Company (Optional)"
-              variant="outlined"
-            />
-          </div>
-          <div className={classes.row}>
-            <TextField
-              className={clsx(classes.textfield, classes.flexMed)}
-              id="city"
-              label="City"
-              variant="outlined"
-            />
-            <FormControl
-              variant="outlined"
-              className={clsx(classes.formControl, classes.flexSmall)}
-            >
-              <InputLabel htmlFor="outlined-age-native-simple">
-                State / Province
-              </InputLabel>
-              <Select
-                native
-                value={stateProvince}
-                onChange={handleStateProvinceSelect}
-                label="State / Province"
-                inputProps={{
-                  name: 'state-province',
-                  id: 'state-province',
-                }}
+        {!expanded && <ReviewCard />}
+        {expanded && (
+          <>
+            <div className={classes.country}>
+              <Typography
+                className={clsx(classes.text, classes.label)}
+                gutterBottom
+                variant="body1"
+                component="p"
               >
-                <option aria-label="None" value="" />
-                <option value={10}>Idaho</option>
-                <option value={20}>Utah</option>
-                <option value={30}>Wyoming</option>
-              </Select>
-            </FormControl>
-          </div>
-          <div className={classes.row}>
-            <TextField
-              className={clsx(classes.textfield, classes.flexSmall)}
-              id="postal-code"
-              label="Postal Code"
-              variant="outlined"
-            />
-            <TextField
-              className={clsx(classes.textfield, classes.flexMed)}
-              id="phone-number"
-              label="Phone Number"
-              variant="outlined"
-            />
-          </div>
-          {!isBilling && (
-            <>
-              <FormControlLabel
-                className={classes.billingSameAsShipping}
-                control={
-                  <Checkbox
-                    checked={billingSameAsShipping}
-                    onChange={handleBillingSameAsShipping}
-                    onKeyPress={(e) => handleKeyPress(e)}
-                    name="billingSameAsShipping"
-                    value={billingSameAsShipping}
-                    color="primary"
-                  />
-                }
-                label="My billing address is the same as my shipping address."
-              />
-
-              <div className={classes.shippingContainer}>
-                <Typography
-                  className={classes.shippingHintText}
-                  gutterBottom
-                  variant="body1"
-                  component="p"
-                >
-                  Please enter a shipping address in order to see shipping
-                  quotes
-                </Typography>
+                Country
+              </Typography>
+              <Typography
+                className={clsx(classes.text, classes.bold)}
+                gutterBottom
+                variant="body1"
+                component="p"
+              >
+                United States
+              </Typography>
+            </div>
+            <form className={classes.form}>
+              <div className={classes.row}>
+                <TextField
+                  className={classes.textfield}
+                  id="first-name"
+                  label="First Name"
+                  variant="outlined"
+                />
+                <TextField
+                  className={classes.textfield}
+                  id="last-name"
+                  label="Last Name"
+                  variant="outlined"
+                />
               </div>
               <div className={classes.column}>
                 <TextField
                   className={classes.textfield}
-                  id="comments"
-                  label="Order Comments"
+                  id="address1"
+                  label="Address"
+                  variant="outlined"
+                />
+                <TextField
+                  className={classes.textfield}
+                  id="address2"
+                  label="Apartment / Suite / Building (Optional)"
                   variant="outlined"
                 />
               </div>
-              <Button
-                className={classes.button}
-                color="primary"
-                variant="contained"
-              >
-                Continue
-              </Button>
-            </>
-          )}
-        </form>
+              <div className={classes.column}>
+                <TextField
+                  className={classes.textfield}
+                  id="company"
+                  label="Company (Optional)"
+                  variant="outlined"
+                />
+              </div>
+              <div className={classes.row}>
+                <TextField
+                  className={clsx(classes.textfield, classes.flexMed)}
+                  id="city"
+                  label="City"
+                  variant="outlined"
+                />
+                <FormControl
+                  variant="outlined"
+                  className={clsx(classes.formControl, classes.flexSmall)}
+                >
+                  <InputLabel htmlFor="outlined-age-native-simple">
+                    State / Province
+                  </InputLabel>
+                  <Select
+                    native
+                    value={stateProvince}
+                    onChange={handleStateProvinceSelect}
+                    label="State / Province"
+                    inputProps={{
+                      name: 'state-province',
+                      id: 'state-province',
+                    }}
+                  >
+                    <option aria-label="None" value="" />
+                    <option value={10}>Idaho</option>
+                    <option value={20}>Utah</option>
+                    <option value={30}>Wyoming</option>
+                  </Select>
+                </FormControl>
+              </div>
+              <div className={classes.row}>
+                <TextField
+                  className={clsx(classes.textfield, classes.flexSmall)}
+                  id="postal-code"
+                  label="Postal Code"
+                  variant="outlined"
+                />
+                <TextField
+                  className={clsx(classes.textfield, classes.flexMed)}
+                  id="phone-number"
+                  label="Phone Number"
+                  variant="outlined"
+                />
+              </div>
+              {isBilling && (
+                <Button
+                  className={classes.button}
+                  color="primary"
+                  variant="contained"
+                >
+                  Continue
+                </Button>
+              )}
+              {!isBilling && (
+                <>
+                  <FormControlLabel
+                    className={classes.billingSameAsShipping}
+                    control={
+                      <Checkbox
+                        checked={billingSameAsShipping}
+                        onChange={handleBillingSameAsShipping}
+                        onKeyPress={(e) => handleKeyPress(e)}
+                        name="billingSameAsShipping"
+                        value={billingSameAsShipping}
+                        color="primary"
+                      />
+                    }
+                    label="My billing address is the same as my shipping address."
+                  />
+
+                  <div className={classes.shippingContainer}>
+                    <Typography
+                      className={classes.shippingHintText}
+                      gutterBottom
+                      variant="body1"
+                      component="p"
+                    >
+                      Please enter a shipping address in order to see shipping
+                      quotes
+                    </Typography>
+                  </div>
+                  <div className={classes.column}>
+                    <TextField
+                      className={classes.textfield}
+                      id="comments"
+                      label="Order Comments"
+                      variant="outlined"
+                    />
+                  </div>
+                  <Button
+                    className={classes.button}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Continue
+                  </Button>
+                </>
+              )}
+            </form>
+          </>
+        )}
       </>
     </Step>
   );

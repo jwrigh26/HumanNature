@@ -64,10 +64,10 @@ export default function ActionGroup() {
   const [hideCart, setHideCart] = useState(true);
 
   useEffect(() => {
-    console.log('Location ActionGroup');
-    console.log(location);
+    // console.log('Location ActionGroup');
+    // console.log(location);
+    // Based on location hide the checkout cart button in the action group
     const hide = !!(location.pathname.includes('checkout'));
-    console.log('Hide: ', hide);
     setHideCart(hide);
   }, [location]);
 

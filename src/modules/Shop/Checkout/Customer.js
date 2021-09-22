@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import ReviewCard from './ReviewCard';
 import Step from './CheckoutStep';
 import TextField from '@material-ui/core/TextField';
 
@@ -80,41 +79,46 @@ export default function Customer({ expanded, step }) {
   return (
     <Step expanded={true} label={'Customer'}>
       <>
-        <Typography
-          className={classes.text}
-          gutterBottom
-          variant="body1"
-          component="p"
-        >
-          Checking out as a Guest? You'll be able to save your details to create
-          an account with us later.
-        </Typography>
-        <form className={classes.form}>
-          <TextField
-            className={classes.textfield}
-            id="email-address"
-            label="Email Address"
-            variant="outlined"
-          />
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-          >
-            Continue as Guest
-          </Button>
-        </form>
-        <div className={classes.footer}>
-          <Typography
-            className={classes.footerText}
-            gutterBottom
-            variant="body1"
-            component="p"
-          >
-            Already have an account?
-          </Typography>
-          <Button color="primary">Continue as Guest</Button>
-        </div>
+        {!expanded && <ReviewCard />}
+        {expanded && (
+          <>
+            <Typography
+              className={classes.text}
+              gutterBottom
+              variant="body1"
+              component="p"
+            >
+              Checking out as a Guest? You'll be able to save your details to
+              create an account with us later.
+            </Typography>
+            <form className={classes.form}>
+              <TextField
+                className={classes.textfield}
+                id="email-address"
+                label="Email Address"
+                variant="outlined"
+              />
+              <Button
+                className={classes.button}
+                variant="contained"
+                color="primary"
+              >
+                Continue as Guest
+              </Button>
+            </form>
+            <div className={classes.footer}>
+              <Typography
+                className={classes.footerText}
+                gutterBottom
+                variant="body1"
+                component="p"
+              >
+                Already have an account?
+              </Typography>
+              <Button color="primary">Continue as Guest</Button>
+            </div>
+          </>
+        )}
       </>
     </Step>
   );

@@ -5,7 +5,6 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Step from './CheckoutStep';
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -13,19 +12,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-Billing.propTypes = {
+Card.propTypes = {
   expanded: PropTypes.string,
   step: PropTypes.string,
 };
 
-export default function Billing({ expanded, step }) {
+export default function Card({ expanded, step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   // TODO: Make this dynamic and work with all checkout parts!
 
+  console.log('Step', step);
   return (
-    <Step expanded={true} label={'Billing'}>
       <>
         <Typography
           className={classes.text}
@@ -60,6 +59,5 @@ export default function Billing({ expanded, step }) {
           Duckburg, UT, 84095 / United States
         </Typography>
       </>
-    </Step>
   );
 }

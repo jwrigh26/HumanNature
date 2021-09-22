@@ -9,8 +9,7 @@ import { checkoutStep } from '../../../constants';
 import { setCartOpen } from 'store/shopSlice';
 import clsx from 'clsx';
 import Customer from './Customer';
-import Shipping from './ShippingBilling';
-import Billing from './BillingRecap';
+import ShippingBilling from './ShippingBilling';
 import Payment from './Payment';
 import Summary from './Summary';
 
@@ -90,10 +89,18 @@ export default function Checkout() {
             <Customer expanded={expanded} step={checkoutStep.customer} />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
-            <Shipping isBilling={false} expanded={expanded} step={checkoutStep.shipping} />
+            <ShippingBilling
+              isBilling={false}
+              expanded={expanded}
+              step={checkoutStep.shipping}
+            />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
-            <Billing expanded={expanded} step={checkoutStep.billing} />
+            <ShippingBilling
+              isBilling={true}
+              expanded={expanded}
+              step={checkoutStep.billing}
+            />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
             <Payment expanded={expanded} step={checkoutStep.payment} />
