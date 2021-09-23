@@ -1,14 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { authorizePaymentTransaction } from 'store/paymentSlice';
-import Typography from '@material-ui/core/Typography';
+import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
+import ReviewCard from './ReviewCard';
 import Step from './CheckoutStep';
-import TextField from '@material-ui/core/TextField';
+import TextField from './TextField';
+import Typography from '@material-ui/core/Typography';
 import dummyData from 'models/dummy.json';
 import clsx from 'clsx';
+
+import valid from 'card-validator'; //import statement
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  ['credit-card-code']: yup.string().min(3).max(4).required(),
+  ['credit-card-number']: yup
+    .string()
+    .test(
+      'test-number', // this is used internally by yup
+      'Credit Card number is invalid', //validation message
+      (value) => valid.number(value).isValid
+    ) // return true false based on validation
+    .required(),
+  ['credit-card-expiration']: yup.string().length(5).required(),
+  ['credit-card-name']: yup.string().min(1).max(64).required(),
+});
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -16,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
   button: {
@@ -34,12 +54,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
     gap: theme.spacing(4),
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'flex-start',
     [theme.breakpoints.up('md')]: {
       flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
       gap: theme.spacing(4),
     },
   },
@@ -76,6 +94,23 @@ export default function Payment({ expanded, step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
+  const {
+    control,
+    formState: { errors, isSubmitting, isValid, touchedFields },
+    handleSubmit,
+    trigger,
+  } = useForm({
+    defaultValues: {
+      ['credit-card-code']: '',
+      ['credit-card-number']: '',
+      ['credit-card-expiration']: '',
+      ['credit-card-name']: '',
+    },
+    mode: 'onBlur',
+    resolver: yupResolver(schema),
+    reValidateMode: 'onBlur',
+  });
+
   async function handleHostedPayment() {
     const cardData = {
       cardNumber: '4111111111111111',
@@ -91,55 +126,74 @@ export default function Payment({ expanded, step }) {
     );
   }
 
+  const onSubmit = async (data) => {
+    console.log(`${JSON.stringify(touchedFields, null, 2)}`);
+    console.log(`${JSON.stringify(data, null, 2)}`);
+  };
+
   return (
     <Step expanded={true} label={'Payment'}>
       <>
-        <Typography
-          className={classes.text}
-          gutterBottom
-          variant="body1"
-          component="p"
-        >
-          Credit / Debit Cards
-        </Typography>
-        <form className={classes.form}>
-          <div className={classes.row}>
-            <TextField
-              className={clsx(classes.textfield, classes.flexMed)}
-              id="credit-card-number"
-              label="Credit Card Number"
-              variant="outlined"
-            />
-            <TextField
-              className={clsx(classes.textfield, classes.flexSmall)}
-              id="credit-card-expiration"
-              label="MM / YY"
-              variant="outlined"
-            />
-          </div>
-          <div className={classes.row}>
-            <TextField
-              className={clsx(classes.textfield, classes.flexMed)}
-              id="credit-card-name"
-              label="Name on Card"
-              variant="outlined"
-            />
-            <TextField
-              className={clsx(classes.textfield, classes.flexSmall)}
-              id="credit-card-cvv"
-              label="CVV"
-              variant="outlined"
-            />
-          </div>
-        </form>
-        <Button
-          className={classes.button}
-          variant="contained"
-          onClick={handleHostedPayment}
-          disabled
-        >
-          Pay
-        </Button>
+        {!expanded && <ReviewCard />}
+        {expanded && (
+          <>
+            <Typography
+              className={classes.text}
+              gutterBottom
+              variant="body1"
+              component="p"
+            >
+              Credit / Debit Cards
+            </Typography>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+              <div className={classes.row}>
+                <TextField
+                  classes={clsx(classes.textfield, classes.flexMed)}
+                  control={control}
+                  errors={errors}
+                  label="Credit Card Number"
+                  name="credit-card-number"
+                  trigger={trigger}
+                />
+                <TextField
+                  classes={clsx(classes.textfield, classes.flexSmall)}
+                  control={control}
+                  errors={errors}
+                  label="MM / YY"
+                  name="credit-card-expiration"
+                  trigger={trigger}
+                />
+              </div>
+              <div className={classes.row}>
+                <TextField
+                  classes={clsx(classes.textfield, classes.flexMed)}
+                  control={control}
+                  errors={errors}
+                  label="Name on Card"
+                  name="credit-card-name"
+                  trigger={trigger}
+                />
+                <TextField
+                  classes={clsx(classes.textfield, classes.flexSmall)}
+                  control={control}
+                  errors={errors}
+                  label="CVV"
+                  name="credit-card-code"
+                  trigger={trigger}
+                />
+              </div>
+            </form>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting || !isValid}
+              type="submit"
+            >
+              Pay
+            </Button>
+          </>
+        )}
       </>
     </Step>
   );

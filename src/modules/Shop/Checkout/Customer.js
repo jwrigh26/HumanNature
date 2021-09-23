@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
+import { hasValue } from 'helpers/utils';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -12,7 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  customerEmail: yup.string().min(2).max(10),
+  ['customer-email']: yup.string().email('Please enter a valid email.').required(),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -80,16 +81,16 @@ Customer.propTypes = {
 export default function Customer({ expanded, step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
-  const e = 'scrooge.mcduck@human+nature.com';
+  // const e = 'scrooge.mcduck@human+nature.com';
   const {
-    handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid, touchedFields },
+    handleSubmit,
     trigger,
   } = useForm({
     criteriaMode: 'firstError',
     defaultValues: {
-      customerEmail: '',
+      ['customer-email']: '',
     },
     mode: 'onBlur',
     resolver: yupResolver(schema),
@@ -97,12 +98,9 @@ export default function Customer({ expanded, step }) {
   });
 
   const onSubmit = (data) => {
+    console.log(`${JSON.stringify(touchedFields, null, 2)}`);
     console.log(`${JSON.stringify(data, null, 2)}`);
   };
-
-  React.useEffect(() => {
-    console.log('Errors', errors);
-  }, [errors]);
 
   return (
     <Step expanded={true} label={'Customer'}>
@@ -124,13 +122,16 @@ export default function Customer({ expanded, step }) {
                 classes={classes.textfield}
                 control={control}
                 errors={errors}
+                label="Email Address"
+                name="customer-email"
                 trigger={trigger}
               />
               <Button
                 className={classes.button}
-                variant="contained"
                 color="primary"
+                disabled={isSubmitting || !isValid}
                 type="submit"
+                variant="contained"
               >
                 Continue as Guest
               </Button>

@@ -13,6 +13,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
+ // ['postal-code']: yup.string().max(20).required(),
+
 const useStyles = makeStyles((theme) => ({
   form: {
     width: '100%',
