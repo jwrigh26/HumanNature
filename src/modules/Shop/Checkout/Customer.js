@@ -1,11 +1,19 @@
 import React from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ReviewCard from './ReviewCard';
 import Step from './CheckoutStep';
-import TextField from '@material-ui/core/TextField';
+import TextField from './TextField';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  customerEmail: yup.string().min(2).max(10),
+});
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -13,12 +21,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'flex-start',
     [theme.breakpoints.up('sm')]: {
       flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
     },
   },
   text: {
@@ -75,6 +81,28 @@ export default function Customer({ expanded, step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const e = 'scrooge.mcduck@human+nature.com';
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    trigger,
+  } = useForm({
+    criteriaMode: 'firstError',
+    defaultValues: {
+      customerEmail: '',
+    },
+    mode: 'onBlur',
+    resolver: yupResolver(schema),
+    reValidateMode: 'onBlur',
+  });
+
+  const onSubmit = (data) => {
+    console.log(`${JSON.stringify(data, null, 2)}`);
+  };
+
+  React.useEffect(() => {
+    console.log('Errors', errors);
+  }, [errors]);
 
   return (
     <Step expanded={true} label={'Customer'}>
@@ -91,17 +119,18 @@ export default function Customer({ expanded, step }) {
               Checking out as a Guest? You'll be able to save your details to
               create an account with us later.
             </Typography>
-            <form className={classes.form}>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
               <TextField
-                className={classes.textfield}
-                id="email-address"
-                label="Email Address"
-                variant="outlined"
+                classes={classes.textfield}
+                control={control}
+                errors={errors}
+                trigger={trigger}
               />
               <Button
                 className={classes.button}
                 variant="contained"
                 color="primary"
+                type="submit"
               >
                 Continue as Guest
               </Button>

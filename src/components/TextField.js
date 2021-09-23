@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
 import { isFunction, isNil } from 'helpers/utils';
+import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
+import clsx from 'clsx';
+
 
 MUITextField.propTypes = {
   className: PropTypes.any,
@@ -133,7 +133,7 @@ function MUITextField({
   return (
     <TextField
       classes={{
-        root: classnames(classes.root, otherClasses),
+        root: clsx(classes.root, otherClasses),
       }}
       key={label}
       label={label}
