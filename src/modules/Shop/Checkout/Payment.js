@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { authorizePaymentTransaction } from 'store/paymentSlice';
 import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
 import Step from './CheckoutStep';
 import TextField from './TextField';
@@ -15,6 +15,8 @@ import clsx from 'clsx';
 import valid from 'card-validator'; //import statement
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+
+// TODO: Force entry for month/year and extract those values
 
 const schema = yup.object().shape({
   ['credit-card-code']: yup.string().min(3).max(4).required(),

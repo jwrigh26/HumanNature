@@ -1,19 +1,49 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
 import Step from './CheckoutStep';
-import TextField from '@material-ui/core/TextField';
+import TextField from './TextField';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
- // ['postal-code']: yup.string().max(20).required(),
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  ['first-name']: yup
+    .string()
+    .max(50, 'Max value 50.')
+    .required('First Name is required.'),
+  ['last-name']: yup
+    .string()
+    .max(50, 'Max value 50.')
+    .required('Last Name is required.'),
+  ['address-1']: yup
+    .string()
+    .max(60, 'Max value 60.')
+    .required('Address is required.'),
+  ['address-2']: yup.string().max(60, 'Max value 60.'),
+  ['company']: yup.string().max(50, 'Max value 50.'),
+  ['city']: yup.string().max(40, 'Max value 40.').required('City is required'),
+  ['postal-code']: yup
+    .string()
+    .max(20, 'Max value 20.')
+    .required('Postal Code is required.'),
+  ['phone-number']: yup.string().max(25, 'Max value 25.'),
+  ['state']: yup
+    .string()
+    .length(2, 'Length is 2.')
+    .required('State is required'),
+  ['comments']: yup.string().max(256, 'Max value 256.'),
+});
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -68,12 +98,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
     gap: theme.spacing(4),
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'flex-start',
     [theme.breakpoints.up('md')]: {
       flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
       gap: theme.spacing(4),
     },
   },
@@ -122,14 +150,49 @@ ShippingBilling.propTypes = {
   isBilling: PropTypes.bool,
 };
 
+// TODOs
+// Make selector work with form validation
+// Fill selector with all states
+
+// Make phone number only take phone digits
+// Make postal code validate 
+
+// CVV validate
+// MM / YY validate
+
+// Hook up steps in proper order
+// Billing address checkmark
+// Comments text
+
 export default function ShippingBilling({ expanded, step, isBilling = false }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const title = isBilling ? 'Billing' : 'Shipping';
-  const showSummary = true;
 
   const [billingSameAsShipping, setBillingSameAsShipping] = useState(false);
   const [stateProvince, setStateProvince] = useState(20);
+
+  const {
+    control,
+    formState: { errors, isSubmitting, isValid, touchedFields },
+    handleSubmit,
+    trigger,
+  } = useForm({
+    defaultValues: {
+      ['first-name']: '',
+      ['last-name']: '',
+      ['address-1']: '',
+      ['address-2']: '',
+      ['company']: '',
+      ['city']: '',
+      ['postal-code']: '',
+      ['phone-number']: '',
+      ['comments']: '',
+    },
+    mode: 'onBlur',
+    resolver: yupResolver(schema),
+    reValidateMode: 'onBlur',
+  });
 
   function handleBillingSameAsShipping() {
     // const name = event.target.name;
@@ -148,6 +211,11 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
     const value = event.target.value;
     setStateProvince(value);
   }
+
+  const onSubmit = (data) => {
+    console.log(`${JSON.stringify(touchedFields, null, 2)}`);
+    console.log(`${JSON.stringify(data, null, 2)}`);
+  };
 
   return (
     <Step expanded={true} label={title}>
@@ -173,49 +241,61 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                 United States
               </Typography>
             </div>
-            <form className={classes.form}>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
               <div className={classes.row}>
                 <TextField
-                  className={classes.textfield}
-                  id="first-name"
+                  classes={classes.textfield}
+                  control={control}
+                  errors={errors}
                   label="First Name"
-                  variant="outlined"
+                  name="first-name"
+                  trigger={trigger}
                 />
                 <TextField
-                  className={classes.textfield}
-                  id="last-name"
+                  classes={classes.textfield}
+                  control={control}
+                  errors={errors}
                   label="Last Name"
-                  variant="outlined"
+                  name="last-name"
+                  trigger={trigger}
                 />
               </div>
               <div className={classes.column}>
                 <TextField
-                  className={classes.textfield}
-                  id="address1"
+                  classes={classes.textfield}
+                  control={control}
+                  errors={errors}
                   label="Address"
-                  variant="outlined"
+                  name="address-1"
+                  trigger={trigger}
                 />
                 <TextField
-                  className={classes.textfield}
-                  id="address2"
+                  classes={classes.textfield}
+                  control={control}
+                  errors={errors}
                   label="Apartment / Suite / Building (Optional)"
-                  variant="outlined"
+                  name="address-2"
+                  trigger={trigger}
                 />
               </div>
               <div className={classes.column}>
                 <TextField
-                  className={classes.textfield}
-                  id="company"
+                  classes={classes.textfield}
+                  control={control}
+                  errors={errors}
                   label="Company (Optional)"
-                  variant="outlined"
+                  name="company"
+                  trigger={trigger}
                 />
               </div>
               <div className={classes.row}>
                 <TextField
-                  className={clsx(classes.textfield, classes.flexMed)}
-                  id="city"
+                  classes={clsx(classes.textfield, classes.flexMed)}
+                  control={control}
+                  errors={errors}
                   label="City"
-                  variant="outlined"
+                  name="city"
+                  trigger={trigger}
                 />
                 <FormControl
                   variant="outlined"
@@ -243,22 +323,27 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
               </div>
               <div className={classes.row}>
                 <TextField
-                  className={clsx(classes.textfield, classes.flexSmall)}
-                  id="postal-code"
+                  classes={clsx(classes.textfield, classes.flexSmall)}
+                  control={control}
+                  errors={errors}
                   label="Postal Code"
-                  variant="outlined"
+                  name="postal-code"
+                  trigger={trigger}
                 />
                 <TextField
-                  className={clsx(classes.textfield, classes.flexMed)}
-                  id="phone-number"
+                  classes={clsx(classes.textfield, classes.flexMed)}
+                  control={control}
+                  errors={errors}
                   label="Phone Number"
-                  variant="outlined"
+                  name="phone-number"
+                  trigger={trigger}
                 />
               </div>
               {isBilling && (
                 <Button
                   className={classes.button}
                   color="primary"
+                  disabled={isSubmitting || !isValid}
                   variant="contained"
                 >
                   Continue
@@ -294,15 +379,18 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                   </div>
                   <div className={classes.column}>
                     <TextField
-                      className={classes.textfield}
-                      id="comments"
+                      classes={classes.textfield}
+                      control={control}
+                      errors={errors}
                       label="Order Comments"
-                      variant="outlined"
+                      name="comments"
+                      trigger={trigger}
                     />
                   </div>
                   <Button
                     className={classes.button}
                     color="primary"
+                    disabled={isSubmitting || !isValid}
                     variant="contained"
                   >
                     Continue

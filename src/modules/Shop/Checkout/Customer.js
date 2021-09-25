@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import { hasValue } from 'helpers/utils';
+// import { hasValue } from 'helpers/utils';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
