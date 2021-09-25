@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTheme } from '@material-ui/core/styles';
 import { Controller } from 'react-hook-form';
-import { hasValue } from 'helpers/utils';
+import { hasValue, isFunction } from 'helpers/utils';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -14,6 +14,7 @@ MUITextField.propTypes = {
   errors: PropTypes.object,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  setChangeValue: PropTypes.func,
   trigger: PropTypes.func.isRequired,
 };
 
@@ -32,6 +33,7 @@ function MUITextField({
   errors,
   label,
   name,
+  setChangeValue,
   trigger,
 }) {
   const theme = useTheme();
@@ -54,7 +56,6 @@ function MUITextField({
     }
     return null;
   }
-  
 
   return (
     <Controller
@@ -71,7 +72,11 @@ function MUITextField({
               if (hasValue(errors[name])) {
                 trigger(`${name}`);
               }
-              onChange(e.target.value);
+              if (isFunction(setChangeValue)) {
+                onChange(setChangeValue(e.target.value));
+              } else {
+                onChange(e.target.value);
+              }
             }}
             onBlur={onBlur}
             value={value}

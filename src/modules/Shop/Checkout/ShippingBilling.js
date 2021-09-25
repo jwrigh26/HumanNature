@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
+import { phoneFormat, postalCodeFormat } from 'helpers/formatHelper';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
@@ -36,8 +37,18 @@ const schema = yup.object().shape({
   ['postal-code']: yup
     .string()
     .max(20, 'Max value 20.')
+    .matches(
+      /(^\d{5}$)|(^\d{5}-\d{4}$)/,
+      'Postal Code is not valid. ( xxxxx or xxxxx-xxxx )'
+    )
     .required('Postal Code is required.'),
-  ['phone-number']: yup.string().max(25, 'Max value 25.'),
+  ['phone-number']: yup
+    .string()
+    .max(25, 'Max value 25.')
+    .matches(
+      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+      'Phone Number is not valid. (xxx) xxx-xxxx'
+    ),
   ['state']: yup
     .string()
     .length(2, 'Length is 2.')
@@ -108,14 +119,14 @@ const useStyles = makeStyles((theme) => ({
   flexSmall: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      flex: 0.3,
+      flex: 0.4,
     },
   },
 
   flexMed: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      flex: 0.7,
+      flex: 0.6,
     },
   },
   billingSameAsShipping: {
@@ -155,7 +166,7 @@ ShippingBilling.propTypes = {
 // Fill selector with all states
 
 // Make phone number only take phone digits
-// Make postal code validate 
+// Make postal code validate
 
 // CVV validate
 // MM / YY validate
@@ -210,6 +221,14 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
   function handleStateProvinceSelect(event) {
     const value = event.target.value;
     setStateProvince(value);
+  }
+
+  function handlePhoneNumbervalue(value) {
+    return phoneFormat(value);
+  }
+
+  function handlePostalCodeValue(value) {
+    return postalCodeFormat(value);
   }
 
   const onSubmit = (data) => {
@@ -328,6 +347,7 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                   errors={errors}
                   label="Postal Code"
                   name="postal-code"
+                  setChangeValue={handlePostalCodeValue}
                   trigger={trigger}
                 />
                 <TextField
@@ -336,6 +356,7 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                   errors={errors}
                   label="Phone Number"
                   name="phone-number"
+                  setChangeValue={handlePhoneNumbervalue}
                   trigger={trigger}
                 />
               </div>

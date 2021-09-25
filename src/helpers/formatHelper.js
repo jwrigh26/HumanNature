@@ -48,3 +48,31 @@ export function truncateDescription(str, length = 100, ending = '...') {
   }
   return str;
 }
+
+export function phoneFormat(value) {
+  //returns (###) ###-####
+  let input = value.replace(/\D/g, '');
+  let size = input.length;
+  if (size > 0) {
+    input = '(' + input;
+  }
+  if (size > 3) {
+    input = input.slice(0, 4) + ') ' + input.slice(4, 11);
+  }
+  if (size > 6) {
+    input = input.slice(0, 9) + '-' + input.slice(9);
+  }
+  return input;
+}
+
+export function postalCodeFormat(value) {
+  let input = value.replace(/\D/g, '');
+  let size = input.length;
+  if (size > 5) {
+    input = input.slice(0, 5) + '-' + input.slice(5, input.length);
+  }
+  if (size >= 10) {
+    input = input.slice(0, 10);
+  }
+  return input;
+}
