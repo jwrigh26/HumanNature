@@ -3,6 +3,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { authorizePaymentTransaction } from 'store/paymentSlice';
 import { useForm } from 'react-hook-form';
+import { creditCardExpirationFormat, cvvFormat } from 'helpers/formatHelper';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
@@ -113,6 +114,14 @@ export default function Payment({ expanded, step }) {
     reValidateMode: 'onBlur',
   });
 
+  function handleExpirationValue(value) {
+    return creditCardExpirationFormat(value);
+  }
+
+  function handleCVVValue(value) {
+    return cvvFormat(value);
+  }
+
   async function handleHostedPayment() {
     const cardData = {
       cardNumber: '4111111111111111',
@@ -163,6 +172,7 @@ export default function Payment({ expanded, step }) {
                   errors={errors}
                   label="MM / YY"
                   name="credit-card-expiration"
+                  setChangeValue={handleExpirationValue}
                   trigger={trigger}
                 />
               </div>
@@ -181,6 +191,7 @@ export default function Payment({ expanded, step }) {
                   errors={errors}
                   label="CVV"
                   name="credit-card-code"
+                  setChangeValue={handleCVVValue}
                   trigger={trigger}
                 />
               </div>

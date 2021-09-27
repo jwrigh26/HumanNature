@@ -4,12 +4,10 @@ import { useForm } from 'react-hook-form';
 import { phoneFormat, postalCodeFormat } from 'helpers/formatHelper';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
+import Select from './Select';
 import Step from './CheckoutStep';
 import TextField from './TextField';
 import Typography from '@material-ui/core/Typography';
@@ -218,9 +216,9 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
     }
   }
 
-  function handleStateProvinceSelect(event) {
-    const value = event.target.value;
+  function handleStateProvinceSelect(value) {
     setStateProvince(value);
+    return value;
   }
 
   function handlePhoneNumbervalue(value) {
@@ -316,29 +314,23 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                   name="city"
                   trigger={trigger}
                 />
-                <FormControl
-                  variant="outlined"
-                  className={clsx(classes.formControl, classes.flexSmall)}
+                <Select
+                  classes={classes.flexSmall}
+                  control={control}
+                  label="State / Province"
+                  name="state-province"
+                  options={[
+                    { value: 10, label: 'Idaho' },
+                    { value: 20, label: 'Utah' },
+                    { value: 30, label: 'Wyoming' },
+                  ]}
+                  setChangeValue={handleStateProvinceSelect}
                 >
-                  <InputLabel htmlFor="outlined-age-native-simple">
-                    State / Province
-                  </InputLabel>
-                  <Select
-                    native
-                    value={stateProvince}
-                    onChange={handleStateProvinceSelect}
-                    label="State / Province"
-                    inputProps={{
-                      name: 'state-province',
-                      id: 'state-province',
-                    }}
-                  >
-                    <option aria-label="None" value="" />
-                    <option value={10}>Idaho</option>
-                    <option value={20}>Utah</option>
-                    <option value={30}>Wyoming</option>
-                  </Select>
-                </FormControl>
+                  <option aria-label="None" value="" />
+                  <option value={10}>Idaho</option>
+                  <option value={20}>Utah</option>
+                  <option value={30}>Wyoming</option>
+                </Select>
               </div>
               <div className={classes.row}>
                 <TextField

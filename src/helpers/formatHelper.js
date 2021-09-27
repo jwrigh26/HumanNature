@@ -49,8 +49,21 @@ export function truncateDescription(str, length = 100, ending = '...') {
   return str;
 }
 
+export function creditCardExpirationFormat(value) {
+  // returns MM / YY
+  let input = value.replace(/\D/g, '');
+  let size = input.length;
+  if (size > 2) {
+    input = `${input.slice(0, 2)} / ${input.slice(2)}`;
+  }
+  if (size > 4) {
+    input = input.slice(0, 7);
+  }
+  return input;
+}
+
 export function phoneFormat(value) {
-  //returns (###) ###-####
+  // returns (###) ###-####
   let input = value.replace(/\D/g, '');
   let size = input.length;
   if (size > 0) {
@@ -71,8 +84,17 @@ export function postalCodeFormat(value) {
   if (size > 5) {
     input = input.slice(0, 5) + '-' + input.slice(5, input.length);
   }
-  if (size >= 10) {
+  if (size > 9) {
     input = input.slice(0, 10);
+  }
+  return input;
+}
+
+export function cvvFormat(value) {
+  let input = value.replace(/\D/g, '');
+  let size = input.length;
+  if (size > 4) {
+    return input.slice(0, 4);
   }
   return input;
 }
