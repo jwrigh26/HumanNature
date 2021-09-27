@@ -14,7 +14,12 @@ MUISelect.propTypes = {
   control: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
   setChangeValue: PropTypes.func,
 };
 
@@ -70,9 +75,9 @@ function MUISelect({
               {...field}
             >
               <option aria-label="None" value="" />
-              {options.map((o) => (
-                <option key={`${o.value}-${o.label}`} value={o.value}>
-                  {o.label}
+              {options.map((o, i) => (
+                <option key={`${o.name}-${i}`} value={o.value}>
+                  {o.name}
                 </option>
               ))}
             </Select>

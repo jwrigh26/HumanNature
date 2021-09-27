@@ -7,6 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
+import states from 'models/states';
 import Select from './Select';
 import Step from './CheckoutStep';
 import TextField from './TextField';
@@ -319,18 +320,9 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                   control={control}
                   label="State / Province"
                   name="state-province"
-                  options={[
-                    { value: 10, label: 'Idaho' },
-                    { value: 20, label: 'Utah' },
-                    { value: 30, label: 'Wyoming' },
-                  ]}
+                  options={states}
                   setChangeValue={handleStateProvinceSelect}
-                >
-                  <option aria-label="None" value="" />
-                  <option value={10}>Idaho</option>
-                  <option value={20}>Utah</option>
-                  <option value={30}>Wyoming</option>
-                </Select>
+                />
               </div>
               <div className={classes.row}>
                 <TextField
