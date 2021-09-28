@@ -75,7 +75,7 @@ const paymentSlice = createSlice({
       description: undefined,
     },
     billTo: undefined,
-    shipTO: undefined,
+    shipTo: undefined,
     lineItems: undefined,
   },
   reducers: {

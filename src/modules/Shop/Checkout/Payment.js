@@ -3,7 +3,6 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { authorizePaymentTransaction } from 'store/paymentSlice';
 import { useForm } from 'react-hook-form';
-import { creditCardExpirationFormat, cvvFormat } from 'helpers/formatHelper';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
@@ -29,7 +28,7 @@ const schema = yup.object().shape({
       (value) => valid.number(value).isValid
     ) // return true false based on validation
     .required(),
-  ['credit-card-expiration']: yup.string().length(5).required(),
+  ['credit-card-expiration']: yup.string().length(7).required(),
   ['credit-card-name']: yup.string().min(1).max(64).required(),
 });
 
@@ -88,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 Payment.propTypes = {
-  expanded: PropTypes.string,
+  expanded: PropTypes.bool,
   step: PropTypes.string,
 };
 
@@ -104,10 +103,10 @@ export default function Payment({ expanded, step }) {
     trigger,
   } = useForm({
     defaultValues: {
-      ['credit-card-code']: '',
-      ['credit-card-number']: '',
-      ['credit-card-expiration']: '',
-      ['credit-card-name']: '',
+      ['credit-card-code']: '123',
+      ['credit-card-number']: '4111111111111111',
+      ['credit-card-expiration']: '12 / 22',
+      ['credit-card-name']: 'Justin Wright',
     },
     mode: 'onBlur',
     resolver: yupResolver(schema),
@@ -115,11 +114,34 @@ export default function Payment({ expanded, step }) {
   });
 
   function handleExpirationValue(value) {
-    return creditCardExpirationFormat(value);
+    // returns MM / YY
+    let input = value.replace(/\D/g, '');
+    let size = input.length;
+    if (size > 2) {
+      input = `${input.slice(0, 2)} / ${input.slice(2)}`;
+    }
+    if (size > 4) {
+      input = input.slice(0, 7);
+    }
+    return input;
   }
 
   function handleCVVValue(value) {
-    return cvvFormat(value);
+    let input = value.replace(/\D/g, '');
+    let size = input.length;
+    if (size > 4) {
+      return input.slice(0, 4);
+    }
+    return input;
+  }
+
+  function handleCreditCardNumber(value) {
+    let input = value.replace(/\D/g, '');
+    let size = input.length;
+    if (size > 16) {
+      return input.slice(0, 16);
+    }
+    return input;
   }
 
   async function handleHostedPayment() {
@@ -164,6 +186,7 @@ export default function Payment({ expanded, step }) {
                   errors={errors}
                   label="Credit Card Number"
                   name="credit-card-number"
+                  setChangeValue={handleCreditCardNumber}
                   trigger={trigger}
                 />
                 <TextField
@@ -195,19 +218,22 @@ export default function Payment({ expanded, step }) {
                   trigger={trigger}
                 />
               </div>
+              <Button
+                className={classes.button}
+                color="primary"
+                disabled={isSubmitting || !isValid}
+                type="submit"
+                variant="contained"
+              >
+                Pay
+              </Button>
             </form>
-            <Button
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting || !isValid}
-              type="submit"
-            >
-              Pay
-            </Button>
           </>
         )}
       </>
     </Step>
   );
 }
+
+// 4111111111111111
+// TODO: work on credit card validation

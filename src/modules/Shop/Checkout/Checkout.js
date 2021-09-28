@@ -86,24 +86,24 @@ export default function Checkout() {
           direction="column"
         >
           <Paper elevation={1} className={classes.paper}>
-            <Customer expanded={expanded} step={checkoutStep.customer} />
+            <Customer expanded={false} step={checkoutStep.customer} />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
             <ShippingBilling
               isBilling={false}
-              expanded={expanded}
+              expanded={false}
               step={checkoutStep.shipping}
             />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
             <ShippingBilling
               isBilling={true}
-              expanded={expanded}
+              expanded={false}
               step={checkoutStep.billing}
             />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
-            <Payment expanded={expanded} step={checkoutStep.payment} />
+            <Payment expanded={false} step={checkoutStep.payment} />
           </Paper>
         </Grid>
         <Grid

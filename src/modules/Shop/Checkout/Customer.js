@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 Customer.propTypes = {
-  expanded: PropTypes.string,
+  expanded: PropTypes.bool,
   step: PropTypes.string,
 };
 
@@ -90,7 +90,7 @@ export default function Customer({ expanded, step }) {
   } = useForm({
     criteriaMode: 'firstError',
     defaultValues: {
-      ['customer-email']: '',
+      ['customer-email']: 'jwrigh26@gmail.com',
     },
     mode: 'onBlur',
     resolver: yupResolver(schema),
@@ -145,7 +145,7 @@ export default function Customer({ expanded, step }) {
               >
                 Already have an account?
               </Typography>
-              <Button color="primary">Continue as Guest</Button>
+              <Button color="primary">Sign in now</Button>
             </div>
           </>
         )}

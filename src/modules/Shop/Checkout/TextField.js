@@ -41,8 +41,6 @@ function MUITextField({
 
   function getErrorText() {
     if (hasValue(errors[name])) {
-      console.log(`${JSON.stringify(errors, null, 2)}`);
-
       return (
         <Typography
           className={classes.errorText}

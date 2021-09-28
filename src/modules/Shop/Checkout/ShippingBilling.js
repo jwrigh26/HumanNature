@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import { phoneFormat, postalCodeFormat } from 'helpers/formatHelper';
+import { phoneFormat } from 'helpers/formatHelper';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -155,21 +155,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 ShippingBilling.propTypes = {
-  expanded: PropTypes.string,
+  expanded: PropTypes.bool,
   step: PropTypes.string,
   isBilling: PropTypes.bool,
 };
 
 // TODOs
-// Make selector work with form validation
-// Fill selector with all states
-
-// Make phone number only take phone digits
-// Make postal code validate
-
-// CVV validate
-// MM / YY validate
-
+// Make user model
+//
 // Hook up steps in proper order
 // Billing address checkmark
 // Comments text
@@ -189,15 +182,16 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
     trigger,
   } = useForm({
     defaultValues: {
-      ['first-name']: '',
-      ['last-name']: '',
-      ['address-1']: '',
-      ['address-2']: '',
-      ['company']: '',
-      ['city']: '',
-      ['postal-code']: '',
-      ['phone-number']: '',
-      ['comments']: '',
+      ['first-name']: 'Scrooge',
+      ['last-name']: 'McDuck',
+      ['address-1']: '555 McManor Rd',
+      ['address-2']: 'PO 55423',
+      ['company']: 'Duck LLC',
+      ['city']: 'Salt Lake City',
+      ['postal-code']: '84106',
+      ['phone-number']: '(801)-555-5555',
+      ['state']: 'UT',
+      ['comments']: 'Here is some comments from Scrooge.',
     },
     mode: 'onBlur',
     resolver: yupResolver(schema),
@@ -227,13 +221,26 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
   }
 
   function handlePostalCodeValue(value) {
-    return postalCodeFormat(value);
+    let input = value.replace(/\D/g, '');
+    let size = input.length;
+    if (size > 5) {
+      input = input.slice(0, 5) + '-' + input.slice(5, input.length);
+    }
+    if (size > 9) {
+      input = input.slice(0, 10);
+    }
+    return input;
   }
 
   const onSubmit = (data) => {
     console.log(`${JSON.stringify(touchedFields, null, 2)}`);
     console.log(`${JSON.stringify(data, null, 2)}`);
   };
+
+  React.useEffect(() => {
+    console.log('errors', errors);
+    console.log('isValid', isValid);
+  }, [isValid, errors]);
 
   return (
     <Step expanded={true} label={title}>
@@ -318,8 +325,8 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                 <Select
                   classes={classes.flexSmall}
                   control={control}
-                  label="State / Province"
-                  name="state-province"
+                  label="State"
+                  name="state"
                   options={states}
                   setChangeValue={handleStateProvinceSelect}
                 />
@@ -349,6 +356,7 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                   className={classes.button}
                   color="primary"
                   disabled={isSubmitting || !isValid}
+                  type="submit"
                   variant="contained"
                 >
                   Continue
@@ -396,6 +404,7 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
                     className={classes.button}
                     color="primary"
                     disabled={isSubmitting || !isValid}
+                    type="submit"
                     variant="contained"
                   >
                     Continue
