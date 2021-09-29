@@ -237,11 +237,6 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
     console.log(`${JSON.stringify(data, null, 2)}`);
   };
 
-  React.useEffect(() => {
-    console.log('errors', errors);
-    console.log('isValid', isValid);
-  }, [isValid, errors]);
-
   return (
     <Step expanded={true} label={title}>
       <>

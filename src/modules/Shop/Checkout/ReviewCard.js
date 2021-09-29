@@ -1,63 +1,72 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    position: 'relative',
+    textAlign: 'left',
+    width: '100%',
+  },
+  button: {
+    color: theme.palette.primary.main,
+    fontWeight: 700,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  },
+  buttonDark: {
+    color: theme.palette.secondary.main,
+  },
   text: {
     color: theme.palette.text.secondary,
   },
 }));
 
-Card.propTypes = {
-  expanded: PropTypes.string,
-  step: PropTypes.string,
+ReviewCard.propTypes = {
+  info: PropTypes.array,
+  onEdit: PropTypes.func,
 };
 
-export default function Card({ expanded, step }) {
+export default function ReviewCard({ info = [], onEdit = () => {} }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  // TODO: Make this dynamic and work with all checkout parts!
+  function renderLine(line, index) {
+    return (
+      <Typography
+        className={classes.text}
+        gutterBottom
+        variant="body1"
+        component="p"
+        key={index}
+      >
+        {line}
+      </Typography>
+    );
+  }
 
-  console.log('Step', step);
   return (
-      <>
-        <Typography
-          className={classes.text}
-          gutterBottom
-          variant="body1"
-          component="p"
-        >
-          Scrooge McDuck
-        </Typography>
-        <Typography
-          className={classes.text}
-          gutterBottom
-          variant="body1"
-          component="p"
-        >
-          555-555-5555
-        </Typography>
-        <Typography
-          className={classes.text}
-          gutterBottom
-          variant="body1"
-          component="p"
-        >
-          5555 N McManor CV
-        </Typography>
-        <Typography
-          className={classes.text}
-          gutterBottom
-          variant="body1"
-          component="p"
-        >
-          Duckburg, UT, 84095 / United States
-        </Typography>
-      </>
+    <div className={classes.root}>
+      {info.map((line, index) => renderLine(line, index))}
+      <Button
+        className={clsx(classes.button, {
+          [classes.buttonDark]: theme?.mode?.isDark,
+        })}
+        size="small"
+        onClick={(e) => {
+          e.stopPropagation();
+          onEdit(true);
+        }}
+        disabled={false}
+      >
+        Edit
+      </Button>
+    </div>
   );
 }

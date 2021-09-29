@@ -7,6 +7,7 @@ import paymentReducer from './paymentSlice';
 import postReducer from './postSlice';
 import screenReducer from './screenSlice';
 import shopReducer from './shopSlice';
+import userReducer from './userSlice';
 
 const reducers = combineReducers({
   app: appReducer,
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   post: postReducer,
   screen: screenReducer,
   shop: shopReducer,
+  user: userReducer,
 });
 
 export default reducers;

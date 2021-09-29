@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { checkoutStep } from '../../../constants';
 import { setCartOpen } from 'store/shopSlice';
+import { setEmail, useCustomerEmail } from 'store/userSlice';
+import { isNil } from 'helpers/utils';
 import clsx from 'clsx';
 import Customer from './Customer';
 import ShippingBilling from './ShippingBilling';
@@ -65,12 +67,32 @@ export default function Checkout() {
   const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
+  const email = useCustomerEmail();
 
   useEffect(() => {
     dispatch(setCartOpen({ open: false }));
   }, []);
 
-  const expanded = 'All';
+  // Setup defaults for expansion
+  // If we don't have a value than it is expanded
+  // If we do have a value than it is NOT nil and it's 
+  // NOT expanded
+  const [expanded, setExpanded] = useState({
+    [checkoutStep.customer]: isNil(email),
+    [checkoutStep.shipping]: false,
+    [checkoutStep.billing]: false,
+    [checkoutStep.payment]: false,
+  });
+
+  function handleEdit(step) {
+    return (value) => {
+      setExpanded({ ...expanded, [step]: value });
+    };
+  }
+
+  function handleCustomer(data) {
+    dispatch(setEmail(data));
+  }
 
   return (
     <div className={classes.root}>
@@ -86,24 +108,32 @@ export default function Checkout() {
           direction="column"
         >
           <Paper elevation={1} className={classes.paper}>
-            <Customer expanded={false} step={checkoutStep.customer} />
+            <Customer
+              email={email}
+              expanded={expanded[checkoutStep.customer]}
+              onEdit={handleEdit(checkoutStep.customer)}
+              onSubmit={handleCustomer}
+            />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
             <ShippingBilling
               isBilling={false}
-              expanded={false}
-              step={checkoutStep.shipping}
+              expanded={expanded[checkoutStep.shipping]}
+              onEdit={handleEdit(checkoutStep.shipping)}
             />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
             <ShippingBilling
               isBilling={true}
-              expanded={false}
-              step={checkoutStep.billing}
+              expanded={expanded[checkoutStep.billing]}
+              onEdit={handleEdit(checkoutStep.billing)}
             />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
-            <Payment expanded={false} step={checkoutStep.payment} />
+            <Payment
+              expanded={expanded[checkoutStep.payment]}
+              onEdit={handleEdit(checkoutStep.payment)}
+            />
           </Paper>
         </Grid>
         <Grid

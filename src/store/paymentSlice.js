@@ -27,7 +27,6 @@ export const authorizePaymentTransaction = createAsyncThunk(
   'payment/authorizePaymentTransaction',
   async (args, { rejectWithValue }) => {
     try {
-
       // 1. Get card and user information
       const { cardData, transactionData } = args;
 
@@ -45,7 +44,10 @@ export const authorizePaymentTransaction = createAsyncThunk(
       const api = shoppingApi();
       const {
         data: { result },
-      } = await api.createAcceptPaymentTransaction({...transactionData, nonce});
+      } = await api.createAcceptPaymentTransaction({
+        ...transactionData,
+        nonce,
+      });
       console.log(`${JSON.stringify(result, null, 2)}`);
       return result;
     } catch (error) {
@@ -60,23 +62,53 @@ const paymentSlice = createSlice({
   name: 'payment',
   initialState: {
     token: '',
-    canHostPaymentForm: false,
-    nonce: undefined,
-    amount: undefined,
-    tax: undefined,
-    duty: undefined,
-    order: {
-      invoice: undefined,
-      description: undefined,
+    card: {
+      cardNumber: undefined,
+      month: undefined,
+      year: undefined,
+      cardCode: undefined,
+      zip: undefined,
+      fullName: undefined,
     },
-    shipping: {
+    transactionData: {
+      nonce: {
+        description: 'COMMON.ACCEPT.INAPP.PAYMENT',
+        value: 'PLEASE_GET_REAL_VALUE',
+      },
       amount: undefined,
-      name: undefined,
-      description: undefined,
+      tax: undefined,
+      duty: undefined,
+      order: {
+        invoice: undefined,
+        description: undefined,
+      },
+      shipping: {
+        amount: undefined,
+        name: undefined,
+        description: undefined,
+      },
+      billTo: {
+        firstName: undefined,
+        lastName: undefined,
+        company: undefined,
+        address: undefined,
+        city: undefined,
+        state: undefined,
+        zip: undefined,
+        country: undefined,
+      },
+      shipTo: {
+        firstName: undefined,
+        lastName: undefined,
+        company: undefined,
+        address: undefined,
+        city: undefined,
+        state: undefined,
+        zip: undefined,
+        country: undefined,
+      },
+      lineItems: [],
     },
-    billTo: undefined,
-    shipTo: undefined,
-    lineItems: undefined,
   },
   reducers: {
     resetHostPaymentForm(state) {

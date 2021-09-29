@@ -1,19 +1,18 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useForm } from 'react-hook-form';
-// import { hasValue } from 'helpers/utils';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ReviewCard from './ReviewCard';
 import Step from './CheckoutStep';
 import TextField from './TextField';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  ['customer-email']: yup.string().email('Please enter a valid email.').required(),
+  ['email']: yup.string().email('Please enter a valid email.').required(),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -74,14 +73,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 Customer.propTypes = {
+  email: PropTypes.string,
   expanded: PropTypes.bool,
-  step: PropTypes.string,
+  onEdit: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
-export default function Customer({ expanded, step }) {
+export default function Customer({
+  email,
+  expanded,
+  onEdit: handleEdit,
+  onSubmit: handleContinue,
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
-  // const e = 'scrooge.mcduck@human+nature.com';
   const {
     control,
     formState: { errors, isSubmitting, isValid, touchedFields },
@@ -90,22 +95,34 @@ export default function Customer({ expanded, step }) {
   } = useForm({
     criteriaMode: 'firstError',
     defaultValues: {
-      ['customer-email']: 'jwrigh26@gmail.com',
+      ['email']: '',
     },
     mode: 'onBlur',
     resolver: yupResolver(schema),
-    reValidateMode: 'onBlur',
+    reValidateMode: 'onChange',
   });
+
+  const buttonRef = useRef();
 
   const onSubmit = (data) => {
     console.log(`${JSON.stringify(touchedFields, null, 2)}`);
     console.log(`${JSON.stringify(data, null, 2)}`);
+    handleContinue(data);
+    handleEdit(false);
   };
+
+  // Prevents focus from skipping continue
+  // because is was prev disabled
+  useEffect(()=> {
+    buttonRef.current.focus();
+  }, [isValid])
 
   return (
     <Step expanded={true} label={'Customer'}>
       <>
-        {!expanded && <ReviewCard />}
+        {!expanded && (
+          <ReviewCard info={[email]} onEdit={handleEdit} />
+        )}
         {expanded && (
           <>
             <Typography
@@ -123,7 +140,7 @@ export default function Customer({ expanded, step }) {
                 control={control}
                 errors={errors}
                 label="Email Address"
-                name="customer-email"
+                name="email"
                 trigger={trigger}
               />
               <Button
@@ -132,6 +149,7 @@ export default function Customer({ expanded, step }) {
                 disabled={isSubmitting || !isValid}
                 type="submit"
                 variant="contained"
+                innerRef={buttonRef}
               >
                 Continue as Guest
               </Button>
@@ -145,7 +163,9 @@ export default function Customer({ expanded, step }) {
               >
                 Already have an account?
               </Typography>
-              <Button color="primary">Sign in now</Button>
+              <Button color="primary">
+                Sign in now
+              </Button>
             </div>
           </>
         )}

@@ -12,6 +12,7 @@ MUITextField.propTypes = {
   classes: PropTypes.any,
   control: PropTypes.object.isRequired,
   errors: PropTypes.object,
+  inputProps: PropTypes.object,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   setChangeValue: PropTypes.func,
@@ -54,6 +55,7 @@ function MUITextField({
     }
     return null;
   }
+
 
   return (
     <Controller
