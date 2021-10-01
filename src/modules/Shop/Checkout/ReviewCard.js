@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
+import { setStep } from 'store/paymentSlice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,14 +30,16 @@ const useStyles = makeStyles((theme) => ({
 
 ReviewCard.propTypes = {
   info: PropTypes.array,
-  onEdit: PropTypes.func,
+  step: PropTypes.string,
 };
 
-export default function ReviewCard({ info = [], onEdit = () => {} }) {
+export default function ReviewCard({ info = [], step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const dispatch = useDispatch();
 
   function renderLine(line, index) {
+    console.log('line', line);
     return (
       <Typography
         className={classes.text}
@@ -61,7 +63,7 @@ export default function ReviewCard({ info = [], onEdit = () => {} }) {
         size="small"
         onClick={(e) => {
           e.stopPropagation();
-          onEdit(true);
+          dispatch(setStep({step, displayForm: true}))
         }}
         disabled={false}
       >

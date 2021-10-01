@@ -6,7 +6,7 @@ import * as R from 'ramda';
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    email: undefined,
+    email: 'jwrgh@gmail.com',
   },
   reducers: {
     setEmail(state, action) {

@@ -1,8 +1,4 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useDispatch } from 'react-redux';
-import { authorizePaymentTransaction } from 'store/paymentSlice';
-import { useForm } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
@@ -10,9 +6,13 @@ import Step from './CheckoutStep';
 import TextField from './TextField';
 import Typography from '@material-ui/core/Typography';
 import dummyData from 'models/dummy.json';
-import clsx from 'clsx';
-
 import valid from 'card-validator'; //import statement
+import clsx from 'clsx';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
+import { authorizePaymentTransaction } from 'store/paymentSlice';
+import { useForm } from 'react-hook-form';
+import { checkoutStep } from '../../../constants';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -86,15 +86,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-Payment.propTypes = {
-  expanded: PropTypes.bool,
-  step: PropTypes.string,
-};
-
-export default function Payment({ expanded, step }) {
+export default function Payment() {
   const dispatch = useDispatch();
   const theme = useTheme();
   const classes = useStyles(theme);
+  const expanded = false;
 
   const {
     control,
@@ -165,7 +161,7 @@ export default function Payment({ expanded, step }) {
   };
 
   return (
-    <Step expanded={true} label={'Payment'}>
+    <Step expanded={expanded} label={'Payment'}>
       <>
         {!expanded && <ReviewCard />}
         {expanded && (

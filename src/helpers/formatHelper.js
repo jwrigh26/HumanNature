@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-
+import { isNil } from './utils';
 // Makes a word capitalized
 // i.e. cat = Cat.
 export function capitalize(word) {
@@ -65,4 +65,11 @@ export function phoneFormat(value) {
   return input;
 }
 
-
+// Helper for cleaning objects before sending to API
+export function removeEmpty(obj) {
+  return Object.fromEntries(
+    Object.entries(obj)
+      .filter(([_, v]) => !isNil(v))
+      .map(([k, v]) => [k, v === Object(v) ? removeEmpty(v) : v])
+  );
+}

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { shoppingApi } from '../api';
 import * as R from 'ramda';
 import { v4 as uuidv4 } from 'uuid';
+import { checkoutStep } from '../constants';
 import { getAcceptPaymentNonce } from 'helpers/authnetHelper';
 import { isEqual } from 'lodash';
 
@@ -58,6 +59,13 @@ export const authorizePaymentTransaction = createAsyncThunk(
   }
 );
 
+const defaultSteps = {
+  [checkoutStep.customer]: false,
+  [checkoutStep.shipping]: false,
+  [checkoutStep.billing]: false,
+  [checkoutStep.payment]: false,
+};
+
 const paymentSlice = createSlice({
   name: 'payment',
   initialState: {
@@ -109,11 +117,19 @@ const paymentSlice = createSlice({
       },
       lineItems: [],
     },
+    steps: defaultSteps,
   },
   reducers: {
     resetHostPaymentForm(state) {
       state.canHostPaymentForm = false;
       state.token = '';
+    },
+    setStep(state, action) {
+      console.log('Set step', action.payload);
+      state.steps = {
+        ...defaultSteps,
+        [action.payload.step]: action.payload.displayForm,
+      };
     },
     setToken(state, action) {
       state.token = action.payload.token;
@@ -127,12 +143,22 @@ const paymentSlice = createSlice({
   },
 });
 
+export const stepCustomerSelector = R.path([
+  'payment',
+  'steps',
+  checkoutStep.customer,
+]);
+
 export const paymentSelector = R.prop('payment');
 export const tokenSelector = R.path(['payment', 'token']);
 export const canHostPaymentFormSelector = R.path([
   'payment',
   'canHostPaymentForm',
 ]);
+
+export function useStepCustomerSelector() {
+  return useSelector(stepCustomerSelector, isEqual);
+}
 
 export function useTokenSelector() {
   return useSelector(tokenSelector, isEqual);
@@ -142,6 +168,15 @@ export function useCanHostPaymentFormSelector() {
   return useSelector(tokenSelector, isEqual);
 }
 
-export const { resetHostPaymentForm, setToken } = paymentSlice.actions;
+export const { resetHostPaymentForm, setStep, setToken } = paymentSlice.actions;
 
 export default paymentSlice.reducer;
+
+// export function handleRemoveFromCart(id) {
+//   return async (dispatch, getState) => {
+//     dispatch(removeItem({ key: id }));
+//     const { cart } = await getState().shop;
+//     dispatch(setCartSubTotal({ total: getCartSubtotal(cart) }));
+//     dispatch(setCartTotalQuantity({ total: getTotalQuantity(cart) }));
+//   };
+// }

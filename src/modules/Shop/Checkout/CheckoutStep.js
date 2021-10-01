@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ReviewCard from './ReviewCard';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import { red } from '@material-ui/core/colors';
@@ -32,9 +33,12 @@ const useStyles = makeStyles((theme) => ({
     '&$expanded': {
       minHeight: 56,
     },
+    paddingTop: theme.spacing(1),
   },
   expanded: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   details: {
     display: 'flex',
@@ -43,15 +47,20 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     paddingBottom: theme.spacing(4),
   },
+  labelCollapsed: {
+    opacity: 0.5,
+  },
 }));
 
 Step.propTypes = {
   children: PropTypes.node,
   expanded: PropTypes.bool,
   label: PropTypes.string,
+  info: PropTypes.array,
+  step: PropTypes.string,
 };
 
-export default function Step({ children, expanded, label }) {
+export default function Step({ children, expanded, label, info, step }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -65,10 +74,17 @@ export default function Step({ children, expanded, label }) {
         id="step-header"
       >
         <div className={clsx(classes.block)}>
-          <Typography variant="h5" component="h5">
+          <Typography
+            className={clsx({
+              [classes.labelCollapsed]: !expanded,
+            })}
+            variant="h5"
+            component="h5"
+          >
             {label}
           </Typography>
         </div>
+        <ReviewCard info={info} step={step} />
       </AccordionSummary>
       <AccordionDetails classes={{ root: classes.details }}>
         {children}

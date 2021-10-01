@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { useForm } from 'react-hook-form';
-import { phoneFormat } from 'helpers/formatHelper';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -13,7 +10,10 @@ import Step from './CheckoutStep';
 import TextField from './TextField';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
-
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useForm } from 'react-hook-form';
+import { phoneFormat } from 'helpers/formatHelper';
+import { checkoutStep } from '../../../constants';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -155,22 +155,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 ShippingBilling.propTypes = {
-  expanded: PropTypes.bool,
-  step: PropTypes.string,
   isBilling: PropTypes.bool,
 };
 
-// TODOs
-// Make user model
-//
-// Hook up steps in proper order
-// Billing address checkmark
-// Comments text
-
-export default function ShippingBilling({ expanded, step, isBilling = false }) {
+export default function ShippingBilling({ isBilling = false }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const title = isBilling ? 'Billing' : 'Shipping';
+  const expanded = false;
 
   const [billingSameAsShipping, setBillingSameAsShipping] = useState(false);
   const [stateProvince, setStateProvince] = useState(20);
@@ -238,7 +230,7 @@ export default function ShippingBilling({ expanded, step, isBilling = false }) {
   };
 
   return (
-    <Step expanded={true} label={title}>
+    <Step expanded={expanded} label={title}>
       <>
         {!expanded && <ReviewCard />}
         {expanded && (
