@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -7,7 +6,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ReviewCard from './ReviewCard';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
-import { red } from '@material-ui/core/colors';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { hasValue } from 'helpers/utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +47,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-start',
     paddingBottom: theme.spacing(4),
   },
+  block: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyItems: 'center',
+    alignItems: 'flex-start',
+    width: '100%',
+  },
   labelCollapsed: {
     opacity: 0.5,
   },
@@ -83,8 +90,9 @@ export default function Step({ children, expanded, label, info, step }) {
           >
             {label}
           </Typography>
+
+          <ReviewCard expanded={expanded} info={info} step={step} />
         </div>
-        <ReviewCard info={info} step={step} />
       </AccordionSummary>
       <AccordionDetails classes={{ root: classes.details }}>
         {children}

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import Skeleton from 'components/Image/Skeleton';
 import { screenSelector } from 'store/screenSlice';
 import SuspenseImg from './SuspenseImg';
-import Fade from '@material-ui/core/Fade';
+
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
