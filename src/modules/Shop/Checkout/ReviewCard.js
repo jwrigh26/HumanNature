@@ -6,8 +6,8 @@ import clsx from 'clsx';
 import Fade from '@material-ui/core/Fade';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
-import { setStep } from 'store/paymentSlice';
-import { hasValue } from 'helpers/utils';
+import { resetSteps, setStep } from 'store/paymentSlice';
+import { hasValue, sleep } from 'helpers/utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,8 +74,10 @@ export default function ReviewCard({ expanded, info, step }) {
               [classes.buttonDark]: theme?.mode?.isDark,
             })}
             size="small"
-            onClick={(e) => {
+            onClick={async (e) => {
               e.stopPropagation();
+              dispatch(resetSteps());
+              await sleep(theme.transitions.duration.standard);
               dispatch(setStep({ step, expanded: true }));
             }}
             disabled={false}

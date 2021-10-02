@@ -124,6 +124,9 @@ const paymentSlice = createSlice({
       state.canHostPaymentForm = false;
       state.token = '';
     },
+    resetSteps(state, action) {
+      state.steps = defaultSteps;
+    },
     setStep(state, action) {
       console.log('Set step', action.payload);
       state.steps = {
@@ -172,11 +175,11 @@ export function useStepCustomerSelector() {
   return useSelector(stepCustomerSelector, isEqual);
 }
 
-export function useStepShippingSelector(){
+export function useStepShippingSelector() {
   return useSelector(stepShippingSelector, isEqual);
 }
 
-export function useStepBillingSelector(){
+export function useStepBillingSelector() {
   return useSelector(stepBillingSelector, isEqual);
 }
 
@@ -188,7 +191,8 @@ export function useCanHostPaymentFormSelector() {
   return useSelector(tokenSelector, isEqual);
 }
 
-export const { resetHostPaymentForm, setStep, setToken } = paymentSlice.actions;
+export const { resetHostPaymentForm, resetSteps, setStep, setToken } =
+  paymentSlice.actions;
 
 export default paymentSlice.reducer;
 
