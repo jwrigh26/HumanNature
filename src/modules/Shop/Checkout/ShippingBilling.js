@@ -12,6 +12,11 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
+import {
+  setStep,
+  useStepBillingSelector,
+  useStepShippingSelector,
+} from 'store/paymentSlice';
 import { phoneFormat } from 'helpers/formatHelper';
 import { checkoutStep } from '../../../constants';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -162,7 +167,9 @@ export default function ShippingBilling({ isBilling = false }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const title = isBilling ? 'Billing' : 'Shipping';
-  const expanded = false;
+  const expandedBilling = useStepBillingSelector();
+  const expandedShipping = useStepShippingSelector();
+  const expanded = isBilling ? expandedBilling : expandedShipping;
 
   const [billingSameAsShipping, setBillingSameAsShipping] = useState(false);
   const [stateProvince, setStateProvince] = useState(20);

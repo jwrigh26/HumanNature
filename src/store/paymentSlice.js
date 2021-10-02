@@ -128,7 +128,7 @@ const paymentSlice = createSlice({
       console.log('Set step', action.payload);
       state.steps = {
         ...defaultSteps,
-        [action.payload.step]: action.payload.displayForm,
+        [action.payload.step]: action.payload.expanded,
       };
     },
     setToken(state, action) {
@@ -149,6 +149,18 @@ export const stepCustomerSelector = R.path([
   checkoutStep.customer,
 ]);
 
+export const stepShippingSelector = R.path([
+  'payment',
+  'steps',
+  checkoutStep.shipping,
+]);
+
+export const stepBillingSelector = R.path([
+  'payment',
+  'steps',
+  checkoutStep.billing,
+]);
+
 export const paymentSelector = R.prop('payment');
 export const tokenSelector = R.path(['payment', 'token']);
 export const canHostPaymentFormSelector = R.path([
@@ -158,6 +170,14 @@ export const canHostPaymentFormSelector = R.path([
 
 export function useStepCustomerSelector() {
   return useSelector(stepCustomerSelector, isEqual);
+}
+
+export function useStepShippingSelector(){
+  return useSelector(stepShippingSelector, isEqual);
+}
+
+export function useStepBillingSelector(){
+  return useSelector(stepBillingSelector, isEqual);
 }
 
 export function useTokenSelector() {

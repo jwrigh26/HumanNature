@@ -65,12 +65,9 @@ export default function Checkout() {
   const theme = useTheme();
   const classes = useStyles(theme);
   
-
   useEffect(() => {
     dispatch(setCartOpen({ open: false }));
   }, []);
-
-  
 
   return (
     <div className={classes.root}>

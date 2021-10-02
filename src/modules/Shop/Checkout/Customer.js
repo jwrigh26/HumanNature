@@ -82,12 +82,11 @@ export default function Customer() {
   const buttonRef = useRef();
   const classes = useStyles(theme);
   const email = useCustomerEmail();
-  const displayForm = useStepCustomerSelector();
-  const [expanded, setExpanded] = useState(false);
+  const expanded = useStepCustomerSelector();
 
   const {
     control,
-    formState: { errors, isSubmitting, isValid, touchedFields },
+    formState: { errors, isSubmitting, isValid },
     handleSubmit,
     trigger,
   } = useForm({
@@ -101,23 +100,30 @@ export default function Customer() {
   });
 
   const onSubmit = async (data) => {
-    // await sleep(250);
-    console.log(`${JSON.stringify(touchedFields, null, 2)}`);
+    await sleep(theme.transitions.duration.short);
     console.log(`${JSON.stringify(data, null, 2)}`);
     dispatch(setEmail(data));
     dispatch(
       setStep({
         step: checkoutStep.customer,
-        displayForm: false,
+        expanded: false,
+      })
+    );
+    await sleep(theme.transitions.duration.standard);
+    dispatch(
+      setStep({
+        step: checkoutStep.shipping,
+        expanded: true,
       })
     );
   };
 
+  // Sets the customer form to expanded or collapsed on init
   useEffect(() => {
     dispatch(
       setStep({
         step: checkoutStep.customer,
-        displayForm: hasValue(email) ? false : true,
+        expanded: hasValue(email) ? false : true,
       })
     );
   }, []);
@@ -131,7 +137,7 @@ export default function Customer() {
 
   return (
     <Step
-      expanded={displayForm}
+      expanded={expanded}
       info={[email]}
       label={'Customer'}
       step={checkoutStep.customer}

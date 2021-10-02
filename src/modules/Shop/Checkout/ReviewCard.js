@@ -76,7 +76,7 @@ export default function ReviewCard({ expanded, info, step }) {
             size="small"
             onClick={(e) => {
               e.stopPropagation();
-              dispatch(setStep({ step, displayForm: true }));
+              dispatch(setStep({ step, expanded: true }));
             }}
             disabled={false}
           >
