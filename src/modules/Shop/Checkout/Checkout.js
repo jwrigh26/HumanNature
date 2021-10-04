@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Customer from './Customer';
-import ShippingBilling from './ShippingBilling';
+import Billing from './Billing';
+import Shipping from './Shipping';
 import Payment from './Payment';
 import Summary from './Summary';
 import { useDispatch } from 'react-redux';
@@ -86,10 +87,10 @@ export default function Checkout() {
             <Customer />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
-            <ShippingBilling />
+            <Shipping />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
-            <ShippingBilling isBilling={true}/>
+            <Billing />
           </Paper>
           <Paper elevation={1} className={classes.paper}>
             <Payment />

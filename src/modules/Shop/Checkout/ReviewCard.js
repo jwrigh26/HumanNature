@@ -45,7 +45,6 @@ export default function ReviewCard({ expanded, info, step }) {
   const dispatch = useDispatch();
 
   function renderLine(line, index) {
-    console.log('line', line);
     return (
       <Typography
         className={classes.text}
@@ -77,7 +76,7 @@ export default function ReviewCard({ expanded, info, step }) {
             onClick={async (e) => {
               e.stopPropagation();
               dispatch(resetSteps());
-              await sleep(theme.transitions.duration.standard);
+              await sleep(theme.transitions.duration.short);
               dispatch(setStep({ step, expanded: true }));
             }}
             disabled={false}

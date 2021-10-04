@@ -15,6 +15,7 @@ MUITextField.propTypes = {
   inputProps: PropTypes.object,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  required: PropTypes.bool,
   setChangeValue: PropTypes.func,
   trigger: PropTypes.func.isRequired,
 };
@@ -34,6 +35,7 @@ function MUITextField({
   errors,
   label,
   name,
+  required = false,
   setChangeValue,
   trigger,
 }) {
@@ -79,6 +81,7 @@ function MUITextField({
               }
             }}
             onBlur={onBlur}
+            required={required}
             value={value}
             variant="outlined"
             helperText={getErrorText()}

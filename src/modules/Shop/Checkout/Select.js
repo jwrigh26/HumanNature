@@ -20,6 +20,7 @@ MUISelect.propTypes = {
       name: PropTypes.string.isRequired,
     })
   ),
+  required: PropTypes.bool,
   setChangeValue: PropTypes.func,
 };
 
@@ -38,6 +39,7 @@ function MUISelect({
   label,
   name,
   options,
+  required = false,
   setChangeValue,
 }) {
   const theme = useTheme();
@@ -54,7 +56,10 @@ function MUISelect({
             variant="outlined"
             className={clsx(classes.root, extendedClasses)}
           >
-            <InputLabel htmlFor="outlined-age-native-simple">
+            <InputLabel
+              htmlFor="outlined-age-native-simple"
+              required={required}
+            >
               {label}
             </InputLabel>
             <Select

@@ -98,6 +98,21 @@ export function isDate(value) {
   return !isNil(value) && value instanceof Date && !isNaN(value.valueOf());
 }
 
+// Helper for cleaning objects before sending to API
+export function removeEmpty(obj) {
+  return Object.fromEntries(
+    Object.entries(obj)
+      .filter(([_, v]) => !isNil(v))
+      .map(([k, v]) => [k, v === Object(v) ? removeEmpty(v) : v])
+  );
+}
+
+
+/* eslint-disable no-unused-vars */
+// one line solution to delete using destructuring
+export const removeItem = (key, { [key]: _, ...obj }) => obj;
+/* eslint-enable no-unused-vars */
+
 /**
  * Sorts an array by a property.
  *
@@ -136,7 +151,3 @@ export function sortBy(propertyAccessor, isAsc = true) {
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/* eslint-disable no-unused-vars */
-// one line solution to delete using destructuring
-export const removeItem = (key, { [key]: _, ...obj }) => obj;
-/* eslint-enable no-unused-vars */

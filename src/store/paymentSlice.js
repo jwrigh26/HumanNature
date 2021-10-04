@@ -93,7 +93,7 @@ const paymentSlice = createSlice({
       shipping: {
         amount: undefined,
         name: undefined,
-        description: undefined,
+        description: 'Please deliver to side door.',
       },
       billTo: {
         firstName: undefined,
@@ -106,18 +106,19 @@ const paymentSlice = createSlice({
         country: undefined,
       },
       shipTo: {
-        firstName: undefined,
-        lastName: undefined,
-        company: undefined,
-        address: undefined,
-        city: undefined,
-        state: undefined,
-        zip: undefined,
-        country: undefined,
+        firstName: 'Scrooge',
+        lastName: 'McDuck',
+        company: 'McDuck Enterprise inc.',
+        address: '555 E MoneyBin Ln',
+        city: 'Duckburg',
+        state: 'UT',
+        zip: '84109',
+        country: 'USA',
       },
       lineItems: [],
     },
     steps: defaultSteps,
+    billingSameAsShipping: false,
   },
   reducers: {
     resetHostPaymentForm(state) {
@@ -137,6 +138,9 @@ const paymentSlice = createSlice({
     setToken(state, action) {
       state.token = action.payload.token;
     },
+    setBillingSameAsShipping(state, action) {
+      state.billingSameAsShipping = action.payload.same;
+    },
   },
   extraReducers: {
     [getAuthToken.fulfilled]: (state, action) => {
@@ -145,6 +149,27 @@ const paymentSlice = createSlice({
     },
   },
 });
+
+export const billToSelector = R.path(['payment', 'transactionData', 'billTo']);
+
+export const billingSameAsShippingSelector = R.path([
+  'payment',
+  'billingSameAsShipping',
+]);
+
+export const shippingSelector = R.path([
+  'payment',
+  'transactionData',
+  'shipping',
+]);
+
+export const shipToSelector = R.path(['payment', 'transactionData', 'shipTo']);
+
+export const stepBillingSelector = R.path([
+  'payment',
+  'steps',
+  checkoutStep.billing,
+]);
 
 export const stepCustomerSelector = R.path([
   'payment',
@@ -158,12 +183,6 @@ export const stepShippingSelector = R.path([
   checkoutStep.shipping,
 ]);
 
-export const stepBillingSelector = R.path([
-  'payment',
-  'steps',
-  checkoutStep.billing,
-]);
-
 export const paymentSelector = R.prop('payment');
 export const tokenSelector = R.path(['payment', 'token']);
 export const canHostPaymentFormSelector = R.path([
@@ -171,16 +190,32 @@ export const canHostPaymentFormSelector = R.path([
   'canHostPaymentForm',
 ]);
 
+export function useBillToSelector() {
+  return useSelector(billToSelector, isEqual);
+}
+
+export function useBillingSameAsShippingSelector() {
+  return useSelector(billingSameAsShippingSelector, isEqual);
+}
+
+export function useShippingSelector() {
+  return useSelector(shippingSelector, isEqual);
+}
+
+export function useShipToSelector() {
+  return useSelector(shipToSelector, isEqual);
+}
+
+export function useStepBillingSelector() {
+  return useSelector(stepBillingSelector, isEqual);
+}
+
 export function useStepCustomerSelector() {
   return useSelector(stepCustomerSelector, isEqual);
 }
 
 export function useStepShippingSelector() {
   return useSelector(stepShippingSelector, isEqual);
-}
-
-export function useStepBillingSelector() {
-  return useSelector(stepBillingSelector, isEqual);
 }
 
 export function useTokenSelector() {
@@ -191,8 +226,13 @@ export function useCanHostPaymentFormSelector() {
   return useSelector(tokenSelector, isEqual);
 }
 
-export const { resetHostPaymentForm, resetSteps, setStep, setToken } =
-  paymentSlice.actions;
+export const {
+  resetHostPaymentForm,
+  resetSteps,
+  setBillingSameAsShipping,
+  setStep,
+  setToken,
+} = paymentSlice.actions;
 
 export default paymentSlice.reducer;
 

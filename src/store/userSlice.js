@@ -7,22 +7,30 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     email: 'mario+luigi+toad@gmail.com',
+    phoneNumber: '(801)-555-4132',
   },
   reducers: {
     setEmail(state, action) {
       state.email = action.payload.email;
     },
+    setPhoneNumber(state, action) {
+      state.phoneNumber = action.payload.phoneNumber;
+    },
   },
 });
 
-export const { setEmail } = userSlice.actions;
+export const { setEmail, setPhoneNumber } = userSlice.actions;
 
 export const userSelector = R.prop('user');
 export const emailSelector = R.path(['user', 'email']);
+export const phoneSelector = R.path(['user', 'phoneNumber']);
 
-
-export function useCustomerEmail() {
+export function useCustomerEmailSelector() {
   return useSelector(emailSelector, isEqual);
+}
+
+export function usePhoneNumberSelector() {
+  return useSelector(phoneSelector, isEqual);
 }
 
 export default userSlice.reducer;

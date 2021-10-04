@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import PropTypes from 'prop-types';
 import ReviewCard from './ReviewCard';
 import states from 'models/states';
 import Select from './Select';
@@ -12,11 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import {
-  setStep,
-  useStepBillingSelector,
-  useStepShippingSelector,
-} from 'store/paymentSlice';
+import { setStep, useStepBillingSelector } from 'store/paymentSlice';
 import { phoneFormat } from 'helpers/formatHelper';
 import { checkoutStep } from '../../../constants';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -159,19 +152,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-ShippingBilling.propTypes = {
-  isBilling: PropTypes.bool,
-};
-
-export default function ShippingBilling({ isBilling = false }) {
+export default function Billing() {
   const theme = useTheme();
   const classes = useStyles(theme);
-  const title = isBilling ? 'Billing' : 'Shipping';
-  const expandedBilling = useStepBillingSelector();
-  const expandedShipping = useStepShippingSelector();
-  const expanded = isBilling ? expandedBilling : expandedShipping;
-
-  const [billingSameAsShipping, setBillingSameAsShipping] = useState(false);
+  const expanded = useStepBillingSelector();
   const [stateProvince, setStateProvince] = useState(20);
 
   const {
@@ -180,35 +164,32 @@ export default function ShippingBilling({ isBilling = false }) {
     handleSubmit,
     trigger,
   } = useForm({
+    // defaultValues: {
+    //   ['first-name']: 'Scrooge',
+    //   ['last-name']: 'McDuck',
+    //   ['address-1']: '555 McManor Rd',
+    //   ['address-2']: 'PO 55423',
+    //   ['company']: 'Duck LLC',
+    //   ['city']: 'Salt Lake City',
+    //   ['postal-code']: '84106',
+    //   ['phone-number']: '(801)-555-5555',
+    //   ['state']: 'UT',
+    // },
     defaultValues: {
-      ['first-name']: 'Scrooge',
-      ['last-name']: 'McDuck',
-      ['address-1']: '555 McManor Rd',
-      ['address-2']: 'PO 55423',
-      ['company']: 'Duck LLC',
-      ['city']: 'Salt Lake City',
-      ['postal-code']: '84106',
-      ['phone-number']: '(801)-555-5555',
-      ['state']: 'UT',
-      ['comments']: 'Here is some comments from Scrooge.',
+      ['first-name']: '',
+      ['last-name']: '',
+      ['address-1']: '',
+      ['address-2']: '',
+      ['company']: '',
+      ['city']: '',
+      ['postal-code']: '',
+      ['phone-number']: '',
+      ['state']: '',
     },
     mode: 'onBlur',
     resolver: yupResolver(schema),
     reValidateMode: 'onBlur',
   });
-
-  function handleBillingSameAsShipping() {
-    // const name = event.target.name;
-    // const isSame = name === 'billingSameAsShipping';
-    // console.log('name', isSame);
-    setBillingSameAsShipping(!billingSameAsShipping);
-  }
-
-  function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      setBillingSameAsShipping(!billingSameAsShipping);
-    }
-  }
 
   function handleStateProvinceSelect(value) {
     setStateProvince(value);
@@ -237,7 +218,7 @@ export default function ShippingBilling({ isBilling = false }) {
   };
 
   return (
-    <Step expanded={expanded} label={title}>
+    <Step expanded={expanded} label={'Billing'} step={checkoutStep.billing}>
       <>
         {!expanded && <ReviewCard />}
         {expanded && (
@@ -345,66 +326,15 @@ export default function ShippingBilling({ isBilling = false }) {
                   trigger={trigger}
                 />
               </div>
-              {isBilling && (
-                <Button
-                  className={classes.button}
-                  color="primary"
-                  disabled={isSubmitting || !isValid}
-                  type="submit"
-                  variant="contained"
-                >
-                  Continue
-                </Button>
-              )}
-              {!isBilling && (
-                <>
-                  <FormControlLabel
-                    className={classes.billingSameAsShipping}
-                    control={
-                      <Checkbox
-                        checked={billingSameAsShipping}
-                        onChange={handleBillingSameAsShipping}
-                        onKeyPress={(e) => handleKeyPress(e)}
-                        name="billingSameAsShipping"
-                        value={billingSameAsShipping}
-                        color="primary"
-                      />
-                    }
-                    label="My billing address is the same as my shipping address."
-                  />
-
-                  <div className={classes.shippingContainer}>
-                    <Typography
-                      className={classes.shippingHintText}
-                      gutterBottom
-                      variant="body1"
-                      component="p"
-                    >
-                      Please enter a shipping address in order to see shipping
-                      quotes
-                    </Typography>
-                  </div>
-                  <div className={classes.column}>
-                    <TextField
-                      classes={classes.textfield}
-                      control={control}
-                      errors={errors}
-                      label="Order Comments"
-                      name="comments"
-                      trigger={trigger}
-                    />
-                  </div>
-                  <Button
-                    className={classes.button}
-                    color="primary"
-                    disabled={isSubmitting || !isValid}
-                    type="submit"
-                    variant="contained"
-                  >
-                    Continue
-                  </Button>
-                </>
-              )}
+              <Button
+                className={classes.button}
+                color="primary"
+                disabled={isSubmitting || !isValid}
+                type="submit"
+                variant="contained"
+              >
+                Continue
+              </Button>
             </form>
           </>
         )}

@@ -9,7 +9,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { setStep, useStepCustomerSelector } from 'store/paymentSlice';
-import { setEmail, useCustomerEmail } from 'store/userSlice';
+import { setEmail, useCustomerEmailSelector } from 'store/userSlice';
 import { checkoutStep } from '../../../constants';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { hasValue, sleep } from 'helpers/utils';
@@ -81,7 +81,7 @@ export default function Customer() {
   const theme = useTheme();
   const buttonRef = useRef();
   const classes = useStyles(theme);
-  const email = useCustomerEmail();
+  const email = useCustomerEmailSelector();
   const expanded = useStepCustomerSelector();
 
   const {
@@ -109,7 +109,7 @@ export default function Customer() {
         expanded: false,
       })
     );
-    await sleep(theme.transitions.duration.standard);
+    await sleep(theme.transitions.duration.short);
     dispatch(
       setStep({
         step: checkoutStep.shipping,
