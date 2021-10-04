@@ -100,7 +100,6 @@ export default function Customer() {
   });
 
   const onSubmit = async (data) => {
-    await sleep(theme.transitions.duration.short);
     console.log(`${JSON.stringify(data, null, 2)}`);
     dispatch(setEmail(data));
     dispatch(
@@ -109,7 +108,7 @@ export default function Customer() {
         expanded: false,
       })
     );
-    await sleep(theme.transitions.duration.short);
+    await sleep(theme.transitions.duration.complex);
     dispatch(
       setStep({
         step: checkoutStep.shipping,

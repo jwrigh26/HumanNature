@@ -12,7 +12,7 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { usePhoneNumberSelector } from 'store/userSlice';
+import { setPhoneNumber, usePhoneNumberSelector } from 'store/userSlice';
 import {
   setBillingSameAsShipping,
   setStep,
@@ -26,7 +26,6 @@ import { checkoutStep } from '../../../constants';
 import { hasValue, removeEmpty, sleep } from 'helpers/utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { shipToSelector } from '../../../store/paymentSlice';
 
 const schema = yup.object().shape({
   ['firstName']: yup
@@ -169,15 +168,10 @@ export default function Shipping() {
   const theme = useTheme();
   const classes = useStyles(theme);
   const expanded = useStepShippingSelector();
-
   const shipping = useShippingSelector();
   const shipTo = useShipToSelector();
-  // const shipping = {};
-  // const shipTo = {};
-
   const phoneNumber = usePhoneNumberSelector();
   const billingSameAsShipping = useBillingSameAsShippingSelector();
-  const [stateProvince, setStateProvince] = useState(20);
 
   const {
     control,
@@ -212,7 +206,6 @@ export default function Shipping() {
   }
 
   function handleStateProvinceSelect(value) {
-    setStateProvince(value);
     return value;
   }
 
@@ -248,19 +241,26 @@ export default function Shipping() {
     );
   }
 
-  const onSubmit = (data) => {
-    console.log('On Submit Called');
-
-    console.log(`${JSON.stringify(touchedFields, null, 2)}`);
+  const onSubmit = async (data) => {
+    await sleep(theme.transitions.duration.short);
+    console.log(data);
     console.log(`${JSON.stringify(data, null, 2)}`);
+    dispatch(setPhoneNumber(data));
+    dispatch(
+      setStep({
+        step: checkoutStep.shipping,
+        expanded: false,
+      })
+    );
+    await sleep(theme.transitions.duration.complex);
+    const nextStep = billingSameAsShipping
+      ? checkoutStep.payment
+      : checkoutStep.billing;
+    dispatch(setStep({
+      step: nextStep,
+      expanded: true,
+    }))
   };
-
-  function handleKeyPressSubmit(event) {
-    if (event.key === 'Enter') {
-      console.log('handle submit on key press');
-      handleSubmit(onSubmit);
-    }
-  }
 
   // Please enter a shipping address in order to see shipping quotes
   // TODO: Replace shipping text with above ^ and make it work

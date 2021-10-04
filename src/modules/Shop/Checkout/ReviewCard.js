@@ -76,7 +76,7 @@ export default function ReviewCard({ expanded, info, step }) {
             onClick={async (e) => {
               e.stopPropagation();
               dispatch(resetSteps());
-              await sleep(theme.transitions.duration.short);
+              await sleep(theme.transitions.duration.complex);
               dispatch(setStep({ step, expanded: true }));
             }}
             disabled={false}
